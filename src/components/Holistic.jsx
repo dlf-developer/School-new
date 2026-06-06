@@ -1,5 +1,6 @@
 import React from 'react'
 import { Music, Palette, Terminal } from 'lucide-react'
+import ImageWithLoader from './ImageWithLoader'
 
 export default function Holistic() {
   return (
@@ -17,8 +18,8 @@ export default function Holistic() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Large Featured Left Box */}
           <div className="lg:col-span-7 relative group overflow-hidden rounded-3xl aspect-[16/10] shadow-xl">
-            <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&q=80&w=1000" alt="Sports Field Arena" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[6s]" />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-greenDeep via-brand-greenDeep/20 to-transparent"></div>
+            <ImageWithLoader src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&q=80&w=1000" alt="Sports Field Arena" imgClassName="group-hover:scale-105 transition-transform duration-[6s]" loading="lazy" />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-greenDeep via-brand-greenDeep/20 to-transparent z-10"></div>
             <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 text-white space-y-1.5 sm:space-y-2">
               <span className="bg-brand-gold text-brand-charcoal text-[9px] sm:text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full inline-block">World Class Facilities</span>
               <h4 className="font-serif text-xl sm:text-2xl font-bold">Golden Gladiators Sports Arena</h4>

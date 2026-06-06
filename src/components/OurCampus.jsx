@@ -1,5 +1,6 @@
 import React from 'react'
 import { Shield, Tv, Key, Bus, Eye, Library, Monitor, Radio, Compass, Award, Heart } from 'lucide-react'
+import ImageWithLoader from './ImageWithLoader'
 
 export default function OurCampus() {
   const facilities = [
@@ -61,13 +62,14 @@ export default function OurCampus() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
           {/* Main Hero Photo (Aerial View) */}
           <div className="md:col-span-8 overflow-hidden rounded-3xl border border-brand-greenDeep/10 group shadow-md aspect-[16/10] relative">
-            <img 
+            <ImageWithLoader 
               src="/DJI_0044.JPG" 
               alt="Aerial view of DLF Public School campus" 
-              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              imgClassName="transition-transform duration-1000 group-hover:scale-105"
+              loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/80 via-transparent to-transparent opacity-90"></div>
-            <div className="absolute bottom-6 left-6 text-white">
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/80 via-transparent to-transparent opacity-90 z-10"></div>
+            <div className="absolute bottom-6 left-6 text-white z-20">
               <p className="text-[10px] uppercase tracking-widest font-semibold text-brand-gold">Green Aerial View</p>
               <h3 className="font-serif text-xl sm:text-2xl font-bold">Lush 5-Acre Institutional Ecosystem</h3>
             </div>
@@ -75,13 +77,14 @@ export default function OurCampus() {
 
           {/* Side Small Photo 1 (Garden Courtyard) */}
           <div className="md:col-span-4 overflow-hidden rounded-3xl border border-brand-greenDeep/10 group shadow-sm aspect-square md:aspect-auto relative">
-            <img 
+            <ImageWithLoader 
               src="/7C1A1607.jpg" 
               alt="Green school garden and courtyard paths" 
-              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              imgClassName="transition-transform duration-1000 group-hover:scale-105"
+              loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/70 via-transparent to-transparent opacity-90"></div>
-            <div className="absolute bottom-6 left-6 text-white">
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/70 via-transparent to-transparent opacity-90 z-10"></div>
+            <div className="absolute bottom-6 left-6 text-white z-20">
               <p className="text-[10px] uppercase tracking-widest font-semibold text-brand-gold">Outdoor Spaces</p>
               <h3 className="font-serif text-lg font-bold">Sunlit Corridors & Green Play areas</h3>
             </div>
@@ -89,13 +92,14 @@ export default function OurCampus() {
 
           {/* Lower Small Photo 2 (Classroom and Smart TV) */}
           <div className="md:col-span-4 overflow-hidden rounded-3xl border border-brand-greenDeep/10 group shadow-sm aspect-square md:aspect-auto relative">
-            <img 
+            <ImageWithLoader 
               src="/7C1A1603.jpg" 
               alt="Comfortable air-conditioned classroom" 
-              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              imgClassName="transition-transform duration-1000 group-hover:scale-105"
+              loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/70 via-transparent to-transparent opacity-90"></div>
-            <div className="absolute bottom-6 left-6 text-white">
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/70 via-transparent to-transparent opacity-90 z-10"></div>
+            <div className="absolute bottom-6 left-6 text-white z-20">
               <p className="text-[10px] uppercase tracking-widest font-semibold text-brand-gold">Learning Spaces</p>
               <h3 className="font-serif text-lg font-bold">Air Conditioned Smart Classrooms</h3>
             </div>
@@ -103,13 +107,14 @@ export default function OurCampus() {
 
           {/* Lower Medium Photo 3 (School Entrance / Pathway) */}
           <div className="md:col-span-8 overflow-hidden rounded-3xl border border-brand-greenDeep/10 group shadow-md aspect-[16/10] relative">
-            <img 
+            <ImageWithLoader 
               src="/7C1A1595.jpg" 
               alt="Palm lined pathway leading to DLF Public School main building" 
-              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              imgClassName="transition-transform duration-1000 group-hover:scale-105"
+              loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/80 via-transparent to-transparent opacity-90"></div>
-            <div className="absolute bottom-6 left-6 text-white">
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/80 via-transparent to-transparent opacity-90 z-10"></div>
+            <div className="absolute bottom-6 left-6 text-white z-20">
               <p className="text-[10px] uppercase tracking-widest font-semibold text-brand-gold">Main Avenue</p>
               <h3 className="font-serif text-xl sm:text-2xl font-bold">Architectural Blend of Modernity & Nature</h3>
             </div>

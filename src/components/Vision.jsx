@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { Quote } from 'lucide-react'
 import gsap from 'gsap'
+import ImageWithLoader from './ImageWithLoader'
 
 export default function Vision() {
   const visionImageRef = useRef(null)
@@ -46,8 +47,8 @@ export default function Vision() {
         {/* Left Editorial Images Column */}
         <div ref={visionImageRef} id="vision-image" className="lg:col-span-5 relative flex flex-col items-center">
           <div className="relative w-full sm:w-4/5 aspect-[4/5] sm:aspect-[3/4] rounded-3xl overflow-hidden shadow-xl border border-white">
-            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1000" alt="Executive Director DLPS" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-brand-greenDeep/10"></div>
+            <ImageWithLoader src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1000" alt="Executive Director DLPS" loading="lazy" />
+            <div className="absolute inset-0 bg-brand-greenDeep/10 z-10"></div>
           </div>
           {/* Offset Quote Card */}
           <div className="relative sm:absolute bottom-[-2rem] right-0 sm:right-[-1.5rem] w-full sm:w-[85%] bg-brand-purpleDeep rounded-2xl overflow-hidden shadow-lg border border-white p-5 mt-4 sm:mt-0">
@@ -71,7 +72,9 @@ export default function Vision() {
             "Our educational philosophy transcends classrooms. Every DLF Public School graduate is prepared to navigate a complex global landscape while honoring ecological balance."
           </blockquote>
           <div className="flex items-center gap-3 pt-2">
-            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150" alt="Executive Director Profile" className="w-10 h-10 rounded-full border border-brand-greenDeep/20 object-cover" />
+            <div className="w-10 h-10 rounded-full border border-brand-greenDeep/20 overflow-hidden relative shrink-0">
+              <ImageWithLoader src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150" alt="Executive Director Profile" loading="lazy" />
+            </div>
             <div>
               <h4 className="font-serif font-bold text-brand-greenDeep text-xs sm:text-sm">Dr. Mrignaini | Executive Director</h4>
               <p className="text-[8px] sm:text-[9px] text-brand-muted uppercase font-bold tracking-widest">DLF Public School Leadership</p>

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { BookOpen, CheckCircle, Compass, Cpu, TrendingUp } from 'lucide-react'
 import gsap from 'gsap'
+import ImageWithLoader from './ImageWithLoader'
 
 export default function Curriculum() {
   const [activeTab, setActiveTab] = useState('primary')
@@ -93,7 +94,7 @@ export default function Curriculum() {
               </ul>
             </div>
             <div className="rounded-2xl overflow-hidden aspect-video shadow-md relative group mt-4 lg:mt-0">
-              <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=1000" alt="Primary School Class" className="w-full h-full object-cover" />
+              <ImageWithLoader src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=1000" alt="Primary School Class" loading="lazy" />
             </div>
           </div>
 
@@ -118,7 +119,7 @@ export default function Curriculum() {
               </ul>
             </div>
             <div className="rounded-2xl overflow-hidden aspect-video shadow-md relative group mt-4 lg:mt-0">
-              <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&q=80&w=1000" alt="Middle School Science Lab" className="w-full h-full object-cover" />
+              <ImageWithLoader src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&q=80&w=1000" alt="Middle School Science Lab" loading="lazy" />
             </div>
           </div>
 
@@ -143,7 +144,7 @@ export default function Curriculum() {
               </ul>
             </div>
             <div className="rounded-2xl overflow-hidden aspect-video shadow-md relative group mt-4 lg:mt-0">
-              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1000" alt="Secondary Schooling Class" className="w-full h-full object-cover" />
+              <ImageWithLoader src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1000" alt="Secondary Schooling Class" loading="lazy" />
             </div>
           </div>
 
@@ -168,7 +169,7 @@ export default function Curriculum() {
               </ul>
             </div>
             <div className="rounded-2xl overflow-hidden aspect-video shadow-md relative group mt-4 lg:mt-0">
-              <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=1000" alt="Senior Secondary Graduation" className="w-full h-full object-cover" />
+              <ImageWithLoader src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=1000" alt="Senior Secondary Graduation" loading="lazy" />
             </div>
           </div>
         </div>

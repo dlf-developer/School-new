@@ -32,14 +32,9 @@ export default function Header() {
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' })
       }
+      navigate('/' + hash, { replace: true })
     } else {
-      navigate('/')
-      setTimeout(() => {
-        const element = document.querySelector(hash)
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' })
-        }
-      }, 250)
+      navigate('/' + hash)
     }
   }
 

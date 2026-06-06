@@ -3,6 +3,7 @@ import {
   Heart, Play, Pause, ExternalLink, Calendar, ShieldCheck, HeartHandshake, 
   Smile, BookOpen, Users, Compass, Award, Clock 
 } from 'lucide-react'
+import ImageWithLoader from './ImageWithLoader'
 
 export default function ParentPartners() {
   const videoRef = useRef(null)
@@ -180,7 +181,7 @@ export default function ParentPartners() {
             <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="overflow-hidden rounded-2xl border border-brand-greenDeep/10 group shadow-sm bg-white p-3 space-y-3">
                 <div className="overflow-hidden rounded-xl aspect-[4/3]">
-                  <img src="/parent_activity1.jpg" alt="Meet & Greet learning journey" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <ImageWithLoader src="/parent_activity1.jpg" alt="Meet & Greet learning journey" imgClassName="transition-transform duration-700 group-hover:scale-105" loading="lazy" />
                 </div>
                 <p className="text-[11px] text-brand-muted font-medium leading-relaxed italic">
                   The first step in a shared learning journey—where students, parents, and teachers connect, and collaborate.
@@ -188,7 +189,7 @@ export default function ParentPartners() {
               </div>
               <div className="overflow-hidden rounded-2xl border border-brand-greenDeep/10 group shadow-sm bg-white p-3 space-y-3">
                 <div className="overflow-hidden rounded-xl aspect-[4/3]">
-                  <img src="/parent_activity2.jpg" alt="Buddies tying friendship bands" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <ImageWithLoader src="/parent_activity2.jpg" alt="Buddies tying friendship bands" imgClassName="transition-transform duration-700 group-hover:scale-105" loading="lazy" />
                 </div>
                 <p className="text-[11px] text-brand-muted font-medium leading-relaxed italic">
                   Buddies tying friendship bands.
@@ -202,7 +203,7 @@ export default function ParentPartners() {
             <div className="lg:col-span-6 order-last lg:order-first">
               <div className="overflow-hidden rounded-3xl border border-brand-greenDeep/10 group shadow-md bg-white p-4 space-y-4 max-w-xl mx-auto">
                 <div className="overflow-hidden rounded-2xl aspect-[16/10]">
-                  <img src="/7C1A1603.jpg" alt="Induction Program" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103" />
+                  <ImageWithLoader src="/7C1A1603.jpg" alt="Induction Program" imgClassName="transition-transform duration-700 group-hover:scale-103" loading="lazy" />
                 </div>
                 <p className="text-xs text-brand-muted font-medium leading-relaxed italic text-center">
                   Induction Programme & Orientation Sessions — building a strong school-home partnership from the very beginning.
@@ -239,7 +240,7 @@ export default function ParentPartners() {
             <div className="lg:col-span-6">
               <div className="overflow-hidden rounded-3xl border border-brand-greenDeep/10 group shadow-md bg-white p-4 space-y-4 max-w-xl mx-auto">
                 <div className="overflow-hidden rounded-2xl aspect-[16/10]">
-                  <img src="/7C1A1607.jpg" alt="Fine Dining Session" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103" />
+                  <ImageWithLoader src="/7C1A1607.jpg" alt="Fine Dining Session" imgClassName="transition-transform duration-700 group-hover:scale-103" loading="lazy" />
                 </div>
                 <p className="text-xs text-brand-muted font-medium leading-relaxed italic text-center">
                   Fine Dining Sessions create spaces for connection, conversations, and life-skill learning beyond classrooms.
@@ -253,7 +254,7 @@ export default function ParentPartners() {
             <div className="lg:col-span-6 order-last lg:order-first">
               <div className="overflow-hidden rounded-3xl border border-brand-greenDeep/10 group shadow-md bg-white p-4 space-y-4 max-w-xl mx-auto">
                 <div className="overflow-hidden rounded-2xl aspect-[16/10]">
-                  <img src="/7C1A1595.jpg" alt="Student-Led Conferences" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103" />
+                  <ImageWithLoader src="/7C1A1595.jpg" alt="Student-Led Conferences" imgClassName="transition-transform duration-700 group-hover:scale-103" loading="lazy" />
                 </div>
                 <p className="text-xs text-brand-muted font-medium leading-relaxed italic text-center">
                   Student-Led Conferences empower learners to reflect, communicate, and take ownership of their growth journey.
@@ -314,7 +315,7 @@ export default function ParentPartners() {
             <div className="lg:col-span-6 order-last lg:order-first">
               <div className="overflow-hidden rounded-3xl border border-brand-greenDeep/10 group shadow-md bg-white p-4 space-y-4 max-w-xl mx-auto">
                 <div className="overflow-hidden rounded-2xl aspect-[16/10]">
-                  <img src="/DJI_0044.JPG" alt="Graduation ceremony" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103" />
+                  <ImageWithLoader src="/DJI_0044.JPG" alt="Graduation ceremony" imgClassName="transition-transform duration-700 group-hover:scale-103" loading="lazy" />
                 </div>
                 <p className="text-xs text-brand-muted font-medium leading-relaxed italic text-center">
                   Shubhakansha — celebrating milestones, memories, and the beautiful journey shared by students and parents.
