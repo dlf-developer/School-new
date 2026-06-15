@@ -26,7 +26,7 @@ export default function ParentPartners() {
   ]
 
   return (
-    <div className="pt-24 bg-brand-bg min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
+    <div className="pt-24 bg-transparent min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
       
       {/* 1. Philosophical Intro Section */}
       <section className="max-w-7xl mx-auto px-4 md:px-12 py-16 md:py-20">

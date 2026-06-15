@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Ticker from './components/Ticker'
@@ -15,8 +15,15 @@ import Footer from './components/Footer'
 import OurCampus from './components/OurCampus'
 import ParentPartners from './components/ParentPartners'
 import ScrollToTop from './components/ScrollToTop'
+import InteractiveBackground from './components/InteractiveBackground'
+import PortalHome from './components/PortalHome'
+import Philosophy from './components/Philosophy'
+import Pedagogy from './components/Pedagogy'
+import WhatSetsUsApart from './components/WhatSetsUsApart'
+import CommonPages from './components/CommonPages'
+import Disclosures from './components/Disclosures'
 
-// Home page sections aggregator
+// Home page sections aggregator for dynamic branches
 function Home() {
   return (
     <>
@@ -40,7 +47,6 @@ export default function App() {
   const [progress, setProgress] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
 
-  // Track the displayLocation via ref to compare pathnames without re-triggering effect
   const displayLocationRef = useRef(displayLocation)
 
   useEffect(() => {
@@ -48,11 +54,9 @@ export default function App() {
     const nextPath = location.pathname
 
     if (nextPath !== prevPath) {
-      // Start page-to-page transition loader
       setIsTransitioning(true)
       setProgress(20)
 
-      // Animate progress bar incrementally up to 90%
       const interval = setInterval(() => {
         setProgress(prev => {
           if (prev >= 90) {
@@ -63,19 +67,16 @@ export default function App() {
         })
       }, 50)
 
-      // Mount the new page once progress bar completes
       const switchTimeout = setTimeout(() => {
         setDisplayLocation(location)
         displayLocationRef.current = location
         setProgress(100)
       }, 450)
 
-      // Fade out the progress bar
       const fadeOutTimeout = setTimeout(() => {
         setIsTransitioning(false)
       }, 750)
 
-      // Reset loader width to 0% after the opacity fade finishes
       const resetTimeout = setTimeout(() => {
         setProgress(0)
       }, 1050)
@@ -87,7 +88,6 @@ export default function App() {
         clearTimeout(resetTimeout)
       }
     } else {
-      // Sync display location immediately for hash jumps on same page
       setDisplayLocation(location)
       displayLocationRef.current = location
     }
@@ -95,7 +95,10 @@ export default function App() {
 
   return (
     <>
-      {/* YouTube-like Glowing Top Progress Loader */}
+      {/* Interactive Canvas Background Layer */}
+      <InteractiveBackground />
+
+      {/* Glowing Top Progress Loader */}
       {progress > 0 && (
         <div 
           className="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-brand-gold via-brand-goldlight to-brand-greenVibrant shadow-[0_0_15px_rgba(197,155,39,0.8),_0_0_5px_rgba(0,158,73,0.5)] z-[100000]" 
@@ -112,9 +115,29 @@ export default function App() {
       <ScrollToTop displayLocation={displayLocation} />
       <Header />
       <Routes location={displayLocation}>
-        <Route path="/" element={<Home />} />
-        <Route path="/about-us/our-campus" element={<OurCampus />} />
-        <Route path="/about-us/parent-as-partners" element={<ParentPartners />} />
+        {/* Unified Portal Home */}
+        <Route path="/" element={<PortalHome />} />
+        
+        {/* Common Pages */}
+        <Route path="/philosophy" element={<Philosophy />} />
+        <Route path="/pedagogy" element={<Pedagogy />} />
+        <Route path="/what-sets-us-apart" element={<WhatSetsUsApart />} />
+        <Route path="/news" element={<CommonPages />} />
+        <Route path="/alumni" element={<CommonPages />} />
+        <Route path="/careers" element={<CommonPages />} />
+        <Route path="/sports-arena" element={<CommonPages />} />
+        <Route path="/contact" element={<CommonPages />} />
+        
+        {/* Dynamic Branch Routes */}
+        <Route path="/school/:schoolId" element={<Home />} />
+        <Route path="/school/:schoolId/campus" element={<OurCampus />} />
+        <Route path="/school/:schoolId/admissions" element={<Admissions />} />
+        <Route path="/school/:schoolId/curriculum" element={<Curriculum />} />
+        <Route path="/school/:schoolId/disclosures" element={<Disclosures />} />
+
+        {/* Redirects for legacy/direct paths to Sahibabad default */}
+        <Route path="/about-us/our-campus" element={<Navigate to="/school/dlf-sahibabad/campus" replace />} />
+        <Route path="/about-us/parent-as-partners" element={<Navigate to="/philosophy" replace />} />
       </Routes>
       <Footer />
     </>
