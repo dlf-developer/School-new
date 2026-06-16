@@ -30,8 +30,8 @@ export default function Header() {
 
   // Define dynamic theme configurations based on the selected school
   const theme = currentSchool ? currentSchool.theme : {
-    primary: 'brand-greenDeep',
-    vibrant: 'brand-greenVibrant',
+    primary: 'brand-masterDeep',
+    vibrant: 'brand-masterVibrant',
     accent: 'brand-gold',
     accentHex: '#C59B27'
   }
@@ -133,9 +133,13 @@ export default function Header() {
         <div 
           id="header-inner" 
           className={`max-w-7xl mx-auto rounded-2xl border px-4 md:px-6 py-2.5 flex items-center justify-between transition-all duration-300 ${
-            isHeaderScrolled 
-              ? 'bg-white/95 shadow-md border-brand-greenDeep/10' 
-              : 'bg-brand-bg/90 backdrop-blur-md border-white/20 shadow-sm'
+            !schoolId
+              ? (isHeaderScrolled 
+                  ? 'bg-brand-masterDeep border-white/10 text-white shadow-lg' 
+                  : 'bg-brand-masterDeep/90 backdrop-blur-lg border-white/15 text-white/90 shadow-md')
+              : (isHeaderScrolled 
+                  ? 'bg-white/95 shadow-md border-brand-greenDeep/10 text-brand-charcoal' 
+                  : 'bg-brand-bg/90 backdrop-blur-md border-white/20 shadow-sm text-brand-charcoal')
           }`}
         >
           {/* Brand Crest Logo & Text */}
@@ -145,7 +149,7 @@ export default function Header() {
               <div className={`absolute inset-0 bg-${theme.accent}/10 transform -skew-x-12 translate-x-full group-hover:translate-x-[-100%] transition-transform duration-1000`}></div>
             </div>
             <div>
-              <h1 className={`font-serif text-${theme.primary} text-base font-bold leading-tight tracking-tight`}>
+              <h1 className={`font-serif ${!schoolId ? 'text-white' : `text-${theme.primary}`} text-base font-bold leading-tight tracking-tight`}>
                 {currentSchool ? currentSchool.name : 'DLF Schools'}
               </h1>
               <p className="text-[8px] sm:text-[9px] text-brand-gold font-inter uppercase tracking-widest font-semibold">
@@ -155,20 +159,20 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav Menu */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[13px] font-semibold text-brand-charcoal/95">
+          <nav className={`hidden lg:flex items-center gap-6 xl:gap-8 text-[13px] font-semibold ${!schoolId ? 'text-white/95' : 'text-brand-charcoal/95'}`}>
             
             {/* Menu 1: Group / Portal Level Info - Rendered only on common nav bar */}
             {!schoolId && (
               <div className="relative group py-2">
-                <button className={`flex items-center gap-1 hover:text-${theme.vibrant} transition-colors duration-300 cursor-pointer`}>
+                <button className="flex items-center gap-1 hover:text-brand-gold transition-colors duration-300 cursor-pointer">
                   About Us <ChevronDown className={`w-3.5 h-3.5 text-${theme.accent}`} />
                 </button>
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white rounded-xl shadow-xl border border-brand-greenDeep/5 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-brand-masterDeep text-white rounded-xl shadow-xl border border-white/10 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                   <div className="space-y-2 text-xs">
-                    <Link to="/philosophy" className={`block px-3 py-2 rounded-lg hover:bg-brand-bg hover:text-${theme.primary} transition-colors font-semibold`}>Our Philosophy</Link>
-                    <Link to="/pedagogy" className={`block px-3 py-2 rounded-lg hover:bg-brand-bg hover:text-${theme.primary} transition-colors font-semibold`}>Our Pedagogy</Link>
-                    <Link to="/what-sets-us-apart" className={`block px-3 py-2 rounded-lg hover:bg-brand-bg hover:text-${theme.primary} transition-colors font-semibold`}>What Sets Us Apart</Link>
-                    <Link to="/news" className={`block px-3 py-2 rounded-lg hover:bg-brand-bg hover:text-${theme.primary} transition-colors`}>DLF in the News</Link>
+                    <Link to="/philosophy" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-gold transition-colors font-semibold">Our Philosophy</Link>
+                    <Link to="/pedagogy" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-gold transition-colors font-semibold">Our Pedagogy</Link>
+                    <Link to="/what-sets-us-apart" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-gold transition-colors font-semibold">What Sets Us Apart</Link>
+                    <Link to="/news" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-gold transition-colors">DLF in the News</Link>
                   </div>
                 </div>
               </div>
@@ -176,15 +180,15 @@ export default function Header() {
 
             {/* Menu 2: Switch / View Campuses */}
             <div className="relative group py-2">
-              <button className={`flex items-center gap-1 hover:text-${theme.vibrant} transition-colors duration-300 cursor-pointer`}>
+              <button className={`flex items-center gap-1 hover:text-${!schoolId ? 'brand-gold' : theme.vibrant} transition-colors duration-300 cursor-pointer`}>
                 Our Schools <ChevronDown className={`w-3.5 h-3.5 text-${theme.accent}`} />
               </button>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white rounded-xl shadow-xl border border-brand-greenDeep/5 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+              <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 ${!schoolId ? 'bg-brand-masterDeep text-white border-white/10' : 'bg-white text-brand-charcoal border-brand-greenDeep/5'} rounded-xl shadow-xl border p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0`}>
                 <div className="space-y-2 text-xs">
-                  <Link to="/school/dlf-sahibabad" className={`block px-3 py-2 rounded-lg hover:bg-brand-bg hover:text-brand-greenVibrant font-bold transition-colors`}>DLF Public School, Sahibabad</Link>
-                  <Link to="/school/dlf-greater-noida" className={`block px-3 py-2 rounded-lg hover:bg-brand-bg hover:text-brand-purpleVibrant font-bold transition-colors`}>DLF World School, G. Noida</Link>
-                  {/* <div className="border-t border-brand-greenDeep/5 my-2"></div>
-                  <Link to="/" className={`block px-3 py-2 rounded-lg hover:bg-brand-bg hover:text-${theme.primary} transition-colors font-medium`}>Unified Group Portal</Link> */}
+                  <Link to="/school/dlf-sahibabad" className={`block px-3 py-2 rounded-lg ${!schoolId ? 'hover:bg-white/10 hover:text-brand-greenVibrant' : 'hover:bg-brand-bg hover:text-brand-greenVibrant'} font-bold transition-colors`}>DLF Public School, Sahibabad</Link>
+                  <Link to="/school/dlf-greater-noida" className={`block px-3 py-2 rounded-lg ${!schoolId ? 'hover:bg-white/10 hover:text-brand-purpleVibrant' : 'hover:bg-brand-bg hover:text-brand-purpleVibrant'} font-bold transition-colors`}>DLF World School, G. Noida</Link>
+                  <div className={`border-t ${!schoolId ? 'border-white/10' : `border-${theme.primary}/10`} my-2`}></div>
+                  <Link to="/" className={`block px-3 py-2 rounded-lg ${!schoolId ? 'hover:bg-white/10 hover:text-brand-gold' : `hover:bg-brand-bg hover:text-${theme.primary}`} font-semibold transition-colors`}>Back to Group Website</Link>
                 </div>
               </div>
             </div>
@@ -214,16 +218,16 @@ export default function Header() {
               </>
             ) : (
               <>
-                <Link to="/philosophy" className={`hover:text-${theme.vibrant} transition-colors duration-300`}>
+                <Link to="/philosophy" className="hover:text-brand-gold transition-colors duration-300">
                   Philosophy
                 </Link>
-                <Link to="/pedagogy" className={`hover:text-${theme.vibrant} transition-colors duration-300`}>
+                <Link to="/pedagogy" className="hover:text-brand-gold transition-colors duration-300">
                   Pedagogy
                 </Link>
-                <Link to="/sports-arena" className={`hover:text-${theme.vibrant} transition-colors duration-300`}>
+                <Link to="/sports-arena" className="hover:text-brand-gold transition-colors duration-300">
                   Sports Arena
                 </Link>
-                <Link to="/contact" className={`hover:text-${theme.vibrant} transition-colors duration-300`}>
+                <Link to="/contact" className="hover:text-brand-gold transition-colors duration-300">
                   Contact Us
                 </Link>
               </>
@@ -248,7 +252,7 @@ export default function Header() {
             ) : (
               <Link 
                 to="/contact"
-                className={`bg-brand-greenDeep text-white hover:bg-brand-greenVibrant px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md flex items-center gap-2 relative overflow-hidden group`}
+                className="bg-brand-gold text-brand-masterDeep hover:bg-brand-goldlight px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md flex items-center gap-2 relative overflow-hidden group"
               >
                 <span className="relative z-10">Contact Us</span>
                 <ArrowRight className="w-3.5 h-3.5 relative z-10 transform group-hover:translate-x-1 transition-transform" />
@@ -260,7 +264,7 @@ export default function Header() {
           <button 
             onClick={() => setIsMobileMenuOpen(true)}
             aria-label="Open Navigation Menu" 
-            className={`lg:hidden p-3 text-${theme.primary} hover:bg-brand-greenDeep/5 rounded-xl transition-colors duration-300`}
+            className={`lg:hidden p-3 ${!schoolId ? 'text-white hover:bg-white/10' : `text-${theme.primary} hover:bg-${theme.primary}/5`} rounded-xl transition-colors duration-300`}
           >
             <Menu className="w-6 h-6" />
           </button>
@@ -274,18 +278,18 @@ export default function Header() {
           isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="w-full max-w-sm bg-brand-bg h-full p-6 shadow-2xl relative flex flex-col justify-between overflow-y-auto">
+        <div className={`w-full max-w-sm ${!schoolId ? 'bg-brand-masterDeep text-white' : 'bg-brand-bg text-brand-charcoal'} h-full p-6 shadow-2xl relative flex flex-col justify-between overflow-y-auto`}>
           <button 
             onClick={() => setIsMobileMenuOpen(false)}
             aria-label="Close Navigation Menu" 
-            className={`absolute top-6 right-6 p-3 text-${theme.primary} hover:bg-brand-greenDeep/10 rounded-full transition-colors`}
+            className={`absolute top-6 right-6 p-3 ${!schoolId ? 'text-white hover:bg-white/10' : `text-${theme.primary} hover:bg-${theme.primary}/10`} rounded-full transition-colors`}
           >
             <X className="w-6 h-6" />
           </button>
           
           <div className="space-y-8 mt-12">
-            <div className="border-b border-brand-greenDeep/10 pb-4">
-              <p className={`font-serif text-${theme.primary} text-2xl font-bold`}>
+            <div className={`border-b border-${theme.primary}/10 pb-4`}>
+              <p className={`font-serif ${!schoolId ? 'text-white' : `text-${theme.primary}`} text-2xl font-bold`}>
                 {currentSchool ? currentSchool.name : 'DLF Schools'}
               </p>
               <p className="text-[10px] text-brand-gold uppercase tracking-widest font-semibold mt-1">
@@ -294,17 +298,22 @@ export default function Header() {
             </div>
             
             {/* Expanded Stack Links */}
-            <nav className="space-y-3 flex flex-col font-semibold text-base text-brand-charcoal">
+            <nav className={`space-y-3 flex flex-col font-semibold text-base ${!schoolId ? 'text-white/90' : 'text-brand-charcoal'}`}>
+              {schoolId && (
+                <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} py-1.5 border-b border-${theme.primary}/10 text-xs uppercase tracking-widest font-extrabold flex items-center gap-1.5`}>
+                  &larr; Back to Group Website
+                </Link>
+              )}
               {!schoolId && (
                 <>
-                  <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} py-1 border-b border-brand-greenDeep/5`}>Unified Group Portal</Link>
-                  <Link to="/philosophy" onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} py-1`}>Our Philosophy</Link>
-                  <Link to="/pedagogy" onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} py-1`}>Our Pedagogy</Link>
-                  <Link to="/what-sets-us-apart" onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} py-1`}>What Sets Us Apart</Link>
+                  <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-brand-gold py-1 border-b border-white/10">Unified Group Portal</Link>
+                  <Link to="/philosophy" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-brand-gold py-1">Our Philosophy</Link>
+                  <Link to="/pedagogy" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-brand-gold py-1">Our Pedagogy</Link>
+                  <Link to="/what-sets-us-apart" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-brand-gold py-1">What Sets Us Apart</Link>
                 </>
               )}
               
-              <div className="border-t border-brand-greenDeep/10 my-2 pt-2">
+              <div className={`border-t border-${theme.primary}/10 my-2 pt-2`}>
                 <p className="text-[10px] uppercase font-bold tracking-wider text-brand-muted mb-2">Our School Portals</p>
                 <Link to="/school/dlf-sahibabad" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-brand-greenVibrant flex items-center gap-2 py-1.5 font-bold">
                   <span className="w-2 h-2 rounded-full bg-brand-greenVibrant"></span> DLF Public School, Sahibabad
@@ -312,10 +321,14 @@ export default function Header() {
                 <Link to="/school/dlf-greater-noida" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-brand-purpleVibrant flex items-center gap-2 py-1.5 font-bold">
                   <span className="w-2 h-2 rounded-full bg-brand-purpleVibrant"></span> DLF World School, G. Noida
                 </Link>
+                <div className={`border-t border-${theme.primary}/10 my-1`}></div>
+                <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${!schoolId ? 'brand-gold' : theme.vibrant} flex items-center gap-2 py-1.5 font-bold`}>
+                  <span className="w-2 h-2 rounded-full bg-brand-gold"></span> Unified Group Website
+                </Link>
               </div>
 
               {schoolId && (
-                <div className="border-t border-brand-greenDeep/10 my-2 pt-2 space-y-1">
+                <div className={`border-t border-${theme.primary}/10 my-2 pt-2 space-y-1`}>
                   <p className="text-[10px] uppercase font-bold tracking-wider text-brand-muted mb-2">{currentSchool.name} Links</p>
                   <Link to={`/school/${schoolId}/campus`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>Campus Infrastructure</Link>
                   <Link to={`/school/${schoolId}/admissions`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>Enrollment & Admissions</Link>
@@ -327,7 +340,7 @@ export default function Header() {
           </div>
 
           {/* Footer CTAs inside mobile drawer */}
-          <div className="space-y-3 pt-6 border-t border-brand-greenDeep/10">
+          <div className={`space-y-3 pt-6 border-t border-${theme.primary}/10`}>
             {schoolId ? (
               <>
                 <Link 
@@ -349,7 +362,7 @@ export default function Header() {
               <Link 
                 to="/contact" 
                 onClick={() => setIsMobileMenuOpen(false)} 
-                className="block w-full bg-brand-greenDeep text-white text-center py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs"
+                className="block w-full bg-brand-gold text-brand-masterDeep text-center py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs hover:bg-brand-goldlight transition-colors"
               >
                 Contact Us
               </Link>

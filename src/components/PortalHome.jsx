@@ -8,14 +8,14 @@ export default function PortalHome() {
       
       {/* Cinematic Portal Welcome Hero */}
       <section className="max-w-7xl mx-auto px-4 md:px-12 pt-16 pb-12 text-center space-y-6">
-        <div className="inline-flex items-center gap-2 bg-brand-greenDeep/5 border border-brand-greenDeep/10 rounded-full px-4 py-1.5 text-xs text-brand-greenDeep font-bold">
+        <div className="inline-flex items-center gap-2 bg-brand-masterDeep/5 border border-brand-masterDeep/10 rounded-full px-4 py-1.5 text-xs text-brand-masterDeep font-bold">
           <span className="w-2 h-2 rounded-full bg-brand-gold animate-ping"></span>
           <span>Unified Group Portal</span>
         </div>
         
-        <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-brand-greenDeep leading-[1.05] tracking-tight">
+        <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-brand-masterDeep leading-[1.05] tracking-tight">
           DLF Group <br />
-          <span className="italic text-brand-purpleDeep font-normal">of Schools</span>
+          <span className="italic text-brand-masterVibrant font-normal">of Schools</span>
         </h1>
         
         <p className="font-inter text-brand-muted text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">

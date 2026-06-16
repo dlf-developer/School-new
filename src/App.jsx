@@ -112,34 +112,36 @@ export default function App() {
         ></div>
       )}
       
-      <ScrollToTop displayLocation={displayLocation} />
-      <Header />
-      <Routes location={displayLocation}>
-        {/* Unified Portal Home */}
-        <Route path="/" element={<PortalHome />} />
-        
-        {/* Common Pages */}
-        <Route path="/philosophy" element={<Philosophy />} />
-        <Route path="/pedagogy" element={<Pedagogy />} />
-        <Route path="/what-sets-us-apart" element={<WhatSetsUsApart />} />
-        <Route path="/news" element={<CommonPages />} />
-        <Route path="/alumni" element={<CommonPages />} />
-        <Route path="/careers" element={<CommonPages />} />
-        <Route path="/sports-arena" element={<CommonPages />} />
-        <Route path="/contact" element={<CommonPages />} />
-        
-        {/* Dynamic Branch Routes */}
-        <Route path="/school/:schoolId" element={<Home />} />
-        <Route path="/school/:schoolId/campus" element={<OurCampus />} />
-        <Route path="/school/:schoolId/admissions" element={<Admissions />} />
-        <Route path="/school/:schoolId/curriculum" element={<Curriculum />} />
-        <Route path="/school/:schoolId/disclosures" element={<Disclosures />} />
+      <div className="isolate">
+        <ScrollToTop displayLocation={displayLocation} />
+        <Header />
+        <Routes location={displayLocation}>
+          {/* Unified Portal Home */}
+          <Route path="/" element={<PortalHome />} />
+          
+          {/* Common Pages */}
+          <Route path="/philosophy" element={<Philosophy />} />
+          <Route path="/pedagogy" element={<Pedagogy />} />
+          <Route path="/what-sets-us-apart" element={<WhatSetsUsApart />} />
+          <Route path="/news" element={<CommonPages />} />
+          <Route path="/alumni" element={<CommonPages />} />
+          <Route path="/careers" element={<CommonPages />} />
+          <Route path="/sports-arena" element={<CommonPages />} />
+          <Route path="/contact" element={<CommonPages />} />
+          
+          {/* Dynamic Branch Routes */}
+          <Route path="/school/:schoolId" element={<Home />} />
+          <Route path="/school/:schoolId/campus" element={<OurCampus />} />
+          <Route path="/school/:schoolId/admissions" element={<Admissions />} />
+          <Route path="/school/:schoolId/curriculum" element={<Curriculum />} />
+          <Route path="/school/:schoolId/disclosures" element={<Disclosures />} />
 
-        {/* Redirects for legacy/direct paths to Sahibabad default */}
-        <Route path="/about-us/our-campus" element={<Navigate to="/school/dlf-sahibabad/campus" replace />} />
-        <Route path="/about-us/parent-as-partners" element={<Navigate to="/philosophy" replace />} />
-      </Routes>
-      <Footer />
+          {/* Redirects for legacy/direct paths to Sahibabad default */}
+          <Route path="/about-us/our-campus" element={<Navigate to="/school/dlf-sahibabad/campus" replace />} />
+          <Route path="/about-us/parent-as-partners" element={<Navigate to="/philosophy" replace />} />
+        </Routes>
+        <Footer />
+      </div>
     </>
   )
 }

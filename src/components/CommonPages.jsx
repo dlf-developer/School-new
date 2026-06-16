@@ -45,24 +45,24 @@ export default function CommonPages() {
       <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
         <div className="max-w-7xl mx-auto px-4 md:px-12 space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-4">
-            <span className="text-xs uppercase tracking-widest font-extrabold text-brand-greenVibrant">Press Room</span>
-            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-greenDeep">DLF in the News</h2>
+            <span className="text-xs uppercase tracking-widest font-extrabold text-brand-masterVibrant">Press Room</span>
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-masterDeep">DLF in the News</h2>
             <div className="w-12 h-[2px] bg-brand-gold mx-auto"></div>
             <p className="text-sm text-brand-muted leading-relaxed font-inter">
               Media coverage, national rankings, and institutional recognitions.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8">
-            <div className="bg-white p-8 rounded-3xl border border-brand-greenDeep/5 shadow-md space-y-4">
+            <div className="bg-white p-8 rounded-3xl border border-brand-masterDeep/5 shadow-md space-y-4">
               <span className="text-xs font-bold text-brand-gold">Times of India Rankings</span>
-              <h3 className="font-serif text-xl font-bold text-brand-greenDeep">Ranked #1 School in Ghaziabad for 2026</h3>
+              <h3 className="font-serif text-xl font-bold text-brand-masterDeep">Ranked #1 School in Ghaziabad for 2026</h3>
               <p className="text-xs text-brand-muted leading-relaxed font-inter">
                 DLF Public School, Sahibabad has been ranked as the #1 School in Ghaziabad by Times School Rankings, honoring educational excellence.
               </p>
             </div>
-            <div className="bg-white p-8 rounded-3xl border border-brand-greenDeep/5 shadow-md space-y-4">
+            <div className="bg-white p-8 rounded-3xl border border-brand-masterDeep/5 shadow-md space-y-4">
               <span className="text-xs font-bold text-brand-gold">EducationWorld India</span>
-              <h3 className="font-serif text-xl font-bold text-brand-greenDeep">Co-Ed Day School National Top 100</h3>
+              <h3 className="font-serif text-xl font-bold text-brand-masterDeep">Co-Ed Day School National Top 100</h3>
               <p className="text-xs text-brand-muted leading-relaxed font-inter">
                 DLF schools are recognized among India's top progressive co-educational day schools for excellence in pedagogy and leadership.
               </p>
@@ -78,20 +78,20 @@ export default function CommonPages() {
       <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
         <div className="max-w-7xl mx-auto px-4 md:px-12 space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-4">
-            <span className="text-xs uppercase tracking-widest font-extrabold text-brand-greenVibrant">Global Network</span>
-            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-greenDeep">Alumni Network</h2>
+            <span className="text-xs uppercase tracking-widest font-extrabold text-brand-masterVibrant">Global Network</span>
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-masterDeep">Alumni Network</h2>
             <div className="w-12 h-[2px] bg-brand-gold mx-auto"></div>
             <p className="text-sm text-brand-muted leading-relaxed font-inter">
               Stay connected with thousands of DLF alumni pioneering in technology, science, business, and arts globally.
             </p>
           </div>
-          <div className="bg-white max-w-2xl mx-auto p-8 sm:p-12 rounded-3xl border border-brand-greenDeep/5 shadow-md space-y-6 text-center">
-            <h3 className="font-serif text-2xl font-bold text-brand-greenDeep">Connect With Your Alma Mater</h3>
+          <div className="bg-white max-w-2xl mx-auto p-8 sm:p-12 rounded-3xl border border-brand-masterDeep/5 shadow-md space-y-6 text-center">
+            <h3 className="font-serif text-2xl font-bold text-brand-masterDeep">Connect With Your Alma Mater</h3>
             <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter">
               Register in our global database to receive updates, participate in mentorship initiatives, and attend alumni reunions.
             </p>
             <div className="pt-4">
-              <a href="mailto:alumni@dlfps.com" className="inline-block bg-brand-greenDeep hover:bg-brand-greenVibrant text-white px-8 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-md">
+              <a href="mailto:alumni@dlfps.com" className="inline-block bg-brand-masterDeep hover:bg-brand-masterVibrant text-white px-8 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-md">
                 Register as Alumni
               </a>
             </div>
@@ -106,20 +106,20 @@ export default function CommonPages() {
       <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
         <div className="max-w-7xl mx-auto px-4 md:px-12 space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-4">
-            <span className="text-xs uppercase tracking-widest font-extrabold text-brand-greenVibrant">Work With Us</span>
-            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-greenDeep">Careers</h2>
+            <span className="text-xs uppercase tracking-widest font-extrabold text-brand-masterVibrant">Work With Us</span>
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-masterDeep">Careers</h2>
             <div className="w-12 h-[2px] bg-brand-gold mx-auto"></div>
             <p className="text-sm text-brand-muted leading-relaxed font-inter">
               Join a community of progressive educators, mentors, and administrators redefining school education in India.
             </p>
           </div>
-          <div className="bg-white max-w-2xl mx-auto p-8 sm:p-12 rounded-3xl border border-brand-greenDeep/5 shadow-md space-y-6 text-center">
-            <h3 className="font-serif text-2xl font-bold text-brand-greenDeep">Open Positions</h3>
+          <div className="bg-white max-w-2xl mx-auto p-8 sm:p-12 rounded-3xl border border-brand-masterDeep/5 shadow-md space-y-6 text-center">
+            <h3 className="font-serif text-2xl font-bold text-brand-masterDeep">Open Positions</h3>
             <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter">
               We recruit passionate PGTs, TGTs, PRTs, and administrative support staff. Mail your updated curriculum vitae to our recruitment panel.
             </p>
             <div className="pt-4">
-              <a href="mailto:careers@dlfps.com" className="inline-block bg-brand-greenDeep hover:bg-brand-greenVibrant text-white px-8 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-md">
+              <a href="mailto:careers@dlfps.com" className="inline-block bg-brand-masterDeep hover:bg-brand-masterVibrant text-white px-8 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-md">
                 Email CV to Careers Team
               </a>
             </div>
@@ -134,22 +134,22 @@ export default function CommonPages() {
       <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
         <div className="max-w-7xl mx-auto px-4 md:px-12 space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-4">
-            <span className="text-xs uppercase tracking-widest font-extrabold text-brand-greenVibrant">Athletics & Fitness</span>
-            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-greenDeep">Sports Arena</h2>
+            <span className="text-xs uppercase tracking-widest font-extrabold text-brand-masterVibrant">Athletics & Fitness</span>
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-masterDeep">Sports Arena</h2>
             <div className="w-12 h-[2px] bg-brand-gold mx-auto"></div>
             <p className="text-sm text-brand-muted leading-relaxed font-inter">
               Nurturing sporting excellence, teamwork, and health through world-class athletic programs.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8">
-            <div className="bg-white p-8 rounded-3xl border border-brand-greenDeep/5 shadow-md space-y-4">
-              <h3 className="font-serif text-xl font-bold text-brand-greenDeep">Sports Facilities</h3>
+            <div className="bg-white p-8 rounded-3xl border border-brand-masterDeep/5 shadow-md space-y-4">
+              <h3 className="font-serif text-xl font-bold text-brand-masterDeep">Sports Facilities</h3>
               <p className="text-xs text-brand-muted leading-relaxed font-inter">
                 Includes international standard basketball courts, a synthetic athletics track, specialized cricket pitches, and state-of-the-art tennis courts.
               </p>
             </div>
-            <div className="bg-white p-8 rounded-3xl border border-brand-greenDeep/5 shadow-md space-y-4">
-              <h3 className="font-serif text-xl font-bold text-brand-greenDeep">Coaching & Training</h3>
+            <div className="bg-white p-8 rounded-3xl border border-brand-masterDeep/5 shadow-md space-y-4">
+              <h3 className="font-serif text-xl font-bold text-brand-masterDeep">Coaching & Training</h3>
               <p className="text-xs text-brand-muted leading-relaxed font-inter">
                 Professional coaching in athletics, cricket, basketball, football, and skating to build national and state-level champions.
               </p>
@@ -164,14 +164,14 @@ export default function CommonPages() {
   return (
     <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden">
       {/* Decorative ambient blur spheres */}
-      <div className="absolute top-1/4 left-[-10%] w-[350px] h-[350px] bg-brand-greenDeep/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-1/4 left-[-10%] w-[350px] h-[350px] bg-brand-masterDeep/5 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-1/4 right-[-10%] w-[350px] h-[350px] bg-brand-purpleDeep/5 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-12 space-y-12 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto space-y-4">
-          <span className="text-xs uppercase tracking-widest font-extrabold text-brand-greenVibrant bg-brand-greenDeep/5 px-3 py-1.5 rounded-full border border-brand-greenDeep/10 inline-block font-inter">Reach Out</span>
-          <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-greenDeep tracking-tight">Contact Us</h2>
+          <span className="text-xs uppercase tracking-widest font-extrabold text-brand-masterVibrant bg-brand-masterDeep/5 px-3 py-1.5 rounded-full border border-brand-masterDeep/10 inline-block font-inter">Reach Out</span>
+          <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-masterDeep tracking-tight">Contact Us</h2>
           <div className="w-12 h-[2px] bg-brand-gold mx-auto"></div>
           <p className="text-sm text-brand-muted leading-relaxed font-inter">
             Have queries about admissions, curriculum, or life at DLF? Our team is ready to help.
@@ -180,15 +180,15 @@ export default function CommonPages() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pt-4 items-start">
           {/* Left Column: Form Card */}
-          <div className="lg:col-span-7 bg-white rounded-3xl border border-brand-greenDeep/5 shadow-xl p-8 relative overflow-hidden">
+          <div className="lg:col-span-7 bg-white rounded-3xl border border-brand-masterDeep/5 shadow-xl p-8 relative overflow-hidden">
             {submitted ? (
               <div className="py-16 text-center space-y-4">
-                <div className="w-16 h-16 bg-brand-greenDeep/15 text-brand-greenDeep rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-brand-masterDeep/15 text-brand-masterDeep rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="font-serif text-2xl font-bold text-brand-greenDeep">Message Sent Successfully!</h3>
+                <h3 className="font-serif text-2xl font-bold text-brand-masterDeep">Message Sent Successfully!</h3>
                 <p className="text-sm text-brand-muted max-w-sm mx-auto font-inter">
                   Thank you for reaching out. We will forward your inquiry to the selected school campus coordinator and respond back shortly.
                 </p>
@@ -196,7 +196,7 @@ export default function CommonPages() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <h3 className="font-serif text-2xl font-bold text-brand-greenDeep mb-1">Get in Touch</h3>
+                  <h3 className="font-serif text-2xl font-bold text-brand-masterDeep mb-1">Get in Touch</h3>
                   <p className="text-xs text-brand-muted font-inter">Complete the fields below to dispatch an official inquiry.</p>
                 </div>
 
@@ -211,7 +211,7 @@ export default function CommonPages() {
                         value={formData.school}
                         onChange={handleChange}
                         required
-                        className="w-full bg-brand-bg/50 border border-brand-greenDeep/10 rounded-2xl px-4 py-3.5 text-sm font-semibold text-brand-charcoal focus:outline-none focus:border-brand-greenDeep focus:ring-1 focus:ring-brand-greenDeep transition-all font-inter appearance-none cursor-pointer"
+                        className="w-full bg-brand-bg/50 border border-brand-masterDeep/10 rounded-2xl px-4 py-3.5 text-sm font-semibold text-brand-charcoal focus:outline-none focus:border-brand-masterDeep focus:ring-1 focus:ring-brand-masterDeep transition-all font-inter appearance-none cursor-pointer"
                       >
                         <option value="dlf-sahibabad">DLF Public School, Sahibabad</option>
                         <option value="dlf-greater-noida">DLF World School, Greater Noida</option>
@@ -236,7 +236,7 @@ export default function CommonPages() {
                         onChange={handleChange}
                         required
                         placeholder="John Doe"
-                        className="w-full bg-brand-bg/50 border border-brand-greenDeep/10 rounded-2xl px-4 py-3.5 text-sm text-brand-charcoal focus:outline-none focus:border-brand-greenDeep focus:ring-1 focus:ring-brand-greenDeep transition-all font-inter font-medium placeholder-brand-muted/50"
+                        className="w-full bg-brand-bg/50 border border-brand-masterDeep/10 rounded-2xl px-4 py-3.5 text-sm text-brand-charcoal focus:outline-none focus:border-brand-masterDeep focus:ring-1 focus:ring-brand-masterDeep transition-all font-inter font-medium placeholder-brand-muted/50"
                       />
                     </div>
                     <div>
@@ -249,7 +249,7 @@ export default function CommonPages() {
                         onChange={handleChange}
                         required
                         placeholder="+91 XXXXX XXXXX"
-                        className="w-full bg-brand-bg/50 border border-brand-greenDeep/10 rounded-2xl px-4 py-3.5 text-sm text-brand-charcoal focus:outline-none focus:border-brand-greenDeep focus:ring-1 focus:ring-brand-greenDeep transition-all font-inter font-medium placeholder-brand-muted/50"
+                        className="w-full bg-brand-bg/50 border border-brand-masterDeep/10 rounded-2xl px-4 py-3.5 text-sm text-brand-charcoal focus:outline-none focus:border-brand-masterDeep focus:ring-1 focus:ring-brand-masterDeep transition-all font-inter font-medium placeholder-brand-muted/50"
                       />
                     </div>
                   </div>
@@ -266,7 +266,7 @@ export default function CommonPages() {
                         onChange={handleChange}
                         required
                         placeholder="name@example.com"
-                        className="w-full bg-brand-bg/50 border border-brand-greenDeep/10 rounded-2xl px-4 py-3.5 text-sm text-brand-charcoal focus:outline-none focus:border-brand-greenDeep focus:ring-1 focus:ring-brand-greenDeep transition-all font-inter font-medium placeholder-brand-muted/50"
+                        className="w-full bg-brand-bg/50 border border-brand-masterDeep/10 rounded-2xl px-4 py-3.5 text-sm text-brand-charcoal focus:outline-none focus:border-brand-masterDeep focus:ring-1 focus:ring-brand-masterDeep transition-all font-inter font-medium placeholder-brand-muted/50"
                       />
                     </div>
                     <div>
@@ -279,7 +279,7 @@ export default function CommonPages() {
                         onChange={handleChange}
                         required
                         placeholder="Admissions Enquiry, Transfer request..."
-                        className="w-full bg-brand-bg/50 border border-brand-greenDeep/10 rounded-2xl px-4 py-3.5 text-sm text-brand-charcoal focus:outline-none focus:border-brand-greenDeep focus:ring-1 focus:ring-brand-greenDeep transition-all font-inter font-medium placeholder-brand-muted/50"
+                        className="w-full bg-brand-bg/50 border border-brand-masterDeep/10 rounded-2xl px-4 py-3.5 text-sm text-brand-charcoal focus:outline-none focus:border-brand-masterDeep focus:ring-1 focus:ring-brand-masterDeep transition-all font-inter font-medium placeholder-brand-muted/50"
                       />
                     </div>
                   </div>
@@ -295,14 +295,14 @@ export default function CommonPages() {
                       required
                       rows="4"
                       placeholder="Type details of your inquiry here..."
-                      className="w-full bg-brand-bg/50 border border-brand-greenDeep/10 rounded-2xl px-4 py-3.5 text-sm text-brand-charcoal focus:outline-none focus:border-brand-greenDeep focus:ring-1 focus:ring-brand-greenDeep transition-all font-inter font-medium placeholder-brand-muted/50 resize-none"
+                      className="w-full bg-brand-bg/50 border border-brand-masterDeep/10 rounded-2xl px-4 py-3.5 text-sm text-brand-charcoal focus:outline-none focus:border-brand-masterDeep focus:ring-1 focus:ring-brand-masterDeep transition-all font-inter font-medium placeholder-brand-muted/50 resize-none"
                     ></textarea>
                   </div>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-brand-greenDeep hover:bg-brand-greenVibrant text-white py-4 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 group cursor-pointer"
+                  className="w-full bg-brand-masterDeep hover:bg-brand-masterVibrant text-white py-4 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 group cursor-pointer"
                 >
                   <span>Send Message</span>
                   <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">

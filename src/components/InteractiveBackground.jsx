@@ -210,6 +210,9 @@ export default function InteractiveBackground() {
       const activeId = schoolIdRef.current
 
       // 1. Dynamic Theme Shifting Calculations
+      let colorGreen = '43, 81, 38'
+      let colorPurple = '94, 44, 132'
+
       // Set targets depending on which school is active
       if (activeId === 'dlf-sahibabad') {
         dynamicState.greenBlobTargetOpacity = 0.22 // Boost Green
@@ -230,15 +233,20 @@ export default function InteractiveBackground() {
         dynamicState.lineColor.g = lerpVal(dynamicState.lineColor.g, 54, 0.05)
         dynamicState.lineColor.b = lerpVal(dynamicState.lineColor.b, 118, 0.05)
       } else {
-        // Portal level / common pages: show all three colors equally
-        dynamicState.greenBlobTargetOpacity = 0.14
-        dynamicState.purpleBlobTargetOpacity = 0.12
-        dynamicState.goldBlobTargetOpacity = 0.12
+        // Portal level / common pages: Slate Navy & Steel Blue theme
+        dynamicState.greenBlobTargetOpacity = 0.18 // Boost Slate Navy
+        dynamicState.purpleBlobTargetOpacity = 0.14 // Steel Blue
+        dynamicState.goldBlobTargetOpacity = 0.12   // Keep Gold active
         
-        // Lerp grid line color to soft gold-green
-        dynamicState.lineColor.r = lerpVal(dynamicState.lineColor.r, 43, 0.05)
-        dynamicState.lineColor.g = lerpVal(dynamicState.lineColor.g, 81, 0.05)
-        dynamicState.lineColor.b = lerpVal(dynamicState.lineColor.b, 38, 0.05)
+        // On master page, let's change green blob to Slate Navy (15, 23, 42)
+        // and purple blob to Steel Blue (30, 41, 59)
+        colorGreen = '15, 23, 42'
+        colorPurple = '30, 41, 59'
+
+        // Lerp grid line color to soft Slate Navy
+        dynamicState.lineColor.r = lerpVal(dynamicState.lineColor.r, 15, 0.05)
+        dynamicState.lineColor.g = lerpVal(dynamicState.lineColor.g, 23, 0.05)
+        dynamicState.lineColor.b = lerpVal(dynamicState.lineColor.b, 42, 0.05)
       }
 
       // Smoothly lerp the actual opacity values
@@ -247,8 +255,8 @@ export default function InteractiveBackground() {
       dynamicState.goldBlobOpacity = lerpVal(dynamicState.goldBlobOpacity, dynamicState.goldBlobTargetOpacity, 0.03)
 
       // Apply dynamic colors to blobs object
-      blobs[0].colorStr = `rgba(43, 81, 38, ${dynamicState.greenBlobOpacity})`
-      blobs[1].colorStr = `rgba(94, 44, 132, ${dynamicState.purpleBlobOpacity})`
+      blobs[0].colorStr = `rgba(${colorGreen}, ${dynamicState.greenBlobOpacity})`
+      blobs[1].colorStr = `rgba(${colorPurple}, ${dynamicState.purpleBlobOpacity})`
       blobs[2].colorStr = `rgba(197, 155, 39, ${dynamicState.goldBlobOpacity})`
 
       // 2. Update Scroll & Mouse

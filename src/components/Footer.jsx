@@ -15,8 +15,8 @@ export default function Footer() {
 
   // Define dynamic theme configurations based on the selected school
   const theme = currentSchool ? currentSchool.theme : {
-    primary: 'brand-greenDeep',
-    vibrant: 'brand-greenVibrant',
+    primary: 'brand-masterDeep',
+    vibrant: 'brand-masterVibrant',
     accent: 'brand-gold',
     accentHex: '#C59B27'
   }
