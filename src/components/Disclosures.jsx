@@ -21,8 +21,7 @@ export default function Disclosures() {
 
   return (
     <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
-      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 space-y-12">
-        <div className="bg-white/85 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 sm:p-12 shadow-xl space-y-12">
+      <div className="max-w-7xl mx-auto px-4 md:px-12 space-y-12">
         <div className="text-center max-w-2xl mx-auto space-y-4">
           <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>Compliance & Transparency</span>
           <h2 className={`font-serif text-4xl sm:text-5xl font-bold text-${theme.primary}`}>CBSE Mandated Disclosures</h2>
@@ -53,7 +52,6 @@ export default function Disclosures() {
               </div>
             ))}
           </div>
-        </div>
         </div>
       </div>
     </div>

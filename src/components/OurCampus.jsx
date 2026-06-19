@@ -29,8 +29,8 @@ export default function OurCampus() {
   return (
     <div className="pt-24 bg-transparent min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
       {/* Editorial Page Hero Section */}
-      <section className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 py-16 md:py-24">
-        <div className="bg-white/85 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 sm:p-12 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section className="max-w-7xl mx-auto px-4 md:px-12 py-16 md:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6 space-y-6">
             <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-${theme.primary}/5 border border-${theme.primary}/10 text-${theme.primary} text-[11px] font-bold uppercase tracking-wider`}>
               <span>Explore {currentSchool.shortLocation}</span>
@@ -57,8 +57,7 @@ export default function OurCampus() {
       </section>
 
       {/* Asymmetric Magazine-Style Campus Photo Gallery */}
-      <section className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 pb-24">
-        <div className="bg-white/85 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 sm:p-12 shadow-xl">
+      <section className="max-w-7xl mx-auto px-4 md:px-12 pb-24">
         <div className="text-center mb-12">
           <h2 className={`font-serif text-3xl md:text-4xl font-bold text-${theme.primary} tracking-tight`}>
             Visual Campus Portfolio
@@ -129,14 +128,12 @@ export default function OurCampus() {
             </div>
           </div>
         </div>
-        </div>
       </section>
 
       {/* Safety & Secure System Section */}
-      <section className={`bg-transparent text-white py-20 relative overflow-hidden`}>
+      <section className={`bg-${theme.primary} text-white py-20 relative overflow-hidden`}>
         <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-${theme.vibrant}/10 rounded-full blur-3xl pointer-events-none`}></div>
-        <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 relative z-10">
-          <div className={`bg-${theme.primary}/90 backdrop-blur-xl border border-white/20 rounded-[2.5rem] p-8 sm:p-12 shadow-2xl`}>
+        <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className={`text-[10px] tracking-widest uppercase font-bold text-${theme.accent}`}>Nurturing Yet Protected</span>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold mt-2">Safety & Emotional Well-Being Centrality</h2>
@@ -159,13 +156,11 @@ export default function OurCampus() {
               )
             })}
           </div>
-          </div>
         </div>
       </section>
 
       {/* Infrastructure Facilities Showroom Section */}
-      <section className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 py-24">
-        <div className="bg-white/85 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 sm:p-12 shadow-xl">
+      <section className="max-w-7xl mx-auto px-4 md:px-12 py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
           <div className="lg:col-span-5">
             <span className={`text-[10px] tracking-widest uppercase font-bold text-${theme.accent}`}>Global Infrastructure</span>
@@ -197,7 +192,6 @@ export default function OurCampus() {
               </div>
             )
           })}
-        </div>
         </div>
       </section>
     </div>
