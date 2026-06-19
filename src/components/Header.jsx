@@ -87,8 +87,51 @@ export default function Header() {
 
   return (
     <>
+      {/* SCHOOL CONTEXT BAR - Static, scrolls away */}
+      {schoolId && (
+        <div className={`hidden lg:block bg-${theme.primary} relative z-50`}>
+          <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 py-2 flex items-center justify-between">
+            {/* Left: School indicator + back link */}
+            <div className="flex items-center gap-3">
+              <div className={`w-1.5 h-1.5 rounded-full bg-${theme.accent}`}></div>
+              <span className={`text-white text-[10px] font-bold uppercase tracking-widest`}>
+                {currentSchool.name}
+              </span>
+              <span className="text-white/20 text-xs">|</span>
+              <Link to="/" className="text-white/60 hover:text-white text-[10px] font-semibold uppercase tracking-wider transition-colors duration-300">
+                ← Back to Group
+              </Link>
+            </div>
+
+            {/* Right: School Switcher */}
+            <div className="flex items-center gap-1 p-0.5 bg-white/10 rounded-full">
+              <Link 
+                to="/school/dlf-sahibabad"
+                className={`px-3.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider transition-all duration-300 ${
+                  schoolId === 'dlf-sahibabad' 
+                    ? 'bg-white text-brand-greenDeep shadow-sm' 
+                    : 'text-white/60 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                DLF Public School
+              </Link>
+              <Link 
+                to="/school/dlf-greater-noida"
+                className={`px-3.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider transition-all duration-300 ${
+                  schoolId === 'dlf-greater-noida' 
+                    ? 'bg-white text-brand-purpleDeep shadow-sm' 
+                    : 'text-white/60 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                DLF World School
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* TOP UTILITY STRIP */}
-      <div className={`bg-${theme.primary} text-brand-bg text-[11px] font-inter tracking-wider py-2 relative z-50 overflow-hidden`}>
+      <div className={`bg-${theme.primary} text-brand-bg text-[11px] font-inter tracking-wider py-2 relative z-50 overflow-hidden ${schoolId ? `border-t border-white/10` : ''}`}>
         <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 flex justify-between items-center">
           
           {/* Left Contact Info */}
@@ -126,7 +169,7 @@ export default function Header() {
       <header 
         id="main-header" 
         className={`fixed left-0 w-full z-40 transition-all duration-500 py-3 px-4 md:px-12 ${
-          isHeaderScrolled ? 'top-0' : 'top-9'
+          isHeaderScrolled ? 'top-0' : (schoolId ? 'top-[68px]' : 'top-9')
         }`}
         style={{ transform: isHeaderHidden ? 'translateY(-100%)' : 'translateY(0)' }}
       >
@@ -161,7 +204,7 @@ export default function Header() {
           {/* Desktop Nav Menu */}
           <nav className={`hidden lg:flex items-center gap-6 xl:gap-8 text-[13px] font-semibold ${!schoolId ? 'text-white/95' : 'text-brand-charcoal/95'}`}>
             
-            {/* Menu 1: Group / Portal Level Info - Rendered only on common nav bar */}
+            {/* Menu 1: Group / Portal Level Info */}
             {!schoolId && (
               <div className="relative group py-2">
                 <button className="flex items-center gap-1 hover:text-brand-gold transition-colors duration-300 cursor-pointer">
@@ -193,7 +236,6 @@ export default function Header() {
               </div>
             </div>
 
-            {/* If inside school context, render school-specific submenus */}
             {schoolId ? (
               <>
                 <Link to={`/school/${schoolId}/campus`} className={`hover:text-${theme.vibrant} transition-colors duration-300`}>
@@ -270,33 +312,6 @@ export default function Header() {
           </button>
         </div>
 
-        {/* SUB-NAVBAR FOR SCHOOL SWITCHING */}
-        {schoolId && (
-          <div className="w-[96%] max-w-[1600px] mx-auto mt-2 flex justify-center transition-all duration-300">
-            <div className={`flex items-center p-1 bg-white/80 backdrop-blur-md rounded-full border border-${theme.primary}/10 shadow-sm`}>
-              <Link 
-                to="/school/dlf-sahibabad"
-                className={`px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
-                  schoolId === 'dlf-sahibabad' 
-                    ? 'bg-brand-greenVibrant text-white shadow-md' 
-                    : `text-brand-charcoal hover:bg-${theme.primary}/5`
-                }`}
-              >
-                DLF Public School
-              </Link>
-              <Link 
-                to="/school/dlf-greater-noida"
-                className={`px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
-                  schoolId === 'dlf-greater-noida' 
-                    ? 'bg-brand-purpleVibrant text-white shadow-md' 
-                    : `text-brand-charcoal hover:bg-${theme.primary}/5`
-                }`}
-              >
-                DLF World School
-              </Link>
-            </div>
-          </div>
-        )}
       </header>
 
       {/* MOBILE NAVIGATION DRAWER */}
