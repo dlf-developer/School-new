@@ -77,7 +77,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-black/10"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-10 w-full">
+      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 relative z-10 w-full">
         {/* Left Side Core Editorial Copy */}
         <div ref={heroLeftRef} className="max-w-xl lg:max-w-2xl space-y-6 sm:space-y-8">
           <div ref={badgeRef} className={`inline-flex items-center gap-2 bg-${theme.primary}/10 border border-${theme.primary}/20 rounded-full px-3.5 py-1.5 text-xs text-${theme.primary} font-bold backdrop-blur-sm`}>

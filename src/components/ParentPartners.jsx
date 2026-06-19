@@ -29,8 +29,8 @@ export default function ParentPartners() {
     <div className="pt-24 bg-transparent min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
       
       {/* 1. Philosophical Intro Section */}
-      <section className="max-w-7xl mx-auto px-4 md:px-12 py-16 md:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 py-16 md:py-20">
+        <div className="bg-white/85 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 sm:p-12 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-purpleDeep/5 border border-brand-purpleDeep/10 text-brand-purpleDeep text-[11px] font-bold uppercase tracking-wider">
               <HeartHandshake className="w-3.5 h-3.5" />
@@ -61,8 +61,8 @@ export default function ParentPartners() {
       </section>
 
       {/* 2. Interactive Video Showcase */}
-      <section className="max-w-7xl mx-auto px-4 md:px-12 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      <section className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 pb-20">
+        <div className="bg-white/85 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 sm:p-12 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Main Local Video Player Card */}
           <div className="lg:col-span-8 bg-white border border-brand-greenDeep/5 rounded-3xl p-6 shadow-md flex flex-col justify-between">
             <div>
@@ -154,7 +154,8 @@ export default function ParentPartners() {
       </section>
 
       {/* 3. Timeline of Initiatives: "How Do Parents Stay Connected?" */}
-      <section className="max-w-7xl mx-auto px-4 md:px-12 py-20 border-t border-brand-greenDeep/5">
+      <section className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 py-20 border-t border-brand-greenDeep/5">
+        <div className="bg-white/85 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 sm:p-12 shadow-xl">
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
           <span className="text-[10px] tracking-widest uppercase font-bold text-brand-gold">Active Channels</span>
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-greenDeep leading-tight">
@@ -391,12 +392,15 @@ export default function ParentPartners() {
           </div>
 
         </div>
+        </div>
       </section>
 
       {/* 4. Concluding Quote Block */}
-      <section className="bg-brand-greenDeep text-white py-20 relative overflow-hidden">
+      <section className="bg-transparent text-white py-20 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="max-w-4xl mx-auto px-4 md:px-12 text-center space-y-8 relative z-10">
+        <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 relative z-10">
+          <div className="bg-brand-greenDeep/90 backdrop-blur-xl border border-white/20 rounded-[2.5rem] p-8 sm:p-12 shadow-2xl">
+          <div className="max-w-4xl mx-auto px-4 md:px-12 text-center space-y-8 relative z-10">
           <Heart className="w-12 h-12 text-brand-gold mx-auto fill-brand-gold animate-bounce" />
           <p className="font-serif text-2xl sm:text-3xl lg:text-4xl font-medium italic leading-relaxed text-brand-bg">
             "At every milestone, parents are not merely spectators—they are co-creators of their child’s journey. Together, we nurture confident, compassionate, and future-ready individuals, because when parents and educators walk hand in hand, every child’s potential finds its fullest expression."
@@ -405,6 +409,8 @@ export default function ParentPartners() {
             <div className="w-10 h-0.5 bg-brand-gold"></div>
             <span className="text-xs uppercase tracking-widest font-bold text-brand-gold">DLF Public School Team</span>
             <div className="w-10 h-0.5 bg-brand-gold"></div>
+          </div>
+          </div>
           </div>
         </div>
       </section>

@@ -2,8 +2,9 @@ import React from 'react'
 
 export default function Testimonials() {
   return (
-    <section className="py-16 sm:py-24 bg-brand-bg relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 md:px-12">
+    <section className="py-16 sm:py-24 bg-transparent relative overflow-hidden">
+      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12">
+        <div className="bg-white/85 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 sm:p-12 shadow-xl">
         <div className="text-center max-w-2xl mx-auto space-y-3 sm:space-y-4 mb-10 sm:mb-16">
           <span className="text-xs uppercase tracking-widest font-bold text-brand-greenDeep">Parent & Student Voices</span>
           <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-brand-greenDeep">What Our Community Says</h3>
@@ -59,6 +60,7 @@ export default function Testimonials() {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>

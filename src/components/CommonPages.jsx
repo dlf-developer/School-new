@@ -43,7 +43,7 @@ export default function CommonPages() {
   if (path.includes('news')) {
     return (
       <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
-        <div className="max-w-7xl mx-auto px-4 md:px-12 space-y-12">
+        <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-4">
             <span className="text-xs uppercase tracking-widest font-extrabold text-brand-masterVibrant">Press Room</span>
             <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-masterDeep">DLF in the News</h2>
@@ -76,7 +76,7 @@ export default function CommonPages() {
   if (path.includes('alumni')) {
     return (
       <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
-        <div className="max-w-7xl mx-auto px-4 md:px-12 space-y-12">
+        <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-4">
             <span className="text-xs uppercase tracking-widest font-extrabold text-brand-masterVibrant">Global Network</span>
             <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-masterDeep">Alumni Network</h2>
@@ -104,7 +104,7 @@ export default function CommonPages() {
   if (path.includes('careers')) {
     return (
       <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
-        <div className="max-w-7xl mx-auto px-4 md:px-12 space-y-12">
+        <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-4">
             <span className="text-xs uppercase tracking-widest font-extrabold text-brand-masterVibrant">Work With Us</span>
             <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-masterDeep">Careers</h2>
@@ -132,7 +132,7 @@ export default function CommonPages() {
   if (path.includes('sports-arena')) {
     return (
       <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
-        <div className="max-w-7xl mx-auto px-4 md:px-12 space-y-12">
+        <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-4">
             <span className="text-xs uppercase tracking-widest font-extrabold text-brand-masterVibrant">Athletics & Fitness</span>
             <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-masterDeep">Sports Arena</h2>
@@ -167,7 +167,7 @@ export default function CommonPages() {
       <div className="absolute top-1/4 left-[-10%] w-[350px] h-[350px] bg-brand-masterDeep/5 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-1/4 right-[-10%] w-[350px] h-[350px] bg-brand-purpleDeep/5 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-12 space-y-12 relative z-10">
+      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 space-y-12 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto space-y-4">
           <span className="text-xs uppercase tracking-widest font-extrabold text-brand-masterVibrant bg-brand-masterDeep/5 px-3 py-1.5 rounded-full border border-brand-masterDeep/10 inline-block font-inter">Reach Out</span>

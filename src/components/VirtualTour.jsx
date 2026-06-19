@@ -5,8 +5,8 @@ export default function VirtualTour() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
 
   return (
-    <section id="virtual-tour" className="py-16 sm:py-24 bg-brand-bg relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 md:px-12">
+    <section id="virtual-tour" className="py-16 sm:py-24 bg-transparent relative overflow-hidden">
+      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12">
         <div className="bg-brand-greenDeep rounded-3xl overflow-hidden p-6 sm:p-12 md:p-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative">
           {/* Decorative background shape */}
           <div className="absolute right-0 top-0 w-80 h-80 rounded-full bg-brand-gold/10 -z-10"></div>

@@ -28,8 +28,9 @@ export default function Stats() {
   }, [])
 
   return (
-    <section ref={statsStripRef} className="py-12 bg-white border-y border-brand-greenDeep/5 relative">
-      <div className="max-w-7xl mx-auto px-4 md:px-12">
+    <section ref={statsStripRef} className="py-12 bg-transparent border-y border-brand-greenDeep/5 relative">
+      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12">
+        <div className="bg-white/85 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 sm:p-12 shadow-xl">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-12">
           <div className="text-center space-y-1">
             <h3 className="font-serif text-3xl sm:text-5xl md:text-6xl font-extrabold text-brand-greenDeep flex justify-center items-baseline">
@@ -55,6 +56,7 @@ export default function Stats() {
             </h3>
             <p className="text-[9px] sm:text-xs font-bold text-brand-muted uppercase tracking-widest">First Class Results</p>
           </div>
+        </div>
         </div>
       </div>
     </section>

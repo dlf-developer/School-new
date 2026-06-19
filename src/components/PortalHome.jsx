@@ -7,7 +7,7 @@ export default function PortalHome() {
     <div className="pt-24 bg-transparent min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
       
       {/* Cinematic Portal Welcome Hero */}
-      <section className="max-w-7xl mx-auto px-4 md:px-12 pt-16 pb-12 text-center space-y-6">
+      <section className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 pt-16 pb-12 text-center space-y-6">
         <div className="inline-flex items-center gap-2 bg-brand-masterDeep/5 border border-brand-masterDeep/10 rounded-full px-4 py-1.5 text-xs text-brand-masterDeep font-bold">
           <span className="w-2 h-2 rounded-full bg-brand-gold animate-ping"></span>
           <span>Unified Group Portal</span>
@@ -26,7 +26,7 @@ export default function PortalHome() {
       </section>
 
       {/* Side-by-Side Asymmetric School Choice Section */}
-      <section className="max-w-7xl mx-auto px-4 md:px-12 pb-20">
+      <section className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 pb-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-stretch mt-8">
           
           {/* Card: DLF Public School (Sahibabad) */}

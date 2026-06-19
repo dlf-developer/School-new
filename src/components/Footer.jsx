@@ -37,7 +37,7 @@ export default function Footer() {
 
   return (
     <footer className={`bg-${theme.primary} text-brand-bg relative overflow-hidden border-t-2 border-${theme.accent}/30 transition-all duration-300`}>
-      <div className="max-w-7xl mx-auto px-4 md:px-12 py-12 sm:py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 py-12 sm:py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         
         {/* Column 1: Brand & Philosophy */}
         <div className="space-y-6">
@@ -142,7 +142,7 @@ export default function Footer() {
       </div>
 
       <div className={`bg-${theme.primary}/90 py-6 border-t border-white/10 text-center text-[10px] sm:text-[11px] text-brand-bg/70 tracking-wider`}>
-        <div className="max-w-7xl mx-auto px-4 md:px-12 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 flex flex-col md:flex-row justify-between items-center gap-4">
           <p>&copy; 2026 {currentSchool ? currentSchool.name : 'DLF Schools Group'}. All Rights Reserved.</p>
           <p className="flex gap-4 font-inter font-semibold">
             <Link to="/" className={`hover:text-${theme.accent}`}>Portal Home</Link>

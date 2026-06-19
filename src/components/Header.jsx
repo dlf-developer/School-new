@@ -89,7 +89,7 @@ export default function Header() {
     <>
       {/* TOP UTILITY STRIP */}
       <div className={`bg-${theme.primary} text-brand-bg text-[11px] font-inter tracking-wider py-2 relative z-50 overflow-hidden`}>
-        <div className="max-w-7xl mx-auto px-4 md:px-12 flex justify-between items-center">
+        <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 flex justify-between items-center">
           
           {/* Left Contact Info */}
           <div className="flex items-center gap-6 overflow-x-auto no-scrollbar whitespace-nowrap w-full lg:w-auto">
@@ -132,7 +132,7 @@ export default function Header() {
       >
         <div 
           id="header-inner" 
-          className={`max-w-7xl mx-auto rounded-2xl border px-4 md:px-6 py-2.5 flex items-center justify-between transition-all duration-300 ${
+          className={`w-[96%] max-w-[1600px] mx-auto rounded-2xl border px-4 md:px-6 py-2.5 flex items-center justify-between transition-all duration-300 ${
             !schoolId
               ? (isHeaderScrolled 
                   ? 'bg-brand-masterDeep border-white/10 text-white shadow-lg' 
@@ -269,6 +269,34 @@ export default function Header() {
             <Menu className="w-6 h-6" />
           </button>
         </div>
+
+        {/* SUB-NAVBAR FOR SCHOOL SWITCHING */}
+        {schoolId && (
+          <div className="w-[96%] max-w-[1600px] mx-auto mt-2 flex justify-center transition-all duration-300">
+            <div className={`flex items-center p-1 bg-white/80 backdrop-blur-md rounded-full border border-${theme.primary}/10 shadow-sm`}>
+              <Link 
+                to="/school/dlf-sahibabad"
+                className={`px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+                  schoolId === 'dlf-sahibabad' 
+                    ? 'bg-brand-greenVibrant text-white shadow-md' 
+                    : `text-brand-charcoal hover:bg-${theme.primary}/5`
+                }`}
+              >
+                DLF Public School
+              </Link>
+              <Link 
+                to="/school/dlf-greater-noida"
+                className={`px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+                  schoolId === 'dlf-greater-noida' 
+                    ? 'bg-brand-purpleVibrant text-white shadow-md' 
+                    : `text-brand-charcoal hover:bg-${theme.primary}/5`
+                }`}
+              >
+                DLF World School
+              </Link>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* MOBILE NAVIGATION DRAWER */}

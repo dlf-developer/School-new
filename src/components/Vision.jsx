@@ -41,8 +41,9 @@ export default function Vision() {
   }, [])
 
   return (
-    <section id="vision" className="py-16 sm:py-24 bg-brand-bg relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-16 items-center">
+    <section id="vision" className="py-16 sm:py-24 bg-transparent relative overflow-hidden">
+      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12">
+        <div className="bg-white/85 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 sm:p-12 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-16 items-center">
         
         {/* Left Editorial Images Column */}
         <div ref={visionImageRef} id="vision-image" className="lg:col-span-5 relative flex flex-col items-center">
@@ -80,6 +81,7 @@ export default function Vision() {
               <p className="text-[8px] sm:text-[9px] text-brand-muted uppercase font-bold tracking-widest">DLF Public School Leadership</p>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>

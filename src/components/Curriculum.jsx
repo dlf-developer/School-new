@@ -39,11 +39,12 @@ export default function Curriculum() {
   ]
 
   return (
-    <section id="curriculum" className="py-16 sm:py-24 bg-brand-bg relative overflow-hidden">
+    <section id="curriculum" className="py-16 sm:py-24 bg-transparent relative overflow-hidden">
       {/* Floating Light Accent */}
       <div className="absolute top-1/2 left-0 w-64 h-64 rounded-full ambient-glow-1 -translate-y-1/2"></div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-10">
+      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 relative z-10">
+        <div className="bg-white/85 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 sm:p-12 shadow-xl">
         <div className="text-center max-w-2xl mx-auto space-y-3 sm:space-y-4 mb-10 sm:mb-16">
           <span className="text-xs uppercase tracking-widest font-bold text-brand-gold">Comprehensive Curriculum</span>
           <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-brand-greenDeep">Academic Progression</h3>
@@ -172,6 +173,7 @@ export default function Curriculum() {
               <ImageWithLoader src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=1000" alt="Senior Secondary Graduation" loading="lazy" />
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>

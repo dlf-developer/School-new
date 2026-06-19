@@ -35,8 +35,9 @@ export default function Admissions() {
   }
 
   return (
-    <section id="procedure" className="py-16 sm:py-24 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-16">
+    <section id="procedure" className="py-16 sm:py-24 bg-transparent relative overflow-hidden">
+      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12">
+        <div className="bg-white/85 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 sm:p-12 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-16">
         {/* Left Side: Procedure Steps */}
         <div className="lg:col-span-6 space-y-8 sm:space-y-12">
           <div className="space-y-3 sm:space-y-4">
@@ -163,6 +164,7 @@ export default function Admissions() {
               Submit another form
             </button>
           </div>
+        </div>
         </div>
       </div>
     </section>

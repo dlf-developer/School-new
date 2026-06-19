@@ -10,7 +10,7 @@ export default function WhatSetsUsApart() {
 
   return (
     <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
-      <div className="max-w-7xl mx-auto px-4 md:px-12 space-y-12">
+      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 space-y-12">
         <div className="text-center max-w-2xl mx-auto space-y-4">
           <span className="text-xs uppercase tracking-widest font-extrabold text-brand-masterVibrant">Distinctive Pillars</span>
           <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-masterDeep">What Sets Us Apart</h2>
