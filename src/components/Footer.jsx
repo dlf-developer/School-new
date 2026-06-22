@@ -60,7 +60,9 @@ export default function Footer() {
           <div className="space-y-2">
             <h5 className={`text-xs uppercase tracking-widest font-bold text-${theme.accent} font-inter`}>About the Group</h5>
             <ul className="space-y-1.5 text-xs text-brand-bg/85 font-semibold font-inter">
-              <li><Link to="/philosophy" className={`hover:text-${theme.accent} transition-colors`}>&bull; Our Philosophy</Link></li>
+              <li><Link to="/thinking-school" className={`hover:text-${theme.accent} transition-colors`}>&bull; Thinking School</Link></li>
+              <li><Link to="/vision-mission" className={`hover:text-${theme.accent} transition-colors`}>&bull; Vision & Mission</Link></li>
+              <li><Link to="/parent-partners" className={`hover:text-${theme.accent} transition-colors`}>&bull; Parents as Partners</Link></li>
               <li><Link to="/pedagogy" className={`hover:text-${theme.accent} transition-colors`}>&bull; Our Pedagogy</Link></li>
               <li><Link to="/what-sets-us-apart" className={`hover:text-${theme.accent} transition-colors`}>&bull; What Sets Us Apart</Link></li>
             </ul>
@@ -146,7 +148,7 @@ export default function Footer() {
           <p>&copy; 2026 {currentSchool ? currentSchool.name : 'DLF Schools Group'}. All Rights Reserved.</p>
           <p className="flex gap-4 font-inter font-semibold">
             <Link to="/" className={`hover:text-${theme.accent}`}>Portal Home</Link>
-            <Link to="/philosophy" className={`hover:text-${theme.accent}`}>Philosophy</Link>
+            <Link to="/thinking-school" className={`hover:text-${theme.accent}`}>Thinking School</Link>
             <Link to="/pedagogy" className={`hover:text-${theme.accent}`}>Pedagogy</Link>
           </p>
         </div>

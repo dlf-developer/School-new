@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { ArrowRight, ChevronRight } from 'lucide-react'
-import { schoolsData } from '../data/schoolsData'
+import { useSiteData } from '../hooks/useSiteData'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -9,10 +9,11 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function Hero() {
   const { schoolId } = useParams()
+  const { schools } = useSiteData()
   
   // Default to Sahibabad if no schoolId is present in path
-  const activeBranch = schoolId && schoolsData[schoolId] ? schoolId : 'dlf-sahibabad'
-  const currentSchool = schoolsData[activeBranch]
+  const activeBranch = schoolId && schools[schoolId] ? schoolId : 'dlf-sahibabad'
+  const currentSchool = schools[activeBranch]
   const theme = currentSchool.theme
   const heroData = currentSchool.hero
 

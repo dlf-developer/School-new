@@ -1,7 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import Header from './components/Header'
 import Hero from './components/Hero'
+
+const AdminApp = lazy(() => import('./admin/AdminApp'))
+const AdminLogin = lazy(() => import('./admin/AdminLogin'))
 import Ticker from './components/Ticker'
 import Vision from './components/Vision'
 import Stats from './components/Stats'
@@ -17,11 +20,15 @@ import ParentPartners from './components/ParentPartners'
 import ScrollToTop from './components/ScrollToTop'
 import InteractiveBackground from './components/InteractiveBackground'
 import PortalHome from './components/PortalHome'
-import Philosophy from './components/Philosophy'
 import Pedagogy from './components/Pedagogy'
 import WhatSetsUsApart from './components/WhatSetsUsApart'
+import Management from './components/Management'
+import Awards from './components/Awards'
 import CommonPages from './components/CommonPages'
 import Disclosures from './components/Disclosures'
+import ThinkingSchool from './components/ThinkingSchool'
+import VisionMission from './components/VisionMission'
+
 
 // Home page sections aggregator for dynamic branches
 function Home() {
@@ -48,6 +55,7 @@ export default function App() {
   const [isTransitioning, setIsTransitioning] = useState(false)
 
   const displayLocationRef = useRef(displayLocation)
+  const isAdminRoute = displayLocation.pathname.startsWith('/admin')
 
   useEffect(() => {
     const prevPath = displayLocationRef.current.pathname
@@ -114,15 +122,32 @@ export default function App() {
       
       <div className="isolate">
         <ScrollToTop displayLocation={displayLocation} />
-        <Header />
+        {!isAdminRoute && <Header />}
         <Routes location={displayLocation}>
+          {/* Admin Panel */}
+          <Route path="/admin/login" element={
+            <Suspense fallback={<div className="min-h-screen bg-[#06060a]"/>}>
+              <AdminLogin />
+            </Suspense>
+          } />
+          <Route path="/admin/*" element={
+            <Suspense fallback={<div className="min-h-screen bg-[#06060a]"/>}>
+              <AdminApp />
+            </Suspense>
+          } />
+
           {/* Unified Portal Home */}
           <Route path="/" element={<PortalHome />} />
           
           {/* Common Pages */}
-          <Route path="/philosophy" element={<Philosophy />} />
+          <Route path="/philosophy" element={<Navigate to="/thinking-school" replace />} />
+          <Route path="/thinking-school" element={<ThinkingSchool />} />
+          <Route path="/vision-mission" element={<VisionMission />} />
+          <Route path="/parent-partners" element={<ParentPartners />} />
           <Route path="/pedagogy" element={<Pedagogy />} />
           <Route path="/what-sets-us-apart" element={<WhatSetsUsApart />} />
+          <Route path="/management" element={<Management />} />
+          <Route path="/awards" element={<Awards />} />
           <Route path="/news" element={<CommonPages />} />
           <Route path="/alumni" element={<CommonPages />} />
           <Route path="/careers" element={<CommonPages />} />
@@ -138,9 +163,9 @@ export default function App() {
 
           {/* Redirects for legacy/direct paths to Sahibabad default */}
           <Route path="/about-us/our-campus" element={<Navigate to="/school/dlf-sahibabad/campus" replace />} />
-          <Route path="/about-us/parent-as-partners" element={<Navigate to="/philosophy" replace />} />
+          <Route path="/about-us/parent-as-partners" element={<Navigate to="/parent-partners" replace />} />
         </Routes>
-        <Footer />
+        {!isAdminRoute && <Footer />}
       </div>
     </>
   )

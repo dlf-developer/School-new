@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { schoolsData } from '../data/schoolsData'
+import { useSiteData } from '../hooks/useSiteData'
 import { 
   Phone, 
   Lock, 
@@ -12,21 +12,32 @@ import {
   BookOpen, 
   Users,
   Activity,
-  PlayCircle
+  PlayCircle,
+  Home,
+  BookMarked,
+  GraduationCap,
+  Sparkles,
+  Trophy,
+  Newspaper,
+  Handshake,
+  PhoneCall,
+  Compass
 } from 'lucide-react'
 
 export default function Header() {
   const [isHeaderScrolled, setIsHeaderScrolled] = useState(false)
   const [isHeaderHidden, setIsHeaderHidden] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
 
   const navigate = useNavigate()
   const location = useLocation()
+  const { schools } = useSiteData()
 
   // 1. Detect if we are in a school route context
   const match = location.pathname.match(/^\/school\/([^/]+)/)
-  const schoolId = match && schoolsData[match[1]] ? match[1] : null
-  const currentSchool = schoolId ? schoolsData[schoolId] : null
+  const schoolId = match && schools[match[1]] ? match[1] : null
+  const currentSchool = schoolId ? schools[schoolId] : null
 
   // Define dynamic theme configurations based on the selected school
   const theme = currentSchool ? currentSchool.theme : {
@@ -54,6 +65,8 @@ export default function Header() {
     let lastScrollY = window.scrollY
     const handleScroll = () => {
       const currentScrollY = window.scrollY
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      setScrollProgress(docHeight > 0 ? (currentScrollY / docHeight) * 100 : 0)
 
       if (currentScrollY > 50) {
         setIsHeaderScrolled(true)
@@ -87,48 +100,18 @@ export default function Header() {
 
   return (
     <>
-      {/* SCHOOL CONTEXT BAR - Static, scrolls away */}
-      {schoolId && (
-        <div className={`hidden lg:block bg-${theme.primary} relative z-50`}>
-          <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 py-2 flex items-center justify-between">
-            {/* Left: School indicator + back link */}
-            <div className="flex items-center gap-3">
-              <div className={`w-1.5 h-1.5 rounded-full bg-${theme.accent}`}></div>
-              <span className={`text-white text-[10px] font-bold uppercase tracking-widest`}>
-                {currentSchool.name}
-              </span>
-              <span className="text-white/20 text-xs">|</span>
-              <Link to="/" className="text-white/60 hover:text-white text-[10px] font-semibold uppercase tracking-wider transition-colors duration-300">
-                ← Back to Group
-              </Link>
-            </div>
-
-            {/* Right: School Switcher */}
-            <div className="flex items-center gap-1 p-0.5 bg-white/10 rounded-full">
-              <Link 
-                to="/school/dlf-sahibabad"
-                className={`px-3.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider transition-all duration-300 ${
-                  schoolId === 'dlf-sahibabad' 
-                    ? 'bg-white text-brand-greenDeep shadow-sm' 
-                    : 'text-white/60 hover:text-white hover:bg-white/10'
-                }`}
-              >
-                DLF Public School
-              </Link>
-              <Link 
-                to="/school/dlf-greater-noida"
-                className={`px-3.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider transition-all duration-300 ${
-                  schoolId === 'dlf-greater-noida' 
-                    ? 'bg-white text-brand-purpleDeep shadow-sm' 
-                    : 'text-white/60 hover:text-white hover:bg-white/10'
-                }`}
-              >
-                DLF World School
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
+        {/* Scroll Progress Bar — fixed at very top of viewport */}
+      <div className="fixed top-0 left-0 w-full z-[9999] h-[3px] bg-transparent pointer-events-none">
+        <div
+          className="h-full transition-[width] duration-75 ease-out"
+          style={{
+            width: `${scrollProgress}%`,
+            background: schoolId
+              ? `linear-gradient(90deg, ${theme.primary === 'brand-greenDeep' ? '#1a5c3a' : '#4a1a6e'}, ${theme.primary === 'brand-greenDeep' ? '#2d8a57' : '#7b3db5'})`
+              : 'linear-gradient(90deg, #C59B27, #e8c060)'
+          }}
+        />
+      </div>
 
       {/* TOP UTILITY STRIP */}
       <div className={`bg-${theme.primary} text-brand-bg text-[11px] font-inter tracking-wider py-2 relative z-50 overflow-hidden ${schoolId ? `border-t border-white/10` : ''}`}>
@@ -169,7 +152,7 @@ export default function Header() {
       <header 
         id="main-header" 
         className={`fixed left-0 w-full z-40 transition-all duration-500 py-3 px-4 md:px-12 ${
-          isHeaderScrolled ? 'top-0' : (schoolId ? 'top-[68px]' : 'top-9')
+          isHeaderScrolled ? 'top-0' : 'top-9'
         }`}
         style={{ transform: isHeaderHidden ? 'translateY(-100%)' : 'translateY(0)' }}
       >
@@ -212,28 +195,184 @@ export default function Header() {
                 </button>
                 <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-brand-masterDeep text-white rounded-xl shadow-xl border border-white/10 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                   <div className="space-y-2 text-xs">
-                    <Link to="/philosophy" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-gold transition-colors font-semibold">Our Philosophy</Link>
-                    <Link to="/pedagogy" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-gold transition-colors font-semibold">Our Pedagogy</Link>
+                    <Link to="/vision-mission" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-gold transition-colors font-semibold">Vision & Mission</Link>
+                    <Link to="/management" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-gold transition-colors font-semibold">Our Management</Link>
+                    <Link to="/parent-partners" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-gold transition-colors font-semibold">Parents as Partners</Link>
+                    <Link to="/awards" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-gold transition-colors font-semibold">School Awards</Link>
                     <Link to="/what-sets-us-apart" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-gold transition-colors font-semibold">What Sets Us Apart</Link>
-                    <Link to="/news" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-gold transition-colors">DLF in the News</Link>
+                    <Link to="/news" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-gold transition-colors font-semibold">DLF in the News</Link>
                   </div>
                 </div>
               </div>
             )}
 
-            {/* Menu 2: Switch / View Campuses */}
+            {/* Menu 2: Our Schools — simple dropdown on master, mega menu on school routes */}
             <div className="relative group py-2">
               <button className={`flex items-center gap-1 hover:text-${!schoolId ? 'brand-gold' : theme.vibrant} transition-colors duration-300 cursor-pointer`}>
                 Our Schools <ChevronDown className={`w-3.5 h-3.5 text-${theme.accent}`} />
               </button>
-              <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 ${!schoolId ? 'bg-brand-masterDeep text-white border-white/10' : 'bg-white text-brand-charcoal border-brand-greenDeep/5'} rounded-xl shadow-xl border p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0`}>
-                <div className="space-y-2 text-xs">
-                  <Link to="/school/dlf-sahibabad" className={`block px-3 py-2 rounded-lg ${!schoolId ? 'hover:bg-white/10 hover:text-brand-greenVibrant' : 'hover:bg-brand-bg hover:text-brand-greenVibrant'} font-bold transition-colors`}>DLF Public School, Sahibabad</Link>
-                  <Link to="/school/dlf-greater-noida" className={`block px-3 py-2 rounded-lg ${!schoolId ? 'hover:bg-white/10 hover:text-brand-purpleVibrant' : 'hover:bg-brand-bg hover:text-brand-purpleVibrant'} font-bold transition-colors`}>DLF World School, G. Noida</Link>
-                  <div className={`border-t ${!schoolId ? 'border-white/10' : `border-${theme.primary}/10`} my-2`}></div>
-                  <Link to="/" className={`block px-3 py-2 rounded-lg ${!schoolId ? 'hover:bg-white/10 hover:text-brand-gold' : `hover:bg-brand-bg hover:text-${theme.primary}`} font-semibold transition-colors`}>Back to Group Website</Link>
+
+              {/* ── MASTER SITE: simple dropdown ── */}
+              {!schoolId && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-brand-masterDeep text-white border border-white/10 rounded-xl shadow-xl p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                  <div className="space-y-2 text-xs">
+                    <Link to="/school/dlf-sahibabad" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-greenVibrant font-bold transition-colors">DLF Public School, Sahibabad</Link>
+                    <Link to="/school/dlf-greater-noida" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-purpleVibrant font-bold transition-colors">DLF World School, G. Noida</Link>
+                    <div className="border-t border-white/10 my-2"></div>
+                    <Link to="/" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-gold font-semibold transition-colors">Back to Group Website</Link>
+                  </div>
                 </div>
-              </div>
+              )}
+
+              {/* ── SCHOOL SITE: full mega menu ── */}
+              {schoolId && (
+                <div
+                  className="absolute top-full left-1/2 -translate-x-[30%] mt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0"
+                  style={{ width: '1008px', zIndex: 200 }}
+                >
+                  {/* Caret */}
+                  <div className="absolute -top-2 left-[30%] -translate-x-1/2 w-4 h-2 overflow-hidden">
+                    <div className="w-3 h-3 bg-white rotate-45 mx-auto translate-y-1.5 shadow-sm" />
+                  </div>
+
+                  <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex">
+
+                    {/* ── PART 1: Switch Campus ── */}
+                    <div className="w-[33.33%] p-5 bg-gray-50 border-r border-gray-100 flex flex-col gap-3">
+                      <p className="text-[9px] font-extrabold uppercase tracking-widest text-gray-400 mb-1">Switch Campus</p>
+
+                      {/* DLF Public School card - show only if NOT active */}
+                      {schoolId !== 'dlf-sahibabad' && (
+                        <Link
+                          to="/school/dlf-sahibabad"
+                          className="group/card flex flex-col rounded-xl border border-gray-100 bg-white hover:border-brand-greenDeep/30 hover:shadow-md transition-all duration-300 overflow-hidden"
+                        >
+                          <div className="h-20 w-full overflow-hidden relative bg-brand-greenDeep">
+                            <img 
+                              src="/DJI_0044.JPG" 
+                              alt="DLF Public School Sahibabad Campus" 
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-brand-greenDeep/10"></div>
+                          </div>
+                          <div className="p-3.5 space-y-1">
+                            <div className="flex items-center gap-2">
+                              <span className="w-2 h-2 rounded-full bg-brand-greenVibrant shrink-0" />
+                              <span className="text-[11px] font-extrabold text-brand-greenDeep uppercase tracking-wide leading-tight">DLF Public School</span>
+                            </div>
+                            <p className="text-[9.5px] text-gray-500 pl-4">Sahibabad, Ghaziabad · CBSE Aff. 2130384</p>
+                            <div className="flex gap-1.5 pl-4 mt-1.5 flex-wrap">
+                              {['Campus', 'Admissions', 'Curriculum'].map(lbl => (
+                                <Link
+                                  key={lbl}
+                                  to={`/school/dlf-sahibabad/${lbl.toLowerCase()}`}
+                                  className="text-[9px] bg-brand-greenDeep/10 text-brand-greenDeep hover:bg-brand-greenDeep hover:text-white px-2 py-0.5 rounded-full font-semibold transition-all"
+                                  onClick={e => e.stopPropagation()}
+                                >{lbl}</Link>
+                              ))}
+                            </div>
+                          </div>
+                        </Link>
+                      )}
+
+                      {/* DLF World School card - show only if NOT active */}
+                      {schoolId !== 'dlf-greater-noida' && (
+                        <Link
+                          to="/school/dlf-greater-noida"
+                          className="group/card flex flex-col rounded-xl border border-gray-100 bg-white hover:border-brand-purpleDeep/30 hover:shadow-md transition-all duration-300 overflow-hidden"
+                        >
+                          <div className="h-20 w-full overflow-hidden relative bg-brand-purpleDeep">
+                            <img 
+                              src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&q=80&w=600" 
+                              alt="DLF World School Greater Noida Campus" 
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-brand-purpleDeep/10"></div>
+                          </div>
+                          <div className="p-3.5 space-y-1">
+                            <div className="flex items-center gap-2">
+                              <span className="w-2 h-2 rounded-full bg-brand-purpleVibrant shrink-0" />
+                              <span className="text-[11px] font-extrabold text-brand-purpleDeep uppercase tracking-wide leading-tight">DLF World School</span>
+                            </div>
+                            <p className="text-[9.5px] text-gray-500 pl-4">Greater Noida · CBSE Aff. 2131920</p>
+                            <div className="flex gap-1.5 pl-4 mt-1.5 flex-wrap">
+                              {['Campus', 'Admissions', 'Curriculum'].map(lbl => (
+                                <Link
+                                  key={lbl}
+                                  to={`/school/dlf-greater-noida/${lbl.toLowerCase()}`}
+                                  className="text-[9px] bg-brand-purpleDeep/10 text-brand-purpleDeep hover:bg-brand-purpleDeep hover:text-white px-2 py-0.5 rounded-full font-semibold transition-all"
+                                  onClick={e => e.stopPropagation()}
+                                >{lbl}</Link>
+                              ))}
+                            </div>
+                          </div>
+                        </Link>
+                      )}
+                    </div>
+
+                    {/* ── PART 2: Philosophy & Ethos ── */}
+                    <div className="w-[33.33%] p-5 border-r border-gray-100 flex flex-col">
+                      <p className="text-[9px] font-extrabold uppercase tracking-widest text-gray-400 mb-3">Philosophy & Ethos</p>
+                      <div className="grid grid-cols-1 gap-0.5">
+                        {[
+                          { label: 'Group Home', to: '/', Icon: Home },
+                          { label: 'Thinking School', to: '/thinking-school', Icon: BookMarked },
+                          { label: 'Vision & Mission', to: '/vision-mission', Icon: Compass },
+                          { label: 'Our Pedagogy', to: '/pedagogy', Icon: GraduationCap },
+                          { label: 'What Sets Us Apart', to: '/what-sets-us-apart', Icon: Sparkles },
+                        ].map(({ label, to, Icon: NavIcon }) => (
+                          <Link
+                            key={to}
+                            to={to}
+                            className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-brand-masterDeep/5 group/link transition-colors duration-200"
+                          >
+                            <NavIcon className="w-3.5 h-3.5 text-gray-400 group-hover/link:text-brand-masterDeep transition-colors shrink-0" />
+                            <span className="text-[11.5px] font-semibold text-brand-charcoal group-hover/link:text-brand-masterDeep transition-colors">{label}</span>
+                            <ArrowRight className="w-3 h-3 text-gray-300 group-hover/link:text-brand-masterDeep group-hover/link:translate-x-0.5 transition-all ml-auto" />
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* ── PART 3: Governance & Community ── */}
+                    <div className="w-[33.33%] p-5 flex flex-col justify-between">
+                      <div>
+                        <p className="text-[9px] font-extrabold uppercase tracking-widest text-gray-400 mb-3">Governance & Community</p>
+                        <div className="grid grid-cols-1 gap-0.5">
+                          {[
+                            { label: 'Our Management', to: '/management', Icon: Users },
+                            { label: 'Parents as Partners', to: '/parent-partners', Icon: Handshake },
+                            { label: 'School Awards', to: '/awards', Icon: Award },
+                            { label: 'Sports Arena', to: '/sports-arena', Icon: Trophy },
+                            { label: 'DLF in the News', to: '/news', Icon: Newspaper },
+                            { label: 'Alumni Network', to: '/alumni', Icon: Handshake },
+                            { label: 'Contact Us', to: '/contact', Icon: PhoneCall },
+                          ].map(({ label, to, Icon: NavIcon }) => (
+                            <Link
+                              key={to}
+                              to={to}
+                              className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-brand-masterDeep/5 group/link transition-colors duration-200"
+                            >
+                              <NavIcon className="w-3.5 h-3.5 text-gray-400 group-hover/link:text-brand-masterDeep transition-colors shrink-0" />
+                              <span className="text-[11.5px] font-semibold text-brand-charcoal group-hover/link:text-brand-masterDeep transition-colors">{label}</span>
+                              <ArrowRight className="w-3 h-3 text-gray-300 group-hover/link:text-brand-masterDeep group-hover/link:translate-x-0.5 transition-all ml-auto" />
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="pt-3 border-t border-gray-100 mt-4">
+                        <Link
+                          to="/"
+                          className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-brand-masterDeep text-white text-[11px] font-bold uppercase tracking-wider hover:opacity-90 transition-opacity"
+                        >
+                          Visit Group Website <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              )}
             </div>
 
             {schoolId ? (
@@ -260,8 +399,8 @@ export default function Header() {
               </>
             ) : (
               <>
-                <Link to="/philosophy" className="hover:text-brand-gold transition-colors duration-300">
-                  Philosophy
+                <Link to="/thinking-school" className="hover:text-brand-gold transition-colors duration-300">
+                  Thinking School
                 </Link>
                 <Link to="/pedagogy" className="hover:text-brand-gold transition-colors duration-300">
                   Pedagogy
@@ -312,6 +451,8 @@ export default function Header() {
           </button>
         </div>
 
+
+
       </header>
 
       {/* MOBILE NAVIGATION DRAWER */}
@@ -350,7 +491,11 @@ export default function Header() {
               {!schoolId && (
                 <>
                   <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-brand-gold py-1 border-b border-white/10">Unified Group Portal</Link>
-                  <Link to="/philosophy" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-brand-gold py-1">Our Philosophy</Link>
+                  <Link to="/thinking-school" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-brand-gold py-1">A Thinking School</Link>
+                  <Link to="/vision-mission" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-brand-gold py-1">Vision & Mission</Link>
+                  <Link to="/management" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-brand-gold py-1">Our Management</Link>
+                  <Link to="/parent-partners" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-brand-gold py-1">Parents as Partners</Link>
+                  <Link to="/awards" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-brand-gold py-1">School Awards</Link>
                   <Link to="/pedagogy" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-brand-gold py-1">Our Pedagogy</Link>
                   <Link to="/what-sets-us-apart" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-brand-gold py-1">What Sets Us Apart</Link>
                 </>

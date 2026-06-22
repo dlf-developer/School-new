@@ -2,8 +2,16 @@ import React, { useState } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { Mail, Phone, MapPin, Award, BookOpen, Clock, PlayCircle } from 'lucide-react'
+import { useSiteData } from '../hooks/useSiteData'
 
 export default function CommonPages() {
+  const { global } = useSiteData()
+  const news = global?.news || {
+    sectionLabel: 'Press Room',
+    sectionTitle: 'DLF in the News',
+    sectionSubtitle: 'Media coverage, national rankings, and institutional recognitions.',
+    articles: []
+  }
   const location = useLocation()
   const path = location.pathname
 
@@ -45,28 +53,23 @@ export default function CommonPages() {
       <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
         <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-4">
-            <span className="text-xs uppercase tracking-widest font-extrabold text-brand-masterVibrant">Press Room</span>
-            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-masterDeep">DLF in the News</h2>
+            <span className="text-xs uppercase tracking-widest font-extrabold text-brand-masterVibrant">{news.sectionLabel}</span>
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-masterDeep">{news.sectionTitle}</h2>
             <div className="w-12 h-[2px] bg-brand-gold mx-auto"></div>
             <p className="text-sm text-brand-muted leading-relaxed font-inter">
-              Media coverage, national rankings, and institutional recognitions.
+              {news.sectionSubtitle}
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8">
-            <div className="bg-white p-8 rounded-3xl border border-brand-masterDeep/5 shadow-md space-y-4">
-              <span className="text-xs font-bold text-brand-gold">Times of India Rankings</span>
-              <h3 className="font-serif text-xl font-bold text-brand-masterDeep">Ranked #1 School in Ghaziabad for 2026</h3>
-              <p className="text-xs text-brand-muted leading-relaxed font-inter">
-                DLF Public School, Sahibabad has been ranked as the #1 School in Ghaziabad by Times School Rankings, honoring educational excellence.
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-3xl border border-brand-masterDeep/5 shadow-md space-y-4">
-              <span className="text-xs font-bold text-brand-gold">EducationWorld India</span>
-              <h3 className="font-serif text-xl font-bold text-brand-masterDeep">Co-Ed Day School National Top 100</h3>
-              <p className="text-xs text-brand-muted leading-relaxed font-inter">
-                DLF schools are recognized among India's top progressive co-educational day schools for excellence in pedagogy and leadership.
-              </p>
-            </div>
+            {news.articles?.map((article) => (
+              <div key={article.id} className="bg-white p-8 rounded-3xl border border-brand-masterDeep/5 shadow-md space-y-4">
+                <span className="text-xs font-bold text-brand-gold">{article.source}</span>
+                <h3 className="font-serif text-xl font-bold text-brand-masterDeep">{article.title}</h3>
+                <p className="text-xs text-brand-muted leading-relaxed font-inter">
+                  {article.desc}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
