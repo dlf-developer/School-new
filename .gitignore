@@ -25,3 +25,14 @@ dist-ssr
 
 # Local Netlify folder
 .netlify
+
+# Videos
+*.mp4
+*.webm
+*.mov
+*.avi
+*.mkv
+*.flv
+*.wmv
+*.m4v
+

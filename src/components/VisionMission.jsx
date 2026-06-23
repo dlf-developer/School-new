@@ -1,8 +1,12 @@
 import React from 'react'
-import { Compass, Eye, Target, Bookmark, Sparkles, ArrowRight, Download, Users } from 'lucide-react'
+import { Eye, Target, Sparkles, Download } from 'lucide-react'
 import ImageWithLoader from './ImageWithLoader'
+import { useSiteData } from '../hooks/useSiteData'
 
 export default function VisionMission() {
+  const { global } = useSiteData()
+  const vm = global.visionMission || {}
+
   return (
     <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden">
       
@@ -10,19 +14,35 @@ export default function VisionMission() {
       <div className="absolute top-20 right-1/4 w-[400px] h-[400px] ambient-glow-2 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-20 left-1/4 w-[450px] h-[450px] ambient-glow-1 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 space-y-20 relative z-10">
+      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 space-y-16 relative z-10">
         
-        {/* Core Hero Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold">Our Foundation</span>
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-brand-masterDeep leading-tight">
-            Vision & Mission
-          </h1>
-          <div className="w-16 h-[2px] bg-brand-gold mx-auto"></div>
-          <p className="text-base text-brand-muted leading-relaxed font-sans max-w-2xl mx-auto">
-            DLF Public School’s defining framework for creating committed, socially responsible global citizens who are prepared to navigate future landscapes.
-          </p>
-        </div>
+        {/* Core Hero Header Cover Banner */}
+        {vm.galleryImage && (
+          <div className="relative w-full h-[350px] sm:h-[450px] overflow-hidden rounded-3xl shadow-lg group mb-12">
+            <ImageWithLoader 
+              src={vm.galleryImage} 
+              alt={vm.heroTitle || "Vision & Mission"} 
+              imgClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103" 
+              loading="eager" 
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-masterDeep/90 via-brand-masterDeep/45 to-transparent flex flex-col justify-end p-8 sm:p-12">
+              {vm.heroLabel && (
+                <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold mb-2">
+                  {vm.heroLabel}
+                </span>
+              )}
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                {vm.heroTitle || "Vision & Mission"}
+              </h1>
+              <div className="w-16 h-[2px] bg-brand-gold mt-4"></div>
+              {vm.heroSubtitle && (
+                <p className="text-sm sm:text-base text-gray-200 leading-relaxed font-sans max-w-2xl mt-4">
+                  {vm.heroSubtitle}
+                </p>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Vision & Mission Side-by-Side Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto items-stretch">
@@ -35,17 +55,21 @@ export default function VisionMission() {
               <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-brand-gold">
                 <Eye className="w-7 h-7" />
               </div>
-              <h2 className="font-serif text-3xl font-bold">Our Vision</h2>
-              <p className="font-serif text-xl sm:text-2xl text-gray-100 leading-relaxed font-medium italic">
-                "Our defining aim is: Preparing caring, courageous and concerned citizens – of the world, for the world!"
-              </p>
+              <h2 className="font-serif text-3xl font-bold">{vm.vision?.title || "Our Vision"}</h2>
+              {vm.vision?.quote && (
+                <p className="font-serif text-xl sm:text-2xl text-gray-100 leading-relaxed font-medium italic">
+                  {vm.vision.quote}
+                </p>
+              )}
             </div>
             
-            <div className="border-t border-white/10 mt-8 pt-6">
-              <p className="text-xs text-brand-gold font-bold uppercase tracking-widest flex items-center gap-2">
-                <Sparkles className="w-4 h-4" /> Global Leadership & Citizenship
-              </p>
-            </div>
+            {vm.vision?.badge && (
+              <div className="border-t border-white/10 mt-8 pt-6">
+                <p className="text-xs text-brand-gold font-bold uppercase tracking-widest flex items-center gap-2">
+                  <Sparkles className="w-4 h-4" /> {vm.vision.badge}
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Mission Card */}
@@ -56,83 +80,63 @@ export default function VisionMission() {
               <div className="w-14 h-14 rounded-2xl bg-brand-greenDeep/5 border border-brand-greenDeep/10 flex items-center justify-center text-brand-greenDeep">
                 <Target className="w-7 h-7" />
               </div>
-              <h2 className="font-serif text-3xl font-bold text-brand-masterDeep">Our Mission</h2>
-              <p className="text-sm sm:text-base text-brand-muted leading-relaxed font-sans font-medium">
-                To embark each learner on a journey of Self Discovery and Self Learning thereby creating committed, socially responsible global citizens who are nurtured in a safe, child-centered empowering 21st century environment rooted in Indian culture.
-              </p>
+              <h2 className="font-serif text-3xl font-bold text-brand-masterDeep">{vm.mission?.title || "Our Mission"}</h2>
+              {vm.mission?.text && (
+                <p className="text-sm sm:text-base text-brand-muted leading-relaxed font-sans font-medium">
+                  {vm.mission.text}
+                </p>
+              )}
             </div>
             
-            <div className="border-t border-brand-masterDeep/5 mt-8 pt-6">
-              <p className="text-xs text-brand-greenDeep font-bold uppercase tracking-widest flex items-center gap-2">
-                <Bookmark className="w-4 h-4" /> Self Discovery & Cultural Heritage
-              </p>
-            </div>
+            {vm.mission?.badge && (
+              <div className="border-t border-brand-masterDeep/5 mt-8 pt-6">
+                <p className="text-xs text-brand-greenDeep font-bold uppercase tracking-widest flex items-center gap-2">
+                  <Sparkles className="w-4 h-4" /> {vm.mission.badge}
+                </p>
+              </div>
+            )}
           </div>
 
         </div>
 
-        {/* Visual Focus & Publications */}
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 pt-8 items-center">
-          
-          {/* Folder Image Showcase */}
-          <div className="lg:col-span-7">
-            <div className="relative p-3 border border-brand-gold/20 rounded-3xl bg-white shadow-md overflow-hidden group">
-              <div className="overflow-hidden rounded-2xl aspect-[16/10] relative">
-                <ImageWithLoader 
-                  src="/7C1A1660.jpg" 
-                  alt="Students Collaboration" 
-                  imgClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103" 
-                  loading="lazy" 
-                />
-                <div className="absolute inset-0 bg-brand-masterDeep/10"></div>
-              </div>
-              <div className="p-4 text-center">
-                <p className="text-xs text-brand-muted italic font-medium">
-                  Folder 2 Imagery — Cultivating inquiry, respect, and mutual collaboration.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Publications / Resources Column */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="space-y-2">
-              <span className="text-[10px] uppercase font-bold text-brand-gold tracking-widest">Alumni Connect Publications</span>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-brand-masterDeep">
-                Vision in Print
+        {/* PDF Document Preview Section */}
+        {vm.publications && vm.publications.length > 0 && (
+          <div className="max-w-2xl mx-auto space-y-6 pt-6">
+            <div className="text-center space-y-3">
+              <span className="text-[10px] uppercase font-bold text-brand-gold tracking-widest">
+                Publications & Archives
+              </span>
+              <h3 className="font-serif text-3xl font-bold text-brand-masterDeep">
+                {vm.publications[0].title}
               </h3>
-              <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-sans">
-                Explore how the school's vision translates into real accomplishments, student narratives, and alumni engagement. Download documents from our archives.
-              </p>
+              {vm.publications[0].desc && (
+                <p className="text-xs sm:text-sm text-brand-muted max-w-xl mx-auto font-sans leading-relaxed">
+                  {vm.publications[0].desc}
+                </p>
+              )}
             </div>
 
-            {/* Newsletter Download Card */}
-            <div className="bg-white border border-brand-masterDeep/5 rounded-2xl p-5 shadow-sm space-y-4">
-              <div className="flex gap-3 items-center">
-                <div className="w-10 h-10 rounded-xl bg-brand-gold/10 flex items-center justify-center text-brand-gold">
-                  <Users className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="font-serif font-bold text-sm text-brand-masterDeep">Alumni Connect - 2nd Edition</h4>
-                  <p className="text-[10px] text-brand-muted font-semibold uppercase tracking-wider">Cropped PDF Document</p>
-                </div>
-              </div>
-              <p className="text-[11px] text-brand-muted leading-relaxed font-sans">
-                Review articles from former students, educational panels, and highlights of outstanding community projects.
-              </p>
-              
+            <div className="w-[450px] max-w-full h-[600px] mx-auto rounded-2xl overflow-hidden border border-brand-masterDeep/5 shadow-md bg-white relative">
+              <iframe
+                src={`${vm.publications[0].url}#toolbar=0&navpanes=0&view=Fit`}
+                className="w-full h-full border-none overflow-hidden"
+                title={vm.publications[0].title}
+                scrolling="no"
+              />
+            </div>
+            
+            <div className="text-center">
               <a 
-                href="/Alumni Connect 2nd Edition_cropped.pdf" 
+                href={vm.publications[0].url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-bold text-brand-gold hover:text-brand-masterDeep transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand-masterDeep text-white text-xs font-bold hover:bg-brand-gold transition-colors shadow-sm"
               >
-                Open Document <Download className="w-3.5 h-3.5" />
+                Open Full Document <Download className="w-4 h-4" />
               </a>
             </div>
           </div>
-
-        </div>
+        )}
 
       </div>
     </div>

@@ -480,19 +480,19 @@ export const globalData = {
   visionMission: {
     heroLabel: 'Our Foundation',
     heroTitle: 'Vision & Mission',
-    heroSubtitle: 'DLF Public School\'s defining framework for creating committed, socially responsible global citizens who are prepared to navigate future landscapes.',
+    heroSubtitle: '',
     vision: {
       title: 'Our Vision',
       quote: '"Our defining aim is: Preparing caring, courageous and concerned citizens – of the world, for the world!"',
-      badge: 'Global Leadership & Citizenship'
+      badge: ''
     },
     mission: {
       title: 'Our Mission',
       text: 'To embark each learner on a journey of Self Discovery and Self Learning thereby creating committed, socially responsible global citizens who are nurtured in a safe, child-centered empowering 21st century environment rooted in Indian culture.',
-      badge: 'Self Discovery & Cultural Heritage'
+      badge: ''
     },
     galleryImage: '/7C1A1660.jpg',
-    galleryCaption: 'Folder 2 Imagery — Cultivating inquiry, respect, and mutual collaboration.',
+    galleryCaption: '',
     publications: [
       {
         id: 'pub-1',
