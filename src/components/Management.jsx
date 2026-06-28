@@ -74,7 +74,7 @@ export default function Management() {
                 <div className="aspect-[3/4] bg-brand-masterDeep/10 rounded-2xl flex flex-col items-center justify-center text-center p-4 border border-brand-masterDeep/5 overflow-hidden relative group">
                   <div className="absolute inset-0 bg-brand-masterDeep/5 transition-opacity group-hover:opacity-0"></div>
                   <img 
-                    src="/WhatsApp Image 2026-05-07 at 6.10.55 PM.jpeg" 
+                    src="/7C1A1641.jpg" 
                     alt="Late Shri Darbari Lal Ji" 
                     className="w-full h-full object-cover rounded-xl"
                     onError={(e) => {
@@ -154,9 +154,9 @@ export default function Management() {
                     {/* Right side portrait */}
                     <div className="w-full lg:w-72 shrink-0 flex flex-col items-center justify-center pt-6 lg:pt-0">
                       <div className="w-full aspect-[4/5] sm:max-w-[240px] bg-brand-bg border border-brand-masterDeep/5 rounded-2xl flex flex-col items-center justify-center text-center p-6 relative overflow-hidden group">
-                        {person.name === 'Dr. Rakesh Khullar' ? (
+                        {person.image ? (
                           <img 
-                            src="/7C1A1641.jpg" 
+                            src={person.image} 
                             alt={person.name} 
                             className="w-full h-full object-cover rounded-xl"
                           />
@@ -185,11 +185,7 @@ export default function Management() {
             <p className="font-serif text-xl sm:text-2xl italic leading-relaxed text-gray-200">
               "We measure success not only by achievements, but by the ability to give back more to society than we take from it."
             </p>
-            <div className="mt-4 flex items-center justify-center gap-3">
-              <div className="w-8 h-[1px] bg-brand-gold/40"></div>
-              <span className="text-[10px] uppercase tracking-widest font-bold text-brand-gold">Darbari Lal Foundation</span>
-              <div className="w-8 h-[1px] bg-brand-gold/40"></div>
-            </div>
+
           </div>
         </section>
 

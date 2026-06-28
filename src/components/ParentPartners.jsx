@@ -66,7 +66,7 @@ export default function ParentPartners() {
             </h1>
             <div className="space-y-4 text-brand-muted text-base leading-relaxed font-sans max-w-2xl">
               <p>
-                At DLF Public School, we view parents as the first teachers of every child. A child’s growth is never shaped by school alone—it is the sum total of the environment at home and at school. When both work together in harmony, learning becomes deeper, values become stronger, and children grow into confident, compassionate individuals.
+                At DLF, we view parents as the first teachers of every child. A child’s growth is never shaped by school alone—it is the sum total of the environment at home and at school. When both work together in harmony, learning becomes deeper, values become stronger, and children grow into confident, compassionate individuals.
               </p>
               <p>
                 Education, therefore, is not a one-way journey. It is a collaborative experience where parents are valued as equal stakeholders and active partners in the educational process. We believe that when school and home work in synergy, every child thrives with confidence, clarity, and purpose.
@@ -89,10 +89,10 @@ export default function ParentPartners() {
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
           <span className="text-[10px] tracking-widest uppercase font-bold text-brand-gold">Video Library</span>
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-greenDeep leading-tight">
-            Partnership Activities in Video
+            Parent Partnership in Action
           </h2>
           <p className="text-brand-muted text-sm font-sans">
-            Browse through the actual recordings of fatherhood meets, counseling sessions, celebrations, and kitchen-less actions from Folder 4.
+            Browse through the recording of our parent sessions, celebrations, and events.
           </p>
         </div>
 
@@ -101,9 +101,7 @@ export default function ParentPartners() {
           {/* Active Video Player Screen */}
           <div className="lg:col-span-8 bg-white border border-brand-greenDeep/5 rounded-3xl p-6 shadow-md flex flex-col justify-between">
             <div className="mb-4">
-              <span className="text-[10px] uppercase font-bold text-brand-gold tracking-widest block mb-1">
-                Now Playing ({currentVideoIdx + 1} of {playlist.length})
-              </span>
+
               <h3 className="font-serif text-2xl font-bold text-brand-greenDeep">
                 {playlist[currentVideoIdx].title}
               </h3>
@@ -143,9 +141,6 @@ export default function ParentPartners() {
                 <Info className="w-3.5 h-3.5 text-brand-gold" />
                 Select any track from the library playlist on the right.
               </p>
-              <p className="font-bold text-brand-greenDeep uppercase tracking-wider text-[9px]">
-                FOLDER 4 MP4 CONTENT
-              </p>
             </div>
           </div>
 
@@ -155,7 +150,7 @@ export default function ParentPartners() {
               <span className="text-[10px] uppercase font-bold text-brand-gold tracking-widest flex items-center gap-1">
                 <Video className="w-3.5 h-3.5 text-brand-gold" /> Video Playlist
               </span>
-              <h3 className="font-serif text-xl font-bold">Initiatives Track</h3>
+              <h3 className="font-serif text-xl font-bold">Parent Partnership Activities</h3>
               <p className="text-white/70 text-xs leading-relaxed font-sans">
                 Select a video file to play it directly in the player window:
               </p>
@@ -197,7 +192,7 @@ export default function ParentPartners() {
             How Do Parents Stay Connected?
           </h2>
           <p className="text-brand-muted text-sm sm:text-base font-sans">
-            Explore the actual initiatives and activities with authentic photographs from Folder 4.
+            Explore the various events that help us stay connected with our Parent Partners
           </p>
         </div>
 

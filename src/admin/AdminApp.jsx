@@ -15,7 +15,8 @@ import {
   ExternalLink,
   Lock,
   ChevronRight,
-  Newspaper
+  Newspaper,
+  Image as ImageIcon
 } from 'lucide-react'
 
 // Import all editors
@@ -30,6 +31,7 @@ import VisionMissionEditor from './sections/VisionMissionEditor'
 import ParentPartnersEditor from './sections/ParentPartnersEditor'
 import AwardsEditor from './sections/AwardsEditor'
 import NewsEditor from './sections/NewsEditor'
+import MediaLibraryEditor from './sections/MediaLibraryEditor'
 
 export default function AdminApp() {
   const navigate = useNavigate()
@@ -58,13 +60,14 @@ export default function AdminApp() {
     { id: 'pillars', label: 'Pillars (Apart)', icon: Columns, component: PillarsEditor, category: 'Shared Sections' },
     { id: 'stats', label: 'Key Statistics', icon: BarChart3, component: StatsEditor, category: 'Shared Sections' },
     { id: 'ticker', label: 'Marquee Ticker', icon: Megaphone, component: TickerEditor, category: 'Shared Sections' },
-    { id: 'testimonials', label: 'Testimonials', icon: MessageSquareQuote, component: TestimonialsEditor, category: 'Shared Sections' }
+    { id: 'testimonials', label: 'Testimonials', icon: MessageSquareQuote, component: TestimonialsEditor, category: 'Shared Sections' },
+    { id: 'mediaLibrary', label: 'Media Library', icon: ImageIcon, component: MediaLibraryEditor, category: 'Assets' }
   ]
 
   const ActiveComponent = sections.find(s => s.id === activeSection)?.component || SchoolsEditor
 
   // Group sections by category
-  const categories = ['Main Pages', 'Shared Sections']
+  const categories = ['Main Pages', 'Shared Sections', 'Assets']
 
   return (
     <div className="min-h-screen bg-[#07070c] text-white flex font-sans select-none overflow-hidden">

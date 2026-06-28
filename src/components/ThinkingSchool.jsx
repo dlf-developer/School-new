@@ -1,5 +1,5 @@
 import React from 'react'
-import { Brain, Sparkles, Award, GraduationCap, Heart, Quote, Image as ImageIcon } from 'lucide-react'
+import { Brain, Sparkles, Award, GraduationCap, Heart, Quote } from 'lucide-react'
 import ImageWithLoader from './ImageWithLoader'
 import { useSiteData } from '../hooks/useSiteData'
 
@@ -62,17 +62,14 @@ export default function ThinkingSchool() {
             <p className="font-serif text-xl sm:text-2xl text-brand-greenDeep italic font-medium leading-relaxed">
               “Don’t just teach children what to think. Teach them how to think.”
             </p>
-            <p className="text-xs sm:text-sm text-brand-muted mt-4 font-semibold uppercase tracking-wider">
-              The Heartbeat of DLF Public School
-            </p>
           </div>
 
           <p className="text-base sm:text-lg text-brand-muted leading-relaxed font-sans max-w-3xl mx-auto pt-4">
-            Welcome to a school where curiosity is louder than conformity, where classrooms become Thinkrooms, where walls make you think through Thinkline Questions, where innovation meets empathy, and where children are prepared not just for careers, but for life itself. We proudly call ourselves A Thinking School with a Soul because we believe education must shape both the mind and the conscience.
+            Welcome to a school where curiosity is louder than conformity, where classrooms become Thinkrooms, where walls make you think through Thinkline Questions, where innovation meets empathy, and where children are prepared not just for careers, but for life itself. We proudly call ourselves <strong>A Thinking School with a Soul</strong> because we believe education must shape both the mind and the conscience.
           </p>
         </div>
 
-        {/* The 5 Pillars of Our School */}
+        {/* The 5 Pillars of Our School with Gallery Integration */}
         <div className="space-y-12 max-w-6xl mx-auto">
           <div className="text-center space-y-3">
             <span className="text-[10px] uppercase font-bold text-brand-gold tracking-widest">Our Core Values</span>
@@ -82,20 +79,34 @@ export default function ThinkingSchool() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {pillars.map((pillar) => {
+          <div className="grid grid-cols-1 gap-8 auto-rows-fr">
+            {pillars.map((pillar, idx) => {
               const Icon = pillar.icon
+              const isEven = idx % 2 === 0;
+
               return (
                 <div 
                   key={pillar.title} 
-                  className="bg-white p-8 rounded-3xl border border-brand-masterDeep/5 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group relative overflow-hidden"
+                  className="bg-white rounded-3xl border border-brand-masterDeep/5 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col md:flex-row overflow-hidden group h-full"
                 >
-                  <div className="space-y-6">
-                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${pillar.color} flex items-center justify-center ${pillar.iconColor}`}>
-                      <Icon className="w-6 h-6" />
+                  <div className={`w-full md:w-1/2 aspect-[4/3] md:aspect-auto bg-brand-bg relative overflow-hidden ${isEven ? 'md:order-1' : 'md:order-2'}`}>
+                    <ImageWithLoader 
+                      src={pillar.image} 
+                      alt={pillar.imageAlt || pillar.title} 
+                      className="absolute inset-0"
+                      imgClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                      loading="lazy" 
+                    />
+                  </div>
+                  
+                  <div className={`w-full md:w-1/2 p-6 md:p-8 lg:p-10 flex flex-col justify-center space-y-4 ${isEven ? 'md:order-2' : 'md:order-1'}`}>
+                    <div className="flex items-center gap-4 md:flex-col md:items-start md:gap-4">
+                      <div className={`w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-2xl bg-gradient-to-br ${pillar.color} flex items-center justify-center ${pillar.iconColor}`}>
+                        <Icon className="w-6 h-6 md:w-7 md:h-7" />
+                      </div>
+                      <h3 className="font-serif text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold text-brand-masterDeep">{pillar.title}</h3>
                     </div>
-                    <h3 className="font-serif text-xl font-bold text-brand-masterDeep group-hover:text-brand-gold transition-colors">{pillar.title}</h3>
-                    <p className="text-xs text-brand-muted leading-relaxed font-sans">
+                    <p className="text-sm lg:text-base text-brand-muted leading-relaxed font-sans">
                       {pillar.desc}
                     </p>
                   </div>
@@ -105,49 +116,13 @@ export default function ThinkingSchool() {
           </div>
         </div>
 
-        {/* Visual Gallery Showcase */}
-        <div className="max-w-6xl mx-auto space-y-8 pt-8">
-          <div className="flex items-center justify-between border-b border-brand-masterDeep/5 pb-4">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-brand-masterDeep flex items-center gap-2">
-              <ImageIcon className="w-6 h-6 text-brand-gold" />
-              Minds in Action Gallery
-            </h2>
-            <span className="text-xs text-brand-muted font-semibold uppercase tracking-wider hidden sm:inline-block">Folder 1 Imagery</span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galleryImages.map((img, idx) => (
-              <div 
-                key={idx} 
-                className="bg-white rounded-3xl border border-brand-masterDeep/5 shadow-sm overflow-hidden flex flex-col hover:shadow-md transition-all duration-300 group"
-              >
-                <div className="overflow-hidden bg-brand-bg aspect-[4/3] relative">
-                  <ImageWithLoader 
-                    src={img.src} 
-                    alt={img.title} 
-                    imgClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103" 
-                    loading="lazy" 
-                  />
-                </div>
-                <div className="p-4 text-center">
-                  <p className="text-xs font-semibold text-brand-masterDeep font-sans">{img.title}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Concluding Block */}
-        <div className="bg-brand-greenDeep text-white p-8 sm:p-12 rounded-3xl shadow-xl max-w-4xl mx-auto relative overflow-hidden">
+        <div className="bg-brand-greenDeep text-white p-8 sm:p-12 rounded-3xl shadow-xl max-w-4xl mx-auto relative overflow-hidden mt-16">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"></div>
           <div className="space-y-6 text-center relative z-10 max-w-2xl mx-auto">
             <h4 className="font-serif text-xl sm:text-2xl font-bold text-brand-gold">Nurturing Authentic Intelligence</h4>
-            <p className="text-xs sm:text-sm text-gray-200 leading-relaxed font-sans">
+            <p className="text-sm sm:text-base text-gray-200 leading-relaxed font-sans">
               In a world racing towards artificial intelligence, we remain committed to nurturing authentic intelligence—minds that think sharply, hearts that feel deeply, and individuals who dare to make a difference.
-            </p>
-            <div className="w-12 h-[1px] bg-brand-gold/30 mx-auto my-4"></div>
-            <p className="text-sm sm:text-base font-serif italic text-brand-bg">
-              "Because at DLF Public School, we are not just building achievers. We are shaping thoughtful human beings with the courage to think differently and the soul to care deeply."
             </p>
           </div>
         </div>

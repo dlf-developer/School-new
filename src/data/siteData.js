@@ -141,7 +141,10 @@ export const schoolsData = {
 
 export const globalData = {
 
-  // ── 2a. TICKER / MARQUEE ──────────────────────────────────────────────────
+  // ── 2a. MEDIA LIBRARY ───────────────────────────────────────────────────────
+  imageLibrary: [],
+
+  // ── 2b. TICKER / MARQUEE ──────────────────────────────────────────────────
   ticker: {
     items: [
       { id: 'tick-1', icon: 'Award', text: 'Education World Top Schools Rank #1' },
@@ -424,12 +427,14 @@ export const globalData = {
     pillarsSubtitle: 'Our unique pillars of reflection, skill acquisition, care, and outstanding achievement define who we are.',
     pillars: [
       {
-        id: 'ts-1',
-        title: 'Thinking School with a Soul',
-        desc: 'We nurture a culture of research and innovation—classrooms transform into Thinkrooms, failures become feedback, and learning extends far beyond textbooks. Every lesson begins with open-ended, non-routine Thinking questions that challenge children to go beyond the rhetoric. Everyday children get A Thinking Question A Day (AQAD) that makes them reflect, reason, and explore new possibilities.',
-        icon: 'Brain',
-        color: 'from-blue-500/10 to-indigo-500/10',
-        iconColor: 'text-indigo-600'
+        id: 'ts-5',
+        title: 'Caring School',
+        desc: 'Equally, the "soul" of the school lies in its unwavering commitment to empathy, inclusion, and humane values. The ethos of the school revolves around the belief that being \'Good\' is more important than being just \'Smart\'. We celebrate individuality, nurture a culture of positive reinforcement through smiley badges, discipline through reflection, foster emotional well-being, and inspire students to become socially responsible citizens who measure success not only by achievement, but by the ability to give back more to society than they take from it.',
+        icon: 'Heart',
+        color: 'from-rose-500/10 to-pink-500/10',
+        iconColor: 'text-rose-600',
+        image: '/7C1A1179.jpg',
+        imageAlt: 'Interactive Learning Tools'
       },
       {
         id: 'ts-2',
@@ -437,15 +442,9 @@ export const globalData = {
         desc: 'Innovation is a deliberate outcome of a carefully nurtured environment. Each year our Innovation Hub churns out multiple Innovators who receive grants of ₹10,000 each, under the Inspire Manak award, to work on their scientific innovations. Whether it is building AI-powered innovations, launching student enterprises, excelling in sports and arts, or leading social impact initiatives, every Delfite is encouraged to discover not just what they want to become, but who they want to be.',
         icon: 'Sparkles',
         color: 'from-amber-500/10 to-orange-500/10',
-        iconColor: 'text-amber-600'
-      },
-      {
-        id: 'ts-3',
-        title: 'Winning School',
-        desc: 'We are a winning school. Our students have emerged as District, State, and North India toppers in academics, earned global innovation grants, represented India at prestigious international platforms, won national hackathons, and built ventures that solve real-world problems. Yet, beyond every accolade lies a culture that teaches children to succeed without losing their sensitivity, individuality, or humanity. Similarly in sports our Delfites have represented India in Africa and Kazakhstan on international platforms.',
-        icon: 'Award',
-        color: 'from-emerald-500/10 to-teal-500/10',
-        iconColor: 'text-emerald-600'
+        iconColor: 'text-amber-600',
+        image: '/7C1A1782.jpg',
+        imageAlt: 'Collaborative Group Work'
       },
       {
         id: 'ts-4',
@@ -453,23 +452,38 @@ export const globalData = {
         desc: 'We\'re a Skill-Building School where learning is not confined to textbooks—it is translated into capability, creativity, and confidence. From building prototypes and creating advertisements to developing entrepreneurial ventures and exploring emerging technologies, students learn to apply knowledge with purpose and impact. In the process, they develop future-ready skills such as critical thinking, design thinking, creativity, collaboration, communication, digital fluency, adaptability, leadership, and an entrepreneurial mindset.',
         icon: 'GraduationCap',
         color: 'from-purple-500/10 to-fuchsia-500/10',
-        iconColor: 'text-purple-600'
+        iconColor: 'text-purple-600',
+        image: '/7C1A2131.jpg',
+        imageAlt: 'Creative Expression & Artistry'
       },
       {
-        id: 'ts-5',
-        title: 'Caring School',
-        desc: 'Equally, the "soul" of the school lies in its unwavering commitment to empathy, inclusion, and humane values. The ethos of the school revolves around the belief that being \'Good\' is more important than being just \'Smart\'. We celebrate individuality, nurture a culture of positive reinforcement through smiley badges, discipline through reflection, foster emotional well-being, and inspire students to become socially responsible citizens who measure success not only by achievement, but by the ability to give back more to society than they take from it.',
-        icon: 'Heart',
-        color: 'from-rose-500/10 to-pink-500/10',
-        iconColor: 'text-rose-600'
+        id: 'ts-3',
+        title: 'Winning School',
+        desc: 'We are a winning school. Our students have emerged as District, State, and North India toppers in academics, earned global innovation grants, represented India at prestigious international platforms, won national hackathons, and built ventures that solve real-world problems. Yet, beyond every accolade lies a culture that teaches children to succeed without losing their sensitivity, individuality, or humanity. Similarly in sports our Delfites have represented India in Africa and Kazakhstan on international platforms.',
+        icon: 'Award',
+        color: 'from-emerald-500/10 to-teal-500/10',
+        iconColor: 'text-emerald-600',
+        image: '/7C1A0335.jpg',
+        imageAlt: 'Classroom Thinkroom Sessions'
+      },
+      {
+        id: 'ts-1',
+        title: 'Thinking School with a Soul',
+        desc: 'We nurture a culture of research and innovation—classrooms transform into Thinkrooms, failures become feedback, and learning extends far beyond textbooks. Every lesson begins with open-ended, non-routine Thinking questions that challenge children to go beyond the rhetoric. Everyday children get A Thinking Question A Day (AQAD) that makes them reflect, reason, and explore new possibilities.',
+        icon: 'Brain',
+        color: 'from-blue-500/10 to-indigo-500/10',
+        iconColor: 'text-indigo-600',
+        image: '/7C1A2005.jpg',
+        imageAlt: 'Hands-on Science & Inquiry'
       }
     ],
     gallery: [
-      { id: 'gal-1', src: '/7C1A2005.jpg', title: 'Hands-on Science & Inquiry' },
-      { id: 'gal-2', src: '/7C1A1782.jpg', title: 'Collaborative Group Work' },
       { id: 'gal-3', src: '/7C1A2131.jpg', title: 'Classroom Thinkroom Sessions' },
-      { id: 'gal-4', src: '/7C1A0335.jpg', title: 'Creative Expression & Artistry' },
-      { id: 'gal-5', src: '/7C1A1179.jpg', title: 'Interactive Learning Tools' }
+      { id: 'gal-2', src: '/7C1A1782.jpg', title: 'Collaborative Group Work' },
+     
+      { id: 'gal-5', src: '/7C1A1179.jpg', title: 'Interactive Learning Tools' },
+       { id: 'gal-1', src: '/7C1A2005.jpg', title: 'Hands-on Science & Inquiry' },
+      { id: 'gal-4', src: '/7C1A0335.jpg', title: 'Creative Expression & Artistry' }
     ],
     closingTitle: 'Nurturing Authentic Intelligence',
     closingText: 'In a world racing towards artificial intelligence, we remain committed to nurturing authentic intelligence—minds that think sharply, hearts that feel deeply, and individuals who dare to make a difference.',
@@ -548,7 +562,7 @@ export const globalData = {
         title: 'Meet & Greet & Induction Sessions',
         icon: 'Calendar',
         desc: 'Welcoming families into the DLF ecosystem through structured Orientations and Induction sessions. It builds a shared understanding of our pedagogy, vision, and values right from the first step.',
-        img: '/7C1A1951-Enhanced-NR.jpg',
+        img: '/7C1A1486.jpg',
         caption: 'Induction Programme & Orientation Sessions — building a strong school-home partnership from the very beginning.'
       },
       {
@@ -556,7 +570,7 @@ export const globalData = {
         title: 'Parents in Action & Life Skills',
         icon: 'Heart',
         desc: 'Extending education beyond core classrooms. Unique bonding events like Fine Dining with Parents and clay modeling sessions build life skills, etiquette, and warm relationships in informal interactive spaces.',
-        img: '/7C1A1797.jpg',
+        img: '/7C1A1951-Enhanced-NR.jpg',
         caption: 'Fine Dining and Culinary Sessions — cultivating real-world life-skill learning alongside parents.'
       },
       {
@@ -564,7 +578,7 @@ export const globalData = {
         title: 'Student-Led Conferences (SLC)',
         icon: 'Users',
         desc: 'Nurturing self-governance, responsibility, and confidence. Our learners present their own portfolios, outline academic and personal targets, and coordinate directly with parents and mentors on their development.',
-        img: '/7C1A1486.jpg',
+        img: '/7C1A1797.jpg',
         caption: 'Student-Led Conferences — empowering students to evaluate and present their learning pathways.'
       },
       {
