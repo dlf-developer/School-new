@@ -163,36 +163,46 @@ export default function AwardsEditor() {
           onUpdate={handleUpdateTimeline}
           title="Historic Timeline Database"
           itemName="Timeline Award Row"
-          newItemTemplate={{ year: '2025-26', award: 'Award title...', by: 'Awarding organization...', cat: 'Academic' }}
+          newItemTemplate={{ year: '2025-26', award: 'Award title...', by: 'Awarding organization...', cat: 'Academic', img: '' }}
           renderItemForm={(item, index, updateField) => (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <FieldEditor
-                label="Timeline Year"
-                value={item.year}
-                onChange={(val) => updateField('year', val)}
-                placeholder="e.g. 2025-26"
-                className="md:col-span-1"
-              />
-              <FieldEditor
-                label="Award Title"
-                value={item.award}
-                onChange={(val) => updateField('award', val)}
-                placeholder="e.g. ET Tech X School Excellence Award"
-                className="md:col-span-2"
-              />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:col-span-1">
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <FieldEditor
-                  label="Presented By"
-                  value={item.by}
-                  onChange={(val) => updateField('by', val)}
-                  placeholder="e.g. Brainfeed"
+                  label="Timeline Year"
+                  value={item.year}
+                  onChange={(val) => updateField('year', val)}
+                  placeholder="e.g. 2025-26"
+                  className="md:col-span-1"
                 />
                 <FieldEditor
-                  label="Filter Category"
-                  type="select"
-                  options={catOptions}
-                  value={item.cat}
-                  onChange={(val) => updateField('cat', val)}
+                  label="Award Title"
+                  value={item.award}
+                  onChange={(val) => updateField('award', val)}
+                  placeholder="e.g. ET Tech X School Excellence Award"
+                  className="md:col-span-2"
+                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:col-span-1">
+                  <FieldEditor
+                    label="Presented By"
+                    value={item.by}
+                    onChange={(val) => updateField('by', val)}
+                    placeholder="e.g. Brainfeed"
+                  />
+                  <FieldEditor
+                    label="Filter Category"
+                    type="select"
+                    options={catOptions}
+                    value={item.cat}
+                    onChange={(val) => updateField('cat', val)}
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <ImageUrlPicker
+                  label="Timeline Item Image (Optional)"
+                  value={item.img || ''}
+                  onChange={(val) => updateField('img', val)}
+                  description="Image associated with this year group's accolades (optional, will show in a circular frame)"
                 />
               </div>
             </div>

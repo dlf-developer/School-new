@@ -94,12 +94,17 @@ export default function Footer() {
             {schoolId && (
               <>
                 <div className="border-t border-white/10 my-2 pt-2"></div>
-                <p className={`text-[10px] uppercase font-bold tracking-widest text-${theme.accent}/70 mb-1`}>{currentSchool.shortLocation} Campus Links</p>
+                <p className={`text-[10px] uppercase font-bold tracking-widest text-${theme.accent}/70 mb-1.5`}>{currentSchool.name} Links</p>
                 <li><Link to={`/school/${schoolId}/campus`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Campus Infrastructure</Link></li>
-                <li><Link to={`/school/${schoolId}/admissions`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Admissions Open</Link></li>
+                <li><Link to={`/school/${schoolId}/leadership`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; School Leadership</Link></li>
+                <li><Link to={`/school/${schoolId}/admissions`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Admissions & Fees</Link></li>
                 <li><Link to={`/school/${schoolId}/curriculum`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; School Curriculum</Link></li>
+                <li><Link to={`/school/${schoolId}/holistic-learning`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Holistic Learning</Link></li>
+                <li><Link to={`/school/${schoolId}/counselling`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Counselling & Wellness</Link></li>
+                <li><Link to={`/school/${schoolId}/winning-school`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Winning School Awards</Link></li>
+                <li><Link to={`/school/${schoolId}/editorials`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; DLF Editorials</Link></li>
                 <li><Link to={`/school/${schoolId}/disclosures`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Mandated Disclosures</Link></li>
-                <li><a href="#vision" onClick={(e) => handleHashClick(e, '#vision')} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; School Vision</a></li>
+                <li><Link to={`/school/${schoolId}/contact`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Contact School</Link></li>
               </>
             )}
           </ul>

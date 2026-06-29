@@ -28,6 +28,12 @@ import CommonPages from './components/CommonPages'
 import Disclosures from './components/Disclosures'
 import ThinkingSchool from './components/ThinkingSchool'
 import VisionMission from './components/VisionMission'
+import SchoolLeadership from './components/SchoolLeadership'
+import SchoolHolistic from './components/SchoolHolistic'
+import SchoolCounselling from './components/SchoolCounselling'
+import SchoolWinning from './components/SchoolWinning'
+import SchoolEditorials from './components/SchoolEditorials'
+import UsefulLinks from './components/UsefulLinks'
 
 
 // Home page sections aggregator for dynamic branches
@@ -145,6 +151,7 @@ export default function App() {
           <Route path="/vision-mission" element={<VisionMission />} />
           <Route path="/parent-partners" element={<ParentPartners />} />
           <Route path="/pedagogy" element={<Pedagogy />} />
+          <Route path="/pedagogy/:stageId" element={<Pedagogy />} />
           <Route path="/what-sets-us-apart" element={<WhatSetsUsApart />} />
           <Route path="/management" element={<Management />} />
           <Route path="/awards" element={<Awards />} />
@@ -153,13 +160,20 @@ export default function App() {
           <Route path="/careers" element={<CommonPages />} />
           <Route path="/sports-arena" element={<CommonPages />} />
           <Route path="/contact" element={<CommonPages />} />
+          <Route path="/useful-links" element={<UsefulLinks />} />
           
           {/* Dynamic Branch Routes */}
           <Route path="/school/:schoolId" element={<Home />} />
           <Route path="/school/:schoolId/campus" element={<OurCampus />} />
+          <Route path="/school/:schoolId/leadership" element={<SchoolLeadership />} />
           <Route path="/school/:schoolId/admissions" element={<Admissions />} />
           <Route path="/school/:schoolId/curriculum" element={<Curriculum />} />
+          <Route path="/school/:schoolId/holistic-learning" element={<SchoolHolistic />} />
+          <Route path="/school/:schoolId/counselling" element={<SchoolCounselling />} />
+          <Route path="/school/:schoolId/winning-school" element={<SchoolWinning />} />
+          <Route path="/school/:schoolId/editorials" element={<SchoolEditorials />} />
           <Route path="/school/:schoolId/disclosures" element={<Disclosures />} />
+          <Route path="/school/:schoolId/contact" element={<CommonPages />} />
 
           {/* Redirects for legacy/direct paths to Sahibabad default */}
           <Route path="/about-us/our-campus" element={<Navigate to="/school/dlf-sahibabad/campus" replace />} />

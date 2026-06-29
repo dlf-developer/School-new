@@ -278,6 +278,7 @@ Add your section to the `sections` array in `AdminApp.jsx`.
 | `timeline[].award` | string | Awards Editor |
 | `timeline[].by` | string | Awards Editor |
 | `timeline[].cat` | string (must match categories[]) | Awards Editor |
+| `timeline[].img` | string (public path, optional) | Awards Editor |
 
 ---
 

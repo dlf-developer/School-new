@@ -3,6 +3,65 @@ import { Award, ShieldAlert, Sparkles, Trophy, Calendar, Search, SlidersHorizont
 import ImageWithLoader from './ImageWithLoader'
 import { useSiteData } from '../hooks/useSiteData'
 
+// Redesigned timeline image frame & premium placeholder
+const TimelineImage = ({ imageSrc, year }) => {
+  if (imageSrc) {
+    return (
+      <div className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-brand-greenDeep bg-white shadow-md relative group flex-shrink-0">
+        <ImageWithLoader 
+          src={imageSrc} 
+          alt={`DLF Accolades ${year}`} 
+          imgClassName="w-full h-full object-cover transition-transform duration-750 group-hover:scale-105" 
+          loading="lazy" 
+        />
+      </div>
+    )
+  }
+  
+  return (
+    <div className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-full border-4 border-brand-greenDeep bg-gradient-to-br from-brand-greenDeep to-brand-greenVibrant flex flex-col items-center justify-center text-white shadow-md relative overflow-hidden group flex-shrink-0">
+      {/* Decorative backdrop elements */}
+      <div className="absolute inset-0 bg-noise-overlay opacity-10 pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 rounded-full border border-white/10 pointer-events-none"></div>
+      <div className="absolute -right-4 -bottom-4 w-16 h-16 bg-white/5 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
+      
+      <Trophy className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-brand-gold mb-1 animate-pulse" />
+      <span className="text-[9px] sm:text-xs font-sans tracking-widest text-brand-goldlight uppercase font-extrabold">DLF Public</span>
+      <span className="text-[8px] sm:text-[9px] font-sans tracking-wide text-white/70 uppercase">Accolades</span>
+    </div>
+  )
+}
+
+// Redesigned award text formatter to highlight core achievements
+const renderAwardText = (item) => {
+  const { award, by } = item
+  const hasByInAward = by && award.toLowerCase().includes(by.toLowerCase())
+  
+  let primaryText = award
+  let secondaryText = ''
+  
+  // Check for common separators: " – ", " — ", " - ", " by "
+  const separators = [' – ', ' — ', ' - ', ' by ']
+  for (const sep of separators) {
+    if (award.includes(sep)) {
+      const index = award.indexOf(sep)
+      primaryText = award.substring(0, index)
+      secondaryText = award.substring(index)
+      break
+    }
+  }
+  
+  return (
+    <span className="text-sm sm:text-base leading-relaxed text-brand-charcoal font-sans">
+      <span className="font-extrabold text-brand-greenDeep">{primaryText}</span>
+      {secondaryText && <span className="text-brand-muted font-normal text-xs sm:text-sm">{secondaryText}</span>}
+      {by && !hasByInAward && (
+        <span className="text-brand-muted font-normal text-xs sm:text-sm"> by {by}</span>
+      )}
+    </span>
+  )
+}
+
 export default function Awards() {
   const [searchTerm, setSearchTerm] = useState('')
   const [activeCategory, setActiveCategory] = useState('All')
@@ -171,6 +230,26 @@ export default function Awards() {
     })
   }, [searchTerm, activeCategory])
 
+  // Group filtered awards by year and find first available image for the year
+  const groupedAwards = useMemo(() => {
+    const groups = {}
+    filteredAwards.forEach(item => {
+      if (!groups[item.year]) {
+        groups[item.year] = {
+          year: item.year,
+          items: [],
+          img: null
+        }
+      }
+      groups[item.year].items.push(item)
+      if (item.img && !groups[item.year].img) {
+        groups[item.year].img = item.img
+      }
+    })
+    
+    return Object.values(groups).sort((a, b) => b.year.localeCompare(a.year))
+  }, [filteredAwards])
+
   return (
     <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden">
       
@@ -278,56 +357,120 @@ export default function Awards() {
           </div>
 
           {/* Timeline Stack */}
-          {filteredAwards.length > 0 ? (
-            <div className="relative border-l border-brand-gold/30 ml-4 sm:ml-6 space-y-10 py-4">
-              {/* Group records by year */}
-              {Array.from(new Set(filteredAwards.map(a => a.year))).map(year => {
-                const yearAwards = filteredAwards.filter(a => a.year === year)
-                return (
-                  <div key={year} className="relative pl-6 sm:pl-10 group">
-                    {/* Bullet marker on timeline */}
-                    <div className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full border-2 border-brand-gold bg-white flex items-center justify-center transition-all group-hover:bg-brand-gold group-hover:scale-110">
-                      <div className="w-1.5 h-1.5 bg-brand-gold rounded-full group-hover:bg-white"></div>
+          {groupedAwards.length > 0 ? (
+            <div className="relative space-y-12 md:space-y-0 py-8">
+              
+              {/* Desktop timeline (alternating grid) */}
+              <div className="hidden md:flex flex-col gap-0 relative">
+                {/* Central background line to anchor all floating blocks */}
+                <div className="absolute left-1/2 -translate-x-1/2 top-4 bottom-4 w-1 bg-brand-greenDeep/10 -z-10 pointer-events-none"></div>
+
+                {groupedAwards.map((group, idx) => {
+                  const isEven = idx % 2 === 0
+                  return (
+                    <div key={group.year} className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 py-8 relative">
+                      
+                      {/* Left Column */}
+                      {isEven ? (
+                        <div className="flex items-center justify-end gap-6 w-full">
+                          <TimelineImage imageSrc={group.img} year={group.year} />
+                          {/* Horizontal connector line */}
+                          <div className="h-[3px] bg-brand-greenDeep/20 w-12 flex-shrink-0 relative hidden lg:block">
+                            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-brand-greenDeep"></div>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="flex justify-end w-full pr-8 md:pr-12">
+                          <ul className="space-y-4 w-full max-w-xl text-left">
+                            {group.items.map((item, idx) => (
+                              <li key={idx} className="pb-3.5 border-b border-brand-greenDeep/10 last:border-b-0 flex items-start gap-3.5">
+                                <span className="w-1.5 h-1.5 rounded-full border-2 border-brand-greenDeep mt-[7px] flex-shrink-0 bg-white"></span>
+                                <div className="flex-1">
+                                  {renderAwardText(item)}
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {/* Middle Column (Vertical Year Spine) */}
+                      <div className="flex justify-center relative px-2">
+                        <div className="flex items-center justify-center bg-brand-greenDeep text-white font-sans font-bold text-sm uppercase tracking-widest rounded-lg shadow-md w-14 h-36 relative select-none z-10 transition-transform duration-300 hover:scale-103">
+                          <span className="rotate-90 whitespace-nowrap tracking-wider">{group.year}</span>
+                          
+                          {/* Triangle pointer notch pointing to the text side */}
+                          {isEven ? (
+                            <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-0 h-0 border-y-[6px] border-y-transparent border-l-[8px] border-l-brand-greenDeep"></div>
+                          ) : (
+                            <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-0 h-0 border-y-[6px] border-y-transparent border-r-[8px] border-r-brand-greenDeep"></div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Right Column */}
+                      {isEven ? (
+                        <div className="flex justify-start w-full pl-8 md:pl-12">
+                          <ul className="space-y-4 w-full max-w-xl text-left">
+                            {group.items.map((item, idx) => (
+                              <li key={idx} className="pb-3.5 border-b border-brand-greenDeep/10 last:border-b-0 flex items-start gap-3.5">
+                                <span className="w-1.5 h-1.5 rounded-full border-2 border-brand-greenDeep mt-[7px] flex-shrink-0 bg-white"></span>
+                                <div className="flex-1">
+                                  {renderAwardText(item)}
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : (
+                        <div className="flex items-center justify-start gap-6 w-full">
+                          {/* Horizontal connector line */}
+                          <div className="h-[3px] bg-brand-greenDeep/20 w-12 flex-shrink-0 relative hidden lg:block">
+                            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-brand-greenDeep"></div>
+                          </div>
+                          <TimelineImage imageSrc={group.img} year={group.year} />
+                        </div>
+                      )}
+
+                    </div>
+                  )
+                })}
+              </div>
+
+              {/* Mobile / Tablet timeline (stacked layout) */}
+              <div className="md:hidden space-y-12 pl-2 border-l-2 border-brand-greenDeep/20 ml-4 relative">
+                {groupedAwards.map((group, idx) => (
+                  <div key={group.year} className="relative pl-6 space-y-5">
+                    {/* Small bullet node on the vertical line */}
+                    <div className="absolute -left-[6px] top-[14px] w-3 h-3 rounded-full bg-brand-greenDeep border-2 border-white z-10 shadow-sm"></div>
+                    
+                    {/* Year badge */}
+                    <div className="inline-flex items-center justify-center bg-brand-greenDeep text-white font-sans font-bold text-[11px] uppercase tracking-wider px-3.5 py-1.5 rounded-md shadow-sm">
+                      {group.year}
                     </div>
 
-                    <div className="space-y-4">
-                      {/* Year Header */}
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-gold/10 text-brand-gold text-xs font-bold uppercase tracking-wider">
-                        <Calendar className="w-3.5 h-3.5" />
-                        {year}
-                      </span>
-
-                      {/* Cards under this year */}
-                      <div className="grid grid-cols-1 gap-4">
-                        {yearAwards.map((item, idx) => (
-                          <div 
-                            key={idx}
-                            className="bg-white p-5 rounded-2xl border border-brand-masterDeep/5 shadow-sm transition-all hover:translate-x-1 duration-200"
-                          >
-                            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-                              <div className="space-y-1 flex-1">
-                                <p className="text-sm font-bold text-brand-masterDeep leading-relaxed">
-                                  {item.award}
-                                </p>
-                                {item.by && (
-                                  <p className="text-xs text-brand-muted font-semibold flex items-center gap-1">
-                                    <Award className="w-3.5 h-3.5 text-brand-gold" />
-                                    Conferred by: <span className="text-brand-charcoal">{item.by}</span>
-                                  </p>
-                                )}
-                              </div>
-
-                              <span className="px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-wider rounded-md bg-brand-bg text-brand-muted border border-brand-masterDeep/5 self-start sm:self-center">
-                                {item.cat}
-                              </span>
-                            </div>
-                          </div>
-                        ))}
+                    <div className="flex flex-col sm:flex-row gap-5 items-start sm:items-center">
+                      {/* Image Frame */}
+                      <div className="flex-shrink-0">
+                        <TimelineImage imageSrc={group.img} year={group.year} />
                       </div>
+
+                      {/* Awards list */}
+                      <ul className="space-y-3.5 w-full flex-1">
+                        {group.items.map((item, idx) => (
+                          <li key={idx} className="pb-3 border-b border-brand-greenDeep/10 last:border-b-0 flex items-start gap-2.5">
+                            <span className="w-1.5 h-1.5 rounded-full border-2 border-brand-greenDeep mt-1.5 flex-shrink-0 bg-white"></span>
+                            <div className="flex-1">
+                              {renderAwardText(item)}
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
-                )
-              })}
+                ))}
+              </div>
+
             </div>
           ) : (
             <div className="text-center py-16 bg-white border border-brand-masterDeep/5 rounded-3xl shadow-sm space-y-3">
