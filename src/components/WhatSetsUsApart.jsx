@@ -41,8 +41,8 @@ export default function WhatSetsUsApart({ isPreview = false }) {
               <div className="lg:col-span-5">
                 <div className="rounded-2xl overflow-hidden aspect-[16/10] border border-brand-masterDeep/5 bg-brand-bg relative shadow-sm group">
                   <img 
-                    src="/images/what-sets-us-apart/global-exchange-group.jpg" 
-                    alt="Global Connections" 
+                    src="/WMARS.jpeg" 
+                    alt="WMARS Sustainability Award" 
                     className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
                     loading="lazy"
                   />

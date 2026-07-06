@@ -68,7 +68,7 @@ function MasterHome() {
       <WhatSetsUsApart isPreview={true} />
 
       {/* 6th Section – Results */}
-      <SchoolWinning />
+      <SchoolWinning isHomePage={true} />
 
       {/* 7th Section – Testimonials */}
       <Testimonials />
