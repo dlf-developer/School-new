@@ -11,11 +11,30 @@ export default function Hero() {
   const { schoolId } = useParams()
   const { schools } = useSiteData()
   
-  // Default to Sahibabad if no schoolId is present in path
-  const activeBranch = schoolId && schools[schoolId] ? schoolId : 'dlf-sahibabad'
-  const currentSchool = schools[activeBranch]
-  const theme = currentSchool.theme
-  const heroData = currentSchool.hero
+  const activeBranch = schoolId && schools[schoolId] ? schoolId : 'master'
+  const currentSchool = schoolId && schools[schoolId] ? schools[schoolId] : null
+  const theme = currentSchool ? currentSchool.theme : {
+    primary: 'brand-masterDeep',
+    vibrant: 'brand-masterVibrant',
+    accent: 'brand-gold',
+    accentHex: '#C59B27'
+  }
+
+  const heroData = currentSchool ? currentSchool.hero : {
+    image: '/images/home-hero.jpg',
+    legacy: '30 Years of Educational Excellence',
+    titleLine1: 'DLF Group',
+    italicWord1: 'of Schools',
+    titleLine2: 'Sculpting',
+    underlineWord: 'Minds',
+    titleLine3: 'Creating',
+    vibrantWord: 'Pioneers',
+    subtitle: 'Nurturing thinkers, sculpting scientific temperaments, and empowering global pioneers across our state-of-the-art educational institutions.',
+    stats: [
+      { value: '28+ Years', label: 'Legacy of Excellence' },
+      { value: '3,200+', label: 'Active Learners' }
+    ]
+  }
 
   const heroBgRef = useRef(null)
   const heroLeftRef = useRef(null)
@@ -63,30 +82,44 @@ export default function Hero() {
   }, [activeBranch])
 
   return (
-    <section id="hero-trigger" className={`relative min-h-[90vh] sm:min-h-screen flex items-center pt-24 sm:pt-32 pb-12 overflow-hidden bg-${theme.primary}`}>
-      {/* Full Viewport Background Image */}
-      <div className="absolute inset-0 w-full h-full z-0">
-        <img 
-          ref={heroBgRef}
-          src={heroData.image} 
-          alt={`${currentSchool.name} Campus`} 
-          className="w-full h-full object-cover object-center" 
-        />
-        {/* Left-to-Right Gradient Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-bg via-brand-bg/85 to-transparent w-full md:w-3/4 lg:w-2/3"></div>
-        {/* Subtle darkening for remaining area */}
-        <div className="absolute inset-0 bg-black/10"></div>
+    <section id="hero-trigger" className={`relative min-h-[92vh] sm:min-h-screen flex items-center pt-32 sm:pt-40 pb-16 overflow-hidden bg-black`}>
+      {/* Background YouTube Video (Vibrant, high-visibility loop) */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <iframe 
+          className="w-[300%] h-[300%] -translate-x-[33%] -translate-y-[33%] object-cover opacity-85 scale-125 transition-opacity duration-1000" 
+          src="https://www.youtube.com/embed/Gj3QXoCh9y8?autoplay=1&mute=1&loop=1&playlist=Gj3QXoCh9y8&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1" 
+          title="DLF Public School Video Background" 
+          allow="autoplay; encrypted-media"
+        ></iframe>
+        {/* Subtle vignette for edge framing */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/30 to-transparent w-full md:w-3/4"></div>
       </div>
 
       <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 relative z-10 w-full">
-        {/* Left Side Core Editorial Copy */}
-        <div ref={heroLeftRef} className="max-w-xl lg:max-w-2xl space-y-6 sm:space-y-8">
-          <div ref={badgeRef} className={`inline-flex items-center gap-2 bg-${theme.primary}/10 border border-${theme.primary}/20 rounded-full px-3.5 py-1.5 text-xs text-${theme.primary} font-bold backdrop-blur-sm`}>
-            <span className={`w-2 h-2 rounded-full bg-${theme.accent} animate-ping`}></span>
-            <span>{heroData.legacy}</span>
+        {/* Frosted Glass Container around Left Content for high contrast & text legibility */}
+        <div 
+          ref={heroLeftRef} 
+          className="max-w-xl lg:max-w-2xl space-y-6 sm:space-y-7 bg-brand-bg/90 backdrop-blur-xl p-6 sm:p-10 rounded-3xl border border-white/60 shadow-2xl relative"
+        >
+          <div className="flex flex-wrap items-center gap-3">
+            <div ref={badgeRef} className={`inline-flex items-center gap-2 bg-${theme.primary}/10 border border-${theme.primary}/20 rounded-full px-3.5 py-1.5 text-xs text-${theme.primary} font-bold`}>
+              <span className={`w-2 h-2 rounded-full bg-${theme.accent} animate-ping`}></span>
+              <span>{heroData.legacy}</span>
+            </div>
+            
+            {/* YouTube Direct Link Badge */}
+            <a 
+              href="https://youtu.be/Gj3QXoCh9y8?si=WzZQIolRmRreErik" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="inline-flex items-center gap-1.5 bg-red-600 hover:bg-red-700 text-white border border-red-500/30 rounded-full px-3.5 py-1.5 text-xs font-bold transition-all duration-300 shadow-md hover:scale-105"
+            >
+              <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              <span>Watch on YouTube</span>
+            </a>
           </div>
           
-          <h2 ref={headingRef} className={`font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] leading-[1.1] text-${theme.primary} font-bold tracking-tight`}>
+          <h2 ref={headingRef} className={`font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[3.75rem] leading-[1.15] text-${theme.primary} font-bold tracking-tight`}>
             <span className="hero-line block">{heroData.titleLine1} <span className="italic text-brand-purpleDeep font-normal">{heroData.italicWord1}</span>,</span>
             <span className="hero-line block">
               Empowering <span className="relative inline-block">
@@ -99,33 +132,42 @@ export default function Hero() {
             <span className="hero-line block">Creating <span className={`italic font-normal text-${theme.accent}`}>{heroData.vibrantWord}</span>.</span>
           </h2>
 
-          <p ref={subRef} className="font-inter text-brand-charcoal/80 text-sm sm:text-base md:text-lg max-w-lg leading-relaxed font-medium">
+          <p ref={subRef} className="font-inter text-brand-charcoal/85 text-xs sm:text-sm md:text-base max-w-lg leading-relaxed font-medium">
             {heroData.subtitle}
           </p>
 
-          <div ref={ctasRef} className="flex flex-col sm:flex-row gap-4 pt-2">
+          <div ref={ctasRef} className="flex flex-wrap gap-3 pt-2">
             <a 
-              href="#enquiry" 
-              className={`bg-${theme.primary} hover:bg-${theme.vibrant} text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs transition-all duration-300 shadow-xl shadow-${theme.primary}/20 flex items-center justify-center gap-2.5 group`}
+              href="#admissions" 
+              className={`bg-${theme.primary} hover:bg-${theme.vibrant} text-white px-7 py-3.5 rounded-full font-bold uppercase tracking-widest text-xs transition-all duration-300 shadow-lg flex items-center justify-center gap-2 group`}
             >
               <span>Admissions Open</span>
               <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
             </a>
             <a 
               href="#curriculum" 
-              className={`bg-brand-bg/50 backdrop-blur-sm border border-${theme.primary}/30 hover:border-${theme.primary} text-${theme.primary} px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs transition-all duration-300 flex items-center justify-center gap-2 group`}
+              className={`bg-white border border-${theme.primary}/30 hover:border-${theme.primary} text-${theme.primary} px-7 py-3.5 rounded-full font-bold uppercase tracking-widest text-xs transition-all duration-300 flex items-center justify-center gap-2 group`}
             >
               <span>Explore Curriculum</span>
               <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
             </a>
+            <a 
+              href="https://youtu.be/Gj3QXoCh9y8?si=WzZQIolRmRreErik" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="bg-red-600 hover:bg-red-700 text-white px-6 py-3.5 rounded-full font-bold uppercase tracking-widest text-xs transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:scale-105"
+            >
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              <span>Watch Video</span>
+            </a>
           </div>
 
           {/* Horizontal Accolades Strip */}
-          <div ref={statsRef} className="pt-6 sm:pt-10 flex flex-wrap gap-6 sm:gap-10">
+          <div ref={statsRef} className="pt-4 flex flex-wrap gap-6 border-t border-brand-greenDeep/10">
             {heroData.stats.map((stat, index) => (
               <div key={index}>
-                <p className={`font-serif text-2xl sm:text-3xl font-bold text-${theme.primary}`}>{stat.value}</p>
-                <p className="text-[9px] sm:text-[10px] text-brand-charcoal font-inter uppercase tracking-wider mt-1 font-bold">{stat.label}</p>
+                <p className={`font-serif text-xl sm:text-2xl font-bold text-${theme.primary}`}>{stat.value}</p>
+                <p className="text-[9px] text-brand-charcoal font-inter uppercase tracking-wider mt-0.5 font-bold">{stat.label}</p>
               </div>
             ))}
           </div>

@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { 
   Briefcase, Globe, Leaf, Users, ChevronRight, Sparkles, 
   Heart, Award, ShieldCheck, Zap, Quote, ExternalLink, GraduationCap, 
   MapPin, CheckCircle2, ArrowRight
 } from 'lucide-react'
 
-export default function WhatSetsUsApart() {
+export default function WhatSetsUsApart({ isPreview = false }) {
   const statistics = [
     { value: '1 Ton+', label: 'Plastic Waste Diverted', desc: 'Diverted from Ghazipur landfills in just 229 days.', color: 'border-brand-greenDeep/10 text-brand-greenDeep' },
     { value: '$5,000', label: 'Top Global Startup Prize', desc: 'UK School Enterprise Challenge winner two years in a row.', color: 'border-brand-gold/10 text-brand-gold' },
@@ -14,7 +15,7 @@ export default function WhatSetsUsApart() {
   ]
 
   return (
-    <div className="pt-28 pb-20 min-h-screen text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden font-sans">
+    <div className={`${isPreview ? 'py-12' : 'pt-28 pb-20'} min-h-screen text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden font-sans`}>
       
       {/* Ambient background glows matching index.css styles */}
       <div className="absolute top-20 left-1/4 w-[400px] h-[400px] ambient-glow-1 rounded-full blur-3xl pointer-events-none" />
@@ -24,17 +25,45 @@ export default function WhatSetsUsApart() {
         
         {/* Page Header (Housed inside a solid card) */}
         <div className="bg-white rounded-3xl border border-brand-masterDeep/5 p-8 sm:p-10 shadow-sm">
-          <div className="space-y-3">
-            <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-brand-gold animate-pulse" /> Distinctive Pillars of Excellence
-            </span>
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-masterDeep">
-              What Sets Us Apart
-            </h1>
-            <p className="text-sm sm:text-base text-brand-muted max-w-2xl font-medium">
-              We cultivate futuristic job creators, global citizens, and compassionate change-makers through real-world immersion and structural programs.
-            </p>
-          </div>
+          {isPreview ? (
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-7 space-y-3">
+                <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-brand-gold animate-pulse" /> Distinctive Pillars of Excellence
+                </span>
+                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-masterDeep">
+                  What Sets Us Apart
+                </h1>
+                <p className="text-sm sm:text-base text-brand-muted font-medium leading-relaxed">
+                  We cultivate futuristic job creators, global citizens, and compassionate change-makers through real-world immersion and structural programs.
+                </p>
+              </div>
+              <div className="lg:col-span-5">
+                <div className="rounded-2xl overflow-hidden aspect-[16/10] border border-brand-masterDeep/5 bg-brand-bg relative shadow-sm group">
+                  <img 
+                    src="/images/what-sets-us-apart/global-exchange-group.jpg" 
+                    alt="Global Connections" 
+                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div className="space-y-3">
+                <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-brand-gold animate-pulse" /> Distinctive Pillars of Excellence
+                </span>
+                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-masterDeep">
+                  What Sets Us Apart
+                </h1>
+                <p className="text-sm sm:text-base text-brand-muted max-w-2xl font-medium">
+                  We cultivate futuristic job creators, global citizens, and compassionate change-makers through real-world immersion and structural programs.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Highlight Stats Dashboard (Each metric is its own card) */}
@@ -59,7 +88,8 @@ export default function WhatSetsUsApart() {
         <div className="space-y-12">
 
           {/* Section 1: Internships (Housed inside a single unified card) */}
-          <div id="internships" className="scroll-mt-32 bg-white rounded-3xl border border-brand-masterDeep/5 p-8 sm:p-10 shadow-sm hover:shadow-md transition-all duration-300 space-y-10">
+          {!isPreview && (
+            <div id="internships" className="scroll-mt-32 bg-white rounded-3xl border border-brand-masterDeep/5 p-8 sm:p-10 shadow-sm hover:shadow-md transition-all duration-300 space-y-10">
             {/* Inner Header */}
             <div className="border-l-4 border-brand-greenDeep pl-6 space-y-3">
               <span className="text-xs font-bold text-brand-greenDeep uppercase tracking-widest flex items-center gap-1.5">
@@ -198,127 +228,131 @@ export default function WhatSetsUsApart() {
                 </div>
               </div>
             </div>
-          </div>
+            </div>
+          )}
 
           {/* Section 2: Global Exchange (Housed inside a single unified card) */}
-          <div id="global-exchange" className="scroll-mt-32 bg-white rounded-3xl border border-brand-masterDeep/5 p-8 sm:p-10 shadow-sm hover:shadow-md transition-all duration-300 space-y-10">
-            {/* Inner Header */}
-            <div className="border-l-4 border-brand-purpleDeep pl-6 space-y-3">
-              <span className="text-xs font-bold text-brand-purpleDeep uppercase tracking-widest flex items-center gap-1.5">
-                <Globe className="w-4 h-4" /> Global Connections
-              </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-masterDeep">Global Cross-Cultural Exchange</h2>
-              <p className="text-sm text-brand-muted max-w-3xl">
-                Promoting peace education, international cross-cultural understanding, and UN SDG integrations over the past 16 years with 25+ countries.
-              </p>
-            </div>
+          {!isPreview && (
+            <div id="global-exchange" className="scroll-mt-32 bg-white rounded-3xl border border-brand-masterDeep/5 p-8 sm:p-10 shadow-sm hover:shadow-md transition-all duration-300 space-y-10">
+              {/* Inner Header */}
+              <div className="border-l-4 border-brand-purpleDeep pl-6 space-y-3">
+                <span className="text-xs font-bold text-brand-purpleDeep uppercase tracking-widest flex items-center gap-1.5">
+                  <Globe className="w-4 h-4" /> Global Connections
+                </span>
+                <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-masterDeep">Global Cross-Cultural Exchange</h2>
+                <p className="text-sm text-brand-muted max-w-3xl">
+                  Promoting peace education, international cross-cultural understanding, and UN SDG integrations over the past 16 years with 25+ countries.
+                </p>
+              </div>
 
-            {/* Inner Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              {/* Image Column */}
-              <div className="lg:col-span-5 space-y-4 order-last lg:order-first">
-                <div className="group overflow-hidden rounded-3xl border border-brand-masterDeep/5 bg-brand-bg relative aspect-[4/3] shadow-sm">
-                  <img 
-                    src="/images/what-sets-us-apart/global-exchange-group.jpg" 
-                    alt="Global Exchange Gathering" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent flex flex-col justify-end p-5">
-                    <span className="text-[10px] font-bold text-brand-gold uppercase tracking-wider">Rooted & Global</span>
-                    <p className="text-xs text-gray-200 mt-1 font-medium leading-relaxed">
-                      We were honoured to welcome/interact with students and teachers from across the world, continuing our long-standing tradition of global exchange.
+              {/* Inner Content Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                {/* Image Column */}
+                <div className="lg:col-span-5 space-y-4 order-last lg:order-first">
+                  <div className="group overflow-hidden rounded-3xl border border-brand-masterDeep/5 bg-brand-bg relative aspect-[4/3] shadow-sm">
+                    <img 
+                      src="/images/what-sets-us-apart/global-exchange-group.jpg" 
+                      alt="Global Exchange Gathering" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent flex flex-col justify-end p-5">
+                      <span className="text-[10px] font-bold text-brand-gold uppercase tracking-wider">Rooted & Global</span>
+                      <p className="text-xs text-gray-200 mt-1 font-medium leading-relaxed">
+                        We were honoured to welcome/interact with students and teachers from across the world, continuing our long-standing tradition of global exchange.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="bg-brand-purpleDeep/5 border border-brand-purpleDeep/10 rounded-2xl p-5 text-xs text-brand-purpleDeep font-semibold flex gap-3 items-center shadow-sm">
+                    <CheckCircle2 className="w-5 h-5 text-brand-purpleVibrant shrink-0" />
+                    <p>
+                      Russian Wheel of Friendship: Welcomed student and teacher delegations from Cheboksary, Russia, continuing our collaborations.
                     </p>
                   </div>
                 </div>
 
-                <div className="bg-brand-purpleDeep/5 border border-brand-purpleDeep/10 rounded-2xl p-5 text-xs text-brand-purpleDeep font-semibold flex gap-3 items-center shadow-sm">
-                  <CheckCircle2 className="w-5 h-5 text-brand-purpleVibrant shrink-0" />
+                {/* Text & Spotlights Column */}
+                <div className="lg:col-span-7 space-y-6 text-brand-charcoal text-sm leading-relaxed font-medium">
                   <p>
-                    Russian Wheel of Friendship: Welcomed student and teacher delegations from Cheboksary, Russia, continuing our collaborations.
+                    At DLF, we believe you can be rooted and global—at once. Over the past 16 years, we have fostered enriching Cross-Cultural Exchanges with 25+ countries, including Japan, Germany, Finland, Russia, the Philippines and Italy. Through Cross Cultural Exchange Program and UN SDG-aligned projects, our students think across borders while staying anchored to their values.
                   </p>
-                </div>
-              </div>
+                  <p>
+                    It fosters peace education, nurtures empathy, encourages students to look beyond borders, embrace cultural differences, and build bridges of understanding and harmony across the world.
+                  </p>
+                  <p>
+                    Recently, the school hosted a U.S. exchange student, <strong className="text-brand-masterDeep">Jacqueline Rose</strong>, for a year, while Delfites <strong className="text-brand-masterDeep">Anwesha Sharma (XII)</strong> and <strong className="text-brand-masterDeep">Kritika Shukla (XI)</strong> travelled to Brazil and Germany respectively under sponsored exchange programs. In the current session, we are hosting a student from Italy for the academic year.
+                  </p>
 
-              {/* Text & Spotlights Column */}
-              <div className="lg:col-span-7 space-y-6 text-brand-charcoal text-sm leading-relaxed font-medium">
-                <p>
-                  At DLF, we believe you can be rooted and global—at once. Over the past 16 years, we have fostered enriching Cross-Cultural Exchanges with 25+ countries, including Japan, Germany, Finland, Russia, the Philippines and Italy. Through Cross Cultural Exchange Program and UN SDG-aligned projects, our students think across borders while staying anchored to their values.
-                </p>
-                <p>
-                  It fosters peace education, nurtures empathy, encourages students to look beyond borders, embrace cultural differences, and build bridges of understanding and harmony across the world.
-                </p>
-                <p>
-                  Recently, the school hosted a U.S. exchange student, <strong className="text-brand-masterDeep">Jacqueline Rose</strong>, for a year, while Delfites <strong className="text-brand-masterDeep">Anwesha Sharma (XII)</strong> and <strong className="text-brand-masterDeep">Kritika Shukla (XI)</strong> travelled to Brazil and Germany respectively under sponsored exchange programs. In the current session, we are hosting a student from Italy for the academic year.
-                </p>
-
-                {/* Sub-profiles of Scholars (styled in brand-bg against white card parent) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                  {/* Brazil Scholar */}
-                  <div className="bg-brand-bg/50 border border-brand-masterDeep/5 rounded-2xl p-4 space-y-3.5 hover:border-brand-purpleDeep/20 shadow-sm transition-colors duration-300">
-                    <div className="flex gap-2.5">
-                      <div className="w-14 h-14 rounded-xl overflow-hidden border border-brand-masterDeep/5 shrink-0 bg-white">
+                  {/* Sub-profiles of Scholars (styled in brand-bg against white card parent) */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                    {/* Brazil Scholar */}
+                    <div className="bg-brand-bg/50 border border-brand-masterDeep/5 rounded-2xl p-4 space-y-3.5 hover:border-brand-purpleDeep/20 shadow-sm transition-colors duration-300">
+                      <div className="flex gap-2.5">
+                        <div className="w-14 h-14 rounded-xl overflow-hidden border border-brand-masterDeep/5 shrink-0 bg-white">
+                          <img 
+                            src="/images/what-sets-us-apart/brazil-afs-flag.png" 
+                            alt="Anwesha Sharma flag" 
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div>
+                          <h4 className="text-xs font-bold text-brand-masterDeep uppercase tracking-wider">Anwesha Sharma</h4>
+                          <span className="text-[9px] text-brand-purpleDeep uppercase tracking-wider font-semibold">Brazil Exchange (Grade XII)</span>
+                        </div>
+                      </div>
+                      <div className="aspect-[1.8/1] overflow-hidden rounded-xl border border-brand-masterDeep/5 relative group shadow-sm">
                         <img 
-                          src="/images/what-sets-us-apart/brazil-afs-flag.png" 
-                          alt="Anwesha Sharma flag" 
-                          className="w-full h-full object-cover"
+                          src="/images/what-sets-us-apart/brazil-presentation.png" 
+                          alt="Anwesha Presentation" 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
                         />
                       </div>
-                      <div>
-                        <h4 className="text-xs font-bold text-brand-masterDeep uppercase tracking-wider">Anwesha Sharma</h4>
-                        <span className="text-[9px] text-brand-purpleDeep uppercase tracking-wider font-semibold">Brazil Exchange (Grade XII)</span>
-                      </div>
+                      <p className="text-[10px] text-brand-muted leading-normal">
+                        Anwesha presenting and engaging with local learners in Brazil, building global bridges.
+                      </p>
                     </div>
-                    <div className="aspect-[1.8/1] overflow-hidden rounded-xl border border-brand-masterDeep/5 relative group shadow-sm">
-                      <img 
-                        src="/images/what-sets-us-apart/brazil-presentation.png" 
-                        alt="Anwesha Presentation" 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
-                    </div>
-                    <p className="text-[10px] text-brand-muted leading-normal">
-                      Anwesha presenting and engaging with local learners in Brazil, building global bridges.
-                    </p>
-                  </div>
 
-                  {/* Germany Scholar */}
-                  <div className="bg-brand-bg/50 border border-brand-masterDeep/5 rounded-2xl p-4 space-y-3.5 hover:border-brand-purpleDeep/20 shadow-sm transition-colors duration-300">
-                    <div className="flex gap-2.5">
-                      <div className="w-14 h-14 rounded-xl overflow-hidden border border-brand-masterDeep/5 shrink-0 bg-white">
+                    {/* Germany Scholar */}
+                    <div className="bg-brand-bg/50 border border-brand-masterDeep/5 rounded-2xl p-4 space-y-3.5 hover:border-brand-purpleDeep/20 shadow-sm transition-colors duration-300">
+                      <div className="flex gap-2.5">
+                        <div className="w-14 h-14 rounded-xl overflow-hidden border border-brand-masterDeep/5 shrink-0 bg-white">
+                          <img 
+                            src="/images/what-sets-us-apart/kritika-germany-portrait.jpg" 
+                            alt="Kritika Shukla" 
+                            className="w-full h-full object-cover object-top"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div>
+                          <h4 className="text-xs font-bold text-brand-masterDeep uppercase tracking-wider">Kritika Shukla</h4>
+                          <span className="text-[9px] text-brand-purpleDeep uppercase tracking-wider font-semibold">Germany Exchange (Grade XI)</span>
+                        </div>
+                      </div>
+                      <div className="aspect-[1.8/1] overflow-hidden rounded-xl border border-brand-masterDeep/5 relative group shadow-sm">
                         <img 
-                          src="/images/what-sets-us-apart/kritika-germany-portrait.jpg" 
-                          alt="Kritika Shukla" 
-                          className="w-full h-full object-cover object-top"
+                          src="/images/what-sets-us-apart/germany-group.jpg" 
+                          alt="Germany Group" 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
                         />
                       </div>
-                      <div>
-                        <h4 className="text-xs font-bold text-brand-masterDeep uppercase tracking-wider">Kritika Shukla</h4>
-                        <span className="text-[9px] text-brand-purpleDeep uppercase tracking-wider font-semibold">Germany Exchange (Grade XI)</span>
-                      </div>
+                      <p className="text-[10px] text-brand-muted leading-normal">
+                        Kritika together with international scholars studying intercultural harmony in Germany.
+                      </p>
                     </div>
-                    <div className="aspect-[1.8/1] overflow-hidden rounded-xl border border-brand-masterDeep/5 relative group shadow-sm">
-                      <img 
-                        src="/images/what-sets-us-apart/germany-group.jpg" 
-                        alt="Germany Group" 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
-                    </div>
-                    <p className="text-[10px] text-brand-muted leading-normal">
-                      Kritika together with international scholars studying intercultural harmony in Germany.
-                    </p>
                   </div>
                 </div>
-
               </div>
             </div>
-          </div>
+          )}
 
-          {/* Section 3: Zero Waste to Landfill (Housed inside a single unified card) */}
-          <div id="zero-waste" className="scroll-mt-32 bg-white rounded-3xl border border-brand-masterDeep/5 p-8 sm:p-10 shadow-sm hover:shadow-md transition-all duration-300 space-y-10">
+          {!isPreview && (
+            <>
+              {/* Section 3: Zero Waste to Landfill (Housed inside a single unified card) */}
+              <div id="zero-waste" className="scroll-mt-32 bg-white rounded-3xl border border-brand-masterDeep/5 p-8 sm:p-10 shadow-sm hover:shadow-md transition-all duration-300 space-y-10">
             {/* Inner Header */}
             <div className="border-l-4 border-brand-greenDeep pl-6 space-y-3">
               <span className="text-xs font-bold text-brand-greenDeep uppercase tracking-widest flex items-center gap-1.5">
@@ -453,6 +487,8 @@ export default function WhatSetsUsApart() {
               </div>
             </div>
           </div>
+            </>
+          )}
 
           {/* Section 4: Money Plant (Housed inside a single unified card) */}
           <div id="money-plant" className="scroll-mt-32 bg-white rounded-3xl border border-brand-masterDeep/5 p-8 sm:p-10 shadow-sm hover:shadow-md transition-all duration-300 space-y-10">
@@ -497,8 +533,10 @@ export default function WhatSetsUsApart() {
             </div>
           </div>
 
-          {/* Section 5: Student Social Responsibility (Housed inside a single unified card) */}
-          <div id="social-responsibility" className="scroll-mt-32 bg-white rounded-3xl border border-brand-masterDeep/5 p-8 sm:p-10 shadow-sm hover:shadow-md transition-all duration-300 space-y-10">
+          {!isPreview && (
+            <>
+              {/* Section 5: Student Social Responsibility (Housed inside a single unified card) */}
+              <div id="social-responsibility" className="scroll-mt-32 bg-white rounded-3xl border border-brand-masterDeep/5 p-8 sm:p-10 shadow-sm hover:shadow-md transition-all duration-300 space-y-10">
             {/* Inner Header */}
             <div className="border-l-4 border-brand-greenDeep pl-6 space-y-3">
               <span className="text-xs font-bold text-brand-greenDeep uppercase tracking-widest flex items-center gap-1.5">
@@ -596,6 +634,20 @@ export default function WhatSetsUsApart() {
               </p>
             </div>
           </div>
+            </>
+          )}
+
+          {isPreview && (
+            <div className="text-center pt-6 pb-2">
+              <Link 
+                to="/what-sets-us-apart" 
+                className="inline-flex items-center gap-3 bg-brand-masterDeep hover:bg-brand-masterVibrant text-white px-8 py-4 rounded-full font-bold text-xs sm:text-sm uppercase tracking-widest transition-all duration-300 shadow-xl shadow-brand-masterDeep/20 hover:scale-105"
+              >
+                <span>View More Pillars & What Sets Us Apart</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          )}
 
         </div>
 

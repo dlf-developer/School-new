@@ -1,8 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { CheckCircle, Send } from 'lucide-react'
 import gsap from 'gsap'
+import { useSiteData } from '../hooks/useSiteData'
 
 export default function Admissions() {
+  const { schoolId } = useParams()
+  const { schools } = useSiteData()
+  const currentSchool = schoolId && schools[schoolId] ? schools[schoolId] : null
+  const primaryColor = currentSchool ? currentSchool.theme.primary : 'brand-masterDeep'
+
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
   const successBoxRef = useRef(null)
 
@@ -41,7 +48,7 @@ export default function Admissions() {
         <div className="lg:col-span-6 space-y-8 sm:space-y-12">
           <div className="space-y-3 sm:space-y-4">
             <span className="text-xs uppercase tracking-widest font-bold text-brand-gold">Admissions 2026-27</span>
-            <h3 className="font-serif text-3xl sm:text-4xl font-bold text-brand-greenDeep">Begin Your Journey</h3>
+            <h3 className={`font-serif text-3xl sm:text-4xl font-bold text-${primaryColor}`}>Begin Your Journey</h3>
             <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter">
               Our entry selection guidelines are simple, structured, transparent, and completely digital.
             </p>
@@ -51,12 +58,12 @@ export default function Admissions() {
           <div className="space-y-6 sm:space-y-8">
             {/* Step 1 */}
             <div className="flex gap-4 sm:gap-6 relative">
-              <div className="absolute top-10 left-5 bottom-[-2rem] w-[2px] bg-brand-greenDeep/10"></div>
-              <div className="w-9 h-9 sm:w-10 sm:h-10 bg-brand-greenDeep text-white rounded-full flex items-center justify-center font-bold font-serif shadow-md shrink-0 text-sm">
+              <div className={`absolute top-10 left-5 bottom-[-2rem] w-[2px] bg-${primaryColor}/10`}></div>
+              <div className={`w-9 h-9 sm:w-10 sm:h-10 bg-${primaryColor} text-white rounded-full flex items-center justify-center font-bold font-serif shadow-md shrink-0 text-sm`}>
                 1
               </div>
               <div>
-                <h4 className="font-serif font-bold text-brand-greenDeep text-base sm:text-lg">Online Enquiry Form</h4>
+                <h4 className={`font-serif font-bold text-${primaryColor} text-base sm:text-lg`}>Online Enquiry Form</h4>
                 <p className="text-xs text-brand-muted mt-1 leading-relaxed font-inter">
                   Complete the digital admission enquiry query with basic credentials and preferences on our digital school board portal.
                 </p>

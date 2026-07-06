@@ -42,8 +42,12 @@ export default function Footer() {
         {/* Column 1: Brand & Philosophy */}
         <div className="space-y-6">
           <div className="flex items-center gap-3">
-            <div className={`w-12 h-12 bg-${theme.accent} rounded-xl flex items-center justify-center shadow-md`}>
-              <span className={`font-serif text-${theme.primary} font-bold text-xl`}>DLF</span>
+            <div className={`w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-md p-1 overflow-hidden`}>
+              <img 
+                src="/images/dlf-crest.png" 
+                alt="DLF Logo Crest" 
+                className="w-full h-full object-contain" 
+              />
             </div>
             <div>
               <h4 className="font-serif text-lg font-bold leading-tight tracking-tight">

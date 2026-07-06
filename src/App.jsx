@@ -36,7 +36,47 @@ import SchoolEditorials from './components/SchoolEditorials'
 import UsefulLinks from './components/UsefulLinks'
 
 
-// Home page sections aggregator for dynamic branches
+// Master Home page sections aggregator matching exact section order from design spec:
+// 1st Section – Video (Hero)
+// 2nd Section – Campus Selector (PortalHome)
+// 3rd Section – Statistics
+// 4th Section – Admissions 
+// 5th Section – Academic Progression (Curriculum)
+// 6th Section – What Sets Us Apart
+// 7th Section – Results
+// 8th Section – Testimonials
+function MasterHome() {
+  return (
+    <>
+      {/* 1st Section – Video Hero */}
+      <Hero />
+      <Ticker />
+
+      {/* Campus Selector */}
+      <PortalHome />
+
+      {/* 2nd Section – Statistics */}
+      <Stats />
+
+      {/* 3rd Section – Admissions */}
+      <Admissions />
+
+      {/* 4th Section – Academic Progression */}
+      <Curriculum />
+
+      {/* 5th Section – What sets us apart (Preview mode) */}
+      <WhatSetsUsApart isPreview={true} />
+
+      {/* 6th Section – Results */}
+      <SchoolWinning />
+
+      {/* 7th Section – Testimonials */}
+      <Testimonials />
+    </>
+  )
+}
+
+// Home page sections aggregator for dynamic individual school branches
 function Home() {
   return (
     <>
@@ -49,7 +89,6 @@ function Home() {
       <Holistic />
       <VirtualTour />
       <Admissions />
-      <Testimonials />
     </>
   )
 }
@@ -142,8 +181,8 @@ export default function App() {
             </Suspense>
           } />
 
-          {/* Unified Portal Home */}
-          <Route path="/" element={<PortalHome />} />
+          {/* Unified Master Home */}
+          <Route path="/" element={<MasterHome />} />
           
           {/* Common Pages */}
           <Route path="/philosophy" element={<Navigate to="/thinking-school" replace />} />

@@ -1,9 +1,16 @@
 import React, { useState, useRef } from 'react'
+import { useParams } from 'react-router-dom'
 import { BookOpen, CheckCircle, Compass, Cpu, TrendingUp } from 'lucide-react'
 import gsap from 'gsap'
+import { useSiteData } from '../hooks/useSiteData'
 import ImageWithLoader from './ImageWithLoader'
 
 export default function Curriculum() {
+  const { schoolId } = useParams()
+  const { schools } = useSiteData()
+  const currentSchool = schoolId && schools[schoolId] ? schools[schoolId] : null
+  const primaryColor = currentSchool ? currentSchool.theme.primary : 'brand-masterDeep'
+
   const [activeTab, setActiveTab] = useState('primary')
   const panesRef = useRef({})
 
@@ -46,7 +53,7 @@ export default function Curriculum() {
       <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-10">
         <div className="text-center max-w-2xl mx-auto space-y-3 sm:space-y-4 mb-10 sm:mb-16">
           <span className="text-xs uppercase tracking-widest font-bold text-brand-gold">Comprehensive Curriculum</span>
-          <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-brand-greenDeep">Academic Progression</h3>
+          <h3 className={`font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-${primaryColor}`}>Academic Progression</h3>
           <div className="w-12 h-[2px] bg-brand-gold mx-auto"></div>
           <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter">
             A thoughtfully segmented pedagogy designed specifically to align with children’s developmental stages.
@@ -61,8 +68,8 @@ export default function Curriculum() {
               onClick={() => handleTabChange(tab.id)}
               className={`tab-btn px-5 py-3 sm:py-3.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 border shrink-0 snap-center cursor-pointer ${
                 activeTab === tab.id
-                  ? 'bg-brand-greenDeep text-white border-brand-greenDeep active'
-                  : 'bg-white text-brand-charcoal hover:bg-brand-greenDeep/5 border-brand-greenDeep/10'
+                  ? `bg-${primaryColor} text-white border-${primaryColor} active`
+                  : `bg-white text-brand-charcoal hover:bg-${primaryColor}/5 border-${primaryColor}/10`
               }`}
             >
               {tab.label}
@@ -94,7 +101,7 @@ export default function Curriculum() {
               </ul>
             </div>
             <div className="rounded-2xl overflow-hidden aspect-video shadow-md relative group mt-4 lg:mt-0">
-              <ImageWithLoader src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=1000" alt="Primary School Class" loading="lazy" />
+              <ImageWithLoader src="/images/home-welcome.jpg" alt="DLF Primary School Students" loading="lazy" imgClassName="object-center" />
             </div>
           </div>
 
@@ -119,7 +126,7 @@ export default function Curriculum() {
               </ul>
             </div>
             <div className="rounded-2xl overflow-hidden aspect-video shadow-md relative group mt-4 lg:mt-0">
-              <ImageWithLoader src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&q=80&w=1000" alt="Middle School Science Lab" loading="lazy" />
+              <ImageWithLoader src="/images/home-stem.jpg" alt="Middle School STEM & Robotics Lab" loading="lazy" imgClassName="object-center" />
             </div>
           </div>
 
@@ -144,7 +151,7 @@ export default function Curriculum() {
               </ul>
             </div>
             <div className="rounded-2xl overflow-hidden aspect-video shadow-md relative group mt-4 lg:mt-0">
-              <ImageWithLoader src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1000" alt="Secondary Schooling Class" loading="lazy" />
+              <ImageWithLoader src="/images/home-classroom.jpg" alt="DLF Secondary School Classroom" loading="lazy" imgClassName="object-center" />
             </div>
           </div>
 
@@ -169,7 +176,7 @@ export default function Curriculum() {
               </ul>
             </div>
             <div className="rounded-2xl overflow-hidden aspect-video shadow-md relative group mt-4 lg:mt-0">
-              <ImageWithLoader src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=1000" alt="Senior Secondary Graduation" loading="lazy" />
+              <ImageWithLoader src="/images/home-arts.jpg" alt="DLF Senior Secondary Arts & Performance" loading="lazy" imgClassName="object-center" />
             </div>
           </div>
         </div>

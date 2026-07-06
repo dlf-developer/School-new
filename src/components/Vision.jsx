@@ -47,7 +47,7 @@ export default function Vision() {
         {/* Left Editorial Images Column */}
         <div ref={visionImageRef} id="vision-image" className="lg:col-span-5 relative flex flex-col items-center">
           <div className="relative w-full sm:w-4/5 aspect-[4/5] sm:aspect-[3/4] rounded-3xl overflow-hidden shadow-xl border border-white">
-            <ImageWithLoader src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=1000" alt="Executive Director DLPS" loading="lazy" />
+            <ImageWithLoader src="/images/home-assembly.jpg" alt="DLF Public School Campus Assembly" loading="lazy" />
             <div className="absolute inset-0 bg-brand-greenDeep/10 z-10"></div>
           </div>
           {/* Offset Quote Card */}
@@ -72,8 +72,8 @@ export default function Vision() {
             "Our educational philosophy transcends classrooms. Every DLF Public School graduate is prepared to navigate a complex global landscape while honoring ecological balance."
           </blockquote>
           <div className="flex items-center gap-3 pt-2">
-            <div className="w-10 h-10 rounded-full border border-brand-greenDeep/20 overflow-hidden relative shrink-0">
-              <ImageWithLoader src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150" alt="Executive Director Profile" loading="lazy" />
+            <div className="w-10 h-10 rounded-full border border-brand-greenDeep/20 overflow-hidden relative shrink-0 bg-brand-greenDeep/10 flex items-center justify-center">
+              <span className="text-brand-greenDeep font-bold text-sm">DM</span>
             </div>
             <div>
               <h4 className="font-serif font-bold text-brand-greenDeep text-xs sm:text-sm">Dr. Mrignaini | Executive Director</h4>

@@ -4,22 +4,21 @@ import { ArrowRight, Compass, HeartHandshake, Award, BookOpen, Globe } from 'luc
 
 export default function PortalHome() {
   return (
-    <div className="pt-24 bg-transparent min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
+    <div className="py-12 bg-transparent text-brand-charcoal selection:bg-brand-gold/30">
       
       {/* Cinematic Portal Welcome Hero */}
-      <section className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 pt-16 pb-12 text-center space-y-6">
+      <section className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 pt-4 pb-6 text-center space-y-4">
         <div className="inline-flex items-center gap-2 bg-brand-masterDeep/5 border border-brand-masterDeep/10 rounded-full px-4 py-1.5 text-xs text-brand-masterDeep font-bold">
           <span className="w-2 h-2 rounded-full bg-brand-gold animate-ping"></span>
           <span>Unified Group Portal</span>
         </div>
         
-        <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-brand-masterDeep leading-[1.05] tracking-tight">
-          DLF Group <br />
-          <span className="italic text-brand-masterVibrant font-normal">of Schools</span>
-        </h1>
+        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-brand-masterDeep leading-[1.05] tracking-tight">
+          Explore Our Educational Campuses
+        </h2>
         
-        <p className="font-inter text-brand-muted text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-          Nurturing thinkers, sculpting scientific temperaments, and empowering global pioneers across our state-of-the-art educational campuses.
+        <p className="font-inter text-brand-muted text-xs sm:text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+          Nurturing thinkers, sculpting scientific temperaments, and empowering global pioneers across our state-of-the-art educational institutions.
         </p>
 
         <div className="w-24 h-[2px] bg-brand-gold mx-auto mt-4"></div>

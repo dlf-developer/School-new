@@ -178,9 +178,12 @@ export default function Header() {
         >
           {/* Brand Crest Logo & Text */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-${theme.primary} to-${theme.vibrant} rounded-xl flex items-center justify-center shadow-md relative overflow-hidden group-hover:scale-105 transition-transform duration-500`}>
-              <span className={`font-serif text-${theme.accent} font-extrabold text-sm sm:text-base relative z-10`}>DLF</span>
-              <div className={`absolute inset-0 bg-${theme.accent}/10 transform -skew-x-12 translate-x-full group-hover:translate-x-[-100%] transition-transform duration-1000`}></div>
+            <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-500 bg-white`}>
+              <img 
+                src="/images/dlf-crest.png" 
+                alt="DLF Public School Crest" 
+                className="w-full h-full object-contain p-0.5"
+              />
             </div>
             <div>
               <h1 className={`font-serif ${!schoolId ? 'text-white' : `text-${theme.primary}`} text-base font-bold leading-tight tracking-tight`}>

@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { CheckCircle, Award, Compass, Cpu, TrendingUp, Sparkles, GraduationCap, ArrowRight, BookOpen } from 'lucide-react'
+import { 
+  Sparkles, BookOpen, Puzzle, Palette, Award, Cpu, Gamepad2, 
+  Eye, Users, Languages, Heart, Compass, CheckCircle, 
+  Code, Lightbulb, Video, Wrench, FlaskConical, 
+  FileText, Play, X, ZoomIn, GraduationCap, ArrowRight, Briefcase 
+} from 'lucide-react'
 import ImageWithLoader from './ImageWithLoader'
 
 export default function Pedagogy() {
@@ -9,65 +14,382 @@ export default function Pedagogy() {
   // Set default active tab to 'early-years'
   const [activeTab, setActiveTab] = useState('early-years')
 
+  // Lightbox modal state
+  const [lightboxMedia, setLightboxMedia] = useState(null)
+
   const stages = [
     {
       id: 'early-years',
       title: 'Early Years',
-      label: 'Nurturing Wonder & Sensory Discovery',
-      desc: 'Sensory integration, play-way modules, and language discovery through storytelling, theatre, and interactive arts.',
-      details: 'Our early childhood education is designed as a sensory-rich environment where learning happens naturally through play. Guided by progressive developmental frameworks, we focus on sensory integration, emotional intelligence, and motor skills.',
-      focuses: [
-        'Sensory-based cognitive modules',
-        'Linguistic exploration & creative storytelling theatre',
-        'Fine and gross motor skills integration',
-        'Social-emotional adaptation & collaborative play'
+      label: 'Foundational Stage',
+      details: 'Aligned with the vision of NEP 2020 and the principles of NCF-FS, our Foundation Stage pedagogy is child-centric, play-based, inclusive, and experiential. Learning at the foundational stage is designed around exploration, interaction, imagination, and joyful discovery, while ensuring every child’s physical and emotional safety. The learning environment is designed to nurture language development, cognitive growth, socio-emotional wellbeing, creativity, and foundational literacy and numeracy skills while ensuring every child feels emotionally secure, valued, and safe.',
+      approaches: [
+        {
+          title: 'Play as the medium',
+          desc: 'Learning is driven through free, guided, and structured play hunts, exploration corners, and experiential classroom games lays the foundation of joyful and active learning experiences.',
+          caption: 'Specially curated exploration spaces that ignite curiosity, encourage inquiry, and inspire young minds to wonder and discover. (Discovery Den/ Thots lab)',
+          img: '/pedagogy/pictures/Discovery Den.jpg'
+        },
+        {
+          title: 'Storytelling Pedagogy',
+          desc: 'Stories, rhymes, puppetry, picture talk, role play and conversations strengthen language, imagination, listening, and communication skills.',
+          caption: 'Stories that inspire imagination, language, and expression.',
+          img: '/pedagogy/pictures/Show and Tell.jpg'
+        },
+        {
+          title: 'Toy-Based Pedagogy',
+          desc: 'Children learn through hands-on exploration using puzzles, building blocks, pretend play kits.',
+          caption: 'Hands-on toys that build thinking and problem-solving and enhances cognitive development.',
+          img: '/pedagogy/pictures/Play Based.jpg'
+        },
+        {
+          title: 'Art Integrated Learning',
+          desc: 'Delfites explore concepts creatively through music, dance, painting, clay modelling, dramatic play, festival crafts, and collaborative art experiences that make learning joyful and meaningful.',
+          caption: 'Creating, expressing, and learning through the arts.'
+        },
+        {
+          title: 'Sports Integrated Learning',
+          desc: 'Physical activities such as yoga, obstacle races, balancing games, movement drills, and outdoor play help develop coordination, teamwork, discipline, and healthy habits.',
+          caption: 'Active bodies, confident minds, and collaborative learners.'
+        },
+        {
+          title: 'Technology-Enabled Pedagogy',
+          desc: 'Interactive smart boards, digital storytelling, phonics applications, and audio-visual tools make learning engaging and developmentally appropriate.',
+          caption: 'Digital tools that enrich meaningful learning experiences.'
+        },
+        {
+          title: 'Game-Based Pedagogy',
+          desc: 'Game-based learning transforms foundational concepts into engaging and meaningful experiences where children learn by doing, exploring, and interacting.',
+          caption: 'self-paced, gamified learning programme to cultivate love for numbers.'
+        },
+        {
+          title: 'Sensory Exploration',
+          desc: 'Children engage with sand play, water play, tactile materials, discovery trays, arts and crafts, and nature-based activities that stimulate curiosity and sensory development.',
+          caption: 'Touch, feel, discover, and make sense of the world.'
+        },
+        {
+          title: 'Community-Based Learning',
+          desc: 'Children develop empathy, social awareness, and a sense of belonging through community-connected experiences such as celebration of national days and festivals, kindness drives, nature walks, classroom responsibilities, and simple community outreach initiatives that help them connect learning with the world around them.'
+        },
+        {
+          title: 'Multilingual Approach',
+          desc: 'Songs, stories, classroom interactions, greetings, and bilingual activities help bridge the gap between home and school while strengthening communication and cultural connection.'
+        },
+        {
+          title: 'Inclusive Education',
+          desc: 'Every child is valued through supportive, inclusive, multisensory learning experiences, differentiated instruction, sensory corners, and collaborative classroom practices where every child feels valued.'
+        }
       ],
-      img: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=800',
+      assessment: {
+        text: 'Assessment at the Foundation Stage is continuous, observational, and non-punitive. Teachers use anecdotal records, portfolios, classroom interactions, and developmental observations to understand and support each child’s unique learning journey with care and sensitivity.'
+      },
+      media: {
+        images: [
+          '/pedagogy/early-years/7C1A0386.jpg',
+          '/pedagogy/early-years/7C1A0668.jpg',
+          '/pedagogy/early-years/7C1A1699.jpg',
+          '/pedagogy/early-years/7C1A1724.jpg',
+          '/pedagogy/early-years/7C1A1751.jpg',
+          '/pedagogy/early-years/7C1A1911.jpg'
+        ],
+        exemplars: [
+          {
+            src: '/pedagogy/early-years/Foundational Pedagogy exampler.png',
+            title: 'Foundational Pedagogy Exemplar'
+          }
+        ],
+        videos: []
+      },
       Icon: Sparkles
     },
     {
       id: 'primary-years',
       title: 'Primary Years',
-      label: 'Building Foundations of Logical Reasoning',
-      desc: 'Foundation of critical analysis, logic, and mathematics taught through hands-on project work and outdoor nature studies.',
-      details: 'Transitioning into conceptual understanding. In the Primary Years, children develop core numeracy, reading mechanics, and scientific curiosity. Rote-learning is replaced with hands-on labs and outdoor observations.',
-      focuses: [
-        'Conceptual mathematical reasoning',
-        'Structured reading fluency & phonics workshops',
-        'Experiential science projects & outdoor learning',
-        'Creative expressions in arts, music, and dance'
+      label: 'Primary Stage',
+      details: 'The Primary Years mark the transition from foundational exploration to structured discovery. During these years, learners begin to engage more consciously with ideas, relationships, and experiences, gradually moving from guided exploration toward independent thinking and meaningful application of knowledge. The adopted pedagogies help children develop conceptual clarity, communication skills, collaboration, creativity, critical thinking, and problem-solving abilities in authentic and relatable contexts.',
+      approaches: [
+        {
+          title: 'Art Integrated Learning',
+          desc: 'Enables children to explore concepts through music, dance, theatre, storytelling, visual arts, and creative expression, making learning meaningful, joyful, and interdisciplinary.'
+        },
+        {
+          title: 'Inquiry-Based Learning',
+          desc: 'Dedicated spaces like the higher order thinking( THOTS) lab nurtures curiosity and a spirit of exploration. Learners are encouraged to ask questions, investigate ideas, make connections, and construct knowledge through observation, discussion, and discovery.'
+        },
+        {
+          title: 'Sports Integrated Learning',
+          desc: 'Promotes physical well-being while developing teamwork, discipline, resilience, leadership, and decision-making skills. Movement and play become powerful tools for learning and holistic development.'
+        },
+        {
+          title: 'Competency-Based Learning',
+          desc: 'Focuses on the development of essential skills and conceptual understanding rather than rote memorisation. Learners are encouraged to apply their knowledge meaningfully in different contexts and demonstrate mastery through authentic experiences.'
+        },
+        {
+          title: 'Active and Experiential Learning',
+          desc: 'Places children at the centre of the learning process. Through hands-on activities, field experiences, experiments, demonstrations, and collaborative tasks, learners engage actively with concepts and build deeper understanding through experience.'
+        },
+        {
+          title: 'Skill-Based Learning',
+          desc: 'Equips students with practical life skills, communication skills, problem-solving abilities, creativity, collaboration, and emerging future-ready competencies that prepare them for an evolving world.'
+        },
+        {
+          title: 'Story-Based Pedagogy',
+          desc: 'Harnesses the power of stories, narratives, role-play, and real-life experiences to make learning relatable, foster imagination, strengthen language development, and nurture empathy and ethical understanding.'
+        },
+        {
+          title: 'Technology-Integrated Learning',
+          desc: 'Uses digital tools, interactive platforms, multimedia resources, and blended learning experiences to enrich engagement, personalise learning pathways, and strengthen conceptual understanding.'
+        },
+        {
+          title: 'Play-Based Pedagogy',
+          desc: 'Continues to remain an important element of learning in the Primary Years. Through educational games, simulations, explorations, and playful experiences, children develop confidence, creativity, collaboration, and problem-solving skills while maintaining the joy of learning.'
+        }
       ],
-      img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800',
+      assessment: {
+        text: 'We believe every child is capable, curious, and creative. Our pedagogy helps them believe in themselves.'
+      },
+      media: {
+        images: [
+          '/pedagogy/primary-years/7C1A0167.jpg',
+          '/pedagogy/primary-years/7C1A1179.jpg',
+          '/pedagogy/primary-years/7C1A1244.jpg',
+          '/pedagogy/primary-years/7C1A1337.jpg',
+          '/pedagogy/primary-years/7C1A1398.jpg',
+          '/pedagogy/primary-years/7C1A1819.jpg',
+          '/pedagogy/primary-years/7C1A2094.jpg',
+          '/pedagogy/primary-years/7C1A2166.jpg'
+        ],
+        exemplars: [],
+        videos: [
+          {
+            src: '/pedagogy/primary-years/Junior DIML.mp4',
+            title: 'Junior DIML'
+          },
+          {
+            src: '/pedagogy/primary-years/Sneh Bhoj.mp4',
+            title: 'Sneh Bhoj'
+          }
+        ]
+      },
       Icon: Compass
     },
     {
       id: 'middle-years',
       title: 'Middle Years',
-      label: 'Intellectual Exploration & Stewardship',
-      desc: 'Intellectual exploration, robotics, coding, scientific experiments, and community stewardship programs.',
-      details: 'Encouraging independent research, creative building, and collaborative social projects. Middle Years connect abstract textbook theories directly to science experiments, basic robotics, and eco-friendly actions.',
-      focuses: [
-        'Creative coding, AI literacy, and basic robotics',
-        'Rigorous lab experiments & scientific methodology',
-        'Ecological stewardship & local community service',
-        'Structured group presentations & public speaking'
+      label: 'Middle Stage',
+      details: 'Aligned with the vision of NEP 2020 and the principles of NCF-SE 2023, our Middle Stage pedagogy is experiential, multidisciplinary, inquiry-driven, and competency-focused. At this stage, Delfites transition from concrete learning to more abstract concepts in sciences, mathematics, arts, and humanities through exploration, experimentation, and critical thinking. Delfites are also introduced to early hands-on skill development, and internship opportunities that connect classroom learning with real-world experiences and future readiness.',
+      approaches: [
+        {
+          title: 'Experiential Learning',
+          desc: 'Hands-on activities, field visits, internships, and practical experiences make learning meaningful, engaging, and application-based.',
+          caption: 'Learning comes alive through field visits, internships, hands-on experiences, and real-world exploration.'
+        },
+        {
+          title: 'Inquiry-Based Learning',
+          desc: 'Students investigate, explore concepts through discussions, experiments, and experiences in the Science labs and Innovation Hub where they tinker, ideate, innovate, and develop independent thinking skills. Initiatives like the Dr. APJ Abdul Kalam Innovation Month further strengthen scientific temper, creativity, design thinking, and problem-solving skills among learners.',
+          caption: 'Questioning, investigating, tinkering, and innovating through our Innovation Hub.'
+        },
+        {
+          title: 'Technology-Integrated Learning',
+          desc: 'Interactive digital tools, dedicated computer labs, and adaptive platforms strengthen conceptual understanding through engaging, data-driven experiences.',
+          caption: 'Digital tools and adaptive platforms create personalised, engaging, and future-ready learning experiences.'
+        },
+        {
+          title: 'Computational Thinking',
+          desc: 'Coding, logical reasoning, sequencing, and pattern recognition activities, supported by a dedicated computer lab, help students develop problem-solving and digital-age thinking skills.',
+          caption: 'Coding, logical reasoning, and problem-solving empower learners to think like innovators.'
+        },
+        {
+          title: 'PBL (Project Based Learning)',
+          desc: 'Interdisciplinary projects encourage students to connect classroom learning with real-life concerns and contemporary issues such as pollution, excessive use of plastic, and environmental challenges like the Ghazipur landfill surpassing the height of the Qutub Minar. These projects nurture collaboration, research, critical thinking, problem-solving, and presentation skills while encouraging students to become socially aware and responsible citizens.',
+          caption: 'Real-world projects connect classroom learning with contemporary challenges and meaningful action.'
+        },
+        {
+          title: 'Problem-Based Learning',
+          desc: 'Delfites engage with authentic problems and real-world challenges that encourage analytical thinking, innovation, collaboration, and solution-oriented learning. Delfites participate in waste management solutions, water conservation drives, sustainable campus initiatives, and design-thinking challenges where they brainstorm, prototype, and propose practical solutions to everyday issues.',
+          caption: 'Authentic challenges inspire analytical thinking, creativity, collaboration, and solution-driven learning.'
+        },
+        {
+          title: 'Art Integrated Learning',
+          desc: 'Music, theatre, visual arts, storytelling, and creative presentations are integrated into learning experiences to deepen understanding and imagination. Scholastic Month Presentations further provide students with opportunities to showcase creativity, collaboration, and communication skills.',
+          caption: 'Creativity meets curriculum through music, theatre, visual arts, storytelling, and expression.'
+        },
+        {
+          title: 'Game-Based Learning',
+          desc: 'Interactive games, quizzes, simulations, and challenge-based activities make learning joyful, engaging, and conceptually strong.',
+          caption: 'Mindspark for language personalize learning pathways'
+        },
+        {
+          title: 'Flipped Classroom',
+          desc: 'Students explore concepts through videos, digital resources, and pre-learning tasks, allowing classroom time to focus on discussions, collaboration, and deeper understanding.',
+          caption: 'Learning begins before the classroom, creating more opportunities for discussion, collaboration, and deeper understanding.'
+        },
+        {
+          title: 'Emphasis on skill education',
+          desc: 'Through hands-on experiences, projects, workshops, design challenges, and community engagement, learners gain exposure to a wide spectrum of skills across the domains of Life, Machines & Materials and Human Services.',
+          caption: 'Exploring Life, Machines & Materials and Human Services through hands-on learning and real-world skills.'
+        },
+        {
+          title: 'Inclusive Education',
+          desc: 'Differentiated instruction, collaborative learning, and supportive classroom practices ensure equitable learning opportunities for every child.'
+        }
       ],
-      img: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800',
+      assessment: {
+        text: 'Assessment is continuous, multidimensional, and growth-oriented, focusing on conceptual understanding, skills, and application of learning.',
+        list: [
+          'Observation & Classroom Interaction',
+          'Presentations & Viva Voce',
+          'Student Portfolios',
+          'Interdisciplinary Projects',
+          'Peer Assessment',
+          'Self-Assessment & Reflection',
+          'Performances & Demonstrations',
+          'Cumulative & Competency-Based Assessments',
+          'Pen and Paper test'
+        ]
+      },
+      media: {
+        images: [
+          '/pedagogy/middle-years/7C1A1314.jpg',
+          '/pedagogy/middle-years/7C1A1730.jpg',
+          '/pedagogy/middle-years/7C1A1782.jpg',
+          '/pedagogy/middle-years/7C1A1808.jpg',
+          '/pedagogy/middle-years/7C1A2013.jpg',
+          '/pedagogy/middle-years/7C1A2131.jpg',
+          '/pedagogy/middle-years/DSC00584.jpg'
+        ],
+        exemplars: [
+          {
+            src: '/pedagogy/middle-years/Middle level Pedagogy.png',
+            title: 'Middle Level Pedagogy Framework'
+          },
+          {
+            src: '/pedagogy/middle-years/Middle stage examplar 1.png',
+            title: 'Middle Stage Exemplar'
+          }
+        ],
+        videos: [
+          {
+            src: '/pedagogy/middle-years/Class X Results.mp4',
+            title: 'Class X Results'
+          },
+          {
+            src: '/pedagogy/middle-years/Martyr’s Day.mp4',
+            title: 'Martyr’s Day'
+          },
+          {
+            src: '/pedagogy/middle-years/Russian Delegation.mp4',
+            title: 'Russian Delegation'
+          }
+        ]
+      },
       Icon: Cpu
     },
     {
       id: 'senior-years',
       title: 'Senior Years',
-      label: 'Scholastic Rigour & Global Readiness',
-      desc: 'Advanced scholastic courses, deep stream selection, and dynamic preparation for competitive college admissions.',
-      details: 'Preparing learners for global university standards. Senior Years integrate the rigorous CBSE academic curricula with specialized stream selections, career counselling, college preparation, and leadership summits.',
-      focuses: [
-        'Advanced CBSE streams (Science, Commerce, Humanities)',
-        'Personalized profile mentoring & university advice',
-        'National and global college entrance preparation',
-        'Student-led school leadership and summits'
+      label: 'Secondary Stage',
+      details: 'At the heart of our secondary stage pedagogy lies multidisciplinary study, and flexibility. It fosters critical thinking, inquiry, creativity, collaboration, and problem-solving through immersive and experiential learning practices. Instead of strict academic or vocational streams, students are given the freedom to choose multidisciplinary combinations of subjects. With a strong focus on future readiness, the curriculum integrates emerging domains such as Artificial Intelligence, Computational Thinking, Design Thinking, Entrepreneurship, Financial Literacy, Sustainability, and Digital Citizenship. Through research projects, internships, innovation challenges, field experiences, and skill-based learning opportunities, students develop the competencies required to thrive in an increasingly dynamic and technology-driven world.',
+      approaches: [
+        {
+          title: 'Experiential Learning',
+          desc: 'Delfites are Actively involved in the learning process using hands-on- activities, field trips , internships etc. They reflect on their experiences and draw connections to apply the learned knowledge.'
+        },
+        {
+          title: 'Experimentation',
+          desc: 'Hands-on experiments, ideate, prototype, and innovate while solving real-world challenges creatively and collaboratively encouraging scientific temper, and application-based understanding.'
+        },
+        {
+          title: 'Inquiry-Based Learning',
+          desc: 'Curiosity drives the classroom. Delfites investigate, question, explore, and construct knowledge through guided inquiry and independent thinking.'
+        },
+        {
+          title: 'Case-Based Learning',
+          desc: 'Delfites analyze real-world scenarios, contemporary issues, and situational challenges to strengthen Conceptual Understanding through unfamiliar context, decision-making, analytical thinking, and perspective-building.'
+        },
+        {
+          title: 'PBL (Project-Based Learning)',
+          desc: 'Delfites investigate contemporary issues, conduct research, and engage in reflective learning experiences that build independent thought and academic rigour'
+        },
+        {
+          title: 'Problem Based Learning',
+          desc: 'Delfites engage with authentic problems that promote collaboration, innovation, research, and solution-oriented learning.'
+        },
+        {
+          title: 'Art Integrated Learning',
+          desc: 'Learning comes alive through music, theatre, visual arts, and creative expression, making concepts engaging, interdisciplinary, and memorable.'
+        },
+        {
+          title: 'Sports Integrated Learning',
+          desc: 'Physical activity and sports are integrated into Curricular areas & learning experiences to build teamwork, discipline, resilience, leadership, and strategic thinking.'
+        },
+        {
+          title: 'Story based Pedagogy',
+          desc: 'Stories, narratives, and real-life experiences are used to create emotional connections with learning and nurture empathy, compassion, ethical thinking.'
+        },
+        {
+          title: 'Competency-Based Education',
+          desc: 'The focus shifts from content coverage to mastery of competencies, ensuring conceptual clarity, skill development, and meaningful application of knowledge.'
+        },
+        {
+          title: 'Peer Education & Collaborative Learning',
+          desc: 'Students learn with and from one another through discussions, peer teaching, collaborative tasks, and reflective exchanges that strengthen communication and empathy.'
+        },
+        {
+          title: 'Vocational Education',
+          desc: 'Through project-based tasks and skill-oriented activities Delfites acquire skills that are relevant, meaningful, and future-focused. It introduces students to diverse vocational domains, encouraging them to appreciate the dignity of labour while discovering their own interests, strengths, and aptitudes.'
+        },
+        {
+          title: 'Technology- Driven Learning',
+          desc: 'Digital tools, multimedia resources, and blended learning experiences support personalized and interactive learning journeys.'
+        },
+        {
+          title: 'Inclusive Education',
+          desc: 'We ensure equitable learning opportunities for every child through differentiated instruction, accommodations, and supportive learning environments.'
+        }
       ],
-      img: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=800',
+      assessment: {
+        text: 'Assessment is viewed as a continuous process that supports growth, reflection, and improvement rather than merely measuring performance. Assessment at the secondary stage focuses on conceptual understanding, critical thinking, creativity, collaboration, and authentic application of learning in real-life contexts.',
+        list: [
+          'Observation & Anecdotal Records',
+          'Presentations & Viva Voce',
+          'Research & Interdisciplinary Projects',
+          'Student Portfolios',
+          'Peer Assessment',
+          'Self-Assessment & Reflection',
+          'Practical Application Tasks',
+          'Performances & Demonstrations',
+          'Pen-and-Paper Assessments',
+          'Competency-Based Evaluations'
+        ]
+      },
+      media: {
+        images: [
+          '/pedagogy/senior-years/7C1A0335.jpg',
+          '/pedagogy/senior-years/7C1A1361.jpg',
+          '/pedagogy/senior-years/7C1A1481.jpg',
+          '/pedagogy/senior-years/7C1A1493.jpg',
+          '/pedagogy/senior-years/7C1A1791.jpg',
+          '/pedagogy/senior-years/7C1A2005.jpg',
+          '/pedagogy/senior-years/7C1A2025.jpg'
+        ],
+        exemplars: [
+          {
+            src: '/pedagogy/senior-years/Secondary stage.png',
+            title: 'Secondary Stage Pedagogy Framework'
+          }
+        ],
+        videos: [
+          {
+            src: '/pedagogy/senior-years/Senior DIML.mp4',
+            title: 'Senior DIML'
+          },
+          {
+            src: '/pedagogy/senior-years/Voices of Achievement.mp4',
+            title: 'Voices of Achievement'
+          }
+        ]
+      },
       Icon: GraduationCap
     }
   ]
@@ -86,9 +408,55 @@ export default function Pedagogy() {
   const activeStage = stages.find(s => s.id === activeTab) || stages[0]
   const ActiveIcon = activeStage.Icon
 
+  const getApproachIcon = (title) => {
+    const t = title.toLowerCase()
+    if (t.includes('story')) return BookOpen
+    if (t.includes('play')) return Gamepad2
+    if (t.includes('toy')) return Puzzle
+    if (t.includes('art')) return Palette
+    if (t.includes('sports') || t.includes('physical')) return Award
+    if (t.includes('tech') || t.includes('digital') || t.includes('smart')) return Cpu
+    if (t.includes('game')) return Gamepad2
+    if (t.includes('sensory')) return Eye
+    if (t.includes('community')) return Users
+    if (t.includes('multilingual') || t.includes('bilingual')) return Languages
+    if (t.includes('inclusive')) return Heart
+    if (t.includes('inquiry') || t.includes('investigate')) return Compass
+    if (t.includes('competency')) return CheckCircle
+    if (t.includes('experiential') || t.includes('active')) return Sparkles
+    if (t.includes('skill')) return Wrench
+    if (t.includes('computational') || t.includes('coding')) return Code
+    if (t.includes('project') || t.includes('pbl')) return Briefcase
+    if (t.includes('problem')) return Lightbulb
+    if (t.includes('flipped')) return Video
+    if (t.includes('experiment')) return FlaskConical
+    if (t.includes('case')) return FileText
+    if (t.includes('peer') || t.includes('collaborative')) return Users
+    if (t.includes('vocational')) return Wrench
+    return CheckCircle
+  }
+
   return (
     <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden">
       
+      {/* Premium custom animations injector */}
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes scaleIn {
+          from { transform: scale(0.95); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.25s ease-out forwards;
+        }
+        .animate-scaleIn {
+          animation: scaleIn 0.25s ease-out forwards;
+        }
+      `}</style>
+
       {/* Background ambient glows */}
       <div className="absolute top-20 right-1/4 w-[400px] h-[400px] ambient-glow-2 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-20 left-1/4 w-[450px] h-[450px] ambient-glow-1 rounded-full blur-3xl pointer-events-none"></div>
@@ -128,14 +496,14 @@ export default function Pedagogy() {
         </div>
 
         {/* Active Stage Details Panel */}
-        <div className="bg-white rounded-3xl p-6 sm:p-12 shadow-md border border-brand-masterDeep/5 max-w-6xl mx-auto min-h-[450px] transition-all duration-500 hover:shadow-lg relative overflow-hidden group">
+        <div className="bg-white rounded-3xl p-6 sm:p-12 shadow-md border border-brand-masterDeep/5 max-w-6xl mx-auto transition-all duration-500 hover:shadow-lg relative overflow-hidden group">
           <div className="absolute top-0 right-0 w-32 h-32 bg-brand-gold/5 rounded-bl-full pointer-events-none transition-transform duration-700 group-hover:scale-110"></div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="space-y-12">
             
-            {/* Left Content column */}
-            <div className="lg:col-span-7 space-y-6 sm:space-y-8">
-              <div className="space-y-4">
+            {/* Overview / Introduction */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              <div className="lg:col-span-8 space-y-4">
                 <div className="inline-flex items-center gap-2 bg-brand-greenDeep/5 text-brand-greenDeep px-3 py-1.5 rounded-full text-xs font-bold font-sans">
                   <ActiveIcon className="w-4 h-4 text-brand-gold" />
                   <span>Pathway Stage</span>
@@ -150,45 +518,259 @@ export default function Pedagogy() {
                 </p>
               </div>
 
-              <div className="space-y-4">
-                <h4 className="text-xs uppercase tracking-widest font-extrabold text-brand-gold">Academic Core Focus</h4>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                  {activeStage.focuses.map((focus, index) => (
-                    <li key={index} className="flex items-start gap-2.5 text-xs sm:text-sm text-brand-charcoal font-semibold">
-                      <CheckCircle className="w-4 h-4 text-brand-gold shrink-0 mt-0.5" />
-                      <span>{focus}</span>
-                    </li>
+              {/* Admissions Open CTA */}
+              <div className="lg:col-span-4 bg-brand-bg/40 p-6 rounded-2xl border border-brand-masterDeep/5 space-y-4">
+                <GraduationCap className="w-8 h-8 text-brand-gold" />
+                <h3 className="font-serif text-lg font-bold text-brand-masterDeep">Admissions Open</h3>
+                <p className="text-xs text-brand-muted font-sans leading-relaxed">
+                  Learn how our developmental pedagogy prepares children for an evolving world. Connect with our admissions desk today.
+                </p>
+                <div className="pt-2 flex items-center">
+                  <Link 
+                    to="/school/dlf-sahibabad/admissions" 
+                    className="inline-flex items-center gap-1.5 text-brand-greenDeep hover:text-brand-greenVibrant font-bold text-xs uppercase tracking-wider transition-colors"
+                  >
+                    Apply Online <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Pedagogical Approaches Grid */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-2">
+                <span className="h-px bg-brand-gold w-8"></span>
+                <h3 className="text-sm uppercase tracking-widest font-extrabold text-brand-gold">Pedagogical Approaches</h3>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {activeStage.approaches.map((approach, index) => {
+                  const IconComponent = getApproachIcon(approach.title)
+                  return (
+                    <div 
+                      key={index}
+                      className="bg-brand-bg/25 border border-brand-masterDeep/5 p-6 rounded-2xl transition-all duration-300 hover:bg-white hover:shadow-md hover:border-brand-greenDeep/10 flex flex-col justify-between group/card"
+                    >
+                      <div className="space-y-3">
+                        <div className="w-10 h-10 rounded-xl bg-brand-greenDeep/5 flex items-center justify-center text-brand-greenDeep group-hover/card:bg-brand-greenDeep group-hover/card:text-white transition-all duration-300">
+                          <IconComponent className="w-5 h-5 transition-transform duration-300 group-hover/card:scale-110" />
+                        </div>
+                        <h4 className="font-serif text-base font-bold text-brand-masterDeep">{approach.title}</h4>
+                        <p className="text-xs text-brand-muted leading-relaxed font-sans">{approach.desc}</p>
+                      </div>
+
+                      {/* Matched picture inside the card if present */}
+                      {approach.img && (
+                        <div 
+                          onClick={() => setLightboxMedia({ type: 'image', src: approach.img, title: approach.title, caption: approach.caption })}
+                          className="mt-4 rounded-xl overflow-hidden aspect-video border border-brand-masterDeep/5 cursor-pointer relative group/img bg-black"
+                        >
+                          <ImageWithLoader 
+                            src={approach.img} 
+                            alt={approach.title} 
+                            imgClassName="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105" 
+                            loading="lazy" 
+                          />
+                          <div className="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <ZoomIn className="w-6 h-6 text-white drop-shadow-md" />
+                          </div>
+                        </div>
+                      )}
+
+                      {approach.caption && (
+                        <p className="text-[10px] italic text-brand-gold mt-2.5 font-sans leading-normal">
+                          {approach.caption}
+                        </p>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Video Showcase */}
+            {activeStage.media.videos && activeStage.media.videos.length > 0 && (
+              <div className="space-y-6 pt-6 border-t border-brand-masterDeep/5">
+                <div className="flex items-center gap-2">
+                  <span className="h-px bg-brand-gold w-8"></span>
+                  <h3 className="text-sm uppercase tracking-widest font-extrabold text-brand-gold">Video Showcases</h3>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {activeStage.media.videos.map((video, index) => (
+                    <div 
+                      key={index}
+                      onClick={() => setLightboxMedia({ type: 'video', src: video.src, title: video.title })}
+                      className="bg-brand-bg/25 border border-brand-masterDeep/5 p-4 rounded-2xl flex flex-col space-y-3 cursor-pointer group/vid"
+                    >
+                      <div className="rounded-xl overflow-hidden aspect-video bg-black relative border border-brand-masterDeep/10">
+                        <video 
+                          src={video.src} 
+                          preload="metadata"
+                          className="w-full h-full object-cover pointer-events-none transition-transform duration-500 group-hover/vid:scale-103"
+                        />
+                        {/* Play overlay */}
+                        <div className="absolute inset-0 bg-black/35 flex items-center justify-center transition-all duration-300 group-hover/vid:bg-black/50">
+                          <div className="w-12 h-12 rounded-full bg-white/90 text-brand-greenDeep flex items-center justify-center shadow-md transform transition-transform duration-300 group-hover/vid:scale-110">
+                            <Play className="w-5 h-5 fill-current translate-x-0.5" />
+                          </div>
+                        </div>
+                      </div>
+                      <h4 className="font-serif text-sm font-bold text-brand-masterDeep px-1 group-hover/vid:text-brand-greenDeep transition-colors">{video.title}</h4>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
+            )}
 
-              <div className="pt-4 border-t border-brand-masterDeep/5 flex flex-wrap gap-4 items-center">
-                <span className="text-xs text-brand-muted font-sans font-semibold">Interested in admissions?</span>
-                <Link 
-                  to="/school/dlf-sahibabad/admissions" 
-                  className="inline-flex items-center gap-1.5 text-brand-greenDeep hover:text-brand-greenVibrant font-bold text-xs uppercase tracking-wider transition-colors"
-                >
-                  Apply Online <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
+            {/* Exemplars / Structural Frameworks */}
+            {activeStage.media.exemplars && activeStage.media.exemplars.length > 0 && (
+              <div className="space-y-6 pt-6 border-t border-brand-masterDeep/5">
+                <div className="flex items-center gap-2">
+                  <span className="h-px bg-brand-gold w-8"></span>
+                  <h3 className="text-sm uppercase tracking-widest font-extrabold text-brand-gold">Exemplars & Frameworks</h3>
+                </div>
 
-            {/* Right Media column */}
-            <div className="lg:col-span-5 relative">
-              <div className="rounded-2xl overflow-hidden aspect-video lg:aspect-[4/3] shadow-md border-4 border-brand-greenDeep relative group/img bg-brand-bg">
-                <ImageWithLoader 
-                  src={activeStage.img} 
-                  alt={activeStage.title} 
-                  imgClassName="w-full h-full object-cover transition-transform duration-750 group-hover/img:scale-103" 
-                  loading="lazy" 
-                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {activeStage.media.exemplars.map((examplar, index) => (
+                    <div 
+                      key={index}
+                      className="bg-brand-bg/25 border border-brand-masterDeep/5 p-4 rounded-2xl flex flex-col space-y-3 group/ex"
+                    >
+                      <div 
+                        onClick={() => setLightboxMedia({ type: 'image', src: examplar.src, title: examplar.title })}
+                        className="rounded-xl overflow-hidden aspect-video bg-white relative border border-brand-masterDeep/10 cursor-pointer overflow-hidden"
+                      >
+                        <img 
+                          src={examplar.src} 
+                          alt={examplar.title} 
+                          className="w-full h-full object-contain p-2 transition-transform duration-500 group-hover/ex:scale-103"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover/ex:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                          <div className="bg-brand-greenDeep/90 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1">
+                            <ZoomIn className="w-3.5 h-3.5" /> Click to Expand
+                          </div>
+                        </div>
+                      </div>
+                      <h4 className="font-serif text-sm font-bold text-brand-masterDeep px-1">{examplar.title}</h4>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
+
+            {/* Photo Gallery */}
+            {activeStage.media.images && activeStage.media.images.length > 0 && (
+              <div className="space-y-6 pt-6 border-t border-brand-masterDeep/5">
+                <div className="flex items-center gap-2">
+                  <span className="h-px bg-brand-gold w-8"></span>
+                  <h3 className="text-sm uppercase tracking-widest font-extrabold text-brand-gold">Stage Media Gallery</h3>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {activeStage.media.images.map((imgSrc, index) => (
+                    <div 
+                      key={index}
+                      onClick={() => setLightboxMedia({ type: 'image', src: imgSrc, title: `${activeStage.title} - Learning Moments` })}
+                      className="rounded-2xl overflow-hidden aspect-video border border-brand-masterDeep/5 cursor-pointer relative group/gal bg-brand-bg"
+                    >
+                      <ImageWithLoader 
+                        src={imgSrc} 
+                        alt={`${activeStage.title} Gallery ${index}`} 
+                        imgClassName="w-full h-full object-cover transition-transform duration-500 group-hover/gal:scale-105" 
+                        loading="lazy" 
+                      />
+                      <div className="absolute inset-0 bg-black/30 opacity-0 group-hover/gal:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <ZoomIn className="w-5 h-5 text-white drop-shadow-md" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* How We Assess Learning Section */}
+            {activeStage.assessment && (
+              <div className="bg-brand-greenDeep/[0.02] border-2 border-brand-gold/10 rounded-2xl p-6 sm:p-8 space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-brand-gold/10 flex items-center justify-center text-brand-gold">
+                    <Award className="w-4 h-4" />
+                  </div>
+                  <h3 className="font-serif text-lg sm:text-xl font-bold text-brand-masterDeep">How We Assess Learning</h3>
+                </div>
+
+                <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-sans">
+                  {activeStage.assessment.text}
+                </p>
+
+                {activeStage.assessment.list && (
+                  <div className="pt-2">
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                      {activeStage.assessment.list.map((item, index) => (
+                        <li key={index} className="flex items-center gap-2 text-xs text-brand-charcoal font-semibold">
+                          <CheckCircle className="w-3.5 h-3.5 text-brand-gold shrink-0" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
 
           </div>
         </div>
 
       </div>
+
+      {/* Lightbox Modal */}
+      {lightboxMedia && (
+        <div 
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md transition-opacity duration-300 animate-fadeIn"
+          onClick={() => setLightboxMedia(null)}
+        >
+          {/* Close button */}
+          <button 
+            onClick={() => setLightboxMedia(null)}
+            className="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-2 rounded-full transition-all duration-300 cursor-pointer border-none outline-none"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          {/* Lightbox content wrapper */}
+          <div 
+            className="relative max-w-5xl max-h-[85vh] flex flex-col items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {lightboxMedia.type === 'image' ? (
+              <img 
+                src={lightboxMedia.src} 
+                alt={lightboxMedia.title || "Lightbox Media"} 
+                className="max-h-[75vh] max-w-full object-contain rounded-lg shadow-2xl border border-white/10 animate-scaleIn"
+              />
+            ) : (
+              <video 
+                src={lightboxMedia.src} 
+                controls 
+                autoPlay
+                className="max-h-[75vh] max-w-full rounded-lg shadow-2xl border border-white/10 animate-scaleIn"
+              />
+            )}
+
+            {/* Media Info overlay */}
+            <div className="text-center mt-4 space-y-1 px-4 max-w-2xl">
+              {lightboxMedia.title && (
+                <h4 className="text-white text-base font-bold font-serif">{lightboxMedia.title}</h4>
+              )}
+              {lightboxMedia.caption && (
+                <p className="text-brand-gold text-xs italic font-sans">{lightboxMedia.caption}</p>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   )
 }

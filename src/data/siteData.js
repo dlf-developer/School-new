@@ -30,8 +30,8 @@ export const schoolsData = {
       cardBg: '#1b3518'
     },
     hero: {
-      image: 'https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&q=80&w=1920',
-      legacy: '28+ Years of Educational Legacy',
+      image: '/images/home-hero.jpg',
+      legacy: '30 Years of Educational Excellence',
       titleLine1: 'Sculpting',
       italicWord1: 'Minds',
       titleLine2: 'Empowering',
@@ -47,8 +47,12 @@ export const schoolsData = {
     campus: {
       description: 'Our Sahibabad campus features state-of-the-art laboratories, a lush green zero-waste environment, modern classrooms, and high-performance athletic arenas.',
       images: [
-        'https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=1000'
+        '/images/home-hero.jpg',
+        '/images/home-assembly.jpg',
+        '/images/home-stem.jpg',
+        '/images/home-classroom.jpg',
+        '/images/home-arts.jpg',
+        '/images/home-welcome.jpg'
       ]
     },
     admissions: {
