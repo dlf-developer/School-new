@@ -51,7 +51,7 @@ export default function Vision() {
             <div className="absolute inset-0 bg-brand-greenDeep/10 z-10"></div>
           </div>
           {/* Offset Quote Card */}
-          <div className="relative sm:absolute bottom-[-2rem] right-0 sm:right-[-1.5rem] w-full sm:w-[85%] bg-brand-purpleDeep rounded-2xl overflow-hidden shadow-lg border border-white p-5 mt-4 sm:mt-0">
+          <div className="relative sm:absolute bottom-[-2rem] right-0 sm:right-[-1.5rem] w-full sm:w-[85%] bg-brand-greenDeep rounded-2xl overflow-hidden shadow-lg border border-white p-5 mt-4 sm:mt-0">
             <Quote className="w-8 h-8 text-white/20" />
             <p className="text-white text-xs sm:text-sm font-serif italic mt-2">"We teach children how to think, not what to think."</p>
             <p className="text-brand-gold text-[9px] uppercase font-bold tracking-widest mt-2">&mdash; Dr. Seema Jerath, Principal</p>
@@ -60,9 +60,9 @@ export default function Vision() {
 
         {/* Right Editorial Storyboard Column */}
         <div ref={visionContentRef} id="vision-content" className="lg:col-span-7 space-y-5 sm:space-y-6 mt-6 lg:mt-0">
-          <span className="text-xs uppercase tracking-widest font-bold text-brand-purpleVibrant">Visionary Leadership</span>
+          <span className="text-xs uppercase tracking-widest font-bold text-brand-gold">Visionary Leadership</span>
           <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-brand-greenDeep leading-tight">
-            Shaping a <span className="italic text-brand-purpleDeep font-normal">Generous Heart</span> with an Outstanding Mind.
+            Shaping a <span className="italic text-brand-gold font-normal">Generous Heart</span> with an Outstanding Mind.
           </h3>
           <div className="w-12 h-[2px] bg-brand-gold"></div>
           <p className="font-inter text-brand-muted text-sm sm:text-base leading-relaxed">

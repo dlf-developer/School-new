@@ -73,7 +73,7 @@ export default function Admissions() {
             {/* Step 2 */}
             <div className="flex gap-4 sm:gap-6 relative">
               <div className="absolute top-10 left-5 bottom-[-2rem] w-[2px] bg-brand-greenDeep/10"></div>
-              <div className="w-9 h-9 sm:w-10 sm:h-10 bg-brand-purpleDeep text-white rounded-full flex items-center justify-center font-bold font-serif shadow-md shrink-0 text-sm">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 bg-brand-greenVibrant text-white rounded-full flex items-center justify-center font-bold font-serif shadow-md shrink-0 text-sm">
                 2
               </div>
               <div>
@@ -166,7 +166,7 @@ export default function Admissions() {
             <p className="text-xs sm:text-sm text-brand-muted max-w-sm font-inter">
               Thank you for your enquiry. Our Admissions team will reach out to you within the next 24 working hours to guide your journey.
             </p>
-            <button onClick={resetInquiryForm} className="text-xs font-bold text-brand-purpleDeep uppercase tracking-wider hover:underline">
+            <button onClick={resetInquiryForm} className="text-xs font-bold text-brand-greenDeep uppercase tracking-wider hover:underline">
               Submit another form
             </button>
           </div>

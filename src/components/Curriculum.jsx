@@ -112,7 +112,7 @@ export default function Curriculum() {
             className={`tab-pane grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${activeTab === 'middle' ? 'active' : 'hidden'}`}
           >
             <div className="space-y-4 sm:space-y-6">
-              <div className="inline-flex items-center gap-1.5 bg-brand-purpleDeep/5 text-brand-purpleDeep px-3 py-1 rounded-full text-xs font-bold">
+              <div className="inline-flex items-center gap-1.5 bg-brand-gold/5 text-brand-gold px-3 py-1 rounded-full text-xs font-bold">
                 <Compass className="w-3.5 h-3.5" /> Discovery & Scientific Temper
               </div>
               <h4 className="font-serif text-2xl sm:text-3xl font-bold text-brand-greenDeep">Building Strong Cognitive Pathways</h4>

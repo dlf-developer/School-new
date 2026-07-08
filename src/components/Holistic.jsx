@@ -7,7 +7,7 @@ export default function Holistic() {
     <section id="holistic" className="py-16 sm:py-24 bg-transparent relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-12">
         <div className="text-center max-w-2xl mx-auto space-y-3 sm:space-y-4 mb-10 sm:mb-16">
-          <span className="text-xs uppercase tracking-widest font-bold text-brand-purpleDeep">Expression & Athleticism</span>
+          <span className="text-xs uppercase tracking-widest font-bold text-brand-gold">Expression & Athleticism</span>
           <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-brand-greenDeep">Holistic Living & Sports</h3>
           <div className="w-12 h-[2px] bg-brand-gold mx-auto"></div>
           <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter">
@@ -31,7 +31,7 @@ export default function Holistic() {
           <div className="lg:col-span-5 space-y-3 sm:space-y-4">
             {/* Item 1: Performing Arts */}
             <div className="flex gap-4 p-4 rounded-2xl hover:bg-brand-bg border border-transparent hover:border-brand-greenDeep/5 transition-all duration-300">
-              <div className="w-10 h-10 bg-brand-purpleDeep/10 rounded-xl flex items-center justify-center shrink-0 text-brand-purpleDeep">
+              <div className="w-10 h-10 bg-brand-gold/10 rounded-xl flex items-center justify-center shrink-0 text-brand-gold">
                 <Music className="w-5 h-5" />
               </div>
               <div>

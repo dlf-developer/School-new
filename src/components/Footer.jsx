@@ -15,8 +15,8 @@ export default function Footer() {
 
   // Define dynamic theme configurations based on the selected school
   const theme = currentSchool ? currentSchool.theme : {
-    primary: 'brand-masterDeep',
-    vibrant: 'brand-masterVibrant',
+    primary: 'brand-greenDeep',
+    vibrant: 'brand-greenVibrant',
     accent: 'brand-gold',
     accentHex: '#C59B27'
   }
@@ -83,7 +83,7 @@ export default function Footer() {
             <li><Link to="/careers" className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; Careers at DLF</Link></li>
             <li><Link to="/alumni" className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; Alumni Network</Link></li>
             <li><Link to="/sports-arena" className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; Sports Arena</Link></li>
-            <li><Link to="/contact" className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; Contact Corporate</Link></li>
+            <li><Link to={schoolId ? `/school/${schoolId}/contact` : "/contact"} className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; {schoolId ? "Contact School" : "Contact Corporate"}</Link></li>
           </ul>
         </div>
 

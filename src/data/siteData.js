@@ -161,9 +161,9 @@ export const globalData = {
   stats: {
     counters: [
       { id: 'stat-1', target: 28,   suffix: '+',  label: 'Years of History',    color: 'brand-greenDeep' },
-      { id: 'stat-2', target: 3200, suffix: '+',  label: 'Active Learners',     color: 'brand-purpleDeep' },
+      { id: 'stat-2', target: 3200, suffix: '+',  label: 'Active Learners',     color: 'brand-gold' },
       { id: 'stat-3', target: 15,   suffix: ':1', label: 'Teacher Ratio',       color: 'brand-greenDeep' },
-      { id: 'stat-4', target: 100,  suffix: '%',  label: 'First Class Results', color: 'brand-purpleDeep' }
+      { id: 'stat-4', target: 100,  suffix: '%',  label: 'First Class Results', color: 'brand-gold' }
     ]
   },
 
@@ -185,7 +185,7 @@ export const globalData = {
         icon: 'Users',
         title: 'Social Duty (SSR)',
         desc: 'At DLF, social duty is integrated into school reports. Every student works directly in local Sahibabad community projects.',
-        iconTheme: 'purple'
+        iconTheme: 'green'
       },
       {
         id: 'pillar-3',
@@ -222,7 +222,7 @@ export const globalData = {
         id: 'middle',
         label: 'Middle School (Grades VI-VIII)',
         badge: 'Discovery & Scientific Temper',
-        badgeColor: 'brand-purpleDeep',
+        badgeColor: 'brand-gold',
         title: 'Building Strong Cognitive Pathways',
         desc: 'Middle school is a period of intellectual exploration. Students transition to structured laboratory experimentation, deeper literary analytical reading, civic values integration, and foundational coding skills.',
         highlights: [
@@ -279,7 +279,7 @@ export const globalData = {
       {
         id: 'hol-1',
         icon: 'Music',
-        iconTheme: 'purple',
+        iconTheme: 'gold',
         title: 'Performing Arts Academy',
         desc: 'Vocal and instrumental learning models alongside Indian classical and Western dance curricula.'
       },
@@ -316,7 +316,7 @@ export const globalData = {
         id: 2,
         title: 'Interaction & Orientation',
         desc: 'Visit our premium campus with parents to interact with mentors and explore our learning methodologies.',
-        color: 'brand-purpleDeep'
+        color: 'brand-greenVibrant'
       },
       {
         id: 3,
@@ -346,7 +346,7 @@ export const globalData = {
         name: 'Kavita Verma',
         role: 'Alumni, Batch of 2023',
         initials: 'KV',
-        color: 'brand-purpleDeep'
+        color: 'brand-greenDeep'
       },
       {
         id: 'test-3',
@@ -395,7 +395,7 @@ export const globalData = {
           'Champion of value-based learning and future-readiness, shaping a culture where academic excellence and character go hand-in-hand.'
         ],
         icon: 'Shield',
-        color: 'bg-purple-500/5 border-purple-500/10 text-purple-700'
+        color: 'bg-amber-500/5 border-amber-500/10 text-amber-700'
       },
       {
         id: 'mgmt-3',
@@ -455,8 +455,8 @@ export const globalData = {
         title: 'Skill Building School',
         desc: 'We\'re a Skill-Building School where learning is not confined to textbooks—it is translated into capability, creativity, and confidence. From building prototypes and creating advertisements to developing entrepreneurial ventures and exploring emerging technologies, students learn to apply knowledge with purpose and impact. In the process, they develop future-ready skills such as critical thinking, design thinking, creativity, collaboration, communication, digital fluency, adaptability, leadership, and an entrepreneurial mindset.',
         icon: 'GraduationCap',
-        color: 'from-purple-500/10 to-fuchsia-500/10',
-        iconColor: 'text-purple-600',
+        color: 'from-green-500/10 to-emerald-500/10',
+        iconColor: 'text-green-700',
         image: '/7C1A2131.jpg',
         imageAlt: 'Creative Expression & Artistry'
       },

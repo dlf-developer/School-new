@@ -48,8 +48,8 @@ export default function Pillars() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {(cards || []).map((card) => {
             const Icon = ICON_MAP[card.icon] || Leaf
-            const iconColorClass = card.iconTheme === 'purple'
-              ? 'bg-brand-purpleDeep/20 text-brand-purpleVibrant'
+            const iconColorClass = card.iconTheme === 'green'
+              ? 'bg-brand-greenDeep/20 text-brand-greenVibrant'
               : `bg-${theme.accent}/15 text-${theme.accent}`
 
             return (

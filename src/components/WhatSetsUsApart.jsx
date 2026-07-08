@@ -10,7 +10,7 @@ export default function WhatSetsUsApart({ isPreview = false }) {
   const statistics = [
     { value: '1 Ton+', label: 'Plastic Waste Diverted', desc: 'Diverted from Ghazipur landfills in just 229 days.', color: 'border-brand-greenDeep/10 text-brand-greenDeep' },
     { value: '$5,000', label: 'Top Global Startup Prize', desc: 'UK School Enterprise Challenge winner two years in a row.', color: 'border-brand-gold/10 text-brand-gold' },
-    { value: '25+', label: 'Countries in Exchanges', desc: '16+ years of international cross-cultural exchange programs.', color: 'border-brand-purpleDeep/10 text-brand-purpleDeep' },
+    { value: '25+', label: 'Countries in Exchanges', desc: '16+ years of international cross-cultural exchange programs.', color: 'border-brand-gold/10 text-brand-gold' },
     { value: '200+', label: 'Daily Nutritious Meals', desc: 'Distributed with dignity via the Happy Fridge since 2019.', color: 'border-rose-500/10 text-rose-600' }
   ]
 
@@ -235,8 +235,8 @@ export default function WhatSetsUsApart({ isPreview = false }) {
           {!isPreview && (
             <div id="global-exchange" className="scroll-mt-32 bg-white rounded-3xl border border-brand-masterDeep/5 p-8 sm:p-10 shadow-sm hover:shadow-md transition-all duration-300 space-y-10">
               {/* Inner Header */}
-              <div className="border-l-4 border-brand-purpleDeep pl-6 space-y-3">
-                <span className="text-xs font-bold text-brand-purpleDeep uppercase tracking-widest flex items-center gap-1.5">
+              <div className="border-l-4 border-brand-gold pl-6 space-y-3">
+                <span className="text-xs font-bold text-brand-gold uppercase tracking-widest flex items-center gap-1.5">
                   <Globe className="w-4 h-4" /> Global Connections
                 </span>
                 <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-masterDeep">Global Cross-Cultural Exchange</h2>
@@ -264,8 +264,8 @@ export default function WhatSetsUsApart({ isPreview = false }) {
                     </div>
                   </div>
 
-                  <div className="bg-brand-purpleDeep/5 border border-brand-purpleDeep/10 rounded-2xl p-5 text-xs text-brand-purpleDeep font-semibold flex gap-3 items-center shadow-sm">
-                    <CheckCircle2 className="w-5 h-5 text-brand-purpleVibrant shrink-0" />
+                  <div className="bg-brand-gold/5 border border-brand-gold/10 rounded-2xl p-5 text-xs text-brand-greenDeep font-semibold flex gap-3 items-center shadow-sm">
+                    <CheckCircle2 className="w-5 h-5 text-brand-greenVibrant shrink-0" />
                     <p>
                       Russian Wheel of Friendship: Welcomed student and teacher delegations from Cheboksary, Russia, continuing our collaborations.
                     </p>
@@ -287,7 +287,7 @@ export default function WhatSetsUsApart({ isPreview = false }) {
                   {/* Sub-profiles of Scholars (styled in brand-bg against white card parent) */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                     {/* Brazil Scholar */}
-                    <div className="bg-brand-bg/50 border border-brand-masterDeep/5 rounded-2xl p-4 space-y-3.5 hover:border-brand-purpleDeep/20 shadow-sm transition-colors duration-300">
+                    <div className="bg-brand-bg/50 border border-brand-masterDeep/5 rounded-2xl p-4 space-y-3.5 hover:border-brand-gold/20 shadow-sm transition-colors duration-300">
                       <div className="flex gap-2.5">
                         <div className="w-14 h-14 rounded-xl overflow-hidden border border-brand-masterDeep/5 shrink-0 bg-white">
                           <img 
@@ -299,7 +299,7 @@ export default function WhatSetsUsApart({ isPreview = false }) {
                         </div>
                         <div>
                           <h4 className="text-xs font-bold text-brand-masterDeep uppercase tracking-wider">Anwesha Sharma</h4>
-                          <span className="text-[9px] text-brand-purpleDeep uppercase tracking-wider font-semibold">Brazil Exchange (Grade XII)</span>
+                          <span className="text-[9px] text-brand-gold uppercase tracking-wider font-semibold">Brazil Exchange (Grade XII)</span>
                         </div>
                       </div>
                       <div className="aspect-[1.8/1] overflow-hidden rounded-xl border border-brand-masterDeep/5 relative group shadow-sm">
@@ -316,7 +316,7 @@ export default function WhatSetsUsApart({ isPreview = false }) {
                     </div>
 
                     {/* Germany Scholar */}
-                    <div className="bg-brand-bg/50 border border-brand-masterDeep/5 rounded-2xl p-4 space-y-3.5 hover:border-brand-purpleDeep/20 shadow-sm transition-colors duration-300">
+                    <div className="bg-brand-bg/50 border border-brand-masterDeep/5 rounded-2xl p-4 space-y-3.5 hover:border-brand-gold/20 shadow-sm transition-colors duration-300">
                       <div className="flex gap-2.5">
                         <div className="w-14 h-14 rounded-xl overflow-hidden border border-brand-masterDeep/5 shrink-0 bg-white">
                           <img 
@@ -328,7 +328,7 @@ export default function WhatSetsUsApart({ isPreview = false }) {
                         </div>
                         <div>
                           <h4 className="text-xs font-bold text-brand-masterDeep uppercase tracking-wider">Kritika Shukla</h4>
-                          <span className="text-[9px] text-brand-purpleDeep uppercase tracking-wider font-semibold">Germany Exchange (Grade XI)</span>
+                          <span className="text-[9px] text-brand-gold uppercase tracking-wider font-semibold">Germany Exchange (Grade XI)</span>
                         </div>
                       </div>
                       <div className="aspect-[1.8/1] overflow-hidden rounded-xl border border-brand-masterDeep/5 relative group shadow-sm">

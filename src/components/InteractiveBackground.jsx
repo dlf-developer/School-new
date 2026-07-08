@@ -116,8 +116,8 @@ export default function InteractiveBackground() {
         x: width * 0.8,
         y: height * 0.6,
         radius: Math.min(width, height) * 0.45,
-        baseColor: { r: 94, g: 44, b: 132 }, // Deep Purple
-        colorStr: 'rgba(94, 44, 132, 0.14)',
+        baseColor: { r: 197, g: 155, b: 39 }, // Brand Gold (second blob)
+        colorStr: 'rgba(197, 155, 39, 0.10)',
         speedX: 0.0003,
         speedY: 0.0004,
         phiX: Math.PI / 2,
@@ -169,7 +169,7 @@ export default function InteractiveBackground() {
       if (activeId === 'dlf-sahibabad') {
         colors = [...goldColors, ...greenColors]
       } else if (activeId === 'dlf-greater-noida') {
-        colors = [...goldColors, ...purpleColors]
+        colors = [...goldColors, ...greenColors]
       }
 
       for (let i = 0; i < count; i++) {
@@ -192,12 +192,12 @@ export default function InteractiveBackground() {
     const dynamicState = {
       // Target opacities for blobs based on active school branch
       greenBlobTargetOpacity: 0.16,
-      purpleBlobTargetOpacity: 0.14,
+      goldBlob2TargetOpacity: 0.10,
       goldBlobTargetOpacity: 0.14,
       
       // Interpolated values
       greenBlobOpacity: 0.16,
-      purpleBlobOpacity: 0.14,
+      goldBlob2Opacity: 0.10,
       goldBlobOpacity: 0.14,
 
       // Grid line base color configuration
@@ -211,12 +211,12 @@ export default function InteractiveBackground() {
 
       // 1. Dynamic Theme Shifting Calculations
       let colorGreen = '43, 81, 38'
-      let colorPurple = '94, 44, 132'
+      let colorGold2 = '197, 155, 39'
 
       // Set targets depending on which school is active
       if (activeId === 'dlf-sahibabad') {
         dynamicState.greenBlobTargetOpacity = 0.22 // Boost Green
-        dynamicState.purpleBlobTargetOpacity = 0.04 // Dim Purple
+        dynamicState.goldBlob2TargetOpacity = 0.06 // Dim Gold2
         dynamicState.goldBlobTargetOpacity = 0.16   // Keep Gold active
         
         // Lerp grid line color to green
@@ -224,39 +224,38 @@ export default function InteractiveBackground() {
         dynamicState.lineColor.g = lerpVal(dynamicState.lineColor.g, 81, 0.05)
         dynamicState.lineColor.b = lerpVal(dynamicState.lineColor.b, 38, 0.05)
       } else if (activeId === 'dlf-greater-noida') {
-        dynamicState.greenBlobTargetOpacity = 0.04 // Dim Green
-        dynamicState.purpleBlobTargetOpacity = 0.22 // Boost Purple
+        dynamicState.greenBlobTargetOpacity = 0.12 // Moderate Green
+        dynamicState.goldBlob2TargetOpacity = 0.18 // Boost Gold2
         dynamicState.goldBlobTargetOpacity = 0.16   // Keep Gold active
         
-        // Lerp grid line color to purple
-        dynamicState.lineColor.r = lerpVal(dynamicState.lineColor.r, 70, 0.05)
-        dynamicState.lineColor.g = lerpVal(dynamicState.lineColor.g, 54, 0.05)
-        dynamicState.lineColor.b = lerpVal(dynamicState.lineColor.b, 118, 0.05)
+        // Lerp grid line color to gold
+        dynamicState.lineColor.r = lerpVal(dynamicState.lineColor.r, 197, 0.05)
+        dynamicState.lineColor.g = lerpVal(dynamicState.lineColor.g, 155, 0.05)
+        dynamicState.lineColor.b = lerpVal(dynamicState.lineColor.b, 39, 0.05)
       } else {
-        // Portal level / common pages: Slate Navy & Steel Blue theme
-        dynamicState.greenBlobTargetOpacity = 0.18 // Boost Slate Navy
-        dynamicState.purpleBlobTargetOpacity = 0.14 // Steel Blue
+        // Portal level / common pages: Green & Gold master theme
+        dynamicState.greenBlobTargetOpacity = 0.18 // Boost Green
+        dynamicState.goldBlob2TargetOpacity = 0.14 // Active Gold2
         dynamicState.goldBlobTargetOpacity = 0.12   // Keep Gold active
         
-        // On master page, let's change green blob to Slate Navy (15, 23, 42)
-        // and purple blob to Steel Blue (30, 41, 59)
-        colorGreen = '15, 23, 42'
-        colorPurple = '30, 41, 59'
+        // On master page: deep green grid lines
+        colorGreen = '43, 81, 38'
+        colorGold2 = '197, 155, 39'
 
-        // Lerp grid line color to soft Slate Navy
-        dynamicState.lineColor.r = lerpVal(dynamicState.lineColor.r, 15, 0.05)
-        dynamicState.lineColor.g = lerpVal(dynamicState.lineColor.g, 23, 0.05)
-        dynamicState.lineColor.b = lerpVal(dynamicState.lineColor.b, 42, 0.05)
+        // Lerp grid line color to soft green
+        dynamicState.lineColor.r = lerpVal(dynamicState.lineColor.r, 43, 0.05)
+        dynamicState.lineColor.g = lerpVal(dynamicState.lineColor.g, 81, 0.05)
+        dynamicState.lineColor.b = lerpVal(dynamicState.lineColor.b, 38, 0.05)
       }
 
       // Smoothly lerp the actual opacity values
       dynamicState.greenBlobOpacity = lerpVal(dynamicState.greenBlobOpacity, dynamicState.greenBlobTargetOpacity, 0.03)
-      dynamicState.purpleBlobOpacity = lerpVal(dynamicState.purpleBlobOpacity, dynamicState.purpleBlobTargetOpacity, 0.03)
+      dynamicState.goldBlob2Opacity = lerpVal(dynamicState.goldBlob2Opacity, dynamicState.goldBlob2TargetOpacity, 0.03)
       dynamicState.goldBlobOpacity = lerpVal(dynamicState.goldBlobOpacity, dynamicState.goldBlobTargetOpacity, 0.03)
 
       // Apply dynamic colors to blobs object
       blobs[0].colorStr = `rgba(${colorGreen}, ${dynamicState.greenBlobOpacity})`
-      blobs[1].colorStr = `rgba(${colorPurple}, ${dynamicState.purpleBlobOpacity})`
+      blobs[1].colorStr = `rgba(${colorGold2}, ${dynamicState.goldBlob2Opacity})`
       blobs[2].colorStr = `rgba(197, 155, 39, ${dynamicState.goldBlobOpacity})`
 
       // 2. Update Scroll & Mouse
