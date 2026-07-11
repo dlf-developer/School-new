@@ -1,11 +1,14 @@
-import React from 'react'
-import { Eye, Target, Sparkles, Download } from 'lucide-react'
+import React, { useState } from 'react'
+import { Eye, Target, Sparkles, Download, ChevronDown, ChevronUp } from 'lucide-react'
 import ImageWithLoader from './ImageWithLoader'
 import { useSiteData } from '../hooks/useSiteData'
 
 export default function VisionMission() {
   const { global } = useSiteData()
   const vm = global.visionMission || {}
+
+  const [expandedVision, setExpandedVision] = useState(false)
+  const [expandedMission, setExpandedMission] = useState(false)
 
   return (
     <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden">
@@ -44,59 +47,98 @@ export default function VisionMission() {
           </div>
         )}
 
-        {/* Vision & Mission Side-by-Side Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto items-stretch">
+        {/* Redesigned Vision & Mission Stacked Cards (formatted similarly to Thinking School) */}
+        <div className="grid grid-cols-1 gap-8 max-w-5xl mx-auto">
           
           {/* Vision Card */}
-          <div className="bg-gradient-to-br from-brand-masterDeep to-brand-masterVibrant text-white p-8 sm:p-12 rounded-3xl border border-white/10 shadow-xl flex flex-col justify-between relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-brand-gold/5 rounded-full blur-3xl"></div>
-            
-            <div className="space-y-6">
-              <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-brand-gold">
-                <Eye className="w-7 h-7" />
-              </div>
-              <h2 className="font-serif text-3xl font-bold">{vm.vision?.title || "Our Vision"}</h2>
-              {vm.vision?.quote && (
-                <p className="font-serif text-xl sm:text-2xl text-gray-100 leading-relaxed font-medium italic">
-                  {vm.vision.quote}
-                </p>
-              )}
+          <div className="bg-white rounded-3xl border border-brand-masterDeep/5 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col md:flex-row overflow-hidden group">
+            <div className="w-full md:w-1/2 aspect-[16/10] md:aspect-auto bg-brand-bg relative overflow-hidden md:order-1">
+              <ImageWithLoader 
+                src="/7C1A1603.jpg" 
+                alt="Our Vision Illustration" 
+                className="absolute inset-0"
+                imgClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                loading="lazy" 
+              />
             </div>
             
-            {vm.vision?.badge && (
-              <div className="border-t border-white/10 mt-8 pt-6">
-                <p className="text-xs text-brand-gold font-bold uppercase tracking-widest flex items-center gap-2">
-                  <Sparkles className="w-4 h-4" /> {vm.vision.badge}
-                </p>
+            <div className="w-full md:w-1/2 p-6 md:p-8 lg:p-10 flex flex-col justify-center space-y-3 md:order-2">
+              <div className="flex items-center gap-3.5 md:flex-col md:items-start md:gap-3">
+                <div className="w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-brand-gold/10 to-brand-gold/25 flex items-center justify-center shadow-sm text-brand-gold">
+                  <Eye className="w-6 h-6" />
+                </div>
+                <h3 className="font-serif text-2xl font-bold text-brand-masterDeep">{vm.vision?.title || "Our Vision"}</h3>
               </div>
-            )}
+              
+              <div className="space-y-2">
+                <p className="font-serif text-base sm:text-lg text-brand-greenDeep italic font-bold leading-relaxed">
+                  {vm.vision?.quote}
+                </p>
+                
+                {expandedVision && (
+                  <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-sans pt-2 border-t border-gray-100">
+                    We envision a transformative learning environment where students discover their creative self, cultivate scientific inquiry, and build character to lead as empathetic, responsible planetary stewards in an interconnected global community.
+                  </p>
+                )}
+
+                <button 
+                  onClick={() => setExpandedVision(!expandedVision)}
+                  className="inline-flex items-center gap-1 text-[11px] font-extrabold uppercase tracking-wider text-brand-greenDeep hover:text-brand-greenVibrant transition-colors cursor-pointer self-start mt-2"
+                >
+                  {expandedVision ? (
+                    <>View Less <ChevronUp className="w-3.5 h-3.5" /></>
+                  ) : (
+                    <>View More <ChevronDown className="w-3.5 h-3.5" /></>
+                  )}
+                </button>
+              </div>
+            </div>
           </div>
 
           {/* Mission Card */}
-          <div className="bg-white p-8 sm:p-12 rounded-3xl border border-brand-masterDeep/5 shadow-md flex flex-col justify-between relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-brand-greenDeep/5 rounded-full blur-3xl"></div>
-            
-            <div className="space-y-6">
-              <div className="w-14 h-14 rounded-2xl bg-brand-greenDeep/5 border border-brand-greenDeep/10 flex items-center justify-center text-brand-greenDeep">
-                <Target className="w-7 h-7" />
-              </div>
-              <h2 className="font-serif text-3xl font-bold text-brand-masterDeep">{vm.mission?.title || "Our Mission"}</h2>
-              {vm.mission?.text && (
-                <p className="text-sm sm:text-base text-brand-muted leading-relaxed font-sans font-medium">
-                  {vm.mission.text}
-                </p>
-              )}
+          <div className="bg-white rounded-3xl border border-brand-masterDeep/5 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col md:flex-row overflow-hidden group">
+            <div className="w-full md:w-1/2 aspect-[16/10] md:aspect-auto bg-brand-bg relative overflow-hidden md:order-2">
+              <ImageWithLoader 
+                src="/7C1A1764.jpg" 
+                alt="Our Mission Illustration" 
+                className="absolute inset-0"
+                imgClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                loading="lazy" 
+              />
             </div>
             
-            {vm.mission?.badge && (
-              <div className="border-t border-brand-masterDeep/5 mt-8 pt-6">
-                <p className="text-xs text-brand-greenDeep font-bold uppercase tracking-widest flex items-center gap-2">
-                  <Sparkles className="w-4 h-4" /> {vm.mission.badge}
-                </p>
+            <div className="w-full md:w-1/2 p-6 md:p-8 lg:p-10 flex flex-col justify-center space-y-3 md:order-1">
+              <div className="flex items-center gap-3.5 md:flex-col md:items-start md:gap-3">
+                <div className="w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-brand-greenDeep/10 to-brand-greenVibrant/20 flex items-center justify-center shadow-sm text-brand-greenDeep">
+                  <Target className="w-6 h-6" />
+                </div>
+                <h3 className="font-serif text-2xl font-bold text-brand-masterDeep">{vm.mission?.title || "Our Mission"}</h3>
               </div>
-            )}
-          </div>
+              
+              <div className="space-y-2">
+                <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-sans font-semibold">
+                  {vm.mission?.text}
+                </p>
+                
+                {expandedMission && (
+                  <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-sans pt-2 border-t border-gray-100">
+                    To deliver developmental education that fosters critical analysis, collaborative problem-solving, values of social responsibility (SSR), and ecological stewardship, ensuring our learners grow with strong cultural roots and 21st-century capabilities.
+                  </p>
+                )}
 
+                <button 
+                  onClick={() => setExpandedMission(!expandedMission)}
+                  className="inline-flex items-center gap-1 text-[11px] font-extrabold uppercase tracking-wider text-brand-greenDeep hover:text-brand-greenVibrant transition-colors cursor-pointer self-start mt-2"
+                >
+                  {expandedMission ? (
+                    <>View Less <ChevronUp className="w-3.5 h-3.5" /></>
+                  ) : (
+                    <>View More <ChevronDown className="w-3.5 h-3.5" /></>
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* PDF Document Preview Section */}

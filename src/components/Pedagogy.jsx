@@ -92,12 +92,7 @@ export default function Pedagogy() {
           '/pedagogy/early-years/7C1A1751.jpg',
           '/pedagogy/early-years/7C1A1911.jpg'
         ],
-        exemplars: [
-          {
-            src: '/pedagogy/early-years/Foundational Pedagogy exampler.png',
-            title: 'Foundational Pedagogy Exemplar'
-          }
-        ],
+        exemplars: [],
         videos: []
       },
       Icon: Sparkles
@@ -536,6 +531,52 @@ export default function Pedagogy() {
               </div>
             </div>
 
+            {/* Hero Reel — First video shown as a featured portrait card */}
+            {activeStage.media.videos && activeStage.media.videos.length > 0 && (
+              <div className="flex flex-col lg:flex-row gap-8 items-center bg-brand-greenDeep rounded-3xl overflow-hidden border border-brand-masterDeep/10 shadow-lg p-6 sm:p-10">
+                {/* Portrait video card */}
+                <div
+                  onClick={() => setLightboxMedia({ type: 'video', src: activeStage.media.videos[0].src, title: activeStage.media.videos[0].title })}
+                  className="relative rounded-2xl overflow-hidden cursor-pointer group/hero bg-black border-2 border-brand-gold/30 shadow-2xl shrink-0"
+                  style={{ width: '200px', aspectRatio: '9/16' }}
+                >
+                  <video
+                    src={activeStage.media.videos[0].src}
+                    preload="metadata"
+                    className="w-full h-full object-cover pointer-events-none transition-transform duration-700 group-hover/hero:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-all duration-300 group-hover/hero:bg-black/55">
+                    <div className="w-14 h-14 rounded-full bg-white/90 text-brand-greenDeep flex items-center justify-center shadow-xl transform transition-transform duration-300 group-hover/hero:scale-110">
+                      <Play className="w-6 h-6 fill-current translate-x-0.5" />
+                    </div>
+                  </div>
+                  {/* Reel badge */}
+                  <div className="absolute top-3 left-3">
+                    <span className="bg-brand-gold text-brand-charcoal text-[9px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full shadow">
+                      Reel
+                    </span>
+                  </div>
+                </div>
+
+                {/* Info beside video */}
+                <div className="flex flex-col gap-4 text-white">
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-brand-gold">{activeStage.label}</span>
+                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white leading-snug">
+                    {activeStage.media.videos[0].title}
+                  </h3>
+                  <p className="text-white/70 text-sm font-sans leading-relaxed max-w-sm">
+                    Watch this featured reel capturing real learning moments from the {activeStage.title} at DLF Public School.
+                  </p>
+                  <button
+                    onClick={() => setLightboxMedia({ type: 'video', src: activeStage.media.videos[0].src, title: activeStage.media.videos[0].title })}
+                    className="inline-flex items-center gap-2 bg-brand-gold hover:bg-brand-gold/90 text-brand-charcoal font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-full w-max transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                  >
+                    <Play className="w-4 h-4 fill-current" /> Watch
+                  </button>
+                </div>
+              </div>
+            )}
+
             {/* Pedagogical Approaches Grid */}
             <div className="space-y-6">
               <div className="flex items-center gap-2">
@@ -544,145 +585,89 @@ export default function Pedagogy() {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {activeStage.approaches.map((approach, index) => {
-                  const IconComponent = getApproachIcon(approach.title)
-                  return (
-                    <div 
-                      key={index}
-                      className="bg-brand-bg/25 border border-brand-masterDeep/5 p-6 rounded-2xl transition-all duration-300 hover:bg-white hover:shadow-md hover:border-brand-greenDeep/10 flex flex-col justify-between group/card"
-                    >
-                      <div className="space-y-3">
-                        <div className="w-10 h-10 rounded-xl bg-brand-greenDeep/5 flex items-center justify-center text-brand-greenDeep group-hover/card:bg-brand-greenDeep group-hover/card:text-white transition-all duration-300">
-                          <IconComponent className="w-5 h-5 transition-transform duration-300 group-hover/card:scale-110" />
-                        </div>
-                        <h4 className="font-serif text-base font-bold text-brand-masterDeep">{approach.title}</h4>
-                        <p className="text-xs text-brand-muted leading-relaxed font-sans">{approach.desc}</p>
-                      </div>
-
-                      {/* Matched picture inside the card if present */}
-                      {approach.img && (
-                        <div 
-                          onClick={() => setLightboxMedia({ type: 'image', src: approach.img, title: approach.title, caption: approach.caption })}
-                          className="mt-4 rounded-xl overflow-hidden aspect-video border border-brand-masterDeep/5 cursor-pointer relative group/img bg-black"
-                        >
-                          <ImageWithLoader 
-                            src={approach.img} 
-                            alt={approach.title} 
-                            imgClassName="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105" 
-                            loading="lazy" 
-                          />
-                          <div className="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <ZoomIn className="w-6 h-6 text-white drop-shadow-md" />
+                {(() => {
+                  // Pool of gallery images for approaches that have no dedicated img
+                  const galleryImages = activeStage.media.images || []
+                  let galleryIdx = 0
+                  return activeStage.approaches.map((approach, index) => {
+                    const IconComponent = getApproachIcon(approach.title)
+                    // Use the approach's own img if present, otherwise cycle through gallery images
+                    const displayImg = approach.img || (galleryImages.length > 0 ? galleryImages[galleryIdx++] : null)
+                    const displayCaption = approach.caption
+                    return (
+                      <div 
+                        key={index}
+                        className="bg-brand-bg/25 border border-brand-masterDeep/5 p-6 rounded-2xl transition-all duration-300 hover:bg-white hover:shadow-md hover:border-brand-greenDeep/10 flex flex-col justify-between group/card"
+                      >
+                        <div className="space-y-3">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-brand-greenDeep/5 flex items-center justify-center text-brand-greenDeep group-hover/card:bg-brand-greenDeep group-hover/card:text-white transition-all duration-300 shrink-0">
+                              <IconComponent className="w-5 h-5 transition-transform duration-300 group-hover/card:scale-110" />
+                            </div>
+                            <h4 className="font-serif text-base font-bold text-brand-masterDeep">{approach.title}</h4>
                           </div>
+                          <p className="text-xs text-brand-muted leading-relaxed font-sans">{approach.desc}</p>
                         </div>
-                      )}
 
-                      {approach.caption && (
-                        <p className="text-[10px] italic text-brand-gold mt-2.5 font-sans leading-normal">
-                          {approach.caption}
-                        </p>
-                      )}
-                    </div>
-                  )
-                })}
+                        {/* Image inside the card */}
+                        {displayImg && (
+                          <div 
+                            onClick={() => setLightboxMedia({ type: 'image', src: displayImg, title: approach.title, caption: displayCaption })}
+                            className="mt-4 rounded-xl overflow-hidden aspect-video border border-brand-masterDeep/5 cursor-pointer relative group/img bg-black"
+                          >
+                            <ImageWithLoader 
+                              src={displayImg} 
+                              alt={approach.title} 
+                              imgClassName="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105" 
+                              loading="lazy" 
+                            />
+                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                              <ZoomIn className="w-6 h-6 text-white drop-shadow-md" />
+                            </div>
+                          </div>
+                        )}
+
+                        {displayCaption && (
+                          <p className="text-[10px] italic text-brand-gold mt-2.5 font-sans leading-normal">
+                            {displayCaption}
+                          </p>
+                        )}
+                      </div>
+                    )
+                  })
+                })()}
               </div>
             </div>
 
-            {/* Video Showcase */}
-            {activeStage.media.videos && activeStage.media.videos.length > 0 && (
-              <div className="space-y-6 pt-6 border-t border-brand-masterDeep/5">
+            {/* More Reels — remaining videos in a horizontal scroll strip */}
+            {activeStage.media.videos && activeStage.media.videos.length > 1 && (
+              <div className="space-y-4 pt-6 border-t border-brand-masterDeep/5">
                 <div className="flex items-center gap-2">
                   <span className="h-px bg-brand-gold w-8"></span>
-                  <h3 className="text-sm uppercase tracking-widest font-extrabold text-brand-gold">Video Showcases</h3>
+                  <h3 className="text-sm uppercase tracking-widest font-extrabold text-brand-gold">More Reels</h3>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {activeStage.media.videos.map((video, index) => (
-                    <div 
+                <div className="flex gap-4 overflow-x-auto pb-3 no-scrollbar">
+                  {activeStage.media.videos.slice(1).map((video, index) => (
+                    <div
                       key={index}
                       onClick={() => setLightboxMedia({ type: 'video', src: video.src, title: video.title })}
-                      className="bg-brand-bg/25 border border-brand-masterDeep/5 p-4 rounded-2xl flex flex-col space-y-3 cursor-pointer group/vid"
+                      className="relative rounded-2xl overflow-hidden cursor-pointer group/vid bg-black border border-brand-masterDeep/10 shrink-0 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
+                      style={{ width: '140px', aspectRatio: '9/16' }}
                     >
-                      <div className="rounded-xl overflow-hidden aspect-video bg-black relative border border-brand-masterDeep/10">
-                        <video 
-                          src={video.src} 
-                          preload="metadata"
-                          className="w-full h-full object-cover pointer-events-none transition-transform duration-500 group-hover/vid:scale-103"
-                        />
-                        {/* Play overlay */}
-                        <div className="absolute inset-0 bg-black/35 flex items-center justify-center transition-all duration-300 group-hover/vid:bg-black/50">
-                          <div className="w-12 h-12 rounded-full bg-white/90 text-brand-greenDeep flex items-center justify-center shadow-md transform transition-transform duration-300 group-hover/vid:scale-110">
-                            <Play className="w-5 h-5 fill-current translate-x-0.5" />
-                          </div>
-                        </div>
-                      </div>
-                      <h4 className="font-serif text-sm font-bold text-brand-masterDeep px-1 group-hover/vid:text-brand-greenDeep transition-colors">{video.title}</h4>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Exemplars / Structural Frameworks */}
-            {activeStage.media.exemplars && activeStage.media.exemplars.length > 0 && (
-              <div className="space-y-6 pt-6 border-t border-brand-masterDeep/5">
-                <div className="flex items-center gap-2">
-                  <span className="h-px bg-brand-gold w-8"></span>
-                  <h3 className="text-sm uppercase tracking-widest font-extrabold text-brand-gold">Exemplars & Frameworks</h3>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {activeStage.media.exemplars.map((examplar, index) => (
-                    <div 
-                      key={index}
-                      className="bg-brand-bg/25 border border-brand-masterDeep/5 p-4 rounded-2xl flex flex-col space-y-3 group/ex"
-                    >
-                      <div 
-                        onClick={() => setLightboxMedia({ type: 'image', src: examplar.src, title: examplar.title })}
-                        className="rounded-xl overflow-hidden aspect-video bg-white relative border border-brand-masterDeep/10 cursor-pointer overflow-hidden"
-                      >
-                        <img 
-                          src={examplar.src} 
-                          alt={examplar.title} 
-                          className="w-full h-full object-contain p-2 transition-transform duration-500 group-hover/ex:scale-103"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover/ex:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                          <div className="bg-brand-greenDeep/90 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1">
-                            <ZoomIn className="w-3.5 h-3.5" /> Click to Expand
-                          </div>
-                        </div>
-                      </div>
-                      <h4 className="font-serif text-sm font-bold text-brand-masterDeep px-1">{examplar.title}</h4>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Photo Gallery */}
-            {activeStage.media.images && activeStage.media.images.length > 0 && (
-              <div className="space-y-6 pt-6 border-t border-brand-masterDeep/5">
-                <div className="flex items-center gap-2">
-                  <span className="h-px bg-brand-gold w-8"></span>
-                  <h3 className="text-sm uppercase tracking-widest font-extrabold text-brand-gold">Stage Media Gallery</h3>
-                </div>
-
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                  {activeStage.media.images.map((imgSrc, index) => (
-                    <div 
-                      key={index}
-                      onClick={() => setLightboxMedia({ type: 'image', src: imgSrc, title: `${activeStage.title} - Learning Moments` })}
-                      className="rounded-2xl overflow-hidden aspect-video border border-brand-masterDeep/5 cursor-pointer relative group/gal bg-brand-bg"
-                    >
-                      <ImageWithLoader 
-                        src={imgSrc} 
-                        alt={`${activeStage.title} Gallery ${index}`} 
-                        imgClassName="w-full h-full object-cover transition-transform duration-500 group-hover/gal:scale-105" 
-                        loading="lazy" 
+                      <video
+                        src={video.src}
+                        preload="metadata"
+                        className="w-full h-full object-cover pointer-events-none"
                       />
-                      <div className="absolute inset-0 bg-black/30 opacity-0 group-hover/gal:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <ZoomIn className="w-5 h-5 text-white drop-shadow-md" />
+                      <div className="absolute inset-0 bg-black/40 flex flex-col justify-between p-3 transition-all duration-300 group-hover/vid:bg-black/55">
+                        <span className="text-[8px] font-bold text-brand-gold uppercase tracking-widest bg-black/40 px-2 py-0.5 rounded-full w-max">Reel</span>
+                        <div className="space-y-2">
+                          <div className="w-9 h-9 rounded-full bg-white/90 text-brand-greenDeep flex items-center justify-center shadow-md mx-auto transform transition-transform duration-300 group-hover/vid:scale-110">
+                            <Play className="w-4 h-4 fill-current translate-x-0.5" />
+                          </div>
+                          <p className="text-white text-[10px] font-bold font-serif text-center leading-tight line-clamp-2">{video.title}</p>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -690,34 +675,52 @@ export default function Pedagogy() {
               </div>
             )}
 
-            {/* How We Assess Learning Section */}
+
+
+            {/* How We Assess Learning Section — Highlighted */}
             {activeStage.assessment && (
-              <div className="bg-brand-greenDeep/[0.02] border-2 border-brand-gold/10 rounded-2xl p-6 sm:p-8 space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-brand-gold/10 flex items-center justify-center text-brand-gold">
-                    <Award className="w-4 h-4" />
+              <div className="relative overflow-hidden rounded-3xl border-2 border-brand-gold/30 shadow-lg">
+                {/* Rich gradient background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-greenDeep via-brand-greenDeep/90 to-brand-masterDeep pointer-events-none" />
+                {/* Decorative glow orbs */}
+                <div className="absolute -top-12 -right-12 w-48 h-48 bg-brand-gold/20 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-brand-greenVibrant/15 rounded-full blur-3xl pointer-events-none" />
+
+                <div className="relative z-10 p-8 sm:p-12 space-y-6">
+                  {/* Header */}
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-2xl bg-brand-gold/20 border border-brand-gold/30 flex items-center justify-center shrink-0 shadow-inner">
+                      <Award className="w-6 h-6 text-brand-gold" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] uppercase tracking-widest font-bold text-brand-gold/80 block">Assessment Philosophy</span>
+                      <h3 className="font-serif text-xl sm:text-2xl font-bold text-white leading-tight">How We Assess Learning</h3>
+                    </div>
                   </div>
-                  <h3 className="font-serif text-lg sm:text-xl font-bold text-brand-masterDeep">How We Assess Learning</h3>
+
+                  {/* Body text */}
+                  <p className="text-sm sm:text-base text-white/85 leading-relaxed font-sans italic font-bold border-l-4 border-brand-gold/50 pl-5">
+                    {activeStage.assessment.text}
+                  </p>
+
+                  {/* Assessment list if present */}
+                  {activeStage.assessment.list && (
+                    <div className="pt-2 border-t border-white/10">
+                      <p className="text-[10px] uppercase tracking-widest font-bold text-brand-gold mb-4">Assessment Methods</p>
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        {activeStage.assessment.list.map((item, index) => (
+                          <li key={index} className="flex items-center gap-2.5 text-xs text-white/90 font-semibold bg-white/5 border border-white/10 rounded-xl px-3 py-2">
+                            <CheckCircle className="w-3.5 h-3.5 text-brand-gold shrink-0" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
-
-                <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-sans">
-                  {activeStage.assessment.text}
-                </p>
-
-                {activeStage.assessment.list && (
-                  <div className="pt-2">
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                      {activeStage.assessment.list.map((item, index) => (
-                        <li key={index} className="flex items-center gap-2 text-xs text-brand-charcoal font-semibold">
-                          <CheckCircle className="w-3.5 h-3.5 text-brand-gold shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
               </div>
             )}
+
 
           </div>
         </div>

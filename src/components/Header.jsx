@@ -137,10 +137,6 @@ export default function Header() {
               </Link>
             )}
             <span className={`text-${theme.accent}/30`}>|</span>
-            <Link to="/alumni" className={`text-brand-gold font-bold hover:underline transition-colors duration-300`}>
-              Alumni
-            </Link>
-            <span className={`text-${theme.accent}/30`}>|</span>
             <Link to="/careers" className={`hover:text-${theme.accent} transition-colors duration-300`}>
               Careers
             </Link>
@@ -148,10 +144,6 @@ export default function Header() {
             <Link to="/useful-links" className={`hover:text-${theme.accent} transition-colors duration-300`}>
               Useful Links
             </Link>
-            <span className={`text-${theme.accent}/30`}>|</span>
-            <a href="#portals" className={`hover:text-${theme.accent} transition-colors duration-300 flex items-center gap-1`}>
-              <Lock className="w-3.5 h-3.5" /> Parent Portal
-            </a>
           </div>
         </div>
       </div>
@@ -240,13 +232,49 @@ export default function Header() {
               </button>
 
               {/* ── MASTER SITE: simple dropdown ── */}
+              {/* ── MASTER SITE: side-by-side visual dropdown with pictures ── */}
               {!schoolId && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-brand-greenDeep text-white border border-white/10 rounded-xl shadow-xl p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                  <div className="space-y-2 text-xs">
-                    <Link to="/school/dlf-sahibabad" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-greenVibrant font-bold transition-colors">DLF Public School, Sahibabad</Link>
-                    <Link to="/school/dlf-greater-noida" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-purpleVibrant font-bold transition-colors">DLF World School, G. Noida</Link>
-                    <div className="border-t border-white/10 my-2"></div>
-                    <Link to="/" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-gold font-semibold transition-colors">Back to Group Website</Link>
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 p-5 bg-white border border-gray-150 rounded-2xl shadow-2xl transition-all duration-300 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0" style={{ width: '560px', zIndex: 1000 }}>
+                  <p className="text-[9px] font-extrabold uppercase tracking-widest text-gray-400 mb-3 text-left">Our Educational Campuses</p>
+                  <div className="grid grid-cols-2 gap-4">
+                    {/* Sahibabad Card */}
+                    <Link to="/school/dlf-sahibabad" className="group/school-card flex flex-col rounded-xl border border-gray-100 hover:border-brand-greenDeep/30 hover:shadow-md transition-all duration-300 overflow-hidden bg-white text-left">
+                      <div className="h-28 w-full overflow-hidden relative bg-brand-greenDeep">
+                        <img 
+                          src="/DJI_0044.JPG" 
+                          alt="DLF Public School Sahibabad Campus" 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover/school-card:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-brand-greenDeep/10"></div>
+                      </div>
+                      <div className="p-3.5 space-y-1">
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-2.5 h-2.5 rounded-full bg-brand-greenVibrant shrink-0" />
+                          <span className="text-[11px] font-extrabold text-brand-greenDeep uppercase tracking-wide">DLF Public School</span>
+                        </div>
+                        <p className="text-[9.5px] text-gray-500 font-medium">Sahibabad, Ghaziabad · CBSE Aff. 2130384</p>
+                        <span className="inline-block text-[8px] font-bold uppercase tracking-wider text-brand-greenDeep bg-brand-greenDeep/10 px-2 py-0.5 rounded-full mt-1.5">Flagship Campus</span>
+                      </div>
+                    </Link>
+                    {/* Greater Noida Card */}
+                    <Link to="/school/dlf-greater-noida" className="group/school-card flex flex-col rounded-xl border border-gray-100 hover:border-brand-purpleDeep/30 hover:shadow-md transition-all duration-300 overflow-hidden bg-white text-left">
+                      <div className="h-28 w-full overflow-hidden relative bg-brand-purpleDeep">
+                        <img 
+                          src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&q=80&w=600" 
+                          alt="DLF World School Greater Noida Campus" 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover/school-card:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-brand-purpleDeep/10"></div>
+                      </div>
+                      <div className="p-3.5 space-y-1">
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-2.5 h-2.5 rounded-full bg-brand-purpleVibrant shrink-0" />
+                          <span className="text-[11px] font-extrabold text-brand-purpleDeep uppercase tracking-wide">DLF World School</span>
+                        </div>
+                        <p className="text-[9.5px] text-gray-500 font-medium">Greater Noida · CBSE Aff. 2131920</p>
+                        <span className="inline-block text-[8px] font-bold uppercase tracking-wider text-brand-purpleDeep bg-brand-purpleDeep/10 px-2 py-0.5 rounded-full mt-1.5">World School Campus</span>
+                      </div>
+                    </Link>
                   </div>
                 </div>
               )}

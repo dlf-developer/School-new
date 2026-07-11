@@ -22,7 +22,7 @@ export default function Hero() {
 
   const heroData = currentSchool ? currentSchool.hero : {
     image: '/images/home-hero.jpg',
-    legacy: '30 Years of Educational Excellence',
+    legacy: '30+ Years of Educational Legacy',
     titleLine1: 'DLF Group',
     italicWord1: 'of Schools',
     titleLine2: 'Sculpting',
@@ -31,8 +31,8 @@ export default function Hero() {
     vibrantWord: 'Pioneers',
     subtitle: 'Nurturing thinkers, sculpting scientific temperaments, and empowering global pioneers across our state-of-the-art educational institutions.',
     stats: [
-      { value: '28+ Years', label: 'Legacy of Excellence' },
-      { value: '3,200+', label: 'Active Learners' }
+      { value: '30+ Years', label: 'Legacy of Excellence' },
+      { value: '3,000+', label: 'Active Learners' }
     ]
   }
 

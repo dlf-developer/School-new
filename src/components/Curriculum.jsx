@@ -101,7 +101,7 @@ export default function Curriculum() {
               </ul>
             </div>
             <div className="rounded-2xl overflow-hidden aspect-video shadow-md relative group mt-4 lg:mt-0">
-              <ImageWithLoader src="/images/home-welcome.jpg" alt="DLF Primary School Students" loading="lazy" imgClassName="object-center" />
+              <ImageWithLoader src="/7C1A1486.jpg" alt="DLF Primary School Students" loading="lazy" imgClassName="object-center" />
             </div>
           </div>
 
@@ -126,7 +126,7 @@ export default function Curriculum() {
               </ul>
             </div>
             <div className="rounded-2xl overflow-hidden aspect-video shadow-md relative group mt-4 lg:mt-0">
-              <ImageWithLoader src="/images/home-stem.jpg" alt="Middle School STEM & Robotics Lab" loading="lazy" imgClassName="object-center" />
+              <ImageWithLoader src="/images/home-classroom.jpg" alt="Middle School STEM & Robotics Lab" loading="lazy" imgClassName="object-center" />
             </div>
           </div>
 
@@ -151,7 +151,7 @@ export default function Curriculum() {
               </ul>
             </div>
             <div className="rounded-2xl overflow-hidden aspect-video shadow-md relative group mt-4 lg:mt-0">
-              <ImageWithLoader src="/images/home-classroom.jpg" alt="DLF Secondary School Classroom" loading="lazy" imgClassName="object-center" />
+              <ImageWithLoader src="/images/home-stem.jpg" alt="DLF Secondary School Classroom" loading="lazy" imgClassName="object-center" />
             </div>
           </div>
 

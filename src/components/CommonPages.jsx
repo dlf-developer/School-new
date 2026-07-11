@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
-import { Mail, Phone, MapPin } from 'lucide-react'
+import { Mail, Phone, MapPin, Map, ExternalLink, X } from 'lucide-react'
 import { useSiteData } from '../hooks/useSiteData'
 
 export default function CommonPages() {
@@ -8,6 +8,8 @@ export default function CommonPages() {
   const { schoolId } = useParams()
   const location = useLocation()
   const path = location.pathname
+
+  const [activeMapModal, setActiveMapModal] = useState(null)
 
   const news = global?.news || {
     sectionLabel: 'Press Room',
@@ -299,11 +301,158 @@ export default function CommonPages() {
           </p>
         </div>
 
-        {/* ── Main Grid ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        {/* ── Campuses Info Section (Hero Area - Side by Side) ── */}
+        <div className={`grid grid-cols-1 ${(!schoolId) ? 'md:grid-cols-2' : 'max-w-xl'} gap-8 max-w-6xl mx-auto`}>
+          {/* ── Card: DLF Public School, Sahibabad ── */}
+          {(!schoolId || isSahibabad) && (
+            <div className="bg-white rounded-3xl border border-brand-greenDeep/10 shadow-lg hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
+              <div className={`absolute top-0 left-0 w-1.5 h-full ${sideColor} rounded-l-3xl`}></div>
+              <div className="p-6 pl-8 space-y-4">
+                <div>
+                  <span className="bg-brand-gold/10 text-brand-gold text-[9px] font-extrabold uppercase tracking-widest px-3 py-1.5 rounded-full w-max inline-block mb-2.5 font-inter">Flagship Campus</span>
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-brand-greenDeep">DLF Public School</h3>
+                  <p className="text-[10px] text-brand-muted font-inter uppercase tracking-wider mt-0.5">Sahibabad, Ghaziabad — CBSE Aff. No. 2130384</p>
+                </div>
+                <div className="space-y-2.5 text-xs font-inter text-brand-muted">
+                  <p className="flex items-start gap-2.5 leading-relaxed">
+                    <MapPin className="w-3.5 h-3.5 text-brand-gold shrink-0 mt-0.5" />
+                    <span>Sector-II, Rajendra Nagar, Sahibabad, Ghaziabad, UP 201005</span>
+                  </p>
+                </div>
 
-          {/* Left: Inquiry Form + Stacked Map Section */}
-          <div className="lg:col-span-7 space-y-8">
+                {/* WhatsApp CTA */}
+                <a href="https://wa.me/919818166400" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-3 bg-[#25D366]/8 border border-[#25D366]/25 rounded-2xl px-4 py-2.5 hover:bg-[#25D366]/15 transition-colors group">
+                  <svg className="w-5 h-5 fill-[#25D366] shrink-0" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  </svg>
+                  <div className="flex-1">
+                    <span className="block text-[9px] text-brand-muted uppercase tracking-wider font-bold font-inter">WhatsApp</span>
+                    <span className="text-xs text-brand-charcoal font-semibold font-inter group-hover:text-brand-greenDeep transition-colors">+91-9818166400</span>
+                  </div>
+                </a>
+
+                {/* Department rows */}
+                <div className="space-y-1.5">
+                  <p className="text-[9px] font-bold text-brand-muted uppercase tracking-widest font-inter pb-0.5">Departments</p>
+                  {dlpsDepts.map((dept) => (
+                    <div key={dept.id} className="bg-brand-bg/70 rounded-xl px-3.5 py-2.5 border border-brand-greenDeep/5 space-y-1.5">
+                      <div className="flex items-center gap-2 text-[9px] font-bold text-brand-greenDeep uppercase tracking-wider font-inter">
+                        <span className="text-brand-gold">{dept.icon}</span>
+                        {dept.label}
+                      </div>
+                      <div className="pl-5 space-y-1">
+                        {dept.phones.map((ph) => (
+                          <a key={ph} href={`tel:${ph.replace(/[\s-]/g, '')}`}
+                            className="flex items-center gap-2 text-xs text-brand-muted hover:text-brand-greenDeep transition-colors font-inter">
+                            <Phone className="w-3 h-3 shrink-0 text-brand-gold" />{ph}
+                          </a>
+                        ))}
+                        {dept.emails.map((em) => (
+                          <a key={em} href={`mailto:${em}`}
+                            className="flex items-center gap-2 text-xs text-brand-muted hover:text-brand-greenDeep transition-colors font-inter">
+                            <Mail className="w-3 h-3 shrink-0 text-brand-gold" />{em}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Social Links */}
+                <div>
+                  <p className="text-[9px] font-bold text-brand-muted uppercase tracking-widest font-inter mb-2.5">Follow DLPS Sahibabad</p>
+                  <div className="flex flex-wrap gap-2">
+                    {dlpsSocials.map((s) => (
+                      <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" title={s.label}
+                        className={`${s.bg} w-8 h-8 rounded-xl flex items-center justify-center text-white hover:scale-110 hover:shadow-md transition-all duration-200`}>
+                        {s.icon}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ── Card: DLF World School, Greater Noida ── */}
+          {(!schoolId || isGreaterNoida) && (
+            <div className="bg-white rounded-3xl border border-brand-gold/25 shadow-lg hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
+              <div className={`absolute top-0 left-0 w-1.5 h-full ${isGreaterNoida ? 'bg-brand-purpleDeep' : 'bg-brand-gold'} rounded-l-3xl`}></div>
+              <div className="p-6 pl-8 space-y-4">
+                {/* Header */}
+                <div>
+                  <span className="bg-brand-gold/10 text-brand-gold text-[9px] font-extrabold uppercase tracking-widest px-3 py-1.5 rounded-full w-max inline-block mb-2.5 font-inter">World School Campus</span>
+                  <h3 className={`font-serif text-xl sm:text-2xl font-bold ${isGreaterNoida ? 'text-brand-purpleDeep' : 'text-brand-charcoal'}`}>DLF World School</h3>
+                  <p className="text-[10px] text-brand-muted font-inter uppercase tracking-wider mt-0.5">Greater Noida, UP — CBSE Aff. No. 2131920</p>
+                </div>
+
+                {/* Address */}
+                <p className="flex items-start gap-2.5 text-xs font-inter text-brand-muted leading-relaxed">
+                  <MapPin className="w-3.5 h-3.5 text-brand-gold shrink-0 mt-0.5" />
+                  <span>HS-31, Sector Zeta-1, Greater Noida (UP), PIN 201308</span>
+                </p>
+
+                {/* WhatsApp CTA */}
+                <a href="https://wa.me/919910966700" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-3 bg-[#25D366]/8 border border-[#25D366]/25 rounded-2xl px-4 py-2.5 hover:bg-[#25D366]/15 transition-colors group">
+                  <svg className="w-5 h-5 fill-[#25D366] shrink-0" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  </svg>
+                  <div className="flex-1">
+                    <span className="block text-[9px] text-brand-muted uppercase tracking-wider font-bold font-inter">WhatsApp</span>
+                    <span className={`text-xs ${isGreaterNoida ? 'text-brand-purpleDeep' : 'text-brand-charcoal'} font-semibold font-inter group-hover:text-brand-greenDeep transition-colors`}>+91-9910966700</span>
+                  </div>
+                </a>
+
+                {/* Department rows */}
+                <div className="space-y-1.5">
+                  <p className="text-[9px] font-bold text-brand-muted uppercase tracking-widest font-inter pb-0.5">Departments</p>
+                  {dlwsDepts.map((dept) => (
+                    <div key={dept.id} className="bg-brand-bg/70 rounded-xl px-3.5 py-2.5 border border-brand-greenDeep/5 space-y-1.5">
+                      <div className={`flex items-center gap-2 text-[9px] font-bold ${isGreaterNoida ? 'text-brand-purpleDeep' : 'text-brand-greenDeep'} uppercase tracking-wider font-inter`}>
+                        <span className="text-brand-gold">{dept.icon}</span>
+                        {dept.label}
+                      </div>
+                      <div className="pl-5 space-y-1">
+                        {dept.phones.map((ph) => (
+                          <a key={ph} href={`tel:${ph.replace(/[\s-]/g, '')}`}
+                            className="flex items-center gap-2 text-xs text-brand-muted hover:text-brand-greenDeep transition-colors font-inter">
+                            <Phone className="w-3 h-3 shrink-0 text-brand-gold" />{ph}
+                          </a>
+                        ))}
+                        {dept.emails.map((em) => (
+                          <a key={em} href={`mailto:${em}`}
+                            className="flex items-center gap-2 text-xs text-brand-muted hover:text-brand-greenDeep transition-colors font-inter">
+                            <Mail className="w-3 h-3 shrink-0 text-brand-gold" />{em}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Social Links */}
+                <div>
+                  <p className="text-[9px] font-bold text-brand-muted uppercase tracking-widest font-inter mb-2.5">Follow DLWS Greater Noida</p>
+                  <div className="flex flex-wrap gap-2">
+                    {dlwsSocials.map((s) => (
+                      <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" title={s.label}
+                        className={`${s.bg} w-8 h-8 rounded-xl flex items-center justify-center text-white hover:scale-110 hover:shadow-md transition-all duration-200`}>
+                        {s.icon}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* ── Main Layout: Form & Location side by side ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-6xl mx-auto">
+          {/* Inquiry Form */}
+          <div className="lg:col-span-7">
             <div className="bg-white rounded-3xl border border-brand-greenDeep/5 shadow-xl p-8 relative overflow-hidden">
               <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${isGreaterNoida ? 'from-brand-purpleDeep via-brand-gold to-brand-purpleVibrant' : 'from-brand-greenDeep via-brand-gold to-brand-greenVibrant'} rounded-t-3xl`}></div>
 
@@ -320,7 +469,7 @@ export default function CommonPages() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6 pt-3">
                   <div>
-                    <h3 className={`font-serif text-2xl font-bold ${primaryText} mb-1`}>Get in Touch</h3>
+                    <h3 className={`font-serif text-xl font-bold ${primaryText} mb-1`}>Get in Touch</h3>
                     <p className="text-xs text-brand-muted font-inter">Complete the fields below to dispatch an official inquiry.</p>
                   </div>
 
@@ -381,244 +530,137 @@ export default function CommonPages() {
                   <button type="submit"
                     className={`w-full ${primaryBtn} text-white py-4 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 group cursor-pointer`}>
                     <span>Send Message</span>
-                    <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                    <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </button>
                 </form>
               )}
             </div>
+          </div>
 
-            {/* Stacked Maps */}
-            <div className="space-y-6 pt-2">
+          {/* Right: Map / Location trigger buttons */}
+          <div className="lg:col-span-5">
+            <div className="bg-white rounded-3xl border border-brand-greenDeep/5 shadow-xl p-8 relative overflow-hidden space-y-6">
               <div className="flex items-center gap-4">
                 <div className="w-8 h-[2px] bg-brand-gold"></div>
                 <span className="text-xs font-bold text-brand-gold uppercase tracking-widest font-inter">Find Us on the Map</span>
                 <div className="flex-1 h-px bg-brand-greenDeep/5"></div>
               </div>
 
-              <div className="space-y-6">
-                {/* Sahibabad Map (Only show if not on Greater Noida specific contact page) */}
+              <div className="space-y-4">
+                {/* Sahibabad Campus Map Button */}
                 {(!schoolId || isSahibabad) && (
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-brand-greenDeep shrink-0"></div>
-                      <h4 className="font-serif font-bold text-brand-greenDeep text-sm">DLF Public School — Sahibabad, Ghaziabad</h4>
+                  <button
+                    type="button"
+                    onClick={() => setActiveMapModal({
+                      title: 'DLF Public School, Sahibabad',
+                      subtitle: 'Sector II, Rajendra Nagar, Sahibabad, Ghaziabad',
+                      iframeUrl: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7000.128406067131!2d77.349823!3d28.687726!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4430cf367ba0e3f6!2sDLF+Public+School!5e0!3m2!1sen!2sin!4v1490767670966',
+                      appUrl: 'https://www.google.com/maps/search/?api=1&query=DLF+Public+School+Sahibabad',
+                      themeColor: 'bg-brand-greenDeep'
+                    })}
+                    className="flex items-center gap-4 bg-brand-bg/50 border border-brand-greenDeep/10 hover:border-brand-greenDeep/20 p-5 rounded-3xl transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group text-left w-full focus:outline-none"
+                  >
+                    <div className="w-12 h-12 rounded-2xl bg-brand-greenDeep/5 flex items-center justify-center text-brand-greenDeep group-hover:bg-brand-greenDeep group-hover:text-white transition-all duration-300 shrink-0">
+                      <Map className="w-5 h-5" />
                     </div>
-                    <div className="rounded-3xl overflow-hidden border border-brand-greenDeep/10 shadow-md aspect-[16/9] relative group bg-brand-bg">
-                      <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7000.128406067131!2d77.349823!3d28.687726!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4430cf367ba0e3f6!2sDLF+Public+School!5e0!3m2!1sen!2sin!4v1490767670966"
-                        width="100%" height="100%"
-                        className="pointer-events-none opacity-80 group-hover:opacity-90 transition-opacity"
-                        style={{ border: 0, display: 'block', minHeight: '280px' }}
-                        allowFullScreen="" loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                        title="DLF Public School Sahibabad Map"
-                      ></iframe>
-                      {/* Overlay button */}
-                      <div className="absolute inset-0 bg-brand-greenDeep/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <a
-                          href="https://www.google.com/maps/search/?api=1&query=DLF+Public+School+Sahibabad"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="bg-brand-greenDeep hover:bg-brand-greenVibrant text-white text-[11px] font-bold uppercase tracking-wider px-5 py-3 rounded-xl shadow-lg transition-transform transform scale-95 group-hover:scale-100 font-inter cursor-pointer"
-                        >
-                          Open in Google Maps
-                        </a>
-                      </div>
+                    <div>
+                      <h4 className="font-serif font-bold text-brand-greenDeep text-sm leading-tight font-sans">Sahibabad Campus Map</h4>
+                      <p className="text-[10px] text-brand-muted mt-1 font-inter">Click to view location & routes</p>
                     </div>
-                  </div>
+                  </button>
                 )}
 
-                {/* Greater Noida Map (Only show if not on Sahibabad specific contact page) */}
+                {/* Greater Noida Campus Map Button */}
                 {(!schoolId || isGreaterNoida) && (
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-brand-gold shrink-0"></div>
-                      <h4 className="font-serif font-bold text-brand-charcoal text-sm">DLF World School — Sector Zeta-1, Greater Noida</h4>
+                  <button
+                    type="button"
+                    onClick={() => setActiveMapModal({
+                      title: 'DLF World School, Greater Noida',
+                      subtitle: 'HS-31, Sector Zeta-1, Greater Noida',
+                      iframeUrl: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d28048.189511260713!2d77.52816!3d28.50893500000002!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ceae353377837%3A0x90a2aa79fd19a6f4!2sDLWS+Greater+Noida+%7C+Darbari+Lal+Foundation+World+School!5e0!3m2!1sen!2sin!4v1429681042702',
+                      appUrl: 'https://www.google.com/maps/search/?api=1&query=DLF+World+School+Greater+Noida',
+                      themeColor: isGreaterNoida ? 'bg-brand-purpleDeep' : 'bg-brand-greenDeep'
+                    })}
+                    className={`flex items-center gap-4 bg-brand-bg/50 border ${isGreaterNoida ? 'border-brand-purpleDeep/10 hover:border-brand-purpleDeep/20' : 'border-brand-greenDeep/10 hover:border-brand-greenDeep/20'} p-5 rounded-3xl transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group text-left w-full focus:outline-none`}
+                  >
+                    <div className={`w-12 h-12 rounded-2xl ${isGreaterNoida ? 'bg-brand-purpleDeep/5 text-brand-purpleDeep group-hover:bg-brand-purpleDeep' : 'bg-brand-greenDeep/5 text-brand-greenDeep group-hover:bg-brand-greenDeep'} flex items-center justify-center group-hover:text-white transition-all duration-300 shrink-0`}>
+                      <Map className="w-5 h-5" />
                     </div>
-                    <div className="rounded-3xl overflow-hidden border border-brand-gold/15 shadow-md aspect-[16/9] relative group bg-brand-bg">
-                      <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d28048.189511260713!2d77.52816!3d28.50893500000002!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ceae353377837%3A0x90a2aa79fd19a6f4!2sDLWS+Greater+Noida+%7C+Darbari+Lal+Foundation+World+School!5e0!3m2!1sen!2sin!4v1429681042702"
-                        width="100%" height="100%"
-                        className="pointer-events-none opacity-80 group-hover:opacity-90 transition-opacity"
-                        style={{ border: 0, display: 'block', minHeight: '280px' }}
-                        allowFullScreen="" loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                        title="DLF World School Greater Noida Map"
-                      ></iframe>
-                      {/* Overlay button */}
-                      <div className="absolute inset-0 bg-brand-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <a
-                          href="https://www.google.com/maps/search/?api=1&query=DLF+World+School+Greater+Noida"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`${isGreaterNoida ? 'bg-brand-purpleDeep hover:bg-brand-purpleVibrant' : 'bg-brand-greenDeep hover:bg-brand-greenVibrant'} text-white text-[11px] font-bold uppercase tracking-wider px-5 py-3 rounded-xl shadow-lg transition-transform transform scale-95 group-hover:scale-100 font-inter cursor-pointer`}
-                        >
-                          Open in Google Maps
-                        </a>
-                      </div>
+                    <div>
+                      <h4 className={`font-serif font-bold ${isGreaterNoida ? 'text-brand-purpleDeep' : 'text-brand-greenDeep'} text-sm leading-tight font-sans`}>Greater Noida Campus Map</h4>
+                      <p className="text-[10px] text-brand-muted mt-1 font-inter">Click to view location & routes</p>
                     </div>
-                  </div>
+                  </button>
                 )}
               </div>
             </div>
           </div>
-
-          {/* Right: School Info Cards */}
-          <div className="lg:col-span-5 space-y-5">
-
-            {/* ── Card: DLF Public School, Sahibabad ── */}
-            {(!schoolId || isSahibabad) && (
-              <div className="bg-white rounded-3xl border border-brand-greenDeep/5 shadow-md hover:shadow-lg transition-shadow duration-300 relative overflow-hidden">
-                <div className={`absolute top-0 left-0 w-1.5 h-full ${sideColor} rounded-l-3xl`}></div>
-                <div className="p-6 pl-8 space-y-4">
-                  <div>
-                    <span className="text-[10px] font-bold text-brand-gold uppercase tracking-widest block mb-0.5">Flagship Campus</span>
-                    <h3 className="font-serif text-lg font-bold text-brand-greenDeep">DLF Public School</h3>
-                    <p className="text-[10px] text-brand-muted font-inter uppercase tracking-wider">Sahibabad, Ghaziabad — CBSE Aff. No. 2130384</p>
-                  </div>
-                  <div className="space-y-2.5 text-xs font-inter text-brand-muted">
-                    <p className="flex items-start gap-2.5 leading-relaxed">
-                      <MapPin className="w-3.5 h-3.5 text-brand-gold shrink-0 mt-0.5" />
-                      <span>Sector-II, Rajendra Nagar, Sahibabad, Ghaziabad, UP 201005</span>
-                    </p>
-                  </div>
-
-                  {/* WhatsApp CTA */}
-                  <a href="https://wa.me/919818166400" target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-3 bg-[#25D366]/8 border border-[#25D366]/25 rounded-2xl px-4 py-2.5 hover:bg-[#25D366]/15 transition-colors group">
-                    <svg className="w-5 h-5 fill-[#25D366] shrink-0" viewBox="0 0 24 24">
-                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                    </svg>
-                    <div className="flex-1">
-                      <span className="block text-[9px] text-brand-muted uppercase tracking-wider font-bold font-inter">WhatsApp</span>
-                      <span className="text-xs text-brand-charcoal font-semibold font-inter group-hover:text-brand-greenDeep transition-colors">+91-9818166400</span>
-                    </div>
-                  </a>
-
-                  {/* Department rows */}
-                  <div className="space-y-1.5">
-                    <p className="text-[9px] font-bold text-brand-muted uppercase tracking-widest font-inter pb-0.5">Departments</p>
-                    {dlpsDepts.map((dept) => (
-                      <div key={dept.id} className="bg-brand-bg/70 rounded-xl px-3.5 py-2.5 border border-brand-greenDeep/5 space-y-1.5">
-                        <div className="flex items-center gap-2 text-[9px] font-bold text-brand-greenDeep uppercase tracking-wider font-inter">
-                          <span className="text-brand-gold">{dept.icon}</span>
-                          {dept.label}
-                        </div>
-                        <div className="pl-5 space-y-1">
-                          {dept.phones.map((ph) => (
-                            <a key={ph} href={`tel:${ph.replace(/[\s-]/g, '')}`}
-                              className="flex items-center gap-2 text-xs text-brand-muted hover:text-brand-greenDeep transition-colors font-inter">
-                              <Phone className="w-3 h-3 shrink-0 text-brand-gold" />{ph}
-                            </a>
-                          ))}
-                          {dept.emails.map((em) => (
-                            <a key={em} href={`mailto:${em}`}
-                              className="flex items-center gap-2 text-xs text-brand-muted hover:text-brand-greenDeep transition-colors font-inter">
-                              <Mail className="w-3 h-3 shrink-0 text-brand-gold" />{em}
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Social Links */}
-                  <div>
-                    <p className="text-[9px] font-bold text-brand-muted uppercase tracking-widest font-inter mb-2.5">Follow DLPS Sahibabad</p>
-                    <div className="flex flex-wrap gap-2">
-                      {dlpsSocials.map((s) => (
-                        <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" title={s.label}
-                          className={`${s.bg} w-8 h-8 rounded-xl flex items-center justify-center text-white hover:scale-110 hover:shadow-md transition-all duration-200`}>
-                          {s.icon}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            )}
-
-            {/* ── Card: DLF World School, Greater Noida ── */}
-            {(!schoolId || isGreaterNoida) && (
-              <div className="bg-white rounded-3xl border border-brand-gold/10 shadow-md hover:shadow-lg transition-shadow duration-300 relative overflow-hidden">
-                <div className={`absolute top-0 left-0 w-1.5 h-full ${isGreaterNoida ? 'bg-brand-purpleDeep' : 'bg-brand-gold'} rounded-l-3xl`}></div>
-                <div className="p-6 pl-8 space-y-4">
-
-                  {/* Header */}
-                  <div>
-                    <span className={`text-[10px] font-bold ${isGreaterNoida ? 'text-brand-purpleVibrant' : 'text-brand-greenVibrant'} uppercase tracking-widest block mb-0.5`}>World School Campus</span>
-                    <h3 className={`font-serif text-lg font-bold ${isGreaterNoida ? 'text-brand-purpleDeep' : 'text-brand-charcoal'}`}>DLF World School</h3>
-                    <p className="text-[10px] text-brand-muted font-inter uppercase tracking-wider">Greater Noida, UP — CBSE Aff. No. 2131920</p>
-                  </div>
-
-                  {/* Address */}
-                  <p className="flex items-start gap-2.5 text-xs font-inter text-brand-muted leading-relaxed">
-                    <MapPin className="w-3.5 h-3.5 text-brand-gold shrink-0 mt-0.5" />
-                    <span>HS-31, Sector Zeta-1, Greater Noida (UP), PIN 201308</span>
-                  </p>
-
-                  {/* WhatsApp CTA */}
-                  <a href="https://wa.me/919910966700" target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-3 bg-[#25D366]/8 border border-[#25D366]/25 rounded-2xl px-4 py-2.5 hover:bg-[#25D366]/15 transition-colors group">
-                    <svg className="w-5 h-5 fill-[#25D366] shrink-0" viewBox="0 0 24 24">
-                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                    </svg>
-                    <div className="flex-1">
-                      <span className="block text-[9px] text-brand-muted uppercase tracking-wider font-bold font-inter">WhatsApp</span>
-                      <span className={`text-xs ${isGreaterNoida ? 'text-brand-purpleDeep' : 'text-brand-charcoal'} font-semibold font-inter group-hover:text-brand-greenDeep transition-colors`}>+91-9910966700</span>
-                    </div>
-                  </a>
-
-                  {/* Department rows */}
-                  <div className="space-y-1.5">
-                    <p className="text-[9px] font-bold text-brand-muted uppercase tracking-widest font-inter pb-0.5">Departments</p>
-                    {dlwsDepts.map((dept) => (
-                      <div key={dept.id} className="bg-brand-bg/70 rounded-xl px-3.5 py-2.5 border border-brand-greenDeep/5 space-y-1.5">
-                        <div className={`flex items-center gap-2 text-[9px] font-bold ${isGreaterNoida ? 'text-brand-purpleDeep' : 'text-brand-greenDeep'} uppercase tracking-wider font-inter`}>
-                          <span className="text-brand-gold">{dept.icon}</span>
-                          {dept.label}
-                        </div>
-                        <div className="pl-5 space-y-1">
-                          {dept.phones.map((ph) => (
-                            <a key={ph} href={`tel:${ph.replace(/[\s-]/g, '')}`}
-                              className="flex items-center gap-2 text-xs text-brand-muted hover:text-brand-greenDeep transition-colors font-inter">
-                              <Phone className="w-3 h-3 shrink-0 text-brand-gold" />{ph}
-                            </a>
-                          ))}
-                          {dept.emails.map((em) => (
-                            <a key={em} href={`mailto:${em}`}
-                              className="flex items-center gap-2 text-xs text-brand-muted hover:text-brand-greenDeep transition-colors font-inter">
-                              <Mail className="w-3 h-3 shrink-0 text-brand-gold" />{em}
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Social Links */}
-                  <div>
-                    <p className="text-[9px] font-bold text-brand-muted uppercase tracking-widest font-inter mb-2.5">Follow DLWS Greater Noida</p>
-                    <div className="flex flex-wrap gap-2">
-                      {dlwsSocials.map((s) => (
-                        <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" title={s.label}
-                          className={`${s.bg} w-8 h-8 rounded-xl flex items-center justify-center text-white hover:scale-110 hover:shadow-md transition-all duration-200`}>
-                          {s.icon}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            )}
-
-          </div>
         </div>
       </div>
+
+      {/* Interactive Map Modal */}
+      {activeMapModal && (
+        <div 
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity duration-300 animate-fadeIn"
+          onClick={() => setActiveMapModal(null)}
+        >
+          <div 
+            className="bg-white rounded-3xl overflow-hidden w-full max-w-4xl shadow-2xl relative border border-brand-masterDeep/10 flex flex-col md:flex-row animate-scaleIn"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Map iframe container */}
+            <div className="flex-1 aspect-video md:aspect-[4/3] bg-brand-bg relative">
+              <iframe
+                src={activeMapModal.iframeUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0, display: 'block' }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title={activeMapModal.title}
+              />
+            </div>
+
+            {/* Sidebar with route and navigation tools */}
+            <div className="w-full md:w-80 p-8 flex flex-col justify-between bg-white border-t md:border-t-0 md:border-l border-brand-masterDeep/5">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between gap-4">
+                  <span className="text-[10px] font-bold text-brand-gold uppercase tracking-widest block">Campus Navigation</span>
+                  <button 
+                    onClick={() => setActiveMapModal(null)}
+                    className="text-brand-muted hover:text-brand-charcoal p-1.5 rounded-full hover:bg-brand-bg transition-colors"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+                <div>
+                  <h3 className="font-serif text-lg font-bold text-brand-masterDeep">{activeMapModal.title}</h3>
+                  <p className="text-[11px] text-brand-muted mt-1 font-inter">{activeMapModal.subtitle}</p>
+                </div>
+                <p className="text-xs text-brand-muted font-inter leading-relaxed">
+                  Interactive map loaded. You can view navigation steps or choose to open the directions directly inside the Google Maps mobile app on your phone.
+                </p>
+              </div>
+
+              <div className="pt-6">
+                <a
+                  href={activeMapModal.appUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full text-center flex items-center justify-center gap-2 bg-brand-greenDeep hover:bg-brand-greenVibrant text-white text-xs font-bold uppercase tracking-wider py-4 rounded-2xl shadow-lg transition-all duration-300 hover:scale-[1.03] font-inter"
+                >
+                  <ExternalLink className="w-4.5 h-4.5" />
+                  <span>Open Google Maps App</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   )
 }

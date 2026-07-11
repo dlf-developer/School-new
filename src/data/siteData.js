@@ -160,8 +160,8 @@ export const globalData = {
   // ── 2b. STATS STRIP ───────────────────────────────────────────────────────
   stats: {
     counters: [
-      { id: 'stat-1', target: 28,   suffix: '+',  label: 'Years of History',    color: 'brand-greenDeep' },
-      { id: 'stat-2', target: 3200, suffix: '+',  label: 'Active Learners',     color: 'brand-gold' },
+      { id: 'stat-1', target: 30,   suffix: '+',  label: 'Years of History',    color: 'brand-greenDeep' },
+      { id: 'stat-2', target: 3000, suffix: '+',  label: 'Active Learners',     color: 'brand-gold' },
       { id: 'stat-3', target: 15,   suffix: ':1', label: 'Teacher Ratio',       color: 'brand-greenDeep' },
       { id: 'stat-4', target: 100,  suffix: '%',  label: 'First Class Results', color: 'brand-gold' }
     ]
@@ -396,24 +396,6 @@ export const globalData = {
         ],
         icon: 'Shield',
         color: 'bg-amber-500/5 border-amber-500/10 text-amber-700'
-      },
-      {
-        id: 'mgmt-3',
-        name: 'Ms. Seema Jerath',
-        role: 'National Awardee | Principal | Educationist | Author | Master Trainer | Lead Facilitator',
-        badge: 'Principal',
-        bio: 'With nearly four decades of rich experience in education, Ms. Seema Jerath stands as a visionary leader, accomplished educator, and thought influencer. As the Principal of DLF Public School, she leads a dynamic team of over 160 educators, steering the institution towards excellence with a clear, future-ready vision.',
-        highlights: [
-          'Conferred the prestigious National Award to Teachers (2012) by the President of India.',
-          'Author of over 30 books for teachers, students, and parents, contributing significantly to the academic ecosystem.',
-          'Co-created CBSE flagship programs: Pedagogical Leadership Handbook, Pedagogical Leadership Training Program, and the Leading Transformation initiative.',
-          'Mentored and developed over 290 Master Trainers across CBSE schools and JNVs, cascading training to 25,000+ schools.',
-          'Served as Lead Facilitator for CBSE\'s flagship skill education training, and co-created the Digital Citizenship Program with CBSE and Meta.',
-          'Recipient of the Lokmanilal Lifetime Achievement Award (2013), Global Teacher Accreditation Award (Cambridge & British Council), and Dr. Radha Krishnan Excellence Award.',
-          'Pioneered "Compassionate Ghaziabad" under Student Social Responsibility (SSR) to foster service, empathy, and moral responsibility.'
-        ],
-        icon: 'Award',
-        color: 'bg-amber-500/5 border-amber-500/10 text-amber-700'
       }
     ]
   },
@@ -514,7 +496,7 @@ export const globalData = {
     publications: [
       {
         id: 'pub-1',
-        title: 'Alumni Connect - 2nd Edition',
+        title: 'Our School Poem',
         subtitle: 'Cropped PDF Document',
         desc: 'Review articles from former students, educational panels, and highlights of outstanding community projects.',
         url: '/Alumni Connect 2nd Edition_cropped.pdf',

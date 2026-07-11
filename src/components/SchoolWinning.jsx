@@ -49,7 +49,7 @@ export default function SchoolWinning({ isHomePage = false }) {
   ]
 
   return (
-    <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30 relative">
+    <div className={`${isHomePage ? 'py-10' : 'pt-28 pb-20 min-h-screen'} text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden font-sans`}>
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; }
@@ -94,7 +94,7 @@ export default function SchoolWinning({ isHomePage = false }) {
             { val: '100%', label: 'Board Success', desc: 'Consistent perfect scores in Science & Commerce streams.' },
             { val: 'No. 5', label: 'Leadership & Governance', desc: 'National rank among the country\'s co-educational schools.' },
             { val: '15+', label: 'Global Innovation Grants', desc: 'Awarded to students for sustainable tech prototypes.' },
-            { val: '28+', label: 'Years of Legacy', desc: 'Empowering generation after generation of innovators.' }
+            { val: '30+', label: 'Years of Legacy', desc: 'Empowering generation after generation of innovators.' }
           ].map((stat, idx) => (
             <div key={idx} className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-md space-y-2 hover:shadow-lg transition-shadow">
               <span className={`font-serif text-3xl sm:text-4xl font-extrabold text-${theme.primary}`}>{stat.val}</span>

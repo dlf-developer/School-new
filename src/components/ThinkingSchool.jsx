@@ -1,5 +1,5 @@
-import React from 'react'
-import { Brain, Sparkles, Award, GraduationCap, Heart, Quote } from 'lucide-react'
+import React, { useState } from 'react'
+import { Brain, Sparkles, Award, GraduationCap, Heart, Quote, ChevronDown, ChevronUp } from 'lucide-react'
 import ImageWithLoader from './ImageWithLoader'
 import { useSiteData } from '../hooks/useSiteData'
 
@@ -8,6 +8,11 @@ const ICON_MAP = { Brain, Sparkles, Award, GraduationCap, Heart }
 export default function ThinkingSchool() {
   const { global } = useSiteData()
   const ts = global.thinkingSchool || {}
+  const [expandedPillars, setExpandedPillars] = useState({})
+
+  const togglePillar = (title) => {
+    setExpandedPillars(prev => ({ ...prev, [title]: !prev[title] }))
+  }
 
   const pillars = (ts.pillars || []).map(p => ({ ...p, icon: ICON_MAP[p.icon] || Brain }))
   const galleryImages = ts.gallery || []
@@ -83,13 +88,14 @@ export default function ThinkingSchool() {
             {pillars.map((pillar, idx) => {
               const Icon = pillar.icon
               const isEven = idx % 2 === 0;
+              const isExpanded = !!expandedPillars[pillar.title];
 
               return (
                 <div 
                   key={pillar.title} 
-                  className="bg-white rounded-3xl border border-brand-masterDeep/5 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col md:flex-row overflow-hidden group h-full"
+                  className="bg-white rounded-3xl border border-brand-masterDeep/5 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col md:flex-row overflow-hidden group"
                 >
-                  <div className={`w-full md:w-1/2 aspect-[4/3] md:aspect-auto bg-brand-bg relative overflow-hidden ${isEven ? 'md:order-1' : 'md:order-2'}`}>
+                  <div className={`w-full md:w-1/2 aspect-[16/10] md:aspect-auto bg-brand-bg relative overflow-hidden ${isEven ? 'md:order-1' : 'md:order-2'}`}>
                     <ImageWithLoader 
                       src={pillar.image} 
                       alt={pillar.imageAlt || pillar.title} 
@@ -99,16 +105,29 @@ export default function ThinkingSchool() {
                     />
                   </div>
                   
-                  <div className={`w-full md:w-1/2 p-6 md:p-8 lg:p-10 flex flex-col justify-center space-y-4 ${isEven ? 'md:order-2' : 'md:order-1'}`}>
-                    <div className="flex items-center gap-4 md:flex-col md:items-start md:gap-4">
-                      <div className={`w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-2xl bg-gradient-to-br ${pillar.color} flex items-center justify-center ${pillar.iconColor}`}>
-                        <Icon className="w-6 h-6 md:w-7 md:h-7" />
+                  <div className={`w-full md:w-1/2 p-6 md:p-8 lg:p-10 flex flex-col justify-center space-y-3 ${isEven ? 'md:order-2' : 'md:order-1'}`}>
+                    <div className="flex items-center gap-3.5 md:flex-col md:items-start md:gap-3">
+                      <div className={`w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br ${pillar.color} flex items-center justify-center shadow-sm ${pillar.iconColor}`}>
+                        <Icon className="w-6 h-6" />
                       </div>
-                      <h3 className="font-serif text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold text-brand-masterDeep">{pillar.title}</h3>
+                      <h3 className="font-serif text-xl sm:text-2xl font-bold text-brand-masterDeep">{pillar.title}</h3>
                     </div>
-                    <p className="text-sm lg:text-base text-brand-muted leading-relaxed font-sans">
-                      {pillar.desc}
-                    </p>
+                    
+                    <div className="space-y-2">
+                      <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-sans">
+                        {isExpanded ? pillar.desc : `${pillar.desc.slice(0, 160)}...`}
+                      </p>
+                      <button 
+                        onClick={() => togglePillar(pillar.title)}
+                        className="inline-flex items-center gap-1 text-[11px] font-extrabold uppercase tracking-wider text-brand-greenDeep hover:text-brand-greenVibrant transition-colors cursor-pointer self-start mt-1"
+                      >
+                        {isExpanded ? (
+                          <>View Less <ChevronUp className="w-3.5 h-3.5" /></>
+                        ) : (
+                          <>View More <ChevronDown className="w-3.5 h-3.5" /></>
+                        )}
+                      </button>
+                    </div>
                   </div>
                 </div>
               )

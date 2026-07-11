@@ -31,7 +31,7 @@ export default function Management() {
           </h1>
           <div className="w-16 h-[2px] bg-brand-gold mx-auto"></div>
           <p className="text-base text-brand-muted leading-relaxed font-sans max-w-2xl mx-auto">
-            Meet the visionaries, educators, and social reformers who lead the Darbari Lal Foundation and guide DLF Public School.
+            Meet the visionaries, educators, and social reformers who lead the Darbari Lal Foundation and guide our campuses.
           </p>
         </div>
 
@@ -97,7 +97,7 @@ export default function Management() {
         <section className="space-y-12 max-w-5xl mx-auto">
           <div className="text-center space-y-2">
             <span className="text-[10px] uppercase font-bold text-brand-gold tracking-widest">Profiles in Leadership</span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-masterDeep">Meet Our Leaders</h2>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-masterDeep">Our Guiding Light</h2>
             <div className="w-12 h-[1px] bg-brand-gold/30 mx-auto"></div>
           </div>
 

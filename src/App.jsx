@@ -34,44 +34,64 @@ import SchoolCounselling from './components/SchoolCounselling'
 import SchoolWinning from './components/SchoolWinning'
 import SchoolEditorials from './components/SchoolEditorials'
 import UsefulLinks from './components/UsefulLinks'
+import ContactHome from './components/ContactHome'
 
+
+// Premium Section Separator Component
+function SectionSeparator() {
+  return (
+    <div className="w-[90%] max-w-[1400px] mx-auto  flex items-center justify-center gap-4 pointer-events-none select-none">
+      <div className="h-[1.5px] flex-1 bg-gradient-to-r from-transparent to-brand-gold/40"></div>
+      <div className="w-2 h-2 bg-brand-gold rotate-45 border border-brand-greenDeep/10 shadow-sm shrink-0"></div>
+      <div className="h-[1.5px] flex-1 bg-gradient-to-l from-transparent to-brand-gold/40"></div>
+    </div>
+  )
+}
 
 // Master Home page sections aggregator matching exact section order from design spec:
 // 1st Section – Video (Hero)
-// 2nd Section – Campus Selector (PortalHome)
-// 3rd Section – Statistics
-// 4th Section – Admissions 
-// 5th Section – Academic Progression (Curriculum)
-// 6th Section – What Sets Us Apart
-// 7th Section – Results
-// 8th Section – Testimonials
+// 2nd Section – School Awards
+// 3rd Section – Our Pedagogy
+// 4th Section – Our Schools
+// 5th Section – What Sets Us Apart
+// 6th Section – Admissions 
+// 7th Section – Contact Us
 function MasterHome() {
   return (
     <>
-      {/* 1st Section – Video Hero */}
+      {/* 1st Section – Video Hero (no glass, full-bleed) */}
       <Hero />
       <Ticker />
 
-      {/* Campus Selector */}
+      <SectionSeparator />
+
+      {/* 2nd Section – School Awards */}
+      <SchoolWinning isHomePage={true} />
+
+      <SectionSeparator />
+
+      {/* 3rd Section – Our Pedagogy */}
+      <Curriculum />
+
+      <SectionSeparator />
+
+      {/* 4th Section – Our Schools */}
       <PortalHome />
 
-      {/* 2nd Section – Statistics */}
-      <Stats />
-
-      {/* 3rd Section – Admissions */}
-      <Admissions />
-
-      {/* 4th Section – Academic Progression */}
-      <Curriculum />
+      <SectionSeparator />
 
       {/* 5th Section – What sets us apart (Preview mode) */}
       <WhatSetsUsApart isPreview={true} />
 
-      {/* 6th Section – Results */}
-      <SchoolWinning isHomePage={true} />
+      <SectionSeparator />
 
-      {/* 7th Section – Testimonials */}
-      <Testimonials />
+      {/* 6th Section – Admissions */}
+      <Admissions />
+
+      <SectionSeparator />
+
+      {/* 7th Section – Contact Us */}
+      <ContactHome />
     </>
   )
 }

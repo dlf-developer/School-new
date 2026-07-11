@@ -15,7 +15,7 @@ export const schoolsData = {
     },
     hero: {
       image: 'https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&q=80&w=1920',
-      legacy: '28+ Years of Educational Legacy',
+      legacy: '30+ Years of Educational Legacy',
       titleLine1: 'Sculpting',
       italicWord1: 'Minds',
       titleLine2: 'Empowering',
