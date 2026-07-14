@@ -21,7 +21,9 @@ import {
   Newspaper,
   Handshake,
   PhoneCall,
-  Compass
+  Compass,
+  IndianRupee,
+  ClipboardList
 } from 'lucide-react'
 
 export default function Header() {
@@ -188,7 +190,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav Menu */}
-          <nav className={`hidden lg:flex items-center gap-6 xl:gap-8 text-[13px] font-semibold ${!schoolId ? 'text-white/95' : 'text-brand-charcoal/95'}`}>
+          <nav className={`hidden lg:flex items-center ${schoolId ? 'gap-4 xl:gap-5 text-[11.5px]' : 'gap-6 xl:gap-8 text-[13px]'} font-semibold ${!schoolId ? 'text-white/95' : 'text-brand-charcoal/95'}`}>
             
             {/* Menu 1: Group / Portal Level Info */}
             {!schoolId && (
@@ -432,38 +434,63 @@ export default function Header() {
 
             {schoolId ? (
               <>
+                {/* 1. Our Campus */}
                 <Link to={`/school/${schoolId}/campus`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold`}>
-                  Campus
+                  Our Campus
                 </Link>
 
-                <Link to={`/school/${schoolId}/admissions`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold`}>
-                  Admissions
+                {/* 2. Leadership */}
+                <Link to={`/school/${schoolId}/leadership`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold`}>
+                  Leadership
                 </Link>
 
+                {/* 3. Admissions Dropdown */}
+                <div className="relative group py-2">
+                  <button className={`flex items-center gap-1 hover:text-${theme.vibrant} transition-colors duration-300 cursor-pointer font-semibold`}>
+                    Admissions <ChevronDown className={`w-3.5 h-3.5 text-${theme.accent}`} />
+                  </button>
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white text-brand-charcoal rounded-xl shadow-xl border border-gray-100 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                    <div className="space-y-1 text-xs">
+                      <Link to={`/school/${schoolId}/admissions?tab=procedure`} className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold`}>
+                        <ClipboardList className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                        Admission Procedure &amp; Guidelines
+                      </Link>
+                      <Link to={`/school/${schoolId}/admissions?tab=fee-structure`} className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold`}>
+                        <IndianRupee className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                        Fee Structure
+                      </Link>
+                      <Link to={`/school/${schoolId}/admissions?tab=scholarships`} className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold`}>
+                        <Award className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                        Scholarships
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 4. Curriculum */}
                 <Link to={`/school/${schoolId}/curriculum`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold`}>
                   Curriculum
                 </Link>
 
+                {/* 5. Holistic Learning */}
                 <Link to={`/school/${schoolId}/holistic-learning`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold`}>
                   Holistic Learning
                 </Link>
 
-                {/* About School Dropdown */}
-                <div className="relative group py-2">
-                  <button className={`flex items-center gap-1 hover:text-${theme.vibrant} transition-colors duration-300 cursor-pointer font-semibold`}>
-                    About School <ChevronDown className={`w-3.5 h-3.5 text-${theme.accent}`} />
-                  </button>
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white text-brand-charcoal rounded-xl shadow-xl border border-gray-100 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                    <div className="space-y-2 text-xs">
-                      <Link to={`/school/${schoolId}/leadership`} className={`block px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold`}>Leadership</Link>
-                      <Link to={`/school/${schoolId}/counselling`} className={`block px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold`}>Counselling & Wellness</Link>
-                      <Link to={`/school/${schoolId}/winning-school`} className={`block px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold`}>Winning School</Link>
-                      <Link to={`/school/${schoolId}/editorials`} className={`block px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold`}>DLF Editorials</Link>
-                      <Link to={`/school/${schoolId}/disclosures`} className={`block px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold`}>CBSE Disclosures</Link>
-                      <Link to={`/school/${schoolId}/contact`} className={`block px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold`}>Contact School</Link>
-                    </div>
-                  </div>
-                </div>
+                {/* 6. Counselling, Career and Wellness */}
+                <Link to={`/school/${schoolId}/counselling`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold`}>
+                  Counselling &amp; Wellness
+                </Link>
+
+                {/* 7. Winning School */}
+                <Link to={`/school/${schoolId}/winning-school`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold`}>
+                  Winning School
+                </Link>
+
+                {/* 8. DLF Editorials */}
+                <Link to={`/school/${schoolId}/editorials`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold`}>
+                  DLF Editorials
+                </Link>
               </>
             ) : (
               <>
@@ -481,9 +508,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-4">
             {schoolId ? (
               <>
-                <a href="#virtual-tour" onClick={(e) => handleHashClick(e, '#virtual-tour')} className="text-xs font-semibold text-brand-charcoal hover:text-brand-gold transition-all flex items-center gap-1">
-                  <PlayCircle className="w-4 h-4" /> Virtual Tour
-                </a>
+
                 <Link 
                   to={`/school/${schoolId}/admissions`}
                   className={`bg-${theme.primary} text-white hover:bg-${theme.vibrant} px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md flex items-center gap-2 relative overflow-hidden group`}
@@ -590,12 +615,18 @@ export default function Header() {
               {schoolId && (
                 <div className={`border-t border-${theme.primary}/10 my-2 pt-2 space-y-1`}>
                   <p className="text-[10px] uppercase font-bold tracking-wider text-brand-muted mb-2">{currentSchool.name} Links</p>
-                  <Link to={`/school/${schoolId}/campus`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>Campus Infrastructure</Link>
-                  <Link to={`/school/${schoolId}/leadership`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>School Leadership</Link>
-                  <Link to={`/school/${schoolId}/admissions`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>Enrollment & Admissions</Link>
-                  <Link to={`/school/${schoolId}/curriculum`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>School Curriculum</Link>
+                  <Link to={`/school/${schoolId}/campus`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>Our Campus</Link>
+                  <Link to={`/school/${schoolId}/leadership`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>Leadership</Link>
+                  {/* Admissions sub-links */}
+                  <div className={`border-t border-${theme.primary}/10 my-1 pt-2`}>
+                    <p className="text-[10px] uppercase font-bold tracking-wider text-brand-muted mb-1.5">Admissions</p>
+                    <Link to={`/school/${schoolId}/admissions?tab=procedure`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}>Procedure & Guidelines</Link>
+                    <Link to={`/school/${schoolId}/admissions?tab=fee-structure`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}>Fee Structure</Link>
+                    <Link to={`/school/${schoolId}/admissions?tab=scholarships`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}>Scholarships</Link>
+                  </div>
+                  <Link to={`/school/${schoolId}/curriculum`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>Curriculum</Link>
                   <Link to={`/school/${schoolId}/holistic-learning`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>Holistic Learning</Link>
-                  <Link to={`/school/${schoolId}/counselling`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>Counselling & Wellness</Link>
+                  <Link to={`/school/${schoolId}/counselling`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>Counselling, Career &amp; Wellness</Link>
                   <Link to={`/school/${schoolId}/winning-school`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>Winning School</Link>
                   <Link to={`/school/${schoolId}/editorials`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>DLF Editorials</Link>
                   <Link to={`/school/${schoolId}/disclosures`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>Mandatory CBSE Disclosures</Link>
@@ -616,13 +647,7 @@ export default function Header() {
                 >
                   Apply Now
                 </Link>
-                <a 
-                  href="#virtual-tour" 
-                  onClick={(e) => { setIsMobileMenuOpen(false); handleHashClick(e, '#virtual-tour'); }}
-                  className={`block w-full border border-${theme.primary}/20 text-${theme.primary} text-center py-3.5 rounded-xl font-bold text-xs`}
-                >
-                  <PlayCircle className="inline w-4 h-4 mr-1.5" /> Virtual Tour
-                </a>
+
               </>
             ) : (
               <Link 

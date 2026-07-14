@@ -40,13 +40,13 @@ export default function OurCampus() {
               <span className={`italic text-${theme.accent} font-normal`}>To Inspire & Breathe.</span>
             </h1>
             <p className="text-brand-muted text-base sm:text-lg leading-relaxed font-sans max-w-xl">
-              Step into our campus and the difference is immediate—it doesn’t just look like a school, it feels alive. Ideas flow, voices are heard, and learning happens everywhere.
+              Step into our campus and the difference is immediate—it doesn't just look like a school, it feels alive. What began as a 16-room school has evolved into a lush green <strong>5-acre, future-ready campus</strong>, thoughtfully designed to balance aesthetics with functionality.
             </p>
           </div>
           <div className={`lg:col-span-6 bg-${theme.primary}/5 p-8 rounded-3xl border border-${theme.primary}/10 relative overflow-hidden`}>
             <div className={`absolute top-0 right-0 w-32 h-32 bg-${theme.accent}/10 rounded-full blur-3xl`}></div>
             <p className={`font-serif text-xl sm:text-2xl text-${theme.primary} font-medium italic leading-relaxed relative z-10`}>
-              "What began as a 16-room school has evolved into a lush green 5-acre, future-ready campus, thoughtfully designed to balance aesthetics with functionality."
+              "A safe, secure, and stimulating ecosystem where students thrive beyond the four walls of the classroom."
             </p>
             <div className="mt-6 flex items-center gap-3">
               <div className={`w-10 h-0.5 bg-${theme.accent}`}></div>
@@ -68,63 +68,93 @@ export default function OurCampus() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          {/* Main Hero Photo (Aerial View) */}
+          {/* Main Hero Photo */}
           <div className={`md:col-span-8 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-md aspect-[16/10] relative`}>
             <ImageWithLoader 
-              src="/DJI_0044.JPG" 
-              alt="Aerial view of DLF Public School campus" 
+              src="/campus/campus1.jpg" 
+              alt="DLF Public School campus exterior" 
               imgClassName="transition-transform duration-1000 group-hover:scale-105"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/80 via-transparent to-transparent opacity-90 z-10"></div>
             <div className="absolute bottom-6 left-6 text-white z-20">
-              <p className={`text-[10px] uppercase tracking-widest font-semibold text-${theme.accent}`}>Green Aerial View</p>
-              <h3 className="font-serif text-xl sm:text-2xl font-bold">Lush 5-Acre Institutional Ecosystem</h3>
+              <p className={`text-[10px] uppercase tracking-widest font-semibold text-${theme.accent}`}>5-Acre Campus</p>
+              <h3 className="font-serif text-xl sm:text-2xl font-bold">A Future-Ready Institutional Ecosystem</h3>
             </div>
           </div>
 
-          {/* Side Small Photo 1 (Garden Courtyard) */}
-          <div className={`md:col-span-4 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-sm aspect-square md:aspect-auto relative`}>
+          {/* Side Photo 1 */}
+          <div className={`md:col-span-4 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-sm relative`} style={{minHeight:'260px'}}>
             <ImageWithLoader 
-              src="/7C1A1607.jpg" 
-              alt="Green school garden and courtyard paths" 
-              imgClassName="transition-transform duration-1000 group-hover:scale-105"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/70 via-transparent to-transparent opacity-90 z-10"></div>
-            <div className="absolute bottom-6 left-6 text-white z-20">
-              <p className={`text-[10px] uppercase tracking-widest font-semibold text-${theme.accent}`}>Outdoor Spaces</p>
-              <h3 className="font-serif text-lg font-bold">Sunlit Corridors & Green Play areas</h3>
-            </div>
-          </div>
-
-          {/* Lower Small Photo 2 (Classroom and Smart TV) */}
-          <div className={`md:col-span-4 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-sm aspect-square md:aspect-auto relative`}>
-            <ImageWithLoader 
-              src="/7C1A1603.jpg" 
-              alt="Comfortable air-conditioned classroom" 
+              src="/campus/campus2.jpg" 
+              alt="DLF School corridors and classrooms" 
               imgClassName="transition-transform duration-1000 group-hover:scale-105"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/70 via-transparent to-transparent opacity-90 z-10"></div>
             <div className="absolute bottom-6 left-6 text-white z-20">
               <p className={`text-[10px] uppercase tracking-widest font-semibold text-${theme.accent}`}>Learning Spaces</p>
-              <h3 className="font-serif text-lg font-bold">Air Conditioned Smart Classrooms</h3>
+              <h3 className="font-serif text-lg font-bold">Smart AC Classrooms</h3>
             </div>
           </div>
 
-          {/* Lower Medium Photo 3 (School Entrance / Pathway) */}
+          {/* Lower Photo 2 */}
+          <div className={`md:col-span-4 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-sm relative`} style={{minHeight:'260px'}}>
+            <ImageWithLoader 
+              src="/campus/campus3.jpg" 
+              alt="School labs and innovation spaces" 
+              imgClassName="transition-transform duration-1000 group-hover:scale-105"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/70 via-transparent to-transparent opacity-90 z-10"></div>
+            <div className="absolute bottom-6 left-6 text-white z-20">
+              <p className={`text-[10px] uppercase tracking-widest font-semibold text-${theme.accent}`}>Innovation</p>
+              <h3 className="font-serif text-lg font-bold">Innovation Hub & ICT Labs</h3>
+            </div>
+          </div>
+
+          {/* Lower Hero Photo 3 */}
           <div className={`md:col-span-8 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-md aspect-[16/10] relative`}>
             <ImageWithLoader 
-              src="/7C1A1595.jpg" 
-              alt="Palm lined pathway leading to DLF Public School main building" 
+              src="/campus/campus5.jpg" 
+              alt="DLF School sports and outdoor spaces" 
               imgClassName="transition-transform duration-1000 group-hover:scale-105"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/80 via-transparent to-transparent opacity-90 z-10"></div>
             <div className="absolute bottom-6 left-6 text-white z-20">
-              <p className={`text-[10px] uppercase tracking-widest font-semibold text-${theme.accent}`}>Main Avenue</p>
-              <h3 className="font-serif text-xl sm:text-2xl font-bold">Architectural Blend of Modernity & Nature</h3>
+              <p className={`text-[10px] uppercase tracking-widest font-semibold text-${theme.accent}`}>Sports Infrastructure</p>
+              <h3 className="font-serif text-xl sm:text-2xl font-bold">Olympic Rink · Tennis Courts · Swimming Pool</h3>
+            </div>
+          </div>
+
+          {/* Extra Photo 4 */}
+          <div className={`md:col-span-6 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-sm relative`} style={{minHeight:'240px'}}>
+            <ImageWithLoader 
+              src="/campus/campus6.jpg" 
+              alt="School common areas and hallways" 
+              imgClassName="transition-transform duration-1000 group-hover:scale-105"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/70 via-transparent to-transparent opacity-90 z-10"></div>
+            <div className="absolute bottom-6 left-6 text-white z-20">
+              <p className={`text-[10px] uppercase tracking-widest font-semibold text-${theme.accent}`}>Shared Spaces</p>
+              <h3 className="font-serif text-lg font-bold">Collaborative Common Areas</h3>
+            </div>
+          </div>
+
+          {/* Extra Photo 5 */}
+          <div className={`md:col-span-6 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-sm relative`} style={{minHeight:'240px'}}>
+            <ImageWithLoader 
+              src="/campus/campus7.jpg" 
+              alt="Campus buildings and green spaces" 
+              imgClassName="transition-transform duration-1000 group-hover:scale-105"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/70 via-transparent to-transparent opacity-90 z-10"></div>
+            <div className="absolute bottom-6 left-6 text-white z-20">
+              <p className={`text-[10px] uppercase tracking-widest font-semibold text-${theme.accent}`}>Green Campus</p>
+              <h3 className="font-serif text-lg font-bold">Lush Green Sunlit Architecture</h3>
             </div>
           </div>
         </div>

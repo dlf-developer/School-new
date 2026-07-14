@@ -33,11 +33,24 @@ export default function SchoolHolistic() {
   }
 
   const holisticData = currentSchool?.holistic || {
-    performingArts: 'Dedicated music, dance, and theatre wings to nurture creative expression.',
-    sports: 'State-of-the-art sports arena featuring football, basketball, and athletics.',
-    visualArts: 'Creative workshops for fine arts, pottery, and digital media styling.',
-    skillEnrichment: 'Robotics labs, computational coding classes, and design thinking bootcamps.',
-    schoolExcursions: 'Historical walks, ecological conservation retreats, and leadership camps.'
+    performingArts: 'Performing Arts bring learning to life through movement, music and expression. Whether it is dance, theatre or vocal and instrumental music, students are encouraged to explore rhythm, storytelling and stagecraft. Performances are thoughtfully woven into the school culture—be it assemblies, Annual functions, Celebrations or thematic presentations—giving every child a platform to showcase talent and build stage presence.',
+    sports: 'Sports infrastructure is designed with intent to build endurance, discipline and a lifelong commitment to fitness. The campus provides a well-planned blend of indoor and outdoor facilities: a football turf, Olympic-size skating rink, two swimming pools, pickleball court, indoor badminton courts, volleyball and lawn tennis courts—ensuring that every learner finds a space to engage, compete and grow.',
+    visualArts: 'Visual Arts at the school go beyond conventional drawing and painting. Students engage with a wide range of mediums—sketching, painting, sculpture, mixed media, digital design—allowing them to experiment, take creative risks and develop their own artistic voice.',
+    skillEnrichment: 'A vibrant network of Clubs enriches student life, offering diverse avenues—from AI Coding, Data Science, and Financial Literacy to Mass Media, MUN, Language Clubs, Sports, Yoga, and Performing Arts. The THOTS Lab and Innovation Hub are dedicated spaces where the spirit of inquiry is fuelled.',
+    schoolExcursions: 'Educational excursions are not a break from learning—they are learning in motion. Delfites have participated in heritage walks, industry visits, science explorations, biodiversity parks, innovation hubs, museums, and leadership camps. Students have also explored global cultures through visits to Russia, Malaysia, and other countries.'
+  }
+
+  const subsectionPhotos = {
+    performingArts: [],
+    sports: [
+      { src: '/holistic/sports/nandini-kansal.jpg', caption: 'Nandini Kansal — ITF International Tennis, AITA #21 in UP' },
+      { src: '/holistic/sports/shreeja-singh.jpg', caption: 'Shreeja Singh — 5 Golds & 5 State Records, Best Swimmer at UP State Championship' },
+    ],
+    visualArts: [],
+    skillEnrichment: [],
+    schoolExcursions: [
+      { src: '/holistic/excursions/excursion1.jpg', caption: 'Students on an educational excursion — learning beyond the classroom' },
+    ]
   }
 
   const keys = ['performingArts', 'sports', 'visualArts', 'skillEnrichment', 'schoolExcursions']
@@ -159,6 +172,23 @@ export default function SchoolHolistic() {
                   ))}
                 </div>
               </div>
+
+              {/* Subsection Photos */}
+              {subsectionPhotos[activeSub]?.length > 0 && (
+                <div className="space-y-3 border-t border-gray-100 pt-4">
+                  <h4 className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant} font-inter`}>Gallery</h4>
+                  <div className="grid grid-cols-2 gap-3">
+                    {subsectionPhotos[activeSub].map((photo, i) => (
+                      <div key={i} className="rounded-xl overflow-hidden border border-gray-100 shadow-sm group">
+                        <div className="aspect-[4/3] overflow-hidden bg-gray-50">
+                          <img src={photo.src} alt={photo.caption} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        </div>
+                        <p className="text-[9px] text-brand-muted font-inter p-2 leading-tight line-clamp-2">{photo.caption}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
             </div>
 

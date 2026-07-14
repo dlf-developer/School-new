@@ -54,60 +54,88 @@ export default function SchoolCounselling() {
           </Link>
         </div>
 
-        {/* Counselling Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          
-          {/* Pillar 1: Career */}
-          <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-md space-y-5 hover:shadow-lg transition-shadow relative overflow-hidden group">
-            <div className={`absolute top-0 left-0 w-full h-1.5 bg-${theme.primary}`}></div>
-            <div className={`w-12 h-12 bg-${theme.primary}/10 text-${theme.primary} rounded-2xl flex items-center justify-center`}>
-              <Compass className="w-6 h-6" />
-            </div>
-            <h3 className="font-serif text-xl font-bold text-brand-charcoal">Margdarshak Career Counselling</h3>
-            <p className="text-xs text-brand-muted leading-relaxed font-inter font-medium font-medium">
-              We offer structured career workshops, stream selection tests, university fair access, and preparation assistance for global entrance exams.
-            </p>
-            <ul className="space-y-2 text-xs text-brand-charcoal font-inter pt-2">
-              <li className="flex items-center gap-2"><CheckCircle2 className={`w-3.5 h-3.5 text-${theme.accent}`} /> Stream Selection Analysis</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className={`w-3.5 h-3.5 text-${theme.accent}`} /> University Application Portals</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className={`w-3.5 h-3.5 text-${theme.accent}`} /> Corporate Internship Tie-ups</li>
-            </ul>
-          </div>
-
-          {/* Pillar 2: Mental Well-being */}
-          <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-md space-y-5 hover:shadow-lg transition-shadow relative overflow-hidden group">
-            <div className={`absolute top-0 left-0 w-full h-1.5 bg-${theme.primary}`}></div>
-            <div className={`w-12 h-12 bg-${theme.primary}/10 text-${theme.primary} rounded-2xl flex items-center justify-center`}>
-              <Heart className="w-6 h-6" />
-            </div>
-            <h3 className="font-serif text-xl font-bold text-brand-charcoal">Emotional Security & Support</h3>
-            <p className="text-xs text-brand-muted leading-relaxed font-inter font-medium font-medium">
-              Providing a safe, confidential environment for students. Guided by professional child psychologists to assist with peer stress, behavioral growth, and exam security.
-            </p>
-            <ul className="space-y-2 text-xs text-brand-charcoal font-inter pt-2">
-              <li className="flex items-center gap-2"><CheckCircle2 className={`w-3.5 h-3.5 text-${theme.accent}`} /> Confidential Individual Sessions</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className={`w-3.5 h-3.5 text-${theme.accent}`} /> De-stressing Board Exam Seminars</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className={`w-3.5 h-3.5 text-${theme.accent}`} /> Peer Mentoring Groups</li>
-            </ul>
-          </div>
-
-          {/* Pillar 3: Physical Wellness */}
-          <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-md space-y-5 hover:shadow-lg transition-shadow relative overflow-hidden group">
-            <div className={`absolute top-0 left-0 w-full h-1.5 bg-${theme.primary}`}></div>
-            <div className={`w-12 h-12 bg-${theme.primary}/10 text-${theme.primary} rounded-2xl flex items-center justify-center`}>
-              <ShieldAlert className="w-6 h-6" />
-            </div>
-            <h3 className="font-serif text-xl font-bold text-brand-charcoal">Medical & Physical Wellness</h3>
-            <p className="text-xs text-brand-muted leading-relaxed font-inter font-medium font-medium">
-              Fully equipped medical rooms staffed by certified nursing executives. Backed by pediatric tie-ups, annual health checks, and secure emergency evacuation protocols.
-            </p>
-            <ul className="space-y-2 text-xs text-brand-charcoal font-inter pt-2">
-              <li className="flex items-center gap-2"><CheckCircle2 className={`w-3.5 h-3.5 text-${theme.accent}`} /> Fully Equipped Medical Bays</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className={`w-3.5 h-3.5 text-${theme.accent}`} /> Annual Physical Health Checkups</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className={`w-3.5 h-3.5 text-${theme.accent}`} /> Certified Resident Nurse</li>
-            </ul>
-          </div>
-
+        {/* Counselling & Wellbeing 9 Pillars Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+          {[
+            {
+              title: "Social–Emotional Learning & Counselling",
+              desc: "Providing a safe, confidential space for self-expression and guidance. Guided by professional child psychologists to help students build emotional intelligence, resilience, and self-awareness.",
+              details: ["Confidential individual sessions", "Peer support groups", "Meditation & mindfulness practices", "Structured SEL programs"],
+              icon: Heart
+            },
+            {
+              title: "Values & Character Education",
+              desc: "Character formation woven into the student experience across grades. Focuses on empathy, integrity, respect, responsibility, and ethical decision-making.",
+              details: ["Awakening program (Classes I–V)", "Awakened Citizen's program (Classes VI–VIII) by RK Mission", "AACT (Class IX)", "Happy Fridge, Goodwill Piggy Bank & Birthday Hawan"],
+              icon: Award
+            },
+            {
+              title: "Digital & Cyber Wellbeing",
+              desc: "Preparing students to navigate the digital world safely. Focuses on cyber safety, healthy screen habits, online boundaries, digital identity, and responsible social media use.",
+              details: ["Peer educators' sessions", "Parent awareness initiatives", "Cyber safety guidelines & seminars"],
+              icon: ShieldAlert
+            },
+            {
+              title: "Peer Support & Student Leadership",
+              desc: "Empowering students as wellbeing ambassadors. Strengthening peer care, belonging, and student voice within the school community.",
+              details: ["Peer educator programs", "Empathy manager leadership roles", "Buddy systems for new/younger students"],
+              icon: Compass
+            },
+            {
+              title: "Inclusion & Diverse Learning Support",
+              desc: "Committed to an inclusive learning environment. Celebrates diversity and provides specialized classroom accommodations.",
+              details: ["Individualized Learning Plans (ILP)", "Classroom & academic accommodations", "Sensorium & Cosmosium support for CWSN"],
+              icon: Heart
+            },
+            {
+              title: "Health & Holistic Lifestyle",
+              desc: "Promoting physical fitness, balanced nutrition, and preventive awareness. Integrating healthy habits into the regular weekly routine.",
+              details: ["Thursday Special: Fitness, yoga & sports exposure", "Regular health checkups & nursery logs", "Certified resident nurse on duty"],
+              icon: ShieldAlert
+            },
+            {
+              title: "Safe & Supportive School Climate",
+              desc: "Maintaining a culture of absolute safety, respect, and positive behavior through clear institutional guidelines and restorative practices.",
+              details: ["Anti-bullying peer education sessions", "POCSO & child safety awareness sessions", "Juvenile Justice (JJ) Act seminars"],
+              icon: ShieldAlert
+            },
+            {
+              title: "Parent Partnership & Outreach",
+              desc: "Collaborative school–home support networks that equip families to navigate mental health, adolescence, and digital challenges.",
+              details: ["Induction & orientation sessions", "Parent Listening Circle sessions", "Mother-daughter awareness program"],
+              icon: Compass
+            },
+            {
+              title: "Career Guidance & Life Readiness",
+              desc: "Supporting students in discovering their strengths, mapping academic pathways, and matching aspirations to global opportunities.",
+              details: ["Margdarshak mentoring system", "Career fairs & university interactions", "Corporate internships & alumni connect"],
+              icon: Compass
+            }
+          ].map((pillar, idx) => {
+            const PillarIcon = pillar.icon
+            return (
+              <div key={idx} className="bg-white p-6 sm:p-8 rounded-3xl border border-gray-100 shadow-md space-y-5 hover:shadow-lg transition-shadow relative overflow-hidden group flex flex-col justify-between">
+                <div className={`absolute top-0 left-0 w-full h-1 bg-${theme.primary}`}></div>
+                <div className="space-y-4">
+                  <div className={`w-10 h-10 bg-${theme.primary}/10 text-${theme.primary} rounded-2xl flex items-center justify-center shrink-0`}>
+                    <PillarIcon className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-serif text-base sm:text-lg font-bold text-brand-charcoal leading-snug">{pillar.title}</h3>
+                  <p className="text-[11px] text-brand-muted leading-relaxed font-inter font-medium">
+                    {pillar.desc}
+                  </p>
+                </div>
+                <ul className="space-y-1.5 text-[10px] text-brand-charcoal font-inter pt-4 border-t border-gray-50 mt-4">
+                  {pillar.details.map((det, dIdx) => (
+                    <li key={dIdx} className="flex items-center gap-2">
+                      <CheckCircle2 className={`w-3 h-3 text-${theme.accent} shrink-0`} />
+                      <span className="font-semibold">{det}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          })}
         </div>
 
         {/* Lower Consultation Form & Quote */}

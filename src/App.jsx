@@ -33,6 +33,7 @@ import SchoolHolistic from './components/SchoolHolistic'
 import SchoolCounselling from './components/SchoolCounselling'
 import SchoolWinning from './components/SchoolWinning'
 import SchoolEditorials from './components/SchoolEditorials'
+import SchoolAdmissions from './components/SchoolAdmissions'
 import UsefulLinks from './components/UsefulLinks'
 import ContactHome from './components/ContactHome'
 
@@ -225,7 +226,7 @@ export default function App() {
           <Route path="/school/:schoolId" element={<Home />} />
           <Route path="/school/:schoolId/campus" element={<OurCampus />} />
           <Route path="/school/:schoolId/leadership" element={<SchoolLeadership />} />
-          <Route path="/school/:schoolId/admissions" element={<Admissions />} />
+          <Route path="/school/:schoolId/admissions" element={<SchoolAdmissions />} />
           <Route path="/school/:schoolId/curriculum" element={<Curriculum />} />
           <Route path="/school/:schoolId/holistic-learning" element={<SchoolHolistic />} />
           <Route path="/school/:schoolId/counselling" element={<SchoolCounselling />} />

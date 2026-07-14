@@ -48,6 +48,49 @@ export default function SchoolWinning({ isHomePage = false }) {
     }
   ]
 
+  const studentAchievements = [
+    {
+      category: 'Innovation',
+      color: theme.primary,
+      items: [
+        { img: '/achievements/pendulum-pump.png', caption: 'Mechanical Pendulum Pump — Top 3 at CBSE National Science Exhibition out of 447 projects from 377 schools' },
+        { img: '/achievements/csir-hackathon.jpg', caption: 'CSIR Jigyasa Epic Hackathon 2024 — Silver & ₹30,000 for DRISHYAMITRAM, helping visually impaired navigate public spaces' },
+        { img: '/achievements/project-hornbill.jpg', caption: 'Project Hornbill — 2nd at World Robot Olympiad; also Top 3 at Eurekathon winning goodies worth $619 USD' },
+        { img: '/achievements/mission-talaash.jpg', caption: "Mission Talaash — Ranked India's Top 20 innovations out of 2,512 entries from 27 states" },
+      ]
+    },
+    {
+      category: 'Sports',
+      color: theme.vibrant,
+      items: [
+        { img: '/achievements/shreeja-swimmer.jpg', caption: 'Shreeja Singh — Won 5 Gold Medals at UP State Championship, creating 5 New State Records, crowned Best Swimmer' },
+        { img: '/achievements/nandini-kansal.jpg', caption: 'Nandini Kansal — Represented India at ITF Nepal & Africa, AITA Ranking #21 (UP), #184 (U-18 Girls)' },
+        { img: '/achievements/tennis-championship.jpg', caption: 'CBSE North Zone-1 Tennis Championship — Bronze in various categories' },
+        { img: '/achievements/yogasana-championship.jpg', caption: '1st & 2nd position in various categories at 5th District Yogasana North East Championship' },
+        { img: '/achievements/gold-yogasana.jpg', caption: 'Anirudh MM — Gold at State Yogasana Sports Championship 2025' },
+      ]
+    },
+    {
+      category: 'Commerce & Academic',
+      color: theme.primary,
+      items: [
+        { img: '/achievements/melbourne-competition.jpg', caption: 'University of Melbourne India Case Competition 2025 — Ranked 2nd, earned AUD 1,000, competing against 350+ teams' },
+        { img: '/achievements/ncert.jpg', caption: '90+ Delfites acted in 35+ NCERT Educational Videos' },
+        { img: '/achievements/ramjas-extempore.png', caption: 'Overall Winning Trophy at Ramjas Inter-School Extempore Competition' },
+        { img: '/achievements/kritika-germany.jpg', caption: 'Kritika Shukla — Represented India at international event in Germany' },
+      ]
+    },
+    {
+      category: 'Performing Arts & Outreach',
+      color: theme.vibrant,
+      items: [
+        { img: '/achievements/nrityanjali.jpg', caption: 'Nrityanjali — 1st position, showcasing classical dance excellence on stage' },
+        { img: '/achievements/toi-winners.jpg', caption: 'TOI School Rankings — Recognized among the leading schools for academic and co-curricular excellence' },
+        { img: '/achievements/sho-for-a-day.jpg', caption: "Anushka's Nari Shakti Moment — Anushka Dhama (Class XII) became SHO for a day at Shalimar Garden Police Station" },
+      ]
+    }
+  ]
+
   return (
     <div className={`${isHomePage ? 'py-10' : 'pt-28 pb-20 min-h-screen'} text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden font-sans`}>
       <style>{`
@@ -198,6 +241,42 @@ export default function SchoolWinning({ isHomePage = false }) {
               View More About Our Winning Record
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
+          </div>
+        )}
+        {/* Student Achievements Photo Gallery — only on full page */}
+        {!isHomePage && (
+          <div className="space-y-10 pt-4">
+            <div className="border-t border-gray-100 pt-8">
+              <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>Student Achievements Gallery</span>
+              <h3 className={`font-serif text-2xl sm:text-3xl font-bold text-${theme.primary} mt-1`}>Our Students, On Every Stage</h3>
+              <p className="text-xs sm:text-sm text-brand-muted font-inter font-medium mt-2 max-w-2xl">
+                From CBSE national exhibitions and international sports arenas to global innovation grants — Delfites shine everywhere.
+              </p>
+            </div>
+
+            {studentAchievements.map((group, gIdx) => (
+              <div key={gIdx} className="space-y-4">
+                <h4 className={`text-xs uppercase font-extrabold tracking-widest text-${group.color} font-inter`}>{group.category}</h4>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {group.items.map((item, iIdx) => (
+                    <div
+                      key={iIdx}
+                      onClick={() => setLightboxImage(item.img)}
+                      className="group cursor-zoom-in bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+                    >
+                      <div className="aspect-square overflow-hidden bg-gray-50">
+                        <img
+                          src={item.img}
+                          alt={item.caption}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                      <p className="text-[10px] text-brand-muted font-inter font-medium leading-relaxed p-3 line-clamp-3">{item.caption}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         )}
 
