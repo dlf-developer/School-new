@@ -29,6 +29,7 @@ import Disclosures from './components/Disclosures'
 import ThinkingSchool from './components/ThinkingSchool'
 import VisionMission from './components/VisionMission'
 import SchoolLeadership from './components/SchoolLeadership'
+import SchoolPrincipalDesk from './components/SchoolPrincipalDesk'
 import SchoolHolistic from './components/SchoolHolistic'
 import SchoolCounselling from './components/SchoolCounselling'
 import SchoolWinning from './components/SchoolWinning'
@@ -226,6 +227,7 @@ export default function App() {
           <Route path="/school/:schoolId" element={<Home />} />
           <Route path="/school/:schoolId/campus" element={<OurCampus />} />
           <Route path="/school/:schoolId/leadership" element={<SchoolLeadership />} />
+          <Route path="/school/:schoolId/principal-desk" element={<SchoolPrincipalDesk />} />
           <Route path="/school/:schoolId/admissions" element={<SchoolAdmissions />} />
           <Route path="/school/:schoolId/curriculum" element={<Curriculum />} />
           <Route path="/school/:schoolId/holistic-learning" element={<SchoolHolistic />} />

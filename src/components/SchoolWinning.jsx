@@ -50,43 +50,53 @@ export default function SchoolWinning({ isHomePage = false }) {
 
   const studentAchievements = [
     {
-      category: 'Innovation',
+      category: 'Innovation & Science',
       color: theme.primary,
       items: [
-        { img: '/achievements/pendulum-pump.png', caption: 'Mechanical Pendulum Pump — Top 3 at CBSE National Science Exhibition out of 447 projects from 377 schools' },
-        { img: '/achievements/csir-hackathon.jpg', caption: 'CSIR Jigyasa Epic Hackathon 2024 — Silver & ₹30,000 for DRISHYAMITRAM, helping visually impaired navigate public spaces' },
-        { img: '/achievements/project-hornbill.jpg', caption: 'Project Hornbill — 2nd at World Robot Olympiad; also Top 3 at Eurekathon winning goodies worth $619 USD' },
-        { img: '/achievements/mission-talaash.jpg', caption: "Mission Talaash — Ranked India's Top 20 innovations out of 2,512 entries from 27 states" },
+        { img: '/achievements/Pendulum Pump.png', caption: 'Mechanical Pendulum Pump — Amongst TOP 3 Projects at CBSE National Science Exhibition out of 447 projects from 377 schools.' },
+        { img: '/achievements/CSIR Innovation Award -2012.png', caption: 'CSIR Innovation Award 2012 — Won the National CSIR Innovation Award and ₹50,000 for ADIA-COOL eco air conditioner.' },
+        { img: '/achievements/CSIR Jigyasa Epic Hackathon 2024.jpg', caption: 'CSIR Jigyasa Epic Hackathon 2024 — Silver and ₹30,000 for DRISHYAMITRAM assisting visually impaired navigate public spaces.' },
+        { img: '/achievements/CREO.png', caption: 'Project Therophonobot — Earned national recognition at INSPIRE MANAK and a USD 7,500 innovation grant from Emergent Ventures, USA.' },
+        { img: '/achievements/Mission Talaash.png', caption: 'Mission Talaash — Ranked among India\'s Top 20 innovations out of 2,512 entries for developing a Lost & Found mobile app.' },
+        { img: '/achievements/Unique Hospital Bed.jpg', caption: 'Unique Hospital Bed — 1st Position at Crossroads 2015 for creating a patient-centric bed with automated hygiene features.' },
+        { img: '/achievements/Project Hornbill.jpg', caption: 'Project Hornbill — 2nd at World Robot Olympiad (competing against 500 teams, bagging Gold) and Top 3 at Eurekathon ($619 USD).' }
       ]
     },
     {
-      category: 'Sports',
+      category: 'Sports Excellence',
       color: theme.vibrant,
       items: [
-        { img: '/achievements/shreeja-swimmer.jpg', caption: 'Shreeja Singh — Won 5 Gold Medals at UP State Championship, creating 5 New State Records, crowned Best Swimmer' },
-        { img: '/achievements/nandini-kansal.jpg', caption: 'Nandini Kansal — Represented India at ITF Nepal & Africa, AITA Ranking #21 (UP), #184 (U-18 Girls)' },
-        { img: '/achievements/tennis-championship.jpg', caption: 'CBSE North Zone-1 Tennis Championship — Bronze in various categories' },
-        { img: '/achievements/yogasana-championship.jpg', caption: '1st & 2nd position in various categories at 5th District Yogasana North East Championship' },
-        { img: '/achievements/gold-yogasana.jpg', caption: 'Anirudh MM — Gold at State Yogasana Sports Championship 2025' },
+        { img: '/achievements/Shreeja Singh at UP State Championship.jpg', caption: 'Shreeja Singh — Won 5 Gold Medals, created 5 New State Records, and earned the title of Best Swimmer at UP State Championship.' },
+        { img: '/achievements/Ishika Singh cricket.jpg', caption: 'Ishika Singh — Selected for Delhi Premier League (DPL) as an all-rounder representing South Delhi Superstarz.' },
+        { img: '/achievements/Priyanandini Thakur at CBSE North Zone.jpg', caption: 'Priyanandini Thakur — Bagged 4 Gold Medals at CBSE North Zone Swimming Championship.' },
+        { img: '/achievements/Nandini Kansal.jpg', caption: 'Nandini Kansal — Represented India @ ITF Nepal and Africa; AITA Ranking #21 in UP, #184 (U-18) in India.' },
+        { img: '/achievements/Uday Kaul.jpg', caption: 'Uday Kaul — Represented India at ITF Tournament in Kazakhstan; AITA Men\'s Ranking 262.' },
+        { img: '/achievements/Suryansh Kalkande.jpg', caption: 'Suryansh Kalkande — Won AITA National Ranking Tennis Tournaments in the Category of U-18 Doubles.' },
+        { img: '/achievements/Anirudh MM.jpeg', caption: 'Anirudh MM — Gold Medal at State Yogasana Sports Championship 2025.' },
+        { img: '/achievements/District Yogasana North East Championship.jpg', caption: 'District Yogasana Championship — 1st and 2nd position in various categories at 5th District Yogasana North East Championship.' },
+        { img: '/achievements/2nd position at  Ghaziabad District Roll BAll Championship (1).jpg', caption: 'Roll Ball Championship — Bagged 2nd position at Ghaziabad District Roll Ball Championship.' },
+        { img: '/achievements/District Tennis Championship 2025.jpg', caption: 'District Tennis — Silver and Gold in various categories at District Tennis Championship 2025.' },
+        { img: '/achievements/CBSE NORTH ZONE-1 TENNIS CHAMPIONSHIP.jpg', caption: 'CBSE Tennis — Bronze at CBSE North Zone-1 Tennis Championship in various categories.' },
+        { img: '/achievements/SHO for a day.jpg', caption: 'Anushka Dhama (Class XII) — Became SHO for a day at Shalimar Garden Police Station, showcasing Nari Shakti.' }
       ]
     },
     {
-      category: 'Commerce & Academic',
+      category: 'Commerce & Academics',
       color: theme.primary,
       items: [
-        { img: '/achievements/melbourne-competition.jpg', caption: 'University of Melbourne India Case Competition 2025 — Ranked 2nd, earned AUD 1,000, competing against 350+ teams' },
-        { img: '/achievements/ncert.jpg', caption: '90+ Delfites acted in 35+ NCERT Educational Videos' },
-        { img: '/achievements/ramjas-extempore.png', caption: 'Overall Winning Trophy at Ramjas Inter-School Extempore Competition' },
-        { img: '/achievements/kritika-germany.jpg', caption: 'Kritika Shukla — Represented India at international event in Germany' },
+        { img: '/achievements/University of Melbourne India Case Competition 2025.jpg', caption: 'University of Melbourne Case Competition 2025 — Ranked 2nd, earned AUD 1,000 competing against 350+ teams.' },
+        { img: '/achievements/Intl Commerce Olympiad 2025.jpg', caption: 'International Commerce Olympiad — Gaurangi Mittal (2025) became 1st runner up; Ananya Trivedi (2024) became 2nd runner up.' },
+        { img: '/achievements/Kritika Shukla in Germany.jpg', caption: 'Kritika Shukla — Selected to represent India at an international student event in Germany.' }
       ]
     },
     {
-      category: 'Performing Arts & Outreach',
+      category: 'Performing Arts & Literary',
       color: theme.vibrant,
       items: [
-        { img: '/achievements/nrityanjali.jpg', caption: 'Nrityanjali — 1st position, showcasing classical dance excellence on stage' },
-        { img: '/achievements/toi-winners.jpg', caption: 'TOI School Rankings — Recognized among the leading schools for academic and co-curricular excellence' },
-        { img: '/achievements/sho-for-a-day.jpg', caption: "Anushka's Nari Shakti Moment — Anushka Dhama (Class XII) became SHO for a day at Shalimar Garden Police Station" },
+        { img: '/achievements/NCERT.jpeg', caption: 'NCERT Educational Videos — 90+ Delfites acted in 35+ NCERT Educational Videos.' },
+        { img: '/achievements/Nrityanjali.jpeg', caption: 'Nrityanjali — 1st position, showcasing classical dance excellence on stage.' },
+        { img: '/achievements/Ramjas Extempore.png', caption: 'Ramjas Extempore — Overall Winning Trophy at Ramjas Inter-School Extempore Competition.' },
+        { img: '/achievements/TOI Winners.jpeg', caption: 'TOI School Rankings — Conferred for outstanding co-curricular and academic excellence.' }
       ]
     }
   ]

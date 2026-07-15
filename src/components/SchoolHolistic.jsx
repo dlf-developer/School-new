@@ -33,23 +33,29 @@ export default function SchoolHolistic() {
   }
 
   const holisticData = currentSchool?.holistic || {
-    performingArts: 'Performing Arts bring learning to life through movement, music and expression. Whether it is dance, theatre or vocal and instrumental music, students are encouraged to explore rhythm, storytelling and stagecraft. Performances are thoughtfully woven into the school culture—be it assemblies, Annual functions, Celebrations or thematic presentations—giving every child a platform to showcase talent and build stage presence.',
-    sports: 'Sports infrastructure is designed with intent to build endurance, discipline and a lifelong commitment to fitness. The campus provides a well-planned blend of indoor and outdoor facilities: a football turf, Olympic-size skating rink, two swimming pools, pickleball court, indoor badminton courts, volleyball and lawn tennis courts—ensuring that every learner finds a space to engage, compete and grow.',
-    visualArts: 'Visual Arts at the school go beyond conventional drawing and painting. Students engage with a wide range of mediums—sketching, painting, sculpture, mixed media, digital design—allowing them to experiment, take creative risks and develop their own artistic voice.',
-    skillEnrichment: 'A vibrant network of Clubs enriches student life, offering diverse avenues—from AI Coding, Data Science, and Financial Literacy to Mass Media, MUN, Language Clubs, Sports, Yoga, and Performing Arts. The THOTS Lab and Innovation Hub are dedicated spaces where the spirit of inquiry is fuelled.',
-    schoolExcursions: 'Educational excursions are not a break from learning—they are learning in motion. Delfites have participated in heritage walks, industry visits, science explorations, biodiversity parks, innovation hubs, museums, and leadership camps. Students have also explored global cultures through visits to Russia, Malaysia, and other countries.'
+    performingArts: 'Performing Arts bring learning to life through movement, music and expression. Whether it is dance, theatre or vocal and instrumental music, students are encouraged to explore rhythm, storytelling and stagecraft. Performances are thoughtfully woven into the school culture—be it assemblies, Annual functions, Celebrations or thematic presentations during Scholastic Months —giving every child a platform to showcase talent and build stage presence.',
+    sports: 'Our sports infrastructure reflects both scale and ambition—designed to offer students diverse, high-quality training environments. The campus features a newly developed synthetic football turf, providing professional-grade conditions. Alongside this, students have access to dedicated volleyball and lawn tennis courts, encouraging both team spirit and individual excellence. The standout Olympic-size skating rink provides a unique platform to develop balance and precision. The school houses two well-maintained swimming pools, indoor basketball and badminton courts, and the only pickleball court in the vicinity.',
+    visualArts: 'Visual Arts at the school go beyond conventional drawing and painting. Students engage with a wide range of mediums—sketching, painting, sculpture, mixed media, digital design—allowing them to experiment, take creative risks and develop their own artistic voice. The focus is not merely on technique, but on observation, interpretation and original expression. Art becomes a way of thinking, not just creating. This is further enhanced by our art-integrated academic approach, where arts intersect with curriculum topics to deepen conceptual understanding.',
+    skillEnrichment: 'A vibrant network of Clubs enriches student life, offering diverse avenues to explore interests and build skills—from AI Coding, Data Science, and Financial Literacy to Mass Media, MUN, Language Clubs, Sports, Yoga, and Performing Arts. The THOTS Lab and Innovation Hub are dedicated spaces where the spirit of inquiry is fuelled. Our scholastic resources are backed by a central library with 20,000+ books, class libraries (Nursery-XII) and the DEAR (Drop Everything And Read) scheduled period.',
+    schoolExcursions: 'Educational excursions are not a break from learning—they are learning in motion. Delfites participate in a rich variety of journeys: heritage walks, industry visits, science explorations, biodiversity parks, village immersions, museums, and leadership camps. Visits to institutions such as the President\'s Estate, National Physical Laboratory, Parliament Museum, and research centres enable students to witness knowledge in action. Outdoor camps in Lohagarh Farms, Dharamshala, and Chakrata build resilience. Our students also participate in international exchange tours to Russia, Malaysia, and other global destinations.'
   }
 
   const subsectionPhotos = {
-    performingArts: [],
-    sports: [
-      { src: '/holistic/sports/nandini-kansal.jpg', caption: 'Nandini Kansal — ITF International Tennis, AITA #21 in UP' },
-      { src: '/holistic/sports/shreeja-singh.jpg', caption: 'Shreeja Singh — 5 Golds & 5 State Records, Best Swimmer at UP State Championship' },
+    performingArts: [
+      { src: '/achievements/Nrityanjali.jpeg', caption: 'Classical dance performance at Nrityanjali Inter-School Competition' }
     ],
-    visualArts: [],
-    skillEnrichment: [],
+    sports: [
+      { src: '/achievements/Nandini Kansal.jpg', caption: 'Nandini Kansal — Represented India at ITF Nepal & Africa, AITA #21 (UP)' },
+      { src: '/achievements/Shreeja Singh at UP State Championship.jpg', caption: 'Shreeja Singh — 5 Golds & 5 State Records, Best Swimmer at UP State Championship' }
+    ],
+    visualArts: [
+      { src: '/achievements/Unique Hospital Bed.jpg', caption: 'Design & sculpture models created by students at the Design Studio' }
+    ],
+    skillEnrichment: [
+      { src: '/achievements/Pendulum Pump.png', caption: 'Mechanical Pendulum Pump — Top 3 at CBSE National Science Exhibition' }
+    ],
     schoolExcursions: [
-      { src: '/holistic/excursions/excursion1.jpg', caption: 'Students on an educational excursion — learning beyond the classroom' },
+      { src: '/achievements/ramjas (1).jpg', caption: 'Students participating in inter-school outreach and educational camps' }
     ]
   }
 
@@ -60,34 +66,35 @@ export default function SchoolHolistic() {
 
   const subsectionFeatures = {
     performingArts: [
+      'Acoustically sound Performing Arts Room for vocal & instrumental music.',
+      'Training models in Hindustani classical, Western vocal, and choral music.',
       'Indian classical dance forms (Kathak, Bharatnatyam) and Western styling.',
-      'Vocal training models in Hindustani classical and choral music.',
-      'Theatre groups focusing on street plays (Nukkad Natak), speech, and drama.',
-      'Acoustically sound recording rooms and dedicated dance workshops.'
+      'Theatre groups focusing on street plays (Nukkad Natak), speech, and drama.'
     ],
     sports: [
-      'A synthetic multi-lane athletics track for sprint training.',
-      'Professional coaches for cricket, football, basketball, and outdoor skating.',
-      'Annual intra-group and CBSE state sports championships.',
-      'Customized health, dietary guidelines, and fitness cards for kids.'
+      'Olympic-size skating rink for precision and speed training.',
+      'Professional synthetic football turf for training and competitive play.',
+      'Two well-maintained swimming pools catering to different age groups and safety levels.',
+      'Pickleball Court — introducing students to emerging global sports (only court in vicinity).',
+      'Indoor basketball and badminton courts for year-round athletic engagement.'
     ],
     visualArts: [
-      'Visual arts academy teaching sketching, acrylic painting, and canvas styling.',
-      'Pottery wheel clusters and clay baking kilns for ceramics.',
-      'Recycled paper crafts, waste-to-art sculpturing projects.',
-      'Student art galleries showcasing work during parent-teacher orientations.'
+      'Visual Arts academy focusing on sketching, painting, and digital design.',
+      'Clay modeling, pottery wheels, and sculpture making at the Design Studio.',
+      'Art-Integrated Academics: dramatization and movement used to teach school subjects.',
+      'Student Art Galleries showcasing original work during orientations.'
     ],
     skillEnrichment: [
-      'Integrated coding modules teaching Python, scratch blocks, and HTML.',
-      'Robotics assembly workshops featuring Arduino chips and sensor setups.',
-      'Public speaking, debating, and Model United Nations (MUN) training.',
-      'Young entrepreneurship cells enabling student-run projects.'
+      'Central Library housing more than 20,000 books across diverse genres.',
+      'Class library in each section (Nursery to XII) with books issued every Friday.',
+      'DEAR (Drop Everything And Read) scheduled periods in the curriculum.',
+      'Tinkering and research spaces: THOTS Lab, Innovation Hub, and FIM Lab.'
     ],
     schoolExcursions: [
-      'Educational historical walks to heritage sites (Qutub Minar, Red Fort).',
-      'Ecological excursions to waste recycling plants and organic farms.',
-      'Outward bound wilderness camps focusing on survival and rock climbing.',
-      'Exchange tours and interactive sessions with global sister schools.'
+      'Visits to NPL, Parliament Museum, and research centres to witness knowledge in action.',
+      'Heritage walks, biodiversity park studies, and city forest explorations.',
+      'Adventure and leadership camps in Lohagarh Farms, Dharamshala, and Chakrata.',
+      'International learning journeys to Russia, Malaysia, and other global destinations.'
     ]
   }
 
@@ -202,6 +209,67 @@ export default function SchoolHolistic() {
 
           </div>
 
+        </div>
+
+        {/* ── TRAILBLAZERS & ACHIEVERS SECTION ── */}
+        <div className="space-y-8 border-t border-gray-100 pt-16">
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>Delfite Trailblazers</span>
+            <h3 className={`font-serif text-2xl sm:text-3xl font-bold text-${theme.primary}`}>Multi-Dimensional Excellence</h3>
+            <p className="text-xs sm:text-sm text-brand-muted font-inter font-medium leading-relaxed">
+              Every Delfite is encouraged to explore diverse passions and master at least one sport, one art, and one skill. Meet the trailblazers leading the charge globally.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+            {[
+              {
+                name: "Arsalan Alam",
+                achievement: "Research Scholar & Innovator",
+                desc: "Accepted at SPARC for a summer internship program amongst North American scholars. He also received a $10,000 grant from International Venture Capital firms, crediting DLF's Design Thinking classes from Class VI onwards.",
+                img: "/achievements/Aadya Singh.jpg"
+              },
+              {
+                name: "Shreeja Singh",
+                achievement: "Champion Swimmer (Class IX)",
+                desc: "Won 5 Gold Medals at the UP State Championship in Lucknow, breaking 5 state records. She earned the title of 'Best Swimmer' and qualified for the Swimming Nationals.",
+                img: "/achievements/Shreeja Singh at UP State Championship.jpg"
+              },
+              {
+                name: "Ishika Singh",
+                achievement: "DPL Cricket All-Rounder",
+                desc: "Selected for the Delhi Premier League (DPL) as a prime all-rounder, playing for the South Delhi Superstarz team on regional and national stages.",
+                img: "/achievements/Ishika Singh cricket.jpg"
+              },
+              {
+                name: "Nandini Kansal",
+                achievement: "ITF International Tennis Player",
+                desc: "Represented India at the International Tennis Federation (ITF) tournaments in Nepal and Africa. Ranked #21 in Uttar Pradesh (AITA) and #184 under-18 girls in India.",
+                img: "/achievements/Nandini Kansal.jpg"
+              },
+              {
+                name: "Uday Kaul",
+                achievement: "ITF Tennis Representative",
+                desc: "Represented India at the prestigious ITF Tournament held in Kazakhstan. Currently holds an All India Tennis Association (AITA) Men's Ranking of 262.",
+                img: "/achievements/Uday Kaul.jpg"
+              }
+            ].map((p, idx) => (
+              <div key={idx} className="bg-white rounded-3xl border border-gray-100 shadow-md overflow-hidden flex flex-col justify-between hover:shadow-lg transition-shadow">
+                <div className="space-y-4">
+                  <div className="aspect-[4/3] w-full overflow-hidden bg-gray-50 border-b border-gray-50">
+                    <img src={p.img} alt={p.name} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="p-6 pt-2 space-y-2">
+                    <span className={`text-[9px] uppercase tracking-widest font-extrabold px-2.5 py-1 rounded-full bg-${theme.primary}/10 text-${theme.primary}`}>
+                      {p.achievement}
+                    </span>
+                    <h4 className="font-serif text-base font-bold text-brand-charcoal pt-1">{p.name}</h4>
+                    <p className="text-[11px] text-brand-muted leading-relaxed font-inter font-medium">{p.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>

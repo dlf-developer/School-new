@@ -11,6 +11,7 @@ import {
   Award, 
   BookOpen, 
   Users,
+  User,
   Activity,
   PlayCircle,
   Home,
@@ -40,6 +41,22 @@ export default function Header() {
   const match = location.pathname.match(/^\/school\/([^/]+)/)
   const schoolId = match && schools[match[1]] ? match[1] : null
   const currentSchool = schoolId ? schools[schoolId] : null
+
+  // Active link helper calculations
+  const isCampusActive = schoolId && location.pathname === `/school/${schoolId}/campus`
+  const isLeadershipActive = schoolId && (location.pathname.startsWith(`/school/${schoolId}/principal-desk`) || location.pathname.startsWith(`/school/${schoolId}/leadership`))
+  const isAdmissionsActive = schoolId && location.pathname.startsWith(`/school/${schoolId}/admissions`)
+  const isCurriculumActive = schoolId && location.pathname === `/school/${schoolId}/curriculum`
+  const isHolisticActive = schoolId && location.pathname === `/school/${schoolId}/holistic-learning`
+  const isCounsellingActive = schoolId && location.pathname === `/school/${schoolId}/counselling`
+  const isWinningActive = schoolId && location.pathname === `/school/${schoolId}/winning-school`
+  const isEditorialsActive = schoolId && location.pathname === `/school/${schoolId}/editorials`
+
+  const isAboutUsActive = !schoolId && ['/thinking-school', '/vision-mission', '/management', '/parent-partners', '/awards'].includes(location.pathname)
+  const isPedagogyActive = !schoolId && location.pathname.startsWith('/pedagogy')
+  const isSchoolsActive = location.pathname.startsWith('/school/')
+  const isWhatSetsUsApartActive = !schoolId && location.pathname === '/what-sets-us-apart'
+  const isContactActive = !schoolId && location.pathname === '/contact'
 
   // Define dynamic theme configurations based on the selected school
   const theme = currentSchool ? currentSchool.theme : {
@@ -191,13 +208,13 @@ export default function Header() {
 
           {/* Desktop Nav Menu */}
           <nav className={`hidden lg:flex items-center ${schoolId ? 'gap-4 xl:gap-5 text-[11.5px]' : 'gap-6 xl:gap-8 text-[13px]'} font-semibold ${!schoolId ? 'text-white/95' : 'text-brand-charcoal/95'}`}>
-            
-            {/* Menu 1: Group / Portal Level Info */}
+                        {/* Menu 1: Group / Portal Level Info */}
             {!schoolId && (
-              <div className="relative group py-2">
-                <button className="flex items-center gap-1 hover:text-brand-gold transition-colors duration-300 cursor-pointer">
+              <div className="relative group py-2 flex flex-col items-center justify-center">
+                <button className={`flex items-center gap-1 hover:text-brand-gold transition-colors duration-300 cursor-pointer font-semibold ${isAboutUsActive ? 'text-brand-gold font-bold' : ''}`}>
                   About Us <ChevronDown className={`w-3.5 h-3.5 text-${theme.accent}`} />
                 </button>
+                {isAboutUsActive && <span className="absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-brand-gold"></span>}
                 <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-brand-greenDeep text-white rounded-xl shadow-xl border border-white/10 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                   <div className="space-y-2 text-xs">
                     <Link to="/thinking-school" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-gold transition-colors font-semibold">A Thinking School with a Soul</Link>
@@ -212,10 +229,11 @@ export default function Header() {
 
             {/* Menu 1b: Our Pedagogy Dropdown */}
             {!schoolId && (
-              <div className="relative group py-2">
-                <button className="flex items-center gap-1 hover:text-brand-gold transition-colors duration-300 cursor-pointer">
+              <div className="relative group py-2 flex flex-col items-center justify-center">
+                <button className={`flex items-center gap-1 hover:text-brand-gold transition-colors duration-300 cursor-pointer font-semibold ${isPedagogyActive ? 'text-brand-gold font-bold' : ''}`}>
                   Our Pedagogy <ChevronDown className={`w-3.5 h-3.5 text-${theme.accent}`} />
                 </button>
+                {isPedagogyActive && <span className="absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-brand-gold"></span>}
                 <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-brand-greenDeep text-white rounded-xl shadow-xl border border-white/10 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                   <div className="space-y-2 text-xs">
                     <Link to="/pedagogy/early-years" className="block px-3 py-2 rounded-lg hover:bg-white/10 hover:text-brand-gold transition-colors font-semibold">Early Years</Link>
@@ -228,12 +246,11 @@ export default function Header() {
             )}
 
             {/* Menu 2: Our Schools — simple dropdown on master, mega menu on school routes */}
-            <div className="relative group py-2">
-              <button className={`flex items-center gap-1 hover:text-${!schoolId ? 'brand-gold' : theme.vibrant} transition-colors duration-300 cursor-pointer`}>
+            <div className="relative group py-2 flex flex-col items-center justify-center">
+              <button className={`flex items-center gap-1 hover:text-${!schoolId ? 'brand-gold' : theme.vibrant} transition-colors duration-300 cursor-pointer font-semibold ${isSchoolsActive ? (!schoolId ? 'text-brand-gold font-bold' : `text-${theme.vibrant} font-bold`) : ''}`}>
                 Our Schools <ChevronDown className={`w-3.5 h-3.5 text-${theme.accent}`} />
               </button>
-
-              {/* ── MASTER SITE: simple dropdown ── */}
+              {isSchoolsActive && <span className={`absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-${!schoolId ? 'brand-gold' : theme.vibrant}`}></span>}
               {/* ── MASTER SITE: side-by-side visual dropdown with pictures ── */}
               {!schoolId && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 p-5 bg-white border border-gray-150 rounded-2xl shadow-2xl transition-all duration-300 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0" style={{ width: '560px', zIndex: 1000 }}>
@@ -435,20 +452,39 @@ export default function Header() {
             {schoolId ? (
               <>
                 {/* 1. Our Campus */}
-                <Link to={`/school/${schoolId}/campus`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold`}>
-                  Our Campus
-                </Link>
+                <div className="relative py-2 flex flex-col items-center justify-center">
+                  <Link to={`/school/${schoolId}/campus`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold ${isCampusActive ? `text-${theme.vibrant} font-bold` : ''}`}>
+                    Our Campus
+                  </Link>
+                  {isCampusActive && <span className={`absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-${theme.vibrant}`}></span>}
+                </div>
 
-                {/* 2. Leadership */}
-                <Link to={`/school/${schoolId}/leadership`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold`}>
-                  Leadership
-                </Link>
+                {/* 2. Leadership Dropdown */}
+                <div className="relative group py-2 flex flex-col items-center justify-center">
+                  <button className={`flex items-center gap-1 hover:text-${theme.vibrant} transition-colors duration-300 cursor-pointer font-semibold ${isLeadershipActive ? `text-${theme.vibrant} font-bold` : ''}`}>
+                    Leadership <ChevronDown className={`w-3.5 h-3.5 text-${theme.accent}`} />
+                  </button>
+                  {isLeadershipActive && <span className={`absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-${theme.vibrant}`}></span>}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white text-brand-charcoal rounded-xl shadow-xl border border-gray-100 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                    <div className="space-y-1 text-xs">
+                      <Link to={`/school/${schoolId}/principal-desk`} className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold`}>
+                        <User className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                        Principal's Desk
+                      </Link>
+                      <Link to={`/school/${schoolId}/leadership`} className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold`}>
+                        <Users className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                        Leadership Team
+                      </Link>
+                    </div>
+                  </div>
+                </div>
 
                 {/* 3. Admissions Dropdown */}
-                <div className="relative group py-2">
-                  <button className={`flex items-center gap-1 hover:text-${theme.vibrant} transition-colors duration-300 cursor-pointer font-semibold`}>
+                <div className="relative group py-2 flex flex-col items-center justify-center">
+                  <button className={`flex items-center gap-1 hover:text-${theme.vibrant} transition-colors duration-300 cursor-pointer font-semibold ${isAdmissionsActive ? `text-${theme.vibrant} font-bold` : ''}`}>
                     Admissions <ChevronDown className={`w-3.5 h-3.5 text-${theme.accent}`} />
                   </button>
+                  {isAdmissionsActive && <span className={`absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-${theme.vibrant}`}></span>}
                   <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white text-brand-charcoal rounded-xl shadow-xl border border-gray-100 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                     <div className="space-y-1 text-xs">
                       <Link to={`/school/${schoolId}/admissions?tab=procedure`} className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold`}>
@@ -468,38 +504,59 @@ export default function Header() {
                 </div>
 
                 {/* 4. Curriculum */}
-                <Link to={`/school/${schoolId}/curriculum`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold`}>
-                  Curriculum
-                </Link>
+                <div className="relative py-2 flex flex-col items-center justify-center">
+                  <Link to={`/school/${schoolId}/curriculum`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold ${isCurriculumActive ? `text-${theme.vibrant} font-bold` : ''}`}>
+                    Curriculum
+                  </Link>
+                  {isCurriculumActive && <span className={`absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-${theme.vibrant}`}></span>}
+                </div>
 
                 {/* 5. Holistic Learning */}
-                <Link to={`/school/${schoolId}/holistic-learning`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold`}>
-                  Holistic Learning
-                </Link>
+                <div className="relative py-2 flex flex-col items-center justify-center">
+                  <Link to={`/school/${schoolId}/holistic-learning`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold ${isHolisticActive ? `text-${theme.vibrant} font-bold` : ''}`}>
+                    Holistic Learning
+                  </Link>
+                  {isHolisticActive && <span className={`absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-${theme.vibrant}`}></span>}
+                </div>
 
                 {/* 6. Counselling, Career and Wellness */}
-                <Link to={`/school/${schoolId}/counselling`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold`}>
-                  Counselling &amp; Wellness
-                </Link>
+                <div className="relative py-2 flex flex-col items-center justify-center">
+                  <Link to={`/school/${schoolId}/counselling`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold ${isCounsellingActive ? `text-${theme.vibrant} font-bold` : ''}`}>
+                    Counselling &amp; Wellness
+                  </Link>
+                  {isCounsellingActive && <span className={`absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-${theme.vibrant}`}></span>}
+                </div>
 
                 {/* 7. Winning School */}
-                <Link to={`/school/${schoolId}/winning-school`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold`}>
-                  Winning School
-                </Link>
+                <div className="relative py-2 flex flex-col items-center justify-center">
+                  <Link to={`/school/${schoolId}/winning-school`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold ${isWinningActive ? `text-${theme.vibrant} font-bold` : ''}`}>
+                    Winning School
+                  </Link>
+                  {isWinningActive && <span className={`absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-${theme.vibrant}`}></span>}
+                </div>
 
                 {/* 8. DLF Editorials */}
-                <Link to={`/school/${schoolId}/editorials`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold`}>
-                  DLF Editorials
-                </Link>
+                <div className="relative py-2 flex flex-col items-center justify-center">
+                  <Link to={`/school/${schoolId}/editorials`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold ${isEditorialsActive ? `text-${theme.vibrant} font-bold` : ''}`}>
+                    DLF Editorials
+                  </Link>
+                  {isEditorialsActive && <span className={`absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-${theme.vibrant}`}></span>}
+                </div>
               </>
             ) : (
               <>
-                <Link to="/what-sets-us-apart" className="hover:text-brand-gold transition-colors duration-300 font-semibold">
-                  What Sets Us Apart
-                </Link>
-                <Link to="/contact" className="hover:text-brand-gold transition-colors duration-300 font-semibold">
-                  Contact Us
-                </Link>
+                <div className="relative py-2 flex flex-col items-center justify-center">
+                  <Link to="/what-sets-us-apart" className={`hover:text-brand-gold transition-colors duration-300 font-semibold ${isWhatSetsUsApartActive ? 'text-brand-gold font-bold' : ''}`}>
+                    What Sets Us Apart
+                  </Link>
+                  {isWhatSetsUsApartActive && <span className="absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-brand-gold"></span>}
+                </div>
+                <div className="relative py-2 flex flex-col items-center justify-center">
+                  <Link to="/contact" className={`hover:text-brand-gold transition-colors duration-300 font-semibold ${isContactActive ? 'text-brand-gold font-bold' : ''}`}>
+                    Contact Us
+                  </Link>
+                  {isContactActive && <span className="absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-brand-gold"></span>}
+                </div>
               </>
             )}
           </nav>
@@ -616,7 +673,11 @@ export default function Header() {
                 <div className={`border-t border-${theme.primary}/10 my-2 pt-2 space-y-1`}>
                   <p className="text-[10px] uppercase font-bold tracking-wider text-brand-muted mb-2">{currentSchool.name} Links</p>
                   <Link to={`/school/${schoolId}/campus`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>Our Campus</Link>
-                  <Link to={`/school/${schoolId}/leadership`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>Leadership</Link>
+                  <div className="pt-1">
+                    <p className="text-[10px] uppercase font-bold tracking-wider text-brand-muted mb-1.5">Leadership</p>
+                    <Link to={`/school/${schoolId}/principal-desk`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}>Principal's Desk</Link>
+                    <Link to={`/school/${schoolId}/leadership`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}>Leadership Team</Link>
+                  </div>
                   {/* Admissions sub-links */}
                   <div className={`border-t border-${theme.primary}/10 my-1 pt-2`}>
                     <p className="text-[10px] uppercase font-bold tracking-wider text-brand-muted mb-1.5">Admissions</p>

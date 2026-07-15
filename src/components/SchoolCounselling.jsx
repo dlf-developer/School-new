@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useSiteData } from '../hooks/useSiteData'
-import { Heart, Compass, ShieldAlert, ArrowLeft, Send, CheckCircle2, Award } from 'lucide-react'
+import { Heart, Compass, ShieldAlert, ArrowLeft, Send, CheckCircle2, Award, ChevronDown } from 'lucide-react'
 
 export default function SchoolCounselling() {
   const { schoolId } = useParams()
@@ -136,6 +136,107 @@ export default function SchoolCounselling() {
               </div>
             )
           })}
+        </div>
+
+        {/* ── CHILD PROTECTION POLICY (CPP) ACCORDION ── */}
+        <div className="space-y-6 pt-4 border-t border-gray-100 mt-12">
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>Safety First</span>
+            <h3 className={`font-serif text-2xl sm:text-3xl font-bold text-${theme.primary}`}>Child Protection Policy (CPP)</h3>
+            <p className="text-xs sm:text-sm text-brand-muted font-inter font-medium leading-relaxed">
+              At DLF Public School, child safety is our highest priority. Our comprehensive Child Protection Policy ensures a secure, nurturing, and zero-tolerance environment for every student.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto space-y-4 pt-4">
+            {[
+              {
+                title: "1. Scope & Legal Compliance",
+                desc: "This CPP is guided by ratified international conventions and conforms strictly to child protection laws in force in India. The school maintains a zero-tolerance approach to physical violence, mental harassment, cyber bullying, ragging, or abuse in school premises, school buses, or any extended learning environment.",
+                details: [
+                  "Conformity with Protection of Children from Sexual Offences (POCSO) Act, 2012.",
+                  "Conformity with the Juvenile Justice (Care and Protection of Children) Act, 2015.",
+                  "Conformity with the Indian Penal Code (IPC) and the Information Technology Act, 2000.",
+                  "Applies to all school staff, teachers, visitors, parents, visiting faculty, and third-party vendors."
+                ]
+              },
+              {
+                title: "2. Key Definitions & Covered Offenses",
+                desc: "The policy establishes clear legal definitions of behaviors that are strictly prohibited and subject to immediate disciplinary and penal action:",
+                details: [
+                  "Child Abuse: Physical, emotional, online, or sexual abuse resulting in actual or potential harm to a child's dignity.",
+                  "Ragging / Bullying: Disorderly conduct causing teasing, psychological harm, embarrassment, or fear.",
+                  "Cyber Bullying & Stalking: Harassment, intimidation, or tracking using electronic devices, social media, or networks.",
+                  "Physical Violence: Any act causing bodily pain, injury, or impairing the development of the child."
+                ]
+              },
+              {
+                title: "3. Complaint & Redressal Mechanism",
+                desc: "Any staff member, parent, or student can report safety incidents. The school ensures complete confidentiality and protection for the complainant.",
+                details: [
+                  "Complaints can be handed in writing to any teacher, counselor, Principal, or Child Protection Officer.",
+                  "POCSO cases are immediately routed to the Student Safety Committee (SSC) and reported to local police/Special Juvenile Police Unit within 24 hours.",
+                  "Mandatory reporting of suspected child abuse (failure to report is a criminal offense).",
+                  "Direct line to national Child Helpline: 1098."
+                ]
+              },
+              {
+                title: "4. Code of Conduct for Staff (Do's & Don'ts)",
+                desc: "All staff members are bound by strict behavioral guidelines to maintain professional boundaries:",
+                details: [
+                  "DO: Respect child privacy; remain visible in classrooms/workplaces; report suspicious behavior immediately.",
+                  "DON'T: Spend excessive time alone with children in secluded areas; use language that is shaming, belittling, or discriminatory.",
+                  "DO: Treat all students with equal dignity regardless of race, gender, background, or ability.",
+                  "DON'T: Interact with students over personal social media platforms (only official channels allowed)."
+                ]
+              },
+              {
+                title: "5. Safety Guidelines for Online Learning",
+                desc: "Ensuring digital classrooms remain safe and professional spaces for both teachers and students:",
+                details: [
+                  "Teachers must broadcast from professional environments, use full display names, and set secure meeting rooms.",
+                  "Students must use full names, appropriate profile pictures, and keep parents informed of all online sessions.",
+                  "Strict prohibition on sharing students' work, opinions, or images without explicit consent.",
+                  "No sharing of personal contact credentials or private messaging in school virtual spaces."
+                ]
+              },
+              {
+                title: "6. Recruitment Safeguards & Annual Audits",
+                desc: "We screen and train all individuals who interact with our students to enforce institutional accountability:",
+                details: [
+                  "Mandatory background checks, police verification, and character certificates for all new employees.",
+                  "Signed affidavits certifying that the candidate has no pending accusations under the POCSO or JJ Acts.",
+                  "Bi-annual collective meetings of teachers, parents, and students to spread awareness on child safety.",
+                  "Annual safety audit resulting in a 'Child Safety Checklist' report published by school management."
+                ]
+              }
+            ].map((section, sIdx) => (
+              <details 
+                key={sIdx} 
+                className="group bg-white rounded-2xl border border-gray-100 p-5 shadow-sm [&_summary::-webkit-details-marker]:hidden hover:shadow-md transition-shadow duration-300"
+              >
+                <summary className="flex items-center justify-between cursor-pointer focus:outline-none">
+                  <h4 className={`font-serif text-sm sm:text-base font-bold text-brand-charcoal hover:text-${theme.vibrant} transition-colors pr-4`}>
+                    {section.title}
+                  </h4>
+                  <span className={`text-${theme.primary} shrink-0 transition-transform duration-300 group-open:rotate-180`}>
+                    <ChevronDown className="w-4 h-4" />
+                  </span>
+                </summary>
+                <div className="text-xs sm:text-sm text-brand-muted font-inter leading-relaxed font-medium mt-3 pt-3 border-t border-gray-50 space-y-3">
+                  <p>{section.desc}</p>
+                  <ul className="space-y-1.5 pl-1.5 text-xs text-brand-charcoal font-semibold">
+                    {section.details.map((item, iIdx) => (
+                      <li key={iIdx} className="flex gap-2 items-start leading-relaxed">
+                        <CheckCircle2 className={`w-3.5 h-3.5 text-${theme.accent} shrink-0 mt-0.5`} />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </details>
+            ))}
+          </div>
         </div>
 
         {/* Lower Consultation Form & Quote */}
