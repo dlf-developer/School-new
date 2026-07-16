@@ -4,7 +4,7 @@ import FieldEditor from '../components/FieldEditor'
 import CardRepeater from '../components/CardRepeater'
 import ImageUrlPicker from '../components/ImageUrlPicker'
 import SaveBar from '../components/SaveBar'
-import { School, Settings, Sparkles, HelpCircle, BookOpen, Layers, CheckCircle } from 'lucide-react'
+import { School, Settings, Sparkles, HelpCircle, BookOpen, Layers, CheckCircle, Palette } from 'lucide-react'
 
 export default function SchoolsEditor() {
   const { schools, saveSchool, resetSchool } = useSiteData()
@@ -107,6 +107,7 @@ export default function SchoolsEditor() {
 
   const subTabs = [
     { id: 'general', label: 'General Info', icon: Settings },
+    { id: 'theme', label: 'Theme Colors', icon: Palette },
     { id: 'hero', label: 'Hero Banner', icon: Sparkles },
     { id: 'admissions', label: 'Admissions Steps', icon: HelpCircle },
     { id: 'curriculum', label: 'Curriculum & Campus', icon: BookOpen },
@@ -484,6 +485,55 @@ export default function SchoolsEditor() {
                 onChange={(val) => handleNestedFieldChange('holistic', 'sports', val)}
                 placeholder="Describe athletic arrays, football grids, skating, etc..."
                 rows={6}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* PANEL: Theme Colors */}
+        {activeTab === 'theme' && (
+          <div className="bg-[#0c0c14]/80 backdrop-blur-md border border-gray-800 rounded-xl p-6 space-y-6">
+            <h3 className="text-sm font-bold text-brand-gold uppercase tracking-wider border-b border-gray-800/60 pb-2">Theme Customization</h3>
+            <p className="text-xs text-gray-400">
+              Customize the look and feel of the branch landing page. You can specify tailwind color classes or specific hex values for dynamic overlays.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <FieldEditor
+                label="Primary Color Class"
+                value={schoolData.theme?.primary}
+                onChange={(val) => handleNestedFieldChange('theme', 'primary', val)}
+                placeholder="e.g. brand-greenDeep or brand-purpleDeep"
+                description="Tailwind color class for headers, base backgrounds, and main headings."
+              />
+              <FieldEditor
+                label="Vibrant Highlight Color Class"
+                value={schoolData.theme?.vibrant}
+                onChange={(val) => handleNestedFieldChange('theme', 'vibrant', val)}
+                placeholder="e.g. brand-purpleVibrant or brand-greenVibrant"
+                description="Tailwind color class for active menu items, indicators, and minor callouts."
+              />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <FieldEditor
+                label="Accent Highlight Class"
+                value={schoolData.theme?.accent}
+                onChange={(val) => handleNestedFieldChange('theme', 'accent', val)}
+                placeholder="e.g. brand-purpleVibrant or brand-gold"
+                description="Tailwind color class for primary CTAs and underlined/italic text accents."
+              />
+              <FieldEditor
+                label="Accent Hex Code"
+                value={schoolData.theme?.accentHex}
+                onChange={(val) => handleNestedFieldChange('theme', 'accentHex', val)}
+                placeholder="e.g. #5E2C84 or #C59B27"
+                description="Hex color code used directly for canvas gradients and inline SVG paths."
+              />
+              <FieldEditor
+                label="Card Background Color Hex"
+                value={schoolData.theme?.cardBg}
+                onChange={(val) => handleNestedFieldChange('theme', 'cardBg', val)}
+                placeholder="e.g. #1b3518 or #211c38"
+                description="Background hex color code used for card containers on this campus branch."
               />
             </div>
           </div>

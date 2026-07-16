@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useSiteData } from '../hooks/useSiteData'
-import { Star, ShieldCheck, ArrowLeft, Award, Zap, Smile, X, ArrowRight } from 'lucide-react'
+import { ArrowLeft, Award, Zap, Smile, X, ArrowRight } from 'lucide-react'
 
 export default function SchoolWinning({ isHomePage = false }) {
   const { schoolId } = useParams()
@@ -16,37 +16,6 @@ export default function SchoolWinning({ isHomePage = false }) {
     accent: 'brand-gold',
     accentHex: '#C59B27'
   }
-
-  const awards = [
-    { 
-      year: '2025-26', 
-      title: 'Top Day Co-Ed Rankings', 
-      by: 'CFORE', 
-      desc: 'Ranked #5 in India for Leadership & Governance, and #8 in India for Academic Rigour.',
-      img: '/C Fore Ranking.jpg'
-    },
-    { 
-      year: '2024-25', 
-      title: 'Plastic Neutral Certification', 
-      by: 'WMARS', 
-      desc: 'First school in Delhi-NCR to be recognized as 100% Plastic Neutral for active sustainability drives.',
-      img: '/WMARS.jpeg'
-    },
-    { 
-      year: '2023-24', 
-      title: 'National Pedagogical Leadership Award', 
-      by: 'CBSE Board', 
-      desc: 'Conferred for outstanding success and leadership in student-led skill acquisition programs.',
-      img: '/Skillbuilder Certificate.jpeg'
-    },
-    { 
-      year: '2022-23', 
-      title: 'International Sports Excellence', 
-      by: 'SGA Africa & Kazakhstan', 
-      desc: 'Honoring school athletes representing India on international platforms in skating and basketball.',
-      img: '/RIDS.JPG'
-    }
-  ]
 
   const studentAchievements = [
     {
@@ -158,88 +127,37 @@ export default function SchoolWinning({ isHomePage = false }) {
         </div>
 
         {/* Dynamic Achievements Pillars */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4">
-          
-          {/* Left Column: Ethos card */}
-          <div className="lg:col-span-4 bg-white p-8 rounded-3xl border border-gray-100 shadow-lg space-y-6 relative overflow-hidden">
-            <div className={`absolute top-0 left-0 w-full h-1.5 bg-${theme.primary}`}></div>
-            <div className="space-y-2">
-              <h3 className={`font-serif text-2xl font-bold text-${theme.primary}`}>Our Philosophy of Winning</h3>
+        <div className="bg-white p-8 sm:p-10 rounded-3xl border border-gray-100 shadow-lg relative overflow-hidden">
+          <div className={`absolute top-0 left-0 w-full h-1.5 bg-${theme.primary}`}></div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="space-y-3">
+              <h3 className={`font-serif text-2xl sm:text-3xl font-bold text-${theme.primary}`}>Our Philosophy of Winning</h3>
               <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter font-medium">
                 We are a winning school not because we stress competition, but because we nurture individuality. We teach children to excel without losing their sensitivity, empathy, or moral values.
               </p>
             </div>
             
-            <div className="space-y-4 pt-4 border-t border-gray-100">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pl-0 md:pl-8 md:border-l border-gray-100">
               <div className="flex gap-3.5 items-start">
-                <div className={`w-8 h-8 rounded-lg bg-${theme.primary}/10 text-${theme.primary} flex items-center justify-center shrink-0`}>
-                  <Zap className="w-4 h-4" />
+                <div className={`w-9 h-9 rounded-xl bg-${theme.primary}/10 text-${theme.primary} flex items-center justify-center shrink-0`}>
+                  <Zap className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-brand-charcoal">Future Ready Capability</h4>
-                  <p className="text-[10px] text-brand-muted font-inter">Developing critical analysis, STEM reasoning, and computational algorithms.</p>
+                  <h4 className="text-xs sm:text-sm font-bold text-brand-charcoal">Future Ready Capability</h4>
+                  <p className="text-[10px] sm:text-xs text-brand-muted font-inter leading-relaxed mt-0.5">Developing critical analysis, STEM reasoning, and computational algorithms.</p>
                 </div>
               </div>
               <div className="flex gap-3.5 items-start">
-                <div className={`w-8 h-8 rounded-lg bg-${theme.primary}/10 text-${theme.primary} flex items-center justify-center shrink-0`}>
-                  <Smile className="w-4 h-4" />
+                <div className={`w-9 h-9 rounded-xl bg-${theme.primary}/10 text-${theme.primary} flex items-center justify-center shrink-0`}>
+                  <Smile className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-brand-charcoal">Sensible Individualism</h4>
-                  <p className="text-[10px] text-brand-muted font-inter">Nurturing creative arts and self-worth along with athletic excellence.</p>
+                  <h4 className="text-xs sm:text-sm font-bold text-brand-charcoal">Sensible Individualism</h4>
+                  <p className="text-[10px] sm:text-xs text-brand-muted font-inter leading-relaxed mt-0.5">Nurturing creative arts and self-worth along with athletic excellence.</p>
                 </div>
               </div>
             </div>
           </div>
-
-          {/* Right Column: Timeline of National Recognitions */}
-          <div className="lg:col-span-8 space-y-6">
-            <h3 className={`font-serif text-2xl font-bold text-${theme.primary} pl-2`}>National & Global Accolades</h3>
-            <div className="space-y-4">
-              {(isHomePage ? awards.slice(0, 1) : awards).map((aw, idx) => (
-                <div 
-                  key={idx} 
-                  className="bg-white p-6 sm:p-8 rounded-3xl border border-gray-100 shadow-md flex flex-col sm:flex-row gap-5 sm:gap-6 items-start hover:shadow-lg transition-shadow relative overflow-hidden group"
-                >
-                  {aw.img && (
-                    <div 
-                      onClick={() => setLightboxImage(aw.img)}
-                      className="w-full sm:w-32 aspect-[4/3] rounded-2xl overflow-hidden border border-gray-100 shadow-sm relative group/img cursor-zoom-in shrink-0 bg-gray-50 flex items-center justify-center"
-                    >
-                      <img 
-                        src={aw.img} 
-                        alt={aw.title} 
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
-                        <span className="text-[10px] font-bold text-white uppercase tracking-wider bg-black/40 px-2.5 py-1 rounded-full backdrop-blur-sm">Zoom</span>
-                      </div>
-                    </div>
-                  )}
-                  <div className="space-y-1.5 flex-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className={`text-[10px] uppercase font-bold text-${theme.vibrant} tracking-widest`}>{aw.year}</span>
-                      <span className="text-[9px] bg-brand-gold/15 text-brand-gold font-bold px-2 py-0.5 rounded-full">{aw.by}</span>
-                    </div>
-                    <h4 className="font-serif font-bold text-brand-charcoal text-base sm:text-lg">{aw.title}</h4>
-                    <p className="text-xs text-brand-muted leading-relaxed font-inter font-medium">{aw.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            {isHomePage && (
-              <div className="pt-4 pl-2">
-                <Link 
-                  to="/awards"
-                  className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-${theme.primary} hover:opacity-85 transition-opacity group`}
-                >
-                  View All Achievements & Awards
-                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-              </div>
-            )}
-          </div>
-
         </div>
 
         {isHomePage && (

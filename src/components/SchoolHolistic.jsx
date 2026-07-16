@@ -19,6 +19,14 @@ const sectionTitles = {
   schoolExcursions: 'School Excursions & Field Study'
 }
 
+const categoryThumbnails = {
+  performingArts: '/achievements/Nrityanjali.jpeg',
+  sports: '/achievements/Shreeja Singh at UP State Championship.jpg',
+  visualArts: '/achievements/Unique Hospital Bed.jpg',
+  skillEnrichment: '/achievements/Pendulum Pump.png',
+  schoolExcursions: '/achievements/ramjas (1).jpg'
+}
+
 export default function SchoolHolistic() {
   const { schoolId } = useParams()
   const { schools } = useSiteData()
@@ -66,35 +74,35 @@ export default function SchoolHolistic() {
 
   const subsectionFeatures = {
     performingArts: [
-      'Acoustically sound Performing Arts Room for vocal & instrumental music.',
-      'Training models in Hindustani classical, Western vocal, and choral music.',
-      'Indian classical dance forms (Kathak, Bharatnatyam) and Western styling.',
-      'Theatre groups focusing on street plays (Nukkad Natak), speech, and drama.'
+      'Performing Arts Room supporting Dance, Music, and Drama.',
+      'Vocal and instrumental music training to explore rhythm, melody, and song.',
+      'Dance and movement integrated with active performance opportunities.',
+      'Theatre and drama to explore storytelling, expression, and stagecraft.'
     ],
     sports: [
-      'Olympic-size skating rink for precision and speed training.',
-      'Professional synthetic football turf for training and competitive play.',
-      'Two well-maintained swimming pools catering to different age groups and safety levels.',
-      'Pickleball Court — introducing students to emerging global sports (only court in vicinity).',
-      'Indoor basketball and badminton courts for year-round athletic engagement.'
+      'Newly developed football turf, providing professional-grade conditions for training and competitive play.',
+      'Olympic-size skating rink, offering students a platform to develop balance, precision, and competitive skills.',
+      'Two well-maintained swimming pools, catering to different age groups and skill levels, ensuring training and safety.',
+      'The only pickleball court in the vicinity, introducing students to emerging global sports.',
+      'Indoor basketball and badminton courts allowing uninterrupted practice and year-round engagement.'
     ],
     visualArts: [
-      'Visual Arts academy focusing on sketching, painting, and digital design.',
-      'Clay modeling, pottery wheels, and sculpture making at the Design Studio.',
-      'Art-Integrated Academics: dramatization and movement used to teach school subjects.',
-      'Student Art Galleries showcasing original work during orientations.'
+      'Students engage with sketching, painting, sculpture, mixed media, and digital design.',
+      'Visual Arts spaces including Art and Craft room, Modeling, Sculpture, and the Design Studio.',
+      'Art-integrated academic approach, where concepts are explored through dramatization, music, visual representation, and movement.',
+      'Opportunities to experiment, take creative risks, and develop an original artistic voice.'
     ],
     skillEnrichment: [
-      'Central Library housing more than 20,000 books across diverse genres.',
-      'Class library in each section (Nursery to XII) with books issued every Friday.',
-      'DEAR (Drop Everything And Read) scheduled periods in the curriculum.',
-      'Tinkering and research spaces: THOTS Lab, Innovation Hub, and FIM Lab.'
+      'School library with over 20,000 books catering to a wide spectrum of readers.',
+      'Class library in each section with books issued for a week on every Friday.',
+      'DEAR (Drop Everything And Read) period as part of the regular school timetable.',
+      'Tinkering and research spaces: THOTS Lab, Innovation Hub, FIM Lab, Science labs, and computer labs.'
     ],
     schoolExcursions: [
-      'Visits to NPL, Parliament Museum, and research centres to witness knowledge in action.',
-      'Heritage walks, biodiversity park studies, and city forest explorations.',
-      'Adventure and leadership camps in Lohagarh Farms, Dharamshala, and Chakrata.',
-      'International learning journeys to Russia, Malaysia, and other global destinations.'
+      'Heritage walks, industry visits, science explorations, biodiversity parks, city forests, and village immersions.',
+      'Visits to institutions like the President\'s Estate, NPL, Parliament Museum, and university research centres.',
+      'Adventure and leadership experiences at Lohagarh Farms, Dharamshala, Chakrata, and outdoor destinations.',
+      'National and international educational visits to destinations including Russia, Malaysia, and other countries.'
     ]
   }
 
@@ -123,42 +131,56 @@ export default function SchoolHolistic() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Navigation Sidebar */}
-          <div className="lg:col-span-4 bg-white rounded-3xl border border-gray-100 shadow-md p-6 space-y-2">
-            <span className="text-[10px] font-extrabold uppercase tracking-widest text-gray-400 block px-3 mb-2">Sub-Sections</span>
+          <div className="lg:col-span-4 bg-white rounded-3xl border border-gray-150 shadow-md p-5 space-y-3">
+            <span className="text-[10px] font-extrabold uppercase tracking-widest text-gray-400 block px-2 mb-1">Sub-Sections</span>
             {keys.map(key => {
               const Icon = iconMap[key]
               const isActive = activeSub === key
+              const label = key === 'performingArts' ? 'Performing Arts' : key === 'schoolExcursions' ? 'School Excursions' : key === 'skillEnrichment' ? 'Skill Enrichment' : key === 'visualArts' ? 'Visual Arts' : 'Sports Development'
               return (
                 <button
                   key={key}
                   onClick={() => setActiveSub(key)}
-                  className={`w-full text-left flex items-center gap-3.5 px-4 py-4 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer ${
+                  className={`w-full text-left flex items-center gap-3.5 p-3 rounded-2xl transition-all border cursor-pointer ${
                     isActive 
-                      ? `bg-${theme.primary} text-white shadow-md` 
-                      : 'hover:bg-gray-50 text-brand-charcoal'
+                      ? `bg-${theme.primary} text-white shadow-md border-transparent` 
+                      : 'bg-white hover:bg-gray-50 text-brand-charcoal border-gray-100'
                   }`}
                 >
-                  <Icon className="w-4.5 h-4.5 shrink-0" />
-                  <span>{key === 'performingArts' ? 'Performing Arts' : key === 'schoolExcursions' ? 'School Excursions' : key === 'skillEnrichment' ? 'Skill Enrichment' : key === 'visualArts' ? 'Visual Arts' : 'Sports Development'}</span>
+                  <div className="w-16 h-12 rounded-xl overflow-hidden shrink-0 relative bg-gray-100 shadow-inner">
+                    <img src={categoryThumbnails[key]} alt="" className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white">
+                      <Icon className="w-4.5 h-4.5" />
+                    </div>
+                  </div>
+                  <span className="font-bold text-xs uppercase tracking-wider leading-snug">{label}</span>
                 </button>
               )
             })}
           </div>
 
           {/* Right Detailed Content Panel */}
-          <div className="lg:col-span-8 bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden min-h-[400px] flex flex-col justify-between">
-            <div className="p-8 sm:p-10 space-y-6">
+          <div className="lg:col-span-8 bg-white rounded-3xl border border-gray-150 shadow-xl overflow-hidden min-h-[400px] flex flex-col justify-between">
+            <div className="p-6 sm:p-8 space-y-6">
               
-              {/* Active Header */}
-              <div className="flex items-center gap-4 border-b border-gray-100 pb-5">
-                <div className={`w-12 h-12 bg-${theme.primary}/10 text-${theme.primary} rounded-2xl flex items-center justify-center`}>
-                  <ActiveIcon className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-brand-charcoal">
-                    {sectionTitles[activeSub]}
-                  </h3>
-                  <span className={`text-[10px] uppercase font-bold text-${theme.vibrant} tracking-widest`}>Subsection Ethos</span>
+              {/* Category Cover Image Banner */}
+              <div className="w-full h-48 sm:h-60 rounded-2xl overflow-hidden relative shadow-md">
+                <img 
+                  src={categoryThumbnails[activeSub]} 
+                  alt={sectionTitles[activeSub]} 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+                <div className="absolute bottom-4 left-6 right-6 text-white flex items-center gap-3">
+                  <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shrink-0 border border-white/20">
+                    <ActiveIcon className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-lg sm:text-xl font-bold leading-tight drop-shadow-md">
+                      {sectionTitles[activeSub]}
+                    </h3>
+                    <span className="text-[9px] uppercase font-bold text-brand-gold tracking-widest drop-shadow-sm">Subsection Ethos</span>
+                  </div>
                 </div>
               </div>
 

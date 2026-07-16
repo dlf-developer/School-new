@@ -59,56 +59,56 @@ export default function SchoolCounselling() {
           {[
             {
               title: "Social–Emotional Learning & Counselling",
-              desc: "Providing a safe, confidential space for self-expression and guidance. Guided by professional child psychologists to help students build emotional intelligence, resilience, and self-awareness.",
-              details: ["Confidential individual sessions", "Peer support groups", "Meditation & mindfulness practices", "Structured SEL programs"],
+              desc: "Providing a safe, confidential space where students can express themselves and seek guidance. Helps students build emotional intelligence, resilience, and self-awareness.",
+              details: ["Individual counseling", "Peer support groups", "Meditation & mindfulness practices", "Structured SEL programs"],
               icon: Heart
             },
             {
               title: "Values & Character Education",
-              desc: "Character formation woven into the student experience across grades. Focuses on empathy, integrity, respect, responsibility, and ethical decision-making.",
+              desc: "Character formation woven into the student experience. Programs focus on empathy, integrity, respect, responsibility, and ethical decision-making.",
               details: ["Awakening program (Classes I–V)", "Awakened Citizen's program (Classes VI–VIII) by RK Mission", "AACT (Class IX)", "Happy Fridge, Goodwill Piggy Bank & Birthday Hawan"],
               icon: Award
             },
             {
               title: "Digital & Cyber Wellbeing",
-              desc: "Preparing students to navigate the digital world safely. Focuses on cyber safety, healthy screen habits, online boundaries, digital identity, and responsible social media use.",
-              details: ["Peer educators' sessions", "Parent awareness initiatives", "Cyber safety guidelines & seminars"],
+              desc: "Preparing students to navigate the digital world with awareness and responsibility. Focuses on cyber safety, healthy screen habits, online boundaries, digital identity, and responsible social media use.",
+              details: ["Peer educators' sessions", "Parent awareness initiatives"],
               icon: ShieldAlert
             },
             {
               title: "Peer Support & Student Leadership",
-              desc: "Empowering students as wellbeing ambassadors. Strengthening peer care, belonging, and student voice within the school community.",
-              details: ["Peer educator programs", "Empathy manager leadership roles", "Buddy systems for new/younger students"],
+              desc: "Empowering students as wellbeing ambassadors. Strengthening belonging, peer care, and student voice within the school community.",
+              details: ["Peer educator programs", "Buddy systems", "Empathy manager leadership roles"],
               icon: Compass
             },
             {
               title: "Inclusion & Diverse Learning Support",
-              desc: "Committed to an inclusive learning environment. Celebrates diversity and provides specialized classroom accommodations.",
-              details: ["Individualized Learning Plans (ILP)", "Classroom & academic accommodations", "Sensorium & Cosmosium support for CWSN"],
+              desc: "Committed to an inclusive learning environment. Our support includes learning plans, classroom accommodations, collaborative teacher support, and sensitization initiatives.",
+              details: ["Individualized learning plans", "Classroom accommodations & teacher support", "Sensorium & Cosmosium support for CWSN"],
               icon: Heart
             },
             {
               title: "Health & Holistic Lifestyle",
-              desc: "Promoting physical fitness, balanced nutrition, and preventive awareness. Integrating healthy habits into the regular weekly routine.",
-              details: ["Thursday Special: Fitness, yoga & sports exposure", "Regular health checkups & nursery logs", "Certified resident nurse on duty"],
+              desc: "Promoting healthy routines through programs on nutrition and healthy eating, fitness, sleep hygiene, emotional health, and preventive awareness.",
+              details: ["Thursday special: Fitness, yoga, & sports exposure", "Regular health check-ups", "Holistic lifestyle education"],
               icon: ShieldAlert
             },
             {
               title: "Safe & Supportive School Climate",
-              desc: "Maintaining a culture of absolute safety, respect, and positive behavior through clear institutional guidelines and restorative practices.",
-              details: ["Anti-bullying peer education sessions", "POCSO & child safety awareness sessions", "Juvenile Justice (JJ) Act seminars"],
+              desc: "Maintaining safety and respect through strong anti-bullying frameworks, safety protocols, restorative practices, and positive behavior systems.",
+              details: ["Anti-bullying peer education sessions", "POCSO awareness sessions", "Juvenile Justice (JJ) Act sessions"],
               icon: ShieldAlert
             },
             {
               title: "Parent Partnership & Outreach",
-              desc: "Collaborative school–home support networks that equip families to navigate mental health, adolescence, and digital challenges.",
-              details: ["Induction & orientation sessions", "Parent Listening Circle sessions", "Mother-daughter awareness program"],
+              desc: "Collaborative school–home programs that support families in navigating adolescence, mental health, and digital challenges.",
+              details: ["Induction sessions", "Listening Circle sessions", "Mother-daughter program"],
               icon: Compass
             },
             {
               title: "Career Guidance & Life Readiness",
-              desc: "Supporting students in discovering their strengths, mapping academic pathways, and matching aspirations to global opportunities.",
-              details: ["Margdarshak mentoring system", "Career fairs & university interactions", "Corporate internships & alumni connect"],
+              desc: "Supporting students in discovering their strengths and future pathways through assessments, expert interactions, university guidance, and life skills education.",
+              details: ["Margdarshak and Townhall sessions", "Career sessions & career fairs", "Alumni career sessions, institute visits, & internships"],
               icon: Compass
             }
           ].map((pillar, idx) => {

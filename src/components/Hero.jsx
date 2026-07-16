@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import { useParams } from 'react-router-dom'
-import { ArrowRight, ChevronRight } from 'lucide-react'
+import { useParams, Link } from 'react-router-dom'
+import { ArrowRight, Play } from 'lucide-react'
 import { useSiteData } from '../hooks/useSiteData'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -82,7 +82,7 @@ export default function Hero() {
   }, [activeBranch])
 
   return (
-    <section id="hero-trigger" className={`relative min-h-[92vh] sm:min-h-screen flex items-center pt-32 sm:pt-40 pb-16 overflow-hidden bg-black`}>
+    <section id="hero-trigger" className={`relative min-h-[92vh] sm:min-h-screen flex items-center pt-16 sm:pt-20 pb-16 overflow-hidden bg-black`}>
       {/* Background YouTube Video (Vibrant, high-visibility loop) */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <iframe 
@@ -95,82 +95,81 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/30 to-transparent w-full md:w-3/4"></div>
       </div>
 
-      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 relative z-10 w-full">
-        {/* Frosted Glass Container around Left Content - Only show on school-specific pages, hide on master group page to display only the video */}
+      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        {/* Frosted Glass Container around Left Content */}
         {schoolId && (
           <div 
             ref={heroLeftRef} 
-            className="max-w-xl lg:max-w-2xl space-y-6 sm:space-y-7 bg-brand-bg/90 backdrop-blur-xl p-6 sm:p-10 rounded-3xl border border-white/60 shadow-2xl relative"
+            className="lg:col-span-7 xl:col-span-8 max-w-xl lg:max-w-[560px] space-y-6 sm:space-y-7 bg-white/10 backdrop-blur-xl p-6 sm:p-10 rounded-3xl border border-white/20 shadow-2xl relative order-2 lg:order-1"
           >
-            <div className="flex flex-wrap items-center gap-3">
-              <div ref={badgeRef} className={`inline-flex items-center gap-2 bg-${theme.primary}/10 border border-${theme.primary}/20 rounded-full px-3.5 py-1.5 text-xs text-${theme.primary} font-bold`}>
-                <span className={`w-2 h-2 rounded-full bg-${theme.accent} animate-ping`}></span>
-                <span>{heroData.legacy}</span>
+            {/* Logo Identity Block — above heading */}
+            <div ref={statsRef} className="flex items-center gap-3.5">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white flex items-center justify-center shadow-lg overflow-hidden border border-white/20 shrink-0">
+                <img 
+                  src="/images/dlf-crest.png" 
+                  alt={`${currentSchool?.name} Crest`} 
+                  className="w-full h-full object-contain p-1"
+                />
               </div>
-              
-              {/* YouTube Direct Link Badge */}
-              <a 
-                href="https://youtu.be/Gj3QXoCh9y8?si=WzZQIolRmRreErik" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="inline-flex items-center gap-1.5 bg-red-600 hover:bg-red-700 text-white border border-red-500/30 rounded-full px-3.5 py-1.5 text-xs font-bold transition-all duration-300 shadow-md hover:scale-105"
-              >
-                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                <span>Watch on YouTube</span>
-              </a>
+              <div className="text-left space-y-0.5">
+                <h3 className="font-serif text-sm sm:text-base font-bold text-white leading-tight drop-shadow-md">
+                  {currentSchool?.name}
+                </h3>
+                <p className={`text-[9px] text-${theme.accent} font-inter uppercase tracking-widest font-semibold drop-shadow-md`}>
+                  {currentSchool?.cbseInfo || 'CBSE Affiliated'}
+                </p>
+              </div>
             </div>
-            
-            <h2 ref={headingRef} className={`font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[3.75rem] leading-[1.15] text-${theme.primary} font-bold tracking-tight`}>
-              <span className="hero-line block">{heroData.titleLine1} <span className="italic text-brand-gold font-normal">{heroData.italicWord1}</span>,</span>
-              <span className="hero-line block">
-                Empowering <span className="relative inline-block">
-                  <span className="relative z-10">{heroData.underlineWord}</span>
-                  <svg className={`absolute bottom-1.5 sm:bottom-2 left-0 w-full h-2 sm:h-3 text-${theme.accent}/60 -z-10`} viewBox="0 0 100 10" preserveAspectRatio="none">
-                    <path d="M0,5 Q50,10 100,5" stroke="currentColor" strokeWidth="4" fill="none" />
-                  </svg>
-                </span>,
-              </span>
-              <span className="hero-line block">Creating <span className={`italic font-normal text-${theme.accent}`}>{heroData.vibrantWord}</span>.</span>
+
+            {/* Heading */}
+            <h2 ref={headingRef} className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[3.75rem] leading-[1.15] text-white font-bold tracking-tight">
+              {schoolId === 'dlf-sahibabad' ? (
+                <>
+                  <span className="hero-line block">A Thinking <span className={`italic text-${theme.accent} font-normal`}>School</span></span>
+                  <span className="hero-line block">
+                    with a <span className="relative inline-block">
+                      <span className="relative z-10">Soul</span>
+                      <svg className={`absolute bottom-1.5 sm:bottom-2 left-0 w-full h-2 sm:h-3 text-${theme.accent}/60 -z-10`} viewBox="0 0 100 10" preserveAspectRatio="none">
+                        <path d="M0,5 Q50,10 100,5" stroke="currentColor" strokeWidth="4" fill="none" />
+                      </svg>
+                    </span>.
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span className="hero-line block">{heroData.titleLine1} <span className={`italic text-${theme.accent} font-normal`}>{heroData.italicWord1}</span>,</span>
+                  <span className="hero-line block">
+                    Empowering <span className="relative inline-block">
+                      <span className="relative z-10">{heroData.underlineWord}</span>
+                      <svg className={`absolute bottom-1.5 sm:bottom-2 left-0 w-full h-2 sm:h-3 text-${theme.accent}/60 -z-10`} viewBox="0 0 100 10" preserveAspectRatio="none">
+                        <path d="M0,5 Q50,10 100,5" stroke="currentColor" strokeWidth="4" fill="none" />
+                      </svg>
+                    </span>,
+                  </span>
+                  <span className="hero-line block">Creating <span className={`italic font-normal text-${theme.accent}`}>{heroData.vibrantWord}</span>.</span>
+                </>
+              )}
             </h2>
 
-            <p ref={subRef} className="font-inter text-brand-charcoal/85 text-xs sm:text-sm md:text-base max-w-lg leading-relaxed font-medium">
+            <p ref={subRef} className="font-inter text-white/80 text-xs sm:text-sm md:text-base max-w-lg leading-relaxed font-medium">
               {heroData.subtitle}
             </p>
 
-            <div ref={ctasRef} className="flex flex-wrap gap-3 pt-2">
-              <a 
-                href="#admissions" 
-                className={`bg-${theme.primary} hover:bg-${theme.vibrant} text-white px-7 py-3.5 rounded-full font-bold uppercase tracking-widest text-xs transition-all duration-300 shadow-lg flex items-center justify-center gap-2 group`}
+            <div ref={ctasRef} className="flex flex-wrap gap-2.5 pt-2">
+              <Link 
+                to={`/school/${schoolId}/admissions`}
+                className={`bg-${theme.accent} hover:opacity-90 text-white px-5 sm:px-6 py-3 rounded-full font-bold uppercase tracking-widest text-[10px] sm:text-xs transition-all duration-300 shadow-lg flex items-center justify-center gap-1.5 group`}
               >
                 <span>Admissions Open</span>
-                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-              </a>
+                <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" />
+              </Link>
               <a 
-                href="#curriculum" 
-                className={`bg-white border border-${theme.primary}/30 hover:border-${theme.primary} text-${theme.primary} px-7 py-3.5 rounded-full font-bold uppercase tracking-widest text-xs transition-all duration-300 flex items-center justify-center gap-2 group`}
+                href="#virtual-tour" 
+                className="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-5 sm:px-6 py-3 rounded-full font-bold uppercase tracking-widest text-[10px] sm:text-xs transition-all duration-300 flex items-center justify-center gap-1.5 group"
               >
-                <span>Explore Curriculum</span>
-                <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                <Play className="w-3.5 h-3.5 fill-current" />
+                <span>Virtual Tour</span>
               </a>
-              <a 
-                href="https://youtu.be/Gj3QXoCh9y8?si=WzZQIolRmRreErik" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="bg-red-600 hover:bg-red-700 text-white px-6 py-3.5 rounded-full font-bold uppercase tracking-widest text-xs transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:scale-105"
-              >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                <span>Watch Video</span>
-              </a>
-            </div>
-
-            {/* Horizontal Accolades Strip */}
-            <div ref={statsRef} className="pt-4 flex flex-wrap gap-6 border-t border-brand-greenDeep/10">
-              {heroData.stats.map((stat, index) => (
-                <div key={index}>
-                  <p className={`font-serif text-xl sm:text-2xl font-bold text-${theme.primary}`}>{stat.value}</p>
-                  <p className="text-[9px] text-brand-charcoal font-inter uppercase tracking-wider mt-0.5 font-bold">{stat.label}</p>
-                </div>
-              ))}
             </div>
           </div>
         )}
