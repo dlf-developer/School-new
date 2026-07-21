@@ -230,7 +230,9 @@ export default function App() {
           <Route path="/school/:schoolId/principal-desk" element={<SchoolPrincipalDesk />} />
           <Route path="/school/:schoolId/admissions" element={<SchoolAdmissions />} />
           <Route path="/school/:schoolId/curriculum" element={<Curriculum />} />
+          <Route path="/school/:schoolId/curriculum/:pathway" element={<Curriculum />} />
           <Route path="/school/:schoolId/holistic-learning" element={<SchoolHolistic />} />
+          <Route path="/school/:schoolId/holistic-learning/:sectionId" element={<SchoolHolistic />} />
           <Route path="/school/:schoolId/counselling" element={<SchoolCounselling />} />
           <Route path="/school/:schoolId/winning-school" element={<SchoolWinning />} />
           <Route path="/school/:schoolId/editorials" element={<SchoolEditorials />} />

@@ -49,11 +49,14 @@ export default function Footer() {
                 className="w-full h-full object-contain" 
               />
             </div>
-            <div>
-              <h4 className="font-serif text-lg font-bold leading-tight tracking-tight">
-                {currentSchool ? currentSchool.name : 'DLF Schools'}
+            <div className="flex flex-col">
+              <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.2em] leading-none text-brand-gold">
+                {schoolId ? 'DLF SCHOOL' : 'DLF SCHOOLS'}
+              </span>
+              <h4 className="font-serif text-base sm:text-lg font-black uppercase tracking-tight leading-tight mt-1">
+                {currentSchool ? currentSchool.name : 'UNIFIED GROUP PORTAL'}
               </h4>
-              <p className={`text-[9px] text-${theme.accent} uppercase tracking-widest font-semibold font-inter`}>
+              <p className={`text-[9px] text-${theme.accent} uppercase tracking-widest font-semibold font-inter mt-1`}>
                 {currentSchool ? `${currentSchool.shortLocation} • ${currentSchool.cbseInfo}` : 'Sahibabad & Greater Noida'}
               </p>
             </div>

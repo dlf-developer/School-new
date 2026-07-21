@@ -24,7 +24,10 @@ import {
   PhoneCall,
   Compass,
   IndianRupee,
-  ClipboardList
+  ClipboardList,
+  Globe,
+  Music,
+  Palette
 } from 'lucide-react'
 
 export default function Header() {
@@ -46,8 +49,8 @@ export default function Header() {
   const isCampusActive = schoolId && location.pathname === `/school/${schoolId}/campus`
   const isLeadershipActive = schoolId && (location.pathname.startsWith(`/school/${schoolId}/principal-desk`) || location.pathname.startsWith(`/school/${schoolId}/leadership`))
   const isAdmissionsActive = schoolId && location.pathname.startsWith(`/school/${schoolId}/admissions`)
-  const isCurriculumActive = schoolId && location.pathname === `/school/${schoolId}/curriculum`
-  const isHolisticActive = schoolId && location.pathname === `/school/${schoolId}/holistic-learning`
+  const isCurriculumActive = schoolId && location.pathname.startsWith(`/school/${schoolId}/curriculum`)
+  const isHolisticActive = schoolId && location.pathname.startsWith(`/school/${schoolId}/holistic-learning`)
   const isCounsellingActive = schoolId && location.pathname === `/school/${schoolId}/counselling`
   const isWinningActive = schoolId && location.pathname === `/school/${schoolId}/winning-school`
   const isEditorialsActive = schoolId && location.pathname === `/school/${schoolId}/editorials`
@@ -372,19 +375,24 @@ export default function Header() {
         >
           {/* Brand Crest Logo & Text */}
           <Link to={schoolId ? `/school/${schoolId}` : '/'} className="flex items-center gap-2.5 group">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-500 overflow-hidden shrink-0">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-500 overflow-hidden shrink-0 border border-gray-100">
               <img 
                 src="/images/dlf-crest.png" 
-                alt="DLF Public School Crest" 
+                alt="DLF Crest" 
                 className="w-full h-full object-contain p-0.5"
               />
             </div>
-            <div>
-              <h1 className={`font-serif ${!schoolId ? 'text-white' : `text-${theme.primary}`} text-sm sm:text-base font-bold leading-tight tracking-tight`}>
-                {currentSchool ? currentSchool.name : 'DLF Schools'}
+            <div className="flex flex-col justify-center">
+              {/* TOP: Parent Group Name */}
+              <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.2em] leading-none text-brand-gold">
+                {schoolId ? 'DLF SCHOOL' : 'DLF SCHOOLS'}
+              </span>
+              {/* BOTTOM: Child Site Name */}
+              <h1 className={`font-serif ${!schoolId ? 'text-white' : `text-${theme.primary}`} text-sm sm:text-base md:text-lg font-black uppercase tracking-tight leading-tight mt-1`}>
+                {currentSchool ? currentSchool.name : 'UNIFIED GROUP PORTAL'}
               </h1>
-              <p className={`text-[8px] sm:text-[9px] text-${theme.accent} font-inter uppercase tracking-widest font-semibold mt-0.5`}>
-                CBSE AFFILIATED
+              <p className={`text-[8px] sm:text-[8.5px] ${!schoolId ? 'text-white/70' : 'text-brand-muted'} font-inter uppercase tracking-widest font-semibold mt-0.5`}>
+                {currentSchool ? `${currentSchool.shortLocation} · ${currentSchool.cbseInfo}` : 'CBSE AFFILIATED'}
               </p>
             </div>
           </Link>
@@ -435,12 +443,14 @@ export default function Header() {
             {schoolId ? (
               <>
                 {/* 0. Breadcrumb Nav Item */}
-                <div className="group py-2 flex items-center gap-1.5 font-semibold text-[11px] xl:text-[12px] whitespace-nowrap">
-                  <Link to="/" className="text-gray-400 hover:text-brand-charcoal transition-colors">
-                    DLF Schools
-                  </Link>
-                  <span className="text-gray-300 font-sans">/</span>
-                  <Link to={`/school/${schoolId}`} className={`text-${theme.primary} hover:opacity-85 transition-opacity font-bold`}>
+                <div className="group relative py-0.5 flex flex-col items-start justify-center font-bold text-[12px] leading-tight">
+                  <div className="flex items-center gap-1">
+                    <Link to="/" className="text-gray-400 hover:text-brand-charcoal transition-colors">
+                      DLF Schools
+                    </Link>
+                    <span className="text-gray-300 font-sans">/</span>
+                  </div>
+                  <Link to={`/school/${schoolId}`} className={`text-${theme.primary} hover:opacity-85 transition-opacity`}>
                     {currentSchool.name}
                   </Link>
 
@@ -596,20 +606,60 @@ export default function Header() {
 
 
 
-                {/* 4. Curriculum */}
-                <div className="relative py-2 flex flex-col items-center justify-center">
-                  <Link to={`/school/${schoolId}/curriculum`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold ${isCurriculumActive ? `text-${theme.vibrant} font-bold` : ''}`}>
-                    Curriculum
-                  </Link>
+                {/* 4. Curriculum Dropdown */}
+                <div className="relative group py-2 flex flex-col items-center justify-center">
+                  <button className={`flex items-center gap-1 hover:text-${theme.vibrant} transition-colors duration-300 cursor-pointer font-semibold ${isCurriculumActive ? `text-${theme.vibrant} font-bold` : ''}`}>
+                    Curriculum <ChevronDown className={`w-3.5 h-3.5 text-${theme.accent}`} />
+                  </button>
                   {isCurriculumActive && <span className={`absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-${theme.vibrant}`}></span>}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white text-brand-charcoal rounded-xl shadow-xl border border-gray-100 p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                    <div className="space-y-1 text-xs">
+                      <Link to={`/school/${schoolId}/curriculum/cbse`} className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.endsWith('/cbse') || location.pathname.endsWith('/curriculum') ? `text-${theme.vibrant}` : ''}`}>
+                        <BookOpen className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                        CBSE Pathway
+                      </Link>
+                      <Link to={`/school/${schoolId}/curriculum/cambridge`} className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.endsWith('/cambridge') ? `text-${theme.vibrant}` : ''}`}>
+                        <Globe className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                        Cambridge Pathway
+                      </Link>
+                    </div>
+                  </div>
                 </div>
 
-                {/* 5. Holistic Learning */}
-                <div className="relative py-2 flex flex-col items-center justify-center">
-                  <Link to={`/school/${schoolId}/holistic-learning`} className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold ${isHolisticActive ? `text-${theme.vibrant} font-bold` : ''}`}>
-                    Holistic Learning
-                  </Link>
+                {/* 5. Holistic Learning Dropdown */}
+                <div className="relative group py-2 flex flex-col items-center justify-center">
+                  <button className={`flex items-center gap-1 hover:text-${theme.vibrant} transition-colors duration-300 cursor-pointer font-semibold ${isHolisticActive ? `text-${theme.vibrant} font-bold` : ''}`}>
+                    Holistic Learning <ChevronDown className={`w-3.5 h-3.5 text-${theme.accent}`} />
+                  </button>
                   {isHolisticActive && <span className={`absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-${theme.vibrant}`}></span>}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white text-brand-charcoal rounded-xl shadow-xl border border-gray-100 p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                    <div className="space-y-1 text-xs">
+                      <Link to={`/school/${schoolId}/holistic-learning/performing-arts`} className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.endsWith('/performing-arts') ? `text-${theme.vibrant}` : ''}`}>
+                        <Music className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                        Performing Arts
+                      </Link>
+                      <Link to={`/school/${schoolId}/holistic-learning/sports-development`} className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.endsWith('/sports-development') ? `text-${theme.vibrant}` : ''}`}>
+                        <Trophy className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                        Sports Development
+                      </Link>
+                      <Link to={`/school/${schoolId}/holistic-learning/visual-arts`} className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.endsWith('/visual-arts') ? `text-${theme.vibrant}` : ''}`}>
+                        <Palette className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                        Visual Arts
+                      </Link>
+                      <Link to={`/school/${schoolId}/holistic-learning/scholastic`} className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.endsWith('/scholastic') ? `text-${theme.vibrant}` : ''}`}>
+                        <BookOpen className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                        Scholastic
+                      </Link>
+                      <Link to={`/school/${schoolId}/holistic-learning/school-excursions`} className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.endsWith('/school-excursions') ? `text-${theme.vibrant}` : ''}`}>
+                        <Compass className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                        School Excursions
+                      </Link>
+                      <Link to={`/school/${schoolId}/holistic-learning/student-achievements`} className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.endsWith('/student-achievements') ? `text-${theme.vibrant}` : ''}`}>
+                        <Award className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                        Student Achievements
+                      </Link>
+                    </div>
+                  </div>
                 </div>
 
 
@@ -688,11 +738,16 @@ export default function Header() {
           
           <div className="space-y-8 mt-12">
             <div className={`border-b border-${theme.primary}/10 pb-4`}>
-              <p className={`font-serif ${!schoolId ? 'text-white' : `text-${theme.primary}`} text-2xl font-bold`}>
-                {currentSchool ? currentSchool.name : 'DLF Schools'}
-              </p>
-              <p className={`text-[10px] text-${theme.accent} uppercase tracking-widest font-semibold mt-1`}>
-                CBSE AFFILIATED
+              <div className="flex flex-col">
+                <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] leading-none text-brand-gold">
+                  {schoolId ? 'DLF SCHOOL' : 'DLF SCHOOLS'}
+                </span>
+                <p className={`font-serif ${!schoolId ? 'text-white' : `text-${theme.primary}`} text-xl sm:text-2xl font-black uppercase tracking-tight leading-tight mt-1.5`}>
+                  {currentSchool ? currentSchool.name : 'UNIFIED GROUP PORTAL'}
+                </p>
+              </div>
+              <p className={`text-[9.5px] ${!schoolId ? 'text-white/70' : 'text-brand-muted'} uppercase tracking-widest font-semibold mt-1`}>
+                {currentSchool ? `${currentSchool.shortLocation} · ${currentSchool.cbseInfo}` : 'CBSE AFFILIATED'}
               </p>
             </div>
                     <nav className={`space-y-3 flex flex-col font-semibold text-base ${!schoolId ? 'text-white/90' : 'text-brand-charcoal'}`}>
@@ -752,8 +807,22 @@ export default function Header() {
                     <Link to={`/school/${schoolId}/admissions?tab=fee-structure`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}>Fee Structure</Link>
                     <Link to={`/school/${schoolId}/admissions?tab=scholarships`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}>Scholarships</Link>
                   </div>
-                  <Link to={`/school/${schoolId}/curriculum`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>Curriculum</Link>
-                  <Link to={`/school/${schoolId}/holistic-learning`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>Holistic Learning</Link>
+                  {/* Curriculum sub-links */}
+                  <div className={`border-t border-${theme.primary}/10 my-1 pt-2`}>
+                    <p className="text-[10px] uppercase font-bold tracking-wider text-brand-muted mb-1.5">Curriculum</p>
+                    <Link to={`/school/${schoolId}/curriculum/cbse`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}>CBSE Pathway</Link>
+                    <Link to={`/school/${schoolId}/curriculum/cambridge`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}>Cambridge Pathway</Link>
+                  </div>
+                  {/* Holistic Learning sub-links */}
+                  <div className={`border-t border-${theme.primary}/10 my-1 pt-2`}>
+                    <p className="text-[10px] uppercase font-bold tracking-wider text-brand-muted mb-1.5">Holistic Learning</p>
+                    <Link to={`/school/${schoolId}/holistic-learning/performing-arts`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}>Performing Arts</Link>
+                    <Link to={`/school/${schoolId}/holistic-learning/sports-development`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}>Sports Development</Link>
+                    <Link to={`/school/${schoolId}/holistic-learning/visual-arts`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}>Visual Arts</Link>
+                    <Link to={`/school/${schoolId}/holistic-learning/scholastic`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}>Scholastic</Link>
+                    <Link to={`/school/${schoolId}/holistic-learning/school-excursions`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}>School Excursions</Link>
+                    <Link to={`/school/${schoolId}/holistic-learning/student-achievements`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}>Student Achievements</Link>
+                  </div>
                   <Link to={`/school/${schoolId}/counselling`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>Counselling, Career &amp; Wellness</Link>
 
                   <Link to={`/school/${schoolId}/disclosures`} onClick={() => setIsMobileMenuOpen(false)} className={`hover:text-${theme.vibrant} block py-1`}>Mandatory CBSE Disclosures</Link>

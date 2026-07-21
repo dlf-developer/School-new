@@ -11,10 +11,16 @@ import { useSiteData } from '../hooks/useSiteData'
 import ImageWithLoader from './ImageWithLoader'
 
 export default function Curriculum() {
-  const { schoolId } = useParams()
+  const { schoolId, pathway } = useParams()
   const { schools } = useSiteData()
   const activeBranch = schoolId && schools[schoolId] ? schoolId : 'dlf-sahibabad'
   const currentSchool = schools[activeBranch]
+  
+  // Determine active pathway: default to 'cbse' for dlf-sahibabad, or use pathway param
+  let activePathway = pathway ? pathway.toLowerCase() : null
+  if (!activePathway) {
+    activePathway = activeBranch === 'dlf-greater-noida' ? 'cambridge' : 'cbse'
+  }
   
   const theme = currentSchool?.theme || {
     primary: 'brand-greenDeep',
@@ -23,7 +29,7 @@ export default function Curriculum() {
     accentHex: '#C59B27'
   }
 
-  const [activeTab, setActiveTab] = useState(activeBranch === 'dlf-sahibabad' ? 'skill-overview' : 'pathway')
+  const [activeTab, setActiveTab] = useState(activePathway === 'cbse' ? 'skill-overview' : 'pathway')
   const panesRef = useRef({})
 
   const handleTabChange = (newTab) => {
@@ -71,19 +77,45 @@ export default function Curriculum() {
       <div className="absolute top-1/3 left-0 w-80 h-80 rounded-full ambient-glow-1 -translate-y-1/2 opacity-40"></div>
       <div className="absolute bottom-1/4 right-0 w-96 h-96 rounded-full ambient-glow-2 opacity-30"></div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-10 space-y-16">
+      <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-10 space-y-12">
         
+        {/* Pathway Switcher Pills */}
+        <div className="flex justify-center items-center gap-3">
+          <Link
+            to={`/school/${activeBranch}/curriculum/cbse`}
+            className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${
+              activePathway === 'cbse'
+                ? `bg-${theme.primary} text-white border-${theme.primary} shadow-md`
+                : `bg-white text-brand-charcoal hover:bg-gray-50 border-gray-200`
+            }`}
+          >
+            <BookOpen className="w-4 h-4" />
+            CBSE Pathway
+          </Link>
+          <Link
+            to={`/school/${activeBranch}/curriculum/cambridge`}
+            className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${
+              activePathway === 'cambridge'
+                ? `bg-${theme.primary} text-white border-${theme.primary} shadow-md`
+                : `bg-white text-brand-charcoal hover:bg-gray-50 border-gray-200`
+            }`}
+          >
+            <Globe className="w-4 h-4" />
+            Cambridge Pathway
+          </Link>
+        </div>
+
         {/* Top Header */}
         <div className="text-center max-w-4xl mx-auto space-y-4">
           <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>
-            {activeBranch === 'dlf-sahibabad' ? 'CBSE Affiliated Pathway' : 'Cambridge International School'}
+            {activePathway === 'cbse' ? 'CBSE Affiliated Pathway' : 'Cambridge International School'}
           </span>
           <h3 className={`font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-${theme.primary}`}>
-            {activeBranch === 'dlf-sahibabad' ? 'Academic Progression & Skill Core' : 'The Cambridge Pathway'}
+            {activePathway === 'cbse' ? 'Academic Progression & Skill Core' : 'The Cambridge Pathway'}
           </h3>
           <div className={`w-12 h-[2.5px] bg-${theme.accent} mx-auto`}></div>
           <div className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter font-medium text-left md:text-center space-y-3">
-            {activeBranch === 'dlf-sahibabad' ? (
+            {activePathway === 'cbse' ? (
               <>
                 <p>
                   Our school is affiliated to the <strong className="text-brand-charcoal">CENTRAL BOARD OF SECONDARY EDUCATION (CBSE)</strong>. The School offers a wide range of academic choices. Aligned with the CBSE prescribed syllabus and in sync with the National Education Policy 2020, the focus extends beyond mastering content to building competencies that matter—critical thinking, problem-solving, creativity, and adaptability.
@@ -100,7 +132,7 @@ export default function Curriculum() {
           </div>
         </div>
 
-        {activeBranch === 'dlf-sahibabad' ? (
+        {activePathway === 'cbse' ? (
           // ========================================================
           // ── CBSE LAYOUT (DLPS Sahibabad) ──
           // ========================================================
@@ -381,43 +413,67 @@ export default function Curriculum() {
           </div>
         ) : (
           // ========================================================
-          // ── CAMBRIDGE LAYOUT (DLWS Greater Noida) ──
+          // ── CAMBRIDGE LAYOUT (Cambridge Pathway) ──
           // ========================================================
           <div className="space-y-16">
             
-            {/* Intro Ethos Block */}
-            <div className="bg-white rounded-3xl border border-gray-100 shadow-md p-6 sm:p-8 flex flex-col md:flex-row items-center gap-8">
+            {/* Hero Ethos Block with Cambridge Logo */}
+            <div className="bg-white rounded-3xl border border-gray-100 shadow-md p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="space-y-4 flex-1">
                 <div className={`inline-flex items-center gap-1.5 bg-${theme.primary}/5 text-${theme.primary} px-3 py-1 rounded-full text-xs font-bold`}>
-                  <Globe className="w-3.5 h-3.5" /> Authorised Cambridge school
+                  <Globe className="w-3.5 h-3.5" /> Authorised Cambridge International School
                 </div>
-                <h4 className="font-serif text-2xl font-bold text-brand-charcoal">The World's Gold Standard for Education</h4>
+                <h4 className="font-serif text-2xl sm:text-3xl font-bold text-brand-charcoal">The World's Gold Standard for Education</h4>
                 <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter font-medium">
-                  We offer the globally recognised Cambridge Assessment International Education curriculum from Classes I–VIII, with higher grades being added progressively each year. Through enquiry-based learning and international benchmarks, students develop confidence, creativity, critical thinking, and a global outlook. Here, learners are not just prepared for examinations — they are prepared for the world beyond classrooms.
+                  We also offer the globally recognised Cambridge Assessment International Education curriculum from Classes I–VIII, with higher grades being added progressively each year. Through enquiry-based learning and international benchmarks, students develop confidence, creativity, critical thinking, and a global outlook. Here, learners are not just prepared for examinations — they are prepared for the world beyond classrooms.
                 </p>
-                <div className="grid grid-cols-2 gap-3 pt-2 text-[10px] sm:text-xs font-inter font-bold text-brand-charcoal">
-                  {['Globally Recognised', 'Enquiry-Based Learning', 'Personalised Choices', 'Seamless Pathway'].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2">
-                      <span className={`w-2 h-2 rounded-full bg-${theme.accent}`} />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
-              <div className="w-full md:w-80 lg:w-[420px] rounded-2xl overflow-hidden aspect-video shadow-md shrink-0">
-                <ImageWithLoader src="/campus/campus3.jpg" alt="Cambridge Classroom" loading="lazy" />
+              <div className="bg-white p-5 rounded-2xl border border-gray-150 shadow-sm shrink-0 flex items-center justify-center">
+                <img src="/cambridge/image1.png" alt="Cambridge Assessment International Education - Cambridge International School" className="h-16 sm:h-20 object-contain" />
               </div>
             </div>
 
-            {/* The Cambridge Pathway Steps */}
+            {/* Why Parents Across the World Choose Cambridge? */}
+            <div className="space-y-6">
+              <div className="text-center space-y-2">
+                <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>Global Excellence</span>
+                <h4 className={`font-serif text-2xl sm:text-3xl font-bold text-${theme.primary}`}>Why Parents Across the World Choose Cambridge?</h4>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {[
+                  { title: "Globally Recognised Qualifications", desc: "Recognised by top universities and educational institutions across India and 160+ countries worldwide." },
+                  { title: "International Mindset", desc: "Develops global perspectives, cross-cultural understanding, and open-minded enquiry." },
+                  { title: "Enquiry-Based Learning", desc: "Encourages students to ask questions, explore concepts deeply, and think critically." },
+                  { title: "Personalised Subject Choices", desc: "Offers flexible subject combinations tailored to student interests, strengths, and career goals." },
+                  { title: "International Benchmarking", desc: "Evaluated independently by Cambridge UK with transparent global standard performance." },
+                  { title: "Future-Ready Skills", desc: "Builds problem-solving, collaboration, digital literacy, and research capabilities." },
+                  { title: "Seamless Learning Pathway", desc: "Structured progression from Primary → Lower Secondary → IGCSE → AS & A Levels." },
+                  { title: "Holistic Development", desc: "Focuses on developing confident, responsible, reflective, innovative, and engaged individuals." }
+                ].map((item, idx) => (
+                  <div key={idx} className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow space-y-2">
+                    <div className={`w-7 h-7 rounded-xl bg-${theme.primary}/10 text-${theme.primary} flex items-center justify-center font-bold text-xs`}>
+                      0{idx + 1}
+                    </div>
+                    <h5 className="font-serif text-xs sm:text-sm font-bold text-brand-charcoal">{item.title}</h5>
+                    <p className="text-[11px] text-brand-muted leading-relaxed font-inter font-medium">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* The Cambridge Pathway at DLF Public School */}
             <div className="space-y-8">
-              <h4 className={`font-serif text-2xl font-bold text-${theme.primary} text-center`}>The Cambridge Pathway</h4>
+              <div className="text-center space-y-2">
+                <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>Academic Journey</span>
+                <h4 className={`font-serif text-2xl sm:text-3xl font-bold text-${theme.primary}`}>The Cambridge Pathway at DLF Public School</h4>
+                <p className="text-xs sm:text-sm text-brand-muted font-medium">A seamless, progressive academic journey — Class I through A Levels</p>
+              </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
-                  { stage: "Cambridge Primary", grades: "Classes I – V", focus: "Foundations in English, Mathematics, Science, and Global Perspectives.", desc: "Focuses on developing literacy, numeracy, and active inquiry in young learners." },
-                  { stage: "Cambridge Lower Secondary", grades: "Classes VI – VIII", focus: "Deepening skills across core academic disciplines.", desc: "Prepares students for the first global benchmark: the Checkpoint." },
-                  { stage: "Cambridge IGCSE*", grades: "Class IX Onwards", focus: "Broad, flexible subject choices with international qualifications.", desc: "A comprehensive two-year program with IGCSE board examinations at the end of Class X." },
-                  { stage: "Cambridge AS & A Levels*", grades: "Classes XI – XII", focus: "Specialised pre-university pathways for global career readiness.", desc: "Deep study and flexibility, highly recognized by universities worldwide." }
+                  { stage: "Cambridge Primary", grades: "Classes I – V", focus: "Foundations in literacy, numeracy, and inquiry", desc: "Focuses on developing literacy, numeracy, and active inquiry in young learners." },
+                  { stage: "Cambridge Lower Secondary", grades: "Classes VI – VIII", focus: "Deepening skills across core disciplines", desc: "Prepares students for the first global benchmark: the Checkpoint." },
+                  { stage: "Cambridge IGCSE*", grades: "Classes IX – X", focus: "Broad, flexible subject choices with global benchmarking", desc: "A comprehensive two-year program with IGCSE board examinations at the end of Class X." },
+                  { stage: "Cambridge AS & A Levels*", grades: "Classes XI – XII", focus: "Specialised pathways for university and career readiness", desc: "Deep study and flexibility, highly recognized by universities worldwide." }
                 ].map((p, idx) => (
                   <div key={idx} className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm space-y-3 hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
                     <div className={`absolute top-0 left-0 w-full h-1 bg-${theme.primary}`}></div>
@@ -432,26 +488,144 @@ export default function Curriculum() {
                   </div>
                 ))}
               </div>
-              <p className="text-[9.5px] text-brand-muted italic text-center">* Higher grades are being added progressively each year.</p>
+              <p className="text-[9.5px] text-brand-muted italic text-center">*Higher grades are being added progressively each year.</p>
+            </div>
+
+            {/* Worldwide Cambridge Network & Recognition */}
+            <div className="bg-gradient-to-br from-brand-greenDeep/5 via-white to-brand-gold/5 rounded-3xl border border-gray-150 p-6 sm:p-10 space-y-6">
+              <div className="text-center max-w-2xl mx-auto space-y-2">
+                <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>Global Footprint</span>
+                <h4 className={`font-serif text-2xl font-bold text-${theme.primary}`}>Worldwide Cambridge Network</h4>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs font-inter font-medium text-brand-charcoal">
+                <div className="bg-white p-4 rounded-2xl border border-gray-100 space-y-1 shadow-sm">
+                  <strong className={`block text-base font-serif font-bold text-${theme.primary}`}>2,500+ Schools</strong>
+                  <p className="text-brand-muted text-[11px]">Cambridge Primary is taught in over 120 countries with over 130,000 Checkpoint entries annually.</p>
+                </div>
+                <div className="bg-white p-4 rounded-2xl border border-gray-100 space-y-1 shadow-sm">
+                  <strong className={`block text-base font-serif font-bold text-${theme.primary}`}>4,000+ Schools</strong>
+                  <p className="text-brand-muted text-[11px]">Cambridge Lower Secondary is taught across nearly 140 countries globally.</p>
+                </div>
+                <div className="bg-white p-4 rounded-2xl border border-gray-100 space-y-1 shadow-sm">
+                  <strong className={`block text-base font-serif font-bold text-${theme.primary}`}>6,000+ Schools</strong>
+                  <p className="text-brand-muted text-[11px]">Cambridge IGCSE is the world's most popular qualification for 14 to 16-year-olds in 150+ countries.</p>
+                </div>
+                <div className="bg-white p-4 rounded-2xl border border-gray-100 space-y-1 shadow-sm">
+                  <strong className={`block text-base font-serif font-bold text-${theme.primary}`}>50+ Countries</strong>
+                  <p className="text-brand-muted text-[11px]">Cambridge O Level qualifications are taught worldwide in over 50 countries.</p>
+                </div>
+                <div className="bg-white p-4 rounded-2xl border border-gray-100 space-y-1 shadow-sm">
+                  <strong className={`block text-base font-serif font-bold text-${theme.primary}`}>130+ Countries</strong>
+                  <p className="text-brand-muted text-[11px]">Cambridge AS & A Levels are taken by hundreds of thousands of students each year.</p>
+                </div>
+                <div className="bg-white p-4 rounded-2xl border border-gray-100 space-y-1 shadow-sm">
+                  <strong className={`block text-base font-serif font-bold text-${theme.primary}`}>2,350+ Universities</strong>
+                  <p className="text-brand-muted text-[11px]">Recognised by higher education institutions in 90 countries worldwide.</p>
+                </div>
+              </div>
+              <div className="text-center pt-2">
+                <a href="https://www.cambridgeinternational.org/" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 text-xs font-bold text-${theme.primary} hover:underline`}>
+                  Visit Official Cambridge International Website <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Checkpoint Results Table */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-4">
+              <div className="lg:col-span-5 bg-white p-6 sm:p-8 rounded-3xl border border-gray-100 shadow-md flex flex-col justify-between space-y-4">
+                <div className="space-y-4">
+                  <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>Global Benchmarking</span>
+                  <h4 className={`font-serif text-xl font-bold text-${theme.primary}`}>Cambridge Lower Secondary Checkpoint Results</h4>
+                  <p className="text-xs text-brand-muted leading-relaxed font-inter font-medium">
+                    At the end of Classes V and VIII, students appear for the internationally benchmarked Cambridge Checkpoint Assessments in English, Mathematics, and Science. These assessments are independently set, administered & evaluated by Cambridge UK, offering parents a transparent and authentic measure of student progress against global standards.
+                  </p>
+                  <p className="text-xs text-brand-muted leading-relaxed font-inter font-medium">
+                    Below is the Checkpoint Result of the last three years showing that every single one of them has scored above the international average in all subjects (Checkpoint scores of 21 to 30 consistently correspond to the <strong className="text-brand-charcoal">Good</strong> performance band) at the Cambridge Assessment.
+                  </p>
+                </div>
+                <p className="text-[10px] text-brand-muted italic border-t border-gray-100 pt-3">
+                  *Each learner receives a personalised Statement of Achievement from Cambridge International, highlighting strengths, areas of growth, and readiness for future academic pathways.
+                </p>
+              </div>
+
+              <div className="lg:col-span-7 bg-white rounded-3xl border border-gray-100 shadow-md p-6 sm:p-8 space-y-4 overflow-x-auto">
+                <h4 className={`font-serif text-sm font-bold text-${theme.primary}`}>3-Year Checkpoint Performance Trend</h4>
+                <table className="w-full text-[11px] text-left border-collapse font-inter">
+                  <thead>
+                    <tr className="border-b border-gray-100 text-brand-charcoal font-bold bg-gray-50/50">
+                      <th className="py-3 px-3">Subject</th>
+                      <th className="py-3 px-3">2021–22</th>
+                      <th className="py-3 px-3">2022–23</th>
+                      <th className="py-3 px-3">2023–24</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-brand-muted font-medium divide-y divide-gray-50">
+                    <tr>
+                      <td className="py-3 px-3 font-semibold text-brand-charcoal">English</td>
+                      <td className="py-3 px-3 font-bold text-brand-charcoal">36/50</td>
+                      <td className="py-3 px-3 font-bold text-brand-charcoal">35/50</td>
+                      <td className="py-3 px-3 font-bold text-brand-charcoal">34/50</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-3 font-semibold text-brand-charcoal">Mathematics</td>
+                      <td className="py-3 px-3 font-bold text-brand-charcoal">47/50</td>
+                      <td className="py-3 px-3 font-bold text-brand-charcoal">42/50</td>
+                      <td className="py-3 px-3 font-bold text-brand-charcoal">44/50</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-3 font-semibold text-brand-charcoal">Science</td>
+                      <td className="py-3 px-3 font-bold text-brand-charcoal">42/50</td>
+                      <td className="py-3 px-3 font-bold text-brand-charcoal">41/50</td>
+                      <td className="py-3 px-3 font-bold text-brand-charcoal">37/50</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div className="bg-gray-50 p-3 rounded-xl border border-gray-100 text-[10px] text-brand-muted font-inter leading-relaxed text-center">
+                  Results marked and benchmarked by Cambridge International, UK. Scores reported on the standardised 0–50 Cambridge Checkpoint scale.
+                </div>
+              </div>
+            </div>
+
+            {/* ASSET Exam Performance & Year-on-Year Growth Chart */}
+            <div className="bg-white rounded-3xl border border-gray-100 shadow-md p-6 sm:p-10 space-y-6">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className="lg:col-span-5 space-y-4">
+                  <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>National Benchmarking</span>
+                  <h4 className={`font-serif text-2xl font-bold text-${theme.primary}`}>ASSET Exam Performance & Year-on-Year Growth</h4>
+                  <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter font-medium">
+                    Similarly, Cambridge Students year after year have also scored above the national benchmarking in ASSET Exam.
+                  </p>
+                  <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter font-medium">
+                    <strong className="text-brand-charcoal">ASSET</strong> is a skill-based diagnostic assessment that evaluates students' conceptual understanding and critical thinking in core subjects like English, Mathematics, Science, and Social Studies. Unlike conventional tests, it assesses logical reasoning and practical application rather than rote memorization.
+                  </p>
+                </div>
+                <div className="lg:col-span-7 rounded-2xl overflow-hidden shadow-lg border border-gray-150 p-2 bg-gray-50">
+                  <img 
+                    src="/cambridge/image2.png" 
+                    alt="Ei ASSET Management Year-on-Year Growth Maths - DLF Public School-IGCSE Ghaziabad" 
+                    className="w-full h-auto rounded-xl object-contain"
+                  />
+                </div>
+              </div>
             </div>
 
             {/* Subjects Offered Board */}
             <div className="bg-white rounded-3xl border border-gray-100 shadow-lg p-6 sm:p-10 space-y-6">
               <div className="space-y-1">
                 <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>IGCSE Options</span>
-                <h3 className={`font-serif text-2xl font-bold text-${theme.primary}`}>Cambridge IGCSE Subjects Offered</h3>
+                <h3 className={`font-serif text-2xl font-bold text-${theme.primary}`}>Subjects Offered — Cambridge IGCSE | Class IX Onwards</h3>
                 <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter font-medium">
-                  Our flexible subject combinations allow learners to personalise their academic journey based on their interests and future aspirations beginning in Class IX.
+                  Our flexible subject combinations allow learners to personalise their academic journey based on their interests, abilities, and future aspirations — whether in engineering, medicine, humanities, business, design, or emerging global careers.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-5 gap-6 pt-2">
                 {[
-                  { grp: "Group 1: Languages", compulsory: "English as a First Language (Compulsory)", subjects: ["Hindi as a Second Language", "French as a Second Language", "German as a Second Language"] },
-                  { grp: "Group 2: Humanities & Social Sciences", compulsory: "", subjects: ["Global Perspectives (Hallmark subject)", "History", "Geography", "Sociology"] },
-                  { grp: "Group 3: Sciences", compulsory: "", subjects: ["Physics", "Chemistry", "Biology"] },
-                  { grp: "Group 4: Mathematics", compulsory: "", subjects: ["Mathematics Core", "Mathematics Extended (Recommended for Science/Engg)"] },
-                  { grp: "Group 5: Commerce & Technology", compulsory: "", subjects: ["Economics", "Business Studies", "Computer Science"] }
+                  { grp: "Languages", compulsory: "English as a First Language (Compulsory)", subjects: ["Hindi", "French", "German"] },
+                  { grp: "Humanities & Social Sciences", compulsory: "", subjects: ["Global Perspectives", "History", "Geography", "Sociology"] },
+                  { grp: "Sciences", compulsory: "", subjects: ["Physics", "Chemistry", "Biology"] },
+                  { grp: "Commerce & Technology", compulsory: "", subjects: ["Economics", "Business Studies", "Computer Science"] },
+                  { grp: "Mathematics", compulsory: "", subjects: ["Mathematics Core", "Mathematics Extended"] }
                 ].map((group, idx) => (
                   <div key={idx} className="bg-gray-50 p-5 rounded-2xl border border-gray-150/50 space-y-3 flex flex-col justify-between">
                     <div>
@@ -475,116 +649,55 @@ export default function Curriculum() {
               </div>
             </div>
 
-            {/* Checkpoint Results Table */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-4">
-              
-              {/* Left Col: Checkpoint description */}
-              <div className="lg:col-span-5 bg-white p-6 sm:p-8 rounded-3xl border border-gray-100 shadow-md flex flex-col justify-between">
-                <div className="space-y-4">
-                  <h4 className={`font-serif text-lg font-bold text-${theme.primary}`}>Checkpoint Assessments</h4>
-                  <p className="text-xs text-brand-muted leading-relaxed font-inter font-medium">
-                    At the end of Classes V and VIII, students appear for the Cambridge Checkpoint tests. These papers are set, administered, and marked independently by Cambridge International in the UK, offering an unbiased measurement of student progress.
-                  </p>
-                  <div className="space-y-2">
-                    <h5 className={`text-[10px] sm:text-xs font-bold text-brand-charcoal uppercase tracking-wider`}>Standardised Performance Bands</h5>
-                    <div className="grid grid-cols-2 gap-2 text-[9px] sm:text-[10px] font-semibold text-brand-muted font-inter">
-                      <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-brand-greenVibrant"></span> Outstanding</span>
-                      <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-blue-500"></span> High (Above global)</span>
-                      <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-yellow-500"></span> Good (Above global)</span>
-                      <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-orange-400"></span> Aspiring (At global)</span>
-                      <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-red-400"></span> Basic (Developing)</span>
-                    </div>
-                    <p className="text-[9px] text-brand-muted mt-1.5 font-medium leading-relaxed">
-                      * Reported on a 0 to 50 scale. Scores of 21 to 30 consistently correspond to the Good performance band.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Col: Table */}
-              <div className="lg:col-span-7 bg-white rounded-3xl border border-gray-100 shadow-md p-6 sm:p-8 space-y-4 overflow-x-auto">
-                <h4 className={`font-serif text-sm font-bold text-${theme.primary}`}>Cambridge Lower Secondary Checkpoint Results</h4>
-                <p className="text-[10px] text-brand-muted font-inter leading-relaxed">
-                  Showing average scores of the last three years. Every single learner has scored consistently above the international average in all subjects.
-                </p>
-                
-                <table className="w-full text-[11px] text-left border-collapse font-inter">
-                  <thead>
-                    <tr className="border-b border-gray-100 text-brand-charcoal font-bold">
-                      <th className="py-2">Subject</th>
-                      <th className="py-2">2021–22</th>
-                      <th className="py-2">2022–23</th>
-                      <th className="py-2">2023–24</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-brand-muted font-medium">
-                    <tr className="border-b border-gray-50">
-                      <td className="py-2.5 font-semibold text-brand-charcoal">English</td>
-                      <td className="py-2.5 font-bold text-brand-charcoal">36 / 50</td>
-                      <td className="py-2.5 font-bold text-brand-charcoal">35 / 50</td>
-                      <td className="py-2.5 font-bold text-brand-charcoal">34 / 50</td>
-                    </tr>
-                    <tr className="border-b border-gray-50">
-                      <td className="py-2.5 font-semibold text-brand-charcoal">Mathematics</td>
-                      <td className="py-2.5 font-bold text-brand-charcoal">47 / 50</td>
-                      <td className="py-2.5 font-bold text-brand-charcoal">42 / 50</td>
-                      <td className="py-2.5 font-bold text-brand-charcoal">44 / 50</td>
-                    </tr>
-                    <tr>
-                      <td className="py-2.5 font-semibold text-brand-charcoal">Science</td>
-                      <td className="py-2.5 font-bold text-brand-charcoal">42 / 50</td>
-                      <td className="py-2.5 font-bold text-brand-charcoal">41 / 50</td>
-                      <td className="py-2.5 font-bold text-brand-charcoal">37 / 50</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div className="bg-gray-50 p-2.5 rounded-xl border border-gray-100 text-[9px] text-brand-muted font-inter leading-relaxed mt-1 text-center">
-                  Results marked and benchmarked by Cambridge International, UK. Scores reported on the standardised 0–50 Cambridge Checkpoint scale.
-                </div>
-              </div>
-
-            </div>
-
-            {/* FAQs Accordion */}
+            {/* FAQs Accordion (You Asked. We Answered.) */}
             <div className="space-y-6 pt-4 max-w-4xl mx-auto">
               <div className="text-center space-y-2">
                 <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>Got Questions?</span>
                 <h3 className={`font-serif text-2xl font-bold text-${theme.primary}`}>Frequently Asked Questions</h3>
+                <p className="text-xs text-brand-muted font-medium">You Asked. We Answered.</p>
               </div>
 
               <div className="space-y-3">
                 {[
                   {
-                    q: "Is Cambridge Assessment International Education accepted in India?",
-                    a: "Yes. Cambridge qualifications are fully recognized by the Association of Indian Universities (AIU) and accepted as equivalent to Class X and XII by CBSE, CISCE (ICSE/ISC), State Boards, and universities across India and abroad."
+                    q: "1. Is Cambridge accepted in India?",
+                    a: "Yes. Cambridge IGCSE is recognised by the Association of Indian Universities (AIU) and accepted by CBSE, ISC, State Boards, and universities across India and abroad."
                   },
                   {
-                    q: "Can Cambridge students prepare for competitive exams like JEE or NEET?",
-                    a: "Absolutely. Cambridge Assessment International Education offers rigorous preparation that matches competitive exam syllabus. Early alignment of subject choices (Physics, Chemistry, Biology, Mathematics) in Class IX onwards allows smooth preparation for JEE, NEET, CUET, NDA, and other entrance exams."
+                    q: "2. Can Cambridge students prepare for JEE or NEET?",
+                    a: "Absolutely. Students can pursue JEE, NEET, CUET, UPSC, NDA, and other competitive examinations with the right subject choices and academic planning."
                   },
                   {
-                    q: "What is the Cambridge Checkpoint, and why does it matter?",
-                    a: "Checkpoint is a diagnostic assessment conducted at the end of Classes V and VIII. These tests are set, marked, and evaluated independently by Cambridge UK, giving parents an honest, unbiased measure of their child's progress against global standards in English, Mathematics, and Science."
+                    q: "3. What is the Cambridge Checkpoint?",
+                    a: "Checkpoint is an internationally benchmarked assessment conducted in Classes V and VIII that evaluates student understanding in English, Mathematics, and Science."
                   },
                   {
-                    q: "How is teaching in a Cambridge classroom different from traditional boards?",
-                    a: "Cambridge classroom focus is on 'how to think' rather than 'what to think'. It is enquiry-based and experiential. Students discuss, investigate, collaborate, fail before they succeed, reflect, and apply concepts to real-world performance instead of relying on rote learning."
+                    q: "4. How is Cambridge different from traditional boards?",
+                    a: "Cambridge focuses on conceptual understanding, application, research, analysis, discussion, and real-world problem-solving rather than rote learning."
                   },
                   {
-                    q: "How many subjects does a student study in Cambridge IGCSE?",
-                    a: "Typically, students opt for 7 to 9 subjects. This includes compulsory languages (English First Language and a Second Language), Mathematics, Sciences, and electives chosen from Humanities and Commerce/Technology groups."
+                    q: "5. How many subjects does a student study in IGCSE?",
+                    a: "Typically, students opt for 7–9 subjects, including core and elective choices tailored to their interests and future goals."
                   },
                   {
-                    q: "Can students transition back to CBSE or other boards later?",
-                    a: "Yes. The Cambridge curriculum is highly compatible. Students can smoothly transition back to CBSE, ISC, State Boards, or choose to continue with Cambridge AS & A Levels for Class XI and XII."
+                    q: "6. Are Cambridge classrooms more interactive?",
+                    a: "Yes. Students actively participate through discussions, presentations, experiments, collaborative projects, and inquiry-driven learning experiences."
                   },
                   {
-                    q: "Is Cambridge valid for UPSC, Civil Services, or Government Jobs in India?",
-                    a: "Yes. Cambridge qualifications are fully valid for UPSC, IAS/IPS, PCS, Defence exams (NDA, CDS), and all central or state government jobs, alongside a graduation degree."
+                    q: "7. Can students shift to another board later?",
+                    a: "Yes. Students can smoothly transition to CBSE, ISC, State Boards, or continue with Cambridge AS & A Levels."
                   },
                   {
-                    q: "Where are the IGCSE board examinations conducted?",
-                    a: "As an authorised Cambridge examination centre, all board examinations are conducted right here on our school campus under strict international standards and couriered to Cambridge UK for independent evaluation."
+                    q: "8. Is Cambridge suitable for students moving abroad?",
+                    a: "Absolutely. Cambridge qualifications are internationally portable and recognised in over 160 countries worldwide."
+                  },
+                  {
+                    q: "9. Are examinations conducted in school?",
+                    a: "Yes. As an authorised Cambridge examination centre, all Cambridge examinations are conducted at our campus under international standards and protocols."
+                  },
+                  {
+                    q: "10. What kind of learner does Cambridge develop?",
+                    a: "Cambridge nurtures learners who are confident, responsible, reflective, innovative, and engaged — young people prepared not only for examinations, but for life itself."
                   }
                 ].map((faq, fIdx) => (
                   <details 

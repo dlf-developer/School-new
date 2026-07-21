@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useSiteData } from '../hooks/useSiteData'
-import { Heart, Compass, ShieldAlert, ArrowLeft, Send, CheckCircle2, Award, ChevronDown } from 'lucide-react'
+import { Heart, Compass, ShieldAlert, ArrowLeft, Send, CheckCircle2, Award, ChevronDown, X, Camera } from 'lucide-react'
 
 export default function SchoolCounselling() {
   const { schoolId } = useParams()
@@ -16,6 +16,7 @@ export default function SchoolCounselling() {
     accentHex: '#C59B27'
   }
 
+  const [selectedImage, setSelectedImage] = useState(null)
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
@@ -52,6 +53,92 @@ export default function SchoolCounselling() {
           >
             <ArrowLeft className="w-4 h-4" /> Back to School Home
           </Link>
+        </div>
+
+        {/* ── COUNSELLING & WELLNESS PHOTO GALLERY (4 PICTURE PLACEHOLDERS) ── */}
+        <div className="bg-gray-50/80 rounded-3xl p-6 sm:p-8 border border-gray-100 space-y-5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant} flex items-center gap-1.5`}>
+                <Camera className="w-3.5 h-3.5" /> Media Gallery
+              </span>
+              <h3 className={`font-serif text-xl sm:text-2xl font-bold text-${theme.primary}`}>Counselling & Wellness Photo Highlights</h3>
+              <p className="text-xs text-brand-muted font-inter">
+                Visual photo placeholders for campus counseling facilities, career workshops, and wellness sessions.
+              </p>
+            </div>
+            <span className="text-[11px] font-bold text-brand-gold bg-white px-3 py-1.5 rounded-full border border-gray-200 shadow-sm shrink-0 self-start sm:self-auto">
+              4 Image Placeholders Available
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              {
+                id: "slot-1",
+                label: "Photo Placeholder 1",
+                title: "Confidential Guidance Room",
+                desc: "One-on-one student counselling & emotional wellness hub.",
+                image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800"
+              },
+              {
+                id: "slot-2",
+                label: "Photo Placeholder 2",
+                title: "Career Margdarshak Seminar",
+                desc: "Interactive university guidance & stream selection townhalls.",
+                image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=800"
+              },
+              {
+                id: "slot-3",
+                label: "Photo Placeholder 3",
+                title: "Morning Yoga & Mindfulness",
+                desc: "Holistic fitness, breathing exercises, and emotional regulation.",
+                image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800"
+              },
+              {
+                id: "slot-4",
+                label: "Photo Placeholder 4",
+                title: "Peer Educators Workshop",
+                desc: "Student ambassador training for cyber-safety & anti-bullying.",
+                image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800"
+              }
+            ].map((slot) => (
+              <div 
+                key={slot.id}
+                onClick={() => setSelectedImage(slot)}
+                className="group relative bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between"
+              >
+                <div className="h-44 w-full relative bg-gray-100 overflow-hidden">
+                  <img 
+                    src={slot.image} 
+                    alt={slot.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors"></div>
+                  
+                  {/* Explicit Placeholder Badge */}
+                  <div className="absolute top-2.5 left-2.5">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider bg-brand-gold text-brand-charcoal px-2.5 py-1 rounded-md shadow-md">
+                      {slot.label}
+                    </span>
+                  </div>
+
+                  <div className="absolute bottom-2.5 right-2.5 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded-md text-[9px] font-bold uppercase tracking-wider flex items-center gap-1">
+                    <Camera className="w-3 h-3 text-brand-gold" /> Preview
+                  </div>
+                </div>
+
+                <div className="p-3.5 space-y-1">
+                  <h4 className="font-serif text-xs font-bold text-brand-charcoal group-hover:text-brand-greenDeep transition-colors leading-snug">
+                    {slot.title}
+                  </h4>
+                  <p className="text-[10px] text-brand-muted font-inter leading-relaxed line-clamp-2">
+                    {slot.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Counselling & Wellbeing 9 Pillars Grid */}
@@ -136,6 +223,94 @@ export default function SchoolCounselling() {
               </div>
             )
           })}
+        </div>
+
+        {/* ── COUNSELLING & WELLNESS PICTURE GALLERY (4 PICTURE PLACEHOLDERS & SNAPSHOTS) ── */}
+        <div className="space-y-6 pt-6 border-t border-gray-100 mt-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant} flex items-center gap-1.5`}>
+                <Camera className="w-3.5 h-3.5" /> Campus Life & Guidance
+              </span>
+              <h3 className={`font-serif text-2xl sm:text-3xl font-bold text-${theme.primary}`}>Glimpses of Wellness & Counselling in Action</h3>
+              <p className="text-xs sm:text-sm text-brand-muted font-inter font-medium mt-1">
+                Visual snapshots capturing one-on-one sessions, career townhalls, mindfulness mornings, and peer leadership workshops.
+              </p>
+            </div>
+            <div className="text-xs text-brand-muted font-medium bg-gray-50 px-3.5 py-1.5 rounded-full border border-gray-200 shrink-0 self-start md:self-auto">
+              4 Media Gallery Placeholders
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-2">
+            {[
+              {
+                id: 1,
+                tag: "One-on-One Counselling",
+                title: "Individual Guidance Sessions",
+                desc: "Dedicated, confidential one-on-one space for emotional, academic, and personal guidance.",
+                image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800"
+              },
+              {
+                id: 2,
+                tag: "Career Guidance",
+                title: "Margdarshak Townhalls & Fairs",
+                desc: "Interactive university guidance sessions and stream selection workshops with industry experts.",
+                image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=800"
+              },
+              {
+                id: 3,
+                tag: "Mindfulness & Health",
+                title: "Wellness & Yoga Mornings",
+                desc: "Morning mindfulness practices, emotional regulation routines, and holistic lifestyle sessions.",
+                image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800"
+              },
+              {
+                id: 4,
+                tag: "Student Leadership",
+                title: "Peer Educators' Workshop",
+                desc: "Empowering student wellbeing ambassadors to lead cyber safety and anti-bullying awareness.",
+                image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800"
+              }
+            ].map((pic) => (
+              <div 
+                key={pic.id} 
+                className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between cursor-pointer"
+                onClick={() => setSelectedImage(pic)}
+              >
+                <div className="h-48 w-full overflow-hidden relative bg-gray-100">
+                  <img 
+                    src={pic.image} 
+                    alt={pic.title} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                  <div className="absolute top-3 left-3">
+                    <span className="text-[9px] font-extrabold uppercase tracking-widest bg-black/60 backdrop-blur-md text-white px-2.5 py-1 rounded-full border border-white/20">
+                      {pic.tag}
+                    </span>
+                  </div>
+                  <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm text-brand-charcoal p-1.5 rounded-full shadow-md group-hover:scale-110 transition-transform">
+                    <Camera className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+                <div className="p-4 space-y-1.5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h4 className="font-serif text-sm font-bold text-brand-charcoal group-hover:text-brand-greenDeep transition-colors leading-snug">
+                      {pic.title}
+                    </h4>
+                    <p className="text-[11px] text-brand-muted font-inter leading-relaxed mt-1">
+                      {pic.desc}
+                    </p>
+                  </div>
+                  <div className="pt-3 border-t border-gray-50 flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-brand-gold">
+                    <span>View Photo</span>
+                    <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* ── CHILD PROTECTION POLICY (CPP) ACCORDION ── */}
@@ -349,6 +524,46 @@ export default function SchoolCounselling() {
         </div>
 
       </div>
+
+      {/* Lightbox Gallery Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-[999] bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div 
+            className="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl relative animate-in fade-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 bg-black/50 hover:bg-black text-white p-2 rounded-full transition-colors z-10"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <div className="h-72 sm:h-96 w-full bg-gray-900 overflow-hidden relative">
+              <img 
+                src={selectedImage.image} 
+                alt={selectedImage.title} 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute top-4 left-4">
+                <span className="text-[10px] font-extrabold uppercase tracking-widest bg-brand-gold text-brand-charcoal px-3 py-1 rounded-full font-inter shadow-md">
+                  {selectedImage.tag}
+                </span>
+              </div>
+            </div>
+            <div className="p-6 space-y-2">
+              <h3 className={`font-serif text-xl sm:text-2xl font-bold text-${theme.primary}`}>
+                {selectedImage.title}
+              </h3>
+              <p className="text-xs sm:text-sm text-brand-muted font-inter leading-relaxed font-medium">
+                {selectedImage.desc}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

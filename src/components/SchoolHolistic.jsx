@@ -1,35 +1,68 @@
-import React, { useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useParams, useSearchParams, Link } from 'react-router-dom'
 import { useSiteData } from '../hooks/useSiteData'
-import { Music, Trophy, Palette, Terminal, Compass, ArrowLeft, Heart, CheckCircle2 } from 'lucide-react'
+import { 
+  Music, 
+  Trophy, 
+  Palette, 
+  BookOpen, 
+  Compass, 
+  Award, 
+  ArrowLeft, 
+  Heart, 
+  CheckCircle2, 
+  Image as ImageIcon,
+  Sparkles
+} from 'lucide-react'
 
 const iconMap = {
   performingArts: Music,
   sports: Trophy,
   visualArts: Palette,
-  skillEnrichment: Terminal,
-  schoolExcursions: Compass
+  scholastic: BookOpen,
+  schoolExcursions: Compass,
+  studentAchievements: Award
 }
 
 const sectionTitles = {
-  performingArts: 'Performing Arts (Dance, Music, Theatre)',
-  sports: 'Sports & Athletic Development',
-  visualArts: 'Visual Arts, Clay Modeling & Craft',
-  skillEnrichment: 'Skill Enrichment & Computational Projects',
-  schoolExcursions: 'School Excursions & Field Study'
+  performingArts: 'Performing Arts (Dance, Music, Theatre & Stagecraft)',
+  sports: 'Sports Development & Athletic Facilities',
+  visualArts: 'Visual Arts, Clay Modeling & Design Studio',
+  scholastic: 'Scholastic Learning Spaces, Labs & Library',
+  schoolExcursions: 'School Excursions & Experiential Learning Journeys',
+  studentAchievements: 'Student Achievements & Delfite Trailblazers'
 }
 
 const categoryThumbnails = {
   performingArts: '/achievements/Nrityanjali.jpeg',
   sports: '/achievements/Shreeja Singh at UP State Championship.jpg',
   visualArts: '/achievements/Unique Hospital Bed.jpg',
-  skillEnrichment: '/achievements/Pendulum Pump.png',
-  schoolExcursions: '/achievements/ramjas (1).jpg'
+  scholastic: '/achievements/Pendulum Pump.png',
+  schoolExcursions: '/achievements/ramjas (1).jpg',
+  studentAchievements: '/achievements/Aadya Singh.jpg'
+}
+
+const sectionKeyMap = {
+  'performing-arts': 'performingArts',
+  'performingArts': 'performingArts',
+  'sports-development': 'sports',
+  'sports': 'sports',
+  'visual-arts': 'visualArts',
+  'visualArts': 'visualArts',
+  'scholastic': 'scholastic',
+  'skill-enrichment': 'scholastic',
+  'skillEnrichment': 'scholastic',
+  'school-excursions': 'schoolExcursions',
+  'schoolExcursions': 'schoolExcursions',
+  'student-achievements': 'studentAchievements',
+  'studentAchievements': 'studentAchievements'
 }
 
 export default function SchoolHolistic() {
-  const { schoolId } = useParams()
+  const { schoolId, sectionId } = useParams()
+  const [searchParams] = useSearchParams()
   const { schools } = useSiteData()
+
   const activeBranch = schoolId && schools[schoolId] ? schoolId : 'dlf-sahibabad'
   const currentSchool = schools[activeBranch]
 
@@ -40,71 +73,110 @@ export default function SchoolHolistic() {
     accentHex: '#C59B27'
   }
 
-  const holisticData = currentSchool?.holistic || {
-    performingArts: 'Performing Arts bring learning to life through movement, music and expression. Whether it is dance, theatre or vocal and instrumental music, students are encouraged to explore rhythm, storytelling and stagecraft. Performances are thoughtfully woven into the school culture—be it assemblies, Annual functions, Celebrations or thematic presentations during Scholastic Months —giving every child a platform to showcase talent and build stage presence.',
-    sports: 'Our sports infrastructure reflects both scale and ambition—designed to offer students diverse, high-quality training environments. The campus features a newly developed synthetic football turf, providing professional-grade conditions. Alongside this, students have access to dedicated volleyball and lawn tennis courts, encouraging both team spirit and individual excellence. The standout Olympic-size skating rink provides a unique platform to develop balance and precision. The school houses two well-maintained swimming pools, indoor basketball and badminton courts, and the only pickleball court in the vicinity.',
-    visualArts: 'Visual Arts at the school go beyond conventional drawing and painting. Students engage with a wide range of mediums—sketching, painting, sculpture, mixed media, digital design—allowing them to experiment, take creative risks and develop their own artistic voice. The focus is not merely on technique, but on observation, interpretation and original expression. Art becomes a way of thinking, not just creating. This is further enhanced by our art-integrated academic approach, where arts intersect with curriculum topics to deepen conceptual understanding.',
-    skillEnrichment: 'A vibrant network of Clubs enriches student life, offering diverse avenues to explore interests and build skills—from AI Coding, Data Science, and Financial Literacy to Mass Media, MUN, Language Clubs, Sports, Yoga, and Performing Arts. The THOTS Lab and Innovation Hub are dedicated spaces where the spirit of inquiry is fuelled. Our scholastic resources are backed by a central library with 20,000+ books, class libraries (Nursery-XII) and the DEAR (Drop Everything And Read) scheduled period.',
-    schoolExcursions: 'Educational excursions are not a break from learning—they are learning in motion. Delfites participate in a rich variety of journeys: heritage walks, industry visits, science explorations, biodiversity parks, village immersions, museums, and leadership camps. Visits to institutions such as the President\'s Estate, National Physical Laboratory, Parliament Museum, and research centres enable students to witness knowledge in action. Outdoor camps in Lohagarh Farms, Dharamshala, and Chakrata build resilience. Our students also participate in international exchange tours to Russia, Malaysia, and other global destinations.'
+  const rawSectionParam = sectionId || searchParams.get('section')
+  const initialSection = rawSectionParam && sectionKeyMap[rawSectionParam] ? sectionKeyMap[rawSectionParam] : 'performingArts'
+  const [activeSub, setActiveSub] = useState(initialSection)
+
+  useEffect(() => {
+    if (rawSectionParam && sectionKeyMap[rawSectionParam]) {
+      setActiveSub(sectionKeyMap[rawSectionParam])
+    }
+  }, [rawSectionParam])
+
+  const holisticData = {
+    performingArts: 'Performing Arts bring learning to life through movement, music, and expression. Whether it is dance, theatre, or vocal and instrumental music, students are encouraged to explore rhythm, storytelling, and stagecraft. Performances are thoughtfully woven into the school culture—be it daily assemblies, Annual Day functions, national celebrations, or thematic presentations during Scholastic Months—giving every child a platform to showcase talent, overcome stage fear, and build self-assurance.',
+    sports: 'Our sports infrastructure reflects both scale and ambition—designed to offer students diverse, high-quality training environments across Olympic and global sports. The campus features a newly developed synthetic football turf providing professional-grade conditions. Alongside this, students have access to dedicated volleyball and lawn tennis courts, encouraging both team spirit and individual stamina. The standout Olympic-size skating rink provides a unique platform to develop balance and speed. The school houses two well-maintained swimming pools, indoor basketball and badminton courts, and the only pickleball court in the vicinity.',
+    visualArts: 'Visual Arts at DLF Schools go far beyond conventional drawing and painting. Students engage with a wide range of creative mediums—sketching, canvas painting, clay modeling, sculpture, mixed media, and digital design—allowing them to experiment, take creative risks, and discover their own artistic voice. The focus is on observation, interpretation, and original expression. Art becomes a mode of critical thinking and emotional articulation, enhanced by our art-integrated academic approach where visual arts intersect with core subjects.',
+    scholastic: 'Our scholastic foundation is anchored in state-of-the-art tinkering labs, digital hubs, and rich library resources. The THOTS Lab and Innovation Hub are dedicated spaces where analytical reasoning and scientific inquiry are nurtured. Our scholastic learning environments include Physics, Chemistry, Biology, and ICT Labs, alongside the FIM Lab. These are complemented by a central library housing over 20,000 books, class libraries (Nursery-XII), the DEAR (Drop Everything And Read) period, and modern presentation spaces including an Auditorium, Assembly Hall, Seminar Halls, and Conference Rooms.',
+    schoolExcursions: 'Educational excursions are not a break from learning—they are learning in motion. Delfites participate in a rich variety of journeys: historical heritage walks, industry visits, science explorations, biodiversity parks, village immersions, museums, and outdoor leadership camps. Visits to prestigious institutions such as the President\'s Estate, National Physical Laboratory, Parliament Museum, and university research centres enable students to witness knowledge in action. Outdoor camps in Lohagarh Farms, Dharamshala, and Chakrata build resilience. Our students also participate in international exchange tours to countries like Russia, Malaysia, and beyond.',
+    studentAchievements: 'Every Delfite is encouraged to pursue multi-dimensional excellence—mastering academics, sports, and arts. Student Achievements showcase the remarkable triumphs of our Delfite Trailblazers across international sports championships, national science exhibitions, venture capital grants, and state records.'
+  }
+
+  const subsectionFeatures = {
+    performingArts: [
+      'Dance (Classical, Contemporary, and Folk movement integrated with stage performances).',
+      'Vocal Music (Hindustani Classical, Light Vocal, and Choir performance training).',
+      'Instrumental Music (Keyboards, Drums, Guitar, Harmonium, and Tabla practice sessions).',
+      'Theatre & Drama (Scriptwriting, monologues, characterization, and theatrical expression).',
+      'Stagecraft & Performance Art (Public speaking, stage presence, light/sound coordination, and hosting).'
+    ],
+    sports: [
+      'Synthetic Football Turf (Professional-grade conditions for competitive training and matches).',
+      'Olympic-Size Skating Rink (Developing balance, speed, precision, and competitive edge).',
+      'Two Swimming Pools (Dedicated pools catering to different age groups and skill levels).',
+      'Exclusive Pickleball Court (Introducing students to emerging fast-paced global racket sports).',
+      'Indoor Basketball & Badminton Courts (Year-round practice and inter-school tournament hosting).',
+      'Lawn Tennis Courts & Volleyball Arena (Developing endurance, tactical agility, and sportsmanship).'
+    ],
+    visualArts: [
+      'Sketching & Pencil Shading (Mastering proportion, perspective, light, and shadow).',
+      'Canvas Painting & Watercolors (Exploring color harmony, impressionism, and thematic expression).',
+      'Clay Modeling & Pottery (Tactile 3D sculpting, form development, and ceramics).',
+      'Sculpture & Mixed Media (Upcycled art installations, paper-mâché, and relief work).',
+      'Digital Design & Graphic Art (Creative software illustration and visual storytelling).',
+      'Craft & Design Studio (Hands-on block printing, tie-and-dye, and artisanal craft techniques).'
+    ],
+    scholastic: [
+      'Thots Lab (Structured thinking process and cognitive skill building).',
+      'Innovation Hub & FIM Lab (Robotics, AI coding, financial literacy, and tinkering projects).',
+      'Science Labs (Advanced Physics, Chemistry, and Biology research laboratories).',
+      'ICT & Computer Labs (High-speed digital labs for programming, web design, and data science).',
+      'Central School Library (20,000+ books, digital archives, and class libraries for Nursery-XII).',
+      'Auditorium, Assembly Hall, Seminar Halls & Conference Rooms (State-of-the-art event & lecture spaces).',
+      'DEAR (Drop Everything And Read) Scheduled Period (Cultivating daily reading habits).'
+    ],
+    schoolExcursions: [
+      'Historical & Heritage Walks (Exploring heritage monuments, museums, and cultural sites).',
+      'Institutional Visits (President\'s Estate, National Physical Laboratory, Parliament Museum).',
+      'Ecological Expeditions (Biodiversity parks, city forests, and rural village immersions).',
+      'Adventure & Leadership Camps (Outstation camps at Lohagarh Farms, Dharamshala, and Chakrata).',
+      'Global Educational Tours (International student exchange journeys to Russia, Malaysia, and more).'
+    ],
+    studentAchievements: [
+      'Arsalan Alam — SPARC Internship Scholar & $10,000 International Venture Capital Grant Winner.',
+      'Shreeja Singh — 5 Gold Medals & 5 State Records at UP State Swimming Championship (Best Swimmer).',
+      'Ishika Singh — Prime All-Rounder in Delhi Premier League (DPL) Cricket for South Delhi Superstarz.',
+      'Nandini Kansal — ITF International Tennis Representative in Nepal & Africa (AITA #21 UP Rank).',
+      'Uday Kaul — ITF Kazakhstan Tennis Representative (AITA Men\'s All India Ranking 262).'
+    ]
   }
 
   const subsectionPhotos = {
     performingArts: [
-      { src: '/achievements/Nrityanjali.jpeg', caption: 'Classical dance performance at Nrityanjali Inter-School Competition' }
+      { src: '/achievements/Nrityanjali.jpeg', caption: 'Classical dance performance at Nrityanjali Inter-School Competition' },
+      { placeholder: true, title: 'Annual Dance & Music Fest', caption: 'Stage performance during Annual Cultural Extravaganza (Photos coming soon)' },
+      { placeholder: true, title: 'Instrumental & Vocal Studio', caption: 'Student choir & band rehearsal session (Photos coming soon)' }
     ],
     sports: [
       { src: '/achievements/Nandini Kansal.jpg', caption: 'Nandini Kansal — Represented India at ITF Nepal & Africa, AITA #21 (UP)' },
-      { src: '/achievements/Shreeja Singh at UP State Championship.jpg', caption: 'Shreeja Singh — 5 Golds & 5 State Records, Best Swimmer at UP State Championship' }
+      { src: '/achievements/Shreeja Singh at UP State Championship.jpg', caption: 'Shreeja Singh — 5 Golds & 5 State Records, Best Swimmer at UP State Championship' },
+      { placeholder: true, title: 'Synthetic Football Turf Arena', caption: 'High-intensity match action on professional turf (Photos coming soon)' },
+      { placeholder: true, title: 'Olympic-Size Skating Rink & Pickleball', caption: 'Skating drills & pickleball coaching sessions (Photos coming soon)' }
     ],
     visualArts: [
-      { src: '/achievements/Unique Hospital Bed.jpg', caption: 'Design & sculpture models created by students at the Design Studio' }
+      { src: '/achievements/Unique Hospital Bed.jpg', caption: 'Design & sculpture models created by students at the Design Studio' },
+      { placeholder: true, title: 'Annual Art & Sculpture Exhibition', caption: 'Canvas paintings & clay models on display (Photos coming soon)' },
+      { placeholder: true, title: 'Craft & Digital Design Studio', caption: 'Students crafting mixed-media artworks (Photos coming soon)' }
     ],
-    skillEnrichment: [
-      { src: '/achievements/Pendulum Pump.png', caption: 'Mechanical Pendulum Pump — Top 3 at CBSE National Science Exhibition' }
+    scholastic: [
+      { src: '/achievements/Pendulum Pump.png', caption: 'Mechanical Pendulum Pump — Top 3 at CBSE National Science Exhibition' },
+      { placeholder: true, title: 'Thots Lab & Innovation Hub', caption: 'Hands-on robotics and thinking process session (Photos coming soon)' },
+      { placeholder: true, title: 'Central Library & Seminar Hall', caption: 'DEAR reading period and academic lectures (Photos coming soon)' }
     ],
     schoolExcursions: [
-      { src: '/achievements/ramjas (1).jpg', caption: 'Students participating in inter-school outreach and educational camps' }
+      { src: '/achievements/ramjas (1).jpg', caption: 'Students participating in inter-school outreach and educational camps' },
+      { placeholder: true, title: 'Outstation Leadership Camp (Chakrata/Dharamshala)', caption: 'Adventure camping & trekking expedition (Photos coming soon)' },
+      { placeholder: true, title: 'International Exchange Tour (Russia/Malaysia)', caption: 'Global student immersion and cultural exchange (Photos coming soon)' }
+    ],
+    studentAchievements: [
+      { src: '/achievements/Aadya Singh.jpg', caption: 'Arsalan Alam & Aadya Singh — SPARC Scholars & VC Grant Innovators' },
+      { src: '/achievements/Shreeja Singh at UP State Championship.jpg', caption: 'Shreeja Singh — Best Swimmer UP State Championship' },
+      { src: '/achievements/Ishika Singh cricket.jpg', caption: 'Ishika Singh — Delhi Premier League All-Rounder' }
     ]
   }
 
-  const keys = ['performingArts', 'sports', 'visualArts', 'skillEnrichment', 'schoolExcursions']
-  const [activeSub, setActiveSub] = useState('performingArts')
-
+  const keys = ['performingArts', 'sports', 'visualArts', 'scholastic', 'schoolExcursions', 'studentAchievements']
   const ActiveIcon = iconMap[activeSub]
-
-  const subsectionFeatures = {
-    performingArts: [
-      'Performing Arts Room supporting Dance, Music, and Drama.',
-      'Vocal and instrumental music training to explore rhythm, melody, and song.',
-      'Dance and movement integrated with active performance opportunities.',
-      'Theatre and drama to explore storytelling, expression, and stagecraft.'
-    ],
-    sports: [
-      'Newly developed football turf, providing professional-grade conditions for training and competitive play.',
-      'Olympic-size skating rink, offering students a platform to develop balance, precision, and competitive skills.',
-      'Two well-maintained swimming pools, catering to different age groups and skill levels, ensuring training and safety.',
-      'The only pickleball court in the vicinity, introducing students to emerging global sports.',
-      'Indoor basketball and badminton courts allowing uninterrupted practice and year-round engagement.'
-    ],
-    visualArts: [
-      'Students engage with sketching, painting, sculpture, mixed media, and digital design.',
-      'Visual Arts spaces including Art and Craft room, Modeling, Sculpture, and the Design Studio.',
-      'Art-integrated academic approach, where concepts are explored through dramatization, music, visual representation, and movement.',
-      'Opportunities to experiment, take creative risks, and develop an original artistic voice.'
-    ],
-    skillEnrichment: [
-      'School library with over 20,000 books catering to a wide spectrum of readers.',
-      'Class library in each section with books issued for a week on every Friday.',
-      'DEAR (Drop Everything And Read) period as part of the regular school timetable.',
-      'Tinkering and research spaces: THOTS Lab, Innovation Hub, FIM Lab, Science labs, and computer labs.'
-    ],
-    schoolExcursions: [
-      'Heritage walks, industry visits, science explorations, biodiversity parks, city forests, and village immersions.',
-      'Visits to institutions like the President\'s Estate, NPL, Parliament Museum, and university research centres.',
-      'Adventure and leadership experiences at Lohagarh Farms, Dharamshala, Chakrata, and outdoor destinations.',
-      'National and international educational visits to destinations including Russia, Malaysia, and other countries.'
-    ]
-  }
 
   return (
     <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
@@ -113,10 +185,10 @@ export default function SchoolHolistic() {
         {/* Page Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-6">
           <div>
-            <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>School Life</span>
+            <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>School Life & Wings</span>
             <h2 className={`font-serif text-3xl sm:text-4xl font-bold text-${theme.primary}`}>Holistic Learning</h2>
             <p className="text-xs sm:text-sm text-brand-muted mt-1 font-inter font-medium">
-              Fostering kinetic, creative, and social intelligence beyond standard classroom boundaries.
+              Fostering kinetic, creative, scholastic, and social intelligence beyond standard classroom boundaries.
             </p>
           </div>
           <Link 
@@ -132,14 +204,30 @@ export default function SchoolHolistic() {
           
           {/* Left Navigation Sidebar */}
           <div className="lg:col-span-4 bg-white rounded-3xl border border-gray-150 shadow-md p-5 space-y-3">
-            <span className="text-[10px] font-extrabold uppercase tracking-widest text-gray-400 block px-2 mb-1">Sub-Sections</span>
+            <span className="text-[10px] font-extrabold uppercase tracking-widest text-gray-400 block px-2 mb-1">Holistic Learning Wings</span>
             {keys.map(key => {
               const Icon = iconMap[key]
               const isActive = activeSub === key
-              const label = key === 'performingArts' ? 'Performing Arts' : key === 'schoolExcursions' ? 'School Excursions' : key === 'skillEnrichment' ? 'Skill Enrichment' : key === 'visualArts' ? 'Visual Arts' : 'Sports Development'
+              const label = key === 'performingArts' ? 'Performing Arts' 
+                : key === 'sports' ? 'Sports Development' 
+                : key === 'visualArts' ? 'Visual Arts' 
+                : key === 'scholastic' ? 'Scholastic' 
+                : key === 'schoolExcursions' ? 'School Excursions' 
+                : 'Student Achievements'
+              
+              const subRouteMap = {
+                performingArts: 'performing-arts',
+                sports: 'sports-development',
+                visualArts: 'visual-arts',
+                scholastic: 'scholastic',
+                schoolExcursions: 'school-excursions',
+                studentAchievements: 'student-achievements'
+              }
+
               return (
-                <button
+                <Link
                   key={key}
+                  to={`/school/${activeBranch}/holistic-learning/${subRouteMap[key]}`}
                   onClick={() => setActiveSub(key)}
                   className={`w-full text-left flex items-center gap-3.5 p-3 rounded-2xl transition-all border cursor-pointer ${
                     isActive 
@@ -147,20 +235,20 @@ export default function SchoolHolistic() {
                       : 'bg-white hover:bg-gray-50 text-brand-charcoal border-gray-100'
                   }`}
                 >
-                  <div className="w-16 h-12 rounded-xl overflow-hidden shrink-0 relative bg-gray-100 shadow-inner">
+                  <div className="w-14 h-12 rounded-xl overflow-hidden shrink-0 relative bg-gray-100 shadow-inner flex items-center justify-center">
                     <img src={categoryThumbnails[key]} alt="" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white">
-                      <Icon className="w-4.5 h-4.5" />
+                      <Icon className="w-4 h-4" />
                     </div>
                   </div>
                   <span className="font-bold text-xs uppercase tracking-wider leading-snug">{label}</span>
-                </button>
+                </Link>
               )
             })}
           </div>
 
           {/* Right Detailed Content Panel */}
-          <div className="lg:col-span-8 bg-white rounded-3xl border border-gray-150 shadow-xl overflow-hidden min-h-[400px] flex flex-col justify-between">
+          <div className="lg:col-span-8 bg-white rounded-3xl border border-gray-150 shadow-xl overflow-hidden min-h-[450px] flex flex-col justify-between">
             <div className="p-6 sm:p-8 space-y-6">
               
               {/* Category Cover Image Banner */}
@@ -170,7 +258,7 @@ export default function SchoolHolistic() {
                   alt={sectionTitles[activeSub]} 
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                 <div className="absolute bottom-4 left-6 right-6 text-white flex items-center gap-3">
                   <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center shrink-0 border border-white/20">
                     <ActiveIcon className="w-5 h-5 text-white" />
@@ -179,7 +267,7 @@ export default function SchoolHolistic() {
                     <h3 className="font-serif text-lg sm:text-xl font-bold leading-tight drop-shadow-md">
                       {sectionTitles[activeSub]}
                     </h3>
-                    <span className="text-[9px] uppercase font-bold text-brand-gold tracking-widest drop-shadow-sm">Subsection Ethos</span>
+                    <span className="text-[9px] uppercase font-bold text-brand-gold tracking-widest drop-shadow-sm">Holistic Learning Pillar</span>
                   </div>
                 </div>
               </div>
@@ -189,12 +277,14 @@ export default function SchoolHolistic() {
                 {holisticData[activeSub]}
               </p>
 
-              {/* Features List */}
+              {/* Highlighted Bullets List */}
               <div className="space-y-4 pt-2">
-                <h4 className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant} font-inter`}>Core Activities & Focus Area</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <h4 className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant} font-inter flex items-center gap-1.5`}>
+                  <Sparkles className="w-3.5 h-3.5" /> Key Highlights &amp; Offerings
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   {subsectionFeatures[activeSub].map((feat, idx) => (
-                    <div key={idx} className="flex gap-2.5 items-start">
+                    <div key={idx} className="flex gap-2.5 items-start bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
                       <CheckCircle2 className={`w-4 h-4 text-${theme.accent} shrink-0 mt-0.5`} />
                       <span className="text-xs font-semibold text-brand-charcoal font-inter leading-relaxed">{feat}</span>
                     </div>
@@ -202,17 +292,84 @@ export default function SchoolHolistic() {
                 </div>
               </div>
 
-              {/* Subsection Photos */}
+              {/* Subsection Photos & Placeholders */}
               {subsectionPhotos[activeSub]?.length > 0 && (
-                <div className="space-y-3 border-t border-gray-100 pt-4">
-                  <h4 className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant} font-inter`}>Gallery</h4>
-                  <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-4 border-t border-gray-100 pt-6">
+                  <h4 className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant} font-inter`}>
+                    Media & Photo Gallery
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {subsectionPhotos[activeSub].map((photo, i) => (
-                      <div key={i} className="rounded-xl overflow-hidden border border-gray-100 shadow-sm group">
-                        <div className="aspect-[4/3] overflow-hidden bg-gray-50">
-                          <img src={photo.src} alt={photo.caption} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                      <div key={i} className="rounded-xl overflow-hidden border border-gray-150 shadow-sm bg-white flex flex-col justify-between group">
+                        {photo.placeholder ? (
+                          <div className="aspect-[4/3] bg-gray-50 flex flex-col items-center justify-center p-4 text-center border-b border-gray-100 space-y-2">
+                            <div className="w-10 h-10 rounded-full bg-brand-gold/10 text-brand-gold flex items-center justify-center">
+                              <ImageIcon className="w-5 h-5" />
+                            </div>
+                            <span className="text-[11px] font-bold text-brand-charcoal font-serif">{photo.title}</span>
+                            <span className="text-[9px] text-brand-muted font-extrabold uppercase tracking-wider bg-gray-200/60 px-2 py-0.5 rounded-full">Photo Placeholder</span>
+                          </div>
+                        ) : (
+                          <div className="aspect-[4/3] overflow-hidden bg-gray-50 border-b border-gray-100">
+                            <img src={photo.src} alt={photo.caption} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                          </div>
+                        )}
+                        <p className="text-[9.5px] text-brand-muted font-inter p-2.5 leading-tight">{photo.caption}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Render Student Achievements Cards inside Student Achievements tab */}
+              {activeSub === 'studentAchievements' && (
+                <div className="space-y-6 border-t border-gray-100 pt-6">
+                  <div className="space-y-1">
+                    <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>Delfite Trailblazers</span>
+                    <h4 className={`font-serif text-xl font-bold text-${theme.primary}`}>Hall of Fame & Multi-Dimensional Achievers</h4>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {[
+                      {
+                        name: "Arsalan Alam",
+                        achievement: "Research Scholar & Innovator",
+                        desc: "Accepted at SPARC for a summer internship program amongst North American scholars. Received a $10,000 grant from VC firms.",
+                        img: "/achievements/Aadya Singh.jpg"
+                      },
+                      {
+                        name: "Shreeja Singh",
+                        achievement: "Champion Swimmer (Class IX)",
+                        desc: "Won 5 Gold Medals & broke 5 state records at UP State Championship, earning 'Best Swimmer' title.",
+                        img: "/achievements/Shreeja Singh at UP State Championship.jpg"
+                      },
+                      {
+                        name: "Ishika Singh",
+                        achievement: "DPL Cricket All-Rounder",
+                        desc: "Selected for Delhi Premier League (DPL) playing for South Delhi Superstarz.",
+                        img: "/achievements/Ishika Singh cricket.jpg"
+                      },
+                      {
+                        name: "Nandini Kansal",
+                        achievement: "ITF Tennis Player",
+                        desc: "Represented India at ITF tournaments in Nepal & Africa. Ranked #21 AITA UP.",
+                        img: "/achievements/Nandini Kansal.jpg"
+                      },
+                      {
+                        name: "Uday Kaul",
+                        achievement: "ITF Tennis Representative",
+                        desc: "Represented India at ITF Kazakhstan. Holds AITA Men's Ranking of 262.",
+                        img: "/achievements/Uday Kaul.jpg"
+                      }
+                    ].map((p, idx) => (
+                      <div key={idx} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 flex gap-3 items-center">
+                        <img src={p.img} alt={p.name} className="w-14 h-14 rounded-xl object-cover shrink-0 border border-gray-150" />
+                        <div className="space-y-0.5">
+                          <span className={`text-[8px] uppercase tracking-wider font-extrabold px-2 py-0.5 rounded bg-${theme.primary}/10 text-${theme.primary}`}>
+                            {p.achievement}
+                          </span>
+                          <h5 className="font-serif text-sm font-bold text-brand-charcoal pt-0.5">{p.name}</h5>
+                          <p className="text-[10px] text-brand-muted leading-tight line-clamp-2">{p.desc}</p>
                         </div>
-                        <p className="text-[9px] text-brand-muted font-inter p-2 leading-tight line-clamp-2">{photo.caption}</p>
                       </div>
                     ))}
                   </div>
@@ -222,76 +379,15 @@ export default function SchoolHolistic() {
             </div>
 
             {/* Bottom Quote Strip */}
-            <div className={`bg-${theme.primary}/5 border-t border-gray-100 p-6 flex items-center gap-3`}>
-              <Heart className={`w-5 h-5 text-${theme.accent}`} />
+            <div className={`bg-${theme.primary}/5 border-t border-gray-100 p-5 flex items-center gap-3`}>
+              <Heart className={`w-4 h-4 text-${theme.accent} shrink-0`} />
               <p className="text-[10px] sm:text-xs font-inter font-bold text-brand-muted">
-                At DLF Schools, physical stamina and artistic talent are sculpted equally alongside scientific temperament.
+                At DLF Schools, physical stamina, scholastic inquiry, and artistic expression are sculpted equally to nurture well-rounded global citizens.
               </p>
             </div>
 
           </div>
 
-        </div>
-
-        {/* ── TRAILBLAZERS & ACHIEVERS SECTION ── */}
-        <div className="space-y-8 border-t border-gray-100 pt-16">
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>Delfite Trailblazers</span>
-            <h3 className={`font-serif text-2xl sm:text-3xl font-bold text-${theme.primary}`}>Multi-Dimensional Excellence</h3>
-            <p className="text-xs sm:text-sm text-brand-muted font-inter font-medium leading-relaxed">
-              Every Delfite is encouraged to explore diverse passions and master at least one sport, one art, and one skill. Meet the trailblazers leading the charge globally.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
-            {[
-              {
-                name: "Arsalan Alam",
-                achievement: "Research Scholar & Innovator",
-                desc: "Accepted at SPARC for a summer internship program amongst North American scholars. He also received a $10,000 grant from International Venture Capital firms, crediting DLF's Design Thinking classes from Class VI onwards.",
-                img: "/achievements/Aadya Singh.jpg"
-              },
-              {
-                name: "Shreeja Singh",
-                achievement: "Champion Swimmer (Class IX)",
-                desc: "Won 5 Gold Medals at the UP State Championship in Lucknow, breaking 5 state records. She earned the title of 'Best Swimmer' and qualified for the Swimming Nationals.",
-                img: "/achievements/Shreeja Singh at UP State Championship.jpg"
-              },
-              {
-                name: "Ishika Singh",
-                achievement: "DPL Cricket All-Rounder",
-                desc: "Selected for the Delhi Premier League (DPL) as a prime all-rounder, playing for the South Delhi Superstarz team on regional and national stages.",
-                img: "/achievements/Ishika Singh cricket.jpg"
-              },
-              {
-                name: "Nandini Kansal",
-                achievement: "ITF International Tennis Player",
-                desc: "Represented India at the International Tennis Federation (ITF) tournaments in Nepal and Africa. Ranked #21 in Uttar Pradesh (AITA) and #184 under-18 girls in India.",
-                img: "/achievements/Nandini Kansal.jpg"
-              },
-              {
-                name: "Uday Kaul",
-                achievement: "ITF Tennis Representative",
-                desc: "Represented India at the prestigious ITF Tournament held in Kazakhstan. Currently holds an All India Tennis Association (AITA) Men's Ranking of 262.",
-                img: "/achievements/Uday Kaul.jpg"
-              }
-            ].map((p, idx) => (
-              <div key={idx} className="bg-white rounded-3xl border border-gray-100 shadow-md overflow-hidden flex flex-col justify-between hover:shadow-lg transition-shadow">
-                <div className="space-y-4">
-                  <div className="aspect-[4/3] w-full overflow-hidden bg-gray-50 border-b border-gray-50">
-                    <img src={p.img} alt={p.name} className="w-full h-full object-cover" />
-                  </div>
-                  <div className="p-6 pt-2 space-y-2">
-                    <span className={`text-[9px] uppercase tracking-widest font-extrabold px-2.5 py-1 rounded-full bg-${theme.primary}/10 text-${theme.primary}`}>
-                      {p.achievement}
-                    </span>
-                    <h4 className="font-serif text-base font-bold text-brand-charcoal pt-1">{p.name}</h4>
-                    <p className="text-[11px] text-brand-muted leading-relaxed font-inter font-medium">{p.desc}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
       </div>
