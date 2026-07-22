@@ -25,6 +25,7 @@ import {
   Compass,
   IndianRupee,
   ClipboardList,
+  FileText,
   Globe,
   Music,
   Palette
@@ -121,11 +122,11 @@ export default function Header() {
   }, [isMobileMenuOpen])
 
   const renderOurSchoolsMenu = () => (
-    <div className="relative group py-2 flex flex-col items-center justify-center">
-      <button className={`flex items-center gap-1 hover:text-${!schoolId ? 'brand-gold' : theme.vibrant} transition-colors duration-300 cursor-pointer font-semibold ${isSchoolsActive ? (!schoolId ? 'text-brand-gold font-bold' : `text-${theme.vibrant} font-bold`) : ''}`}>
+    <div className="group py-2 flex flex-col items-center justify-center">
+      <button className={`relative flex items-center gap-1 hover:text-${!schoolId ? 'brand-gold' : theme.vibrant} transition-colors duration-300 cursor-pointer font-semibold ${isSchoolsActive ? (!schoolId ? 'text-brand-gold font-bold' : `text-${theme.vibrant} font-bold`) : ''}`}>
         Our Schools <ChevronDown className={`w-3.5 h-3.5 text-${theme.accent}`} />
+        {isSchoolsActive && <span className={`absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-${!schoolId ? 'brand-gold' : theme.vibrant}`}></span>}
       </button>
-      {isSchoolsActive && <span className={`absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-${!schoolId ? 'brand-gold' : theme.vibrant}`}></span>}
       {/* ── MASTER SITE: side-by-side visual dropdown with pictures ── */}
       {!schoolId && (
         <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 p-5 bg-white border border-gray-150 rounded-2xl shadow-2xl transition-all duration-300 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0" style={{ width: '560px', zIndex: 1000 }}>
@@ -175,13 +176,10 @@ export default function Header() {
       {/* ── SCHOOL SITE: full mega menu ── */}
       {schoolId && (
         <div
-          className="absolute top-full left-1/2 -translate-x-1/2 mt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0"
+          className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none group-hover:pointer-events-auto"
           style={{ width: '1008px', zIndex: 200 }}
         >
-          {/* Caret */}
-          <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-2 overflow-hidden">
-            <div className="w-3 h-3 bg-white rotate-45 mx-auto translate-y-1.5 shadow-sm" />
-          </div>
+          <div className="translate-y-2 group-hover:translate-y-0 transition-transform duration-300 relative">
           <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex">
             {/* ── PART 1: Switch Campus (Left Panel) ── */}
             <div className="w-[33.33%] p-5 bg-gray-50 border-r border-gray-100 flex flex-col gap-3">
@@ -300,6 +298,7 @@ export default function Header() {
               </div>
             </div>
           </div>
+          </div>{/* end animation wrapper */}
         </div>
       )}
     </div>
@@ -443,7 +442,7 @@ export default function Header() {
             {schoolId ? (
               <>
                 {/* 0. Breadcrumb Nav Item */}
-                <div className="group relative py-0.5 flex flex-col items-start justify-center font-bold text-[12px] leading-tight">
+                <div className="group py-0.5 flex flex-col items-start justify-center font-bold text-[12px] leading-tight">
                   <div className="flex items-center gap-1">
                     <Link to="/" className="text-gray-400 hover:text-brand-charcoal transition-colors">
                       DLF Schools
@@ -456,13 +455,10 @@ export default function Header() {
 
                   {/* ── SCHOOL SITE: full mega menu on breadcrumb hover ── */}
                   <div
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 text-left"
+                    className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 text-left pointer-events-none group-hover:pointer-events-auto"
                     style={{ width: '1008px', zIndex: 200 }}
                   >
-                    {/* Caret */}
-                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-2 overflow-hidden">
-                      <div className="w-3 h-3 bg-white rotate-45 mx-auto translate-y-1.5 shadow-sm" />
-                    </div>
+                    <div className="translate-y-2 group-hover:translate-y-0 transition-transform duration-300 relative">
                     <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex">
                       {/* ── PART 1: Switch Campus (Left Panel) ── */}
                       <div className="w-[33.33%] p-5 bg-gray-50 border-r border-gray-100 flex flex-col gap-3">
@@ -557,12 +553,15 @@ export default function Header() {
                                 <ArrowRight className="w-3 h-3 text-white/40 group-hover/link:text-white group-hover/link:translate-x-0.5 transition-all ml-auto" />
                               </Link>
                             ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                          </div>{/* end grid */}
+                        </div>{/* end inner div */}
+                      </div>{/* end right panel */}
+                    </div>{/* end bg-white flex */}
+                    </div>{/* end animation wrapper */}
+                  </div>{/* end fixed outer */}
+                </div>{/* end breadcrumb trigger */}
+
+
 
                 {/* 1. Our Campus */}
                 <div className="relative py-2 flex flex-col items-center justify-center">
@@ -588,13 +587,17 @@ export default function Header() {
                   {isAdmissionsActive && <span className={`absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-${theme.vibrant}`}></span>}
                   <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white text-brand-charcoal rounded-xl shadow-xl border border-gray-100 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                     <div className="space-y-1 text-xs">
-                      <Link to={`/school/${schoolId}/admissions?tab=procedure`} className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold`}>
-                        <ClipboardList className="w-3.5 h-3.5 shrink-0 text-gray-400" />
-                        Admission Procedure &amp; Guidelines
+                      <Link to={`/school/${schoolId}/admissions?tab=enquiry`} className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold`}>
+                        <FileText className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                        Enquiry Form
                       </Link>
                       <Link to={`/school/${schoolId}/admissions?tab=fee-structure`} className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold`}>
                         <IndianRupee className="w-3.5 h-3.5 shrink-0 text-gray-400" />
                         Fee Structure
+                      </Link>
+                      <Link to={`/school/${schoolId}/admissions?tab=procedure`} className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold`}>
+                        <ClipboardList className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                        Admissions Process
                       </Link>
                       <Link to={`/school/${schoolId}/admissions?tab=scholarships`} className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold`}>
                         <Award className="w-3.5 h-3.5 shrink-0 text-gray-400" />
