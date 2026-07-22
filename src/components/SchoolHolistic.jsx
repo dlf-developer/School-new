@@ -141,6 +141,40 @@ export default function SchoolHolistic() {
     ]
   }
 
+  const subsectionPhotos = {
+    performingArts: [
+      { src: '/achievements/Nrityanjali.jpeg', caption: 'Classical dance performance at Nrityanjali Inter-School Competition' },
+      { placeholder: true, title: 'Annual Dance & Music Fest', caption: 'Stage performance during Annual Cultural Extravaganza (Photos coming soon)' },
+      { placeholder: true, title: 'Instrumental & Vocal Studio', caption: 'Student choir & band rehearsal session (Photos coming soon)' }
+    ],
+    sports: [
+      { src: '/achievements/Nandini Kansal.jpg', caption: 'Nandini Kansal — Represented India at ITF Nepal & Africa, AITA #21 (UP)' },
+      { src: '/achievements/Shreeja Singh at UP State Championship.jpg', caption: 'Shreeja Singh — 5 Golds & 5 State Records, Best Swimmer at UP State Championship' },
+      { placeholder: true, title: 'Synthetic Football Turf Arena', caption: 'High-intensity match action on professional turf (Photos coming soon)' },
+      { placeholder: true, title: 'Olympic-Size Skating Rink & Pickleball', caption: 'Skating drills & pickleball coaching sessions (Photos coming soon)' }
+    ],
+    visualArts: [
+      { src: '/achievements/Unique Hospital Bed.jpg', caption: 'Design & sculpture models created by students at the Design Studio' },
+      { placeholder: true, title: 'Annual Art & Sculpture Exhibition', caption: 'Canvas paintings & clay models on display (Photos coming soon)' },
+      { placeholder: true, title: 'Craft & Digital Design Studio', caption: 'Students crafting mixed-media artworks (Photos coming soon)' }
+    ],
+    scholastic: [
+      { src: '/achievements/Pendulum Pump.png', caption: 'Mechanical Pendulum Pump — Top 3 at CBSE National Science Exhibition' },
+      { placeholder: true, title: 'Thots Lab & Innovation Hub', caption: 'Hands-on robotics and thinking process session (Photos coming soon)' },
+      { placeholder: true, title: 'Central Library & Seminar Hall', caption: 'DEAR reading period and academic lectures (Photos coming soon)' }
+    ],
+    schoolExcursions: [
+      { src: '/achievements/ramjas (1).jpg', caption: 'Students participating in inter-school outreach and educational camps' },
+      { placeholder: true, title: 'Outstation Leadership Camp (Chakrata/Dharamshala)', caption: 'Adventure camping & trekking expedition (Photos coming soon)' },
+      { placeholder: true, title: 'International Exchange Tour (Russia/Malaysia)', caption: 'Global student immersion and cultural exchange (Photos coming soon)' }
+    ],
+    studentAchievements: [
+      { src: '/achievements/Aadya Singh.jpg', caption: 'Arsalan Alam & Aadya Singh — SPARC Scholars & VC Grant Innovators' },
+      { src: '/achievements/Shreeja Singh at UP State Championship.jpg', caption: 'Shreeja Singh — Best Swimmer UP State Championship' },
+      { src: '/achievements/Ishika Singh cricket.jpg', caption: 'Ishika Singh — Delhi Premier League All-Rounder' }
+    ]
+  }
+
   const dlwsSubsectionFeatures = {
     performingArts: [
       'Dance & Movement Studio (Integrating Indian classical, contemporary, and folk stagecraft).',
