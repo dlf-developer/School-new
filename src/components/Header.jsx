@@ -235,7 +235,7 @@ export default function Header() {
               >
                 <div className="h-20 w-full overflow-hidden relative bg-brand-purpleDeep">
                   <img 
-                    src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&q=80&w=600" 
+                    src="/images/dlws/dlws-holistic-learning-1.jpg" 
                     alt="DLF World School Greater Noida Campus" 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
                   />
@@ -266,7 +266,7 @@ export default function Header() {
               </Link>
             </div>
             {/* ── PART 2: Combined Master Links (Right Panel) ── */}
-            <div className="w-[66.67%] p-6 bg-brand-greenDeep text-white flex flex-col justify-between">
+            <div className={`w-[66.67%] p-6 ${!schoolId ? 'bg-brand-greenDeep' : `bg-${theme.primary}`} text-white flex flex-col justify-between`}>
               <div>
                 <p className="text-[9px] font-extrabold uppercase tracking-widest text-brand-gold mb-4">Unified Group Portal & Directory</p>
                 <div className="grid grid-cols-2 gap-x-8 gap-y-1">
@@ -320,7 +320,7 @@ export default function Header() {
       </div>
 
       {/* TOP UTILITY STRIP */}
-      <div className="bg-brand-greenDeep text-brand-bg text-[11px] font-inter tracking-wider py-2 relative z-50 overflow-hidden border-b border-white/10">
+      <div className={`${!schoolId ? 'bg-brand-greenDeep' : `bg-${theme.primary}`} text-brand-bg text-[11px] font-inter tracking-wider py-2 relative z-50 overflow-hidden border-b border-white/10`}>
         <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 flex justify-between items-center">
           
           {/* Left Contact Info */}
@@ -504,7 +504,7 @@ export default function Header() {
                         >
                           <div className="h-20 w-full overflow-hidden relative bg-brand-purpleDeep">
                             <img 
-                              src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&q=80&w=600" 
+                              src="/images/dlws/dlws-holistic-learning-1.jpg" 
                               alt="DLF World School Greater Noida Campus" 
                               className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
                             />
@@ -525,7 +525,7 @@ export default function Header() {
                         </Link>
                       </div>
                       {/* ── PART 2: Combined Master Links (Right Panel) ── */}
-                      <div className="w-[66.67%] p-6 bg-brand-greenDeep text-white flex flex-col justify-between">
+                      <div className={`w-[66.67%] p-6 ${!schoolId ? 'bg-brand-greenDeep' : `bg-${theme.primary}`} text-white flex flex-col justify-between`}>
                         <div>
                           <p className="text-[9px] font-extrabold uppercase tracking-widest text-brand-gold mb-4">Unified Group Portal & Directory</p>
                           <div className="grid grid-cols-2 gap-x-8 gap-y-1">
@@ -700,8 +700,8 @@ export default function Header() {
               </>
             ) : (
               <Link 
-                to="/contact"
-                className="bg-brand-gold text-brand-greenDeep hover:bg-brand-goldlight px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md flex items-center gap-2 relative overflow-hidden group"
+                to={schoolId ? `/school/${schoolId}/admissions` : '/contact'}
+                className={`bg-brand-gold text-${theme.primary} hover:bg-brand-goldlight px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md flex items-center gap-2 relative overflow-hidden group`}
               >
                 <span className="relative z-10">Admissions Open</span>
                 <ArrowRight className="w-3.5 h-3.5 relative z-10 transform group-hover:translate-x-1 transition-transform" />
@@ -850,11 +850,11 @@ export default function Header() {
               </>
             ) : (
               <Link 
-                to="/contact" 
+                to={schoolId ? `/school/${schoolId}/admissions` : '/contact'} 
                 onClick={() => setIsMobileMenuOpen(false)} 
-                className="block w-full bg-brand-gold text-brand-greenDeep text-center py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs hover:bg-brand-goldlight transition-colors"
+                className={`block w-full bg-brand-gold text-${theme.primary} text-center py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs hover:bg-brand-goldlight transition-colors`}
               >
-                Contact Us
+                Admissions Open
               </Link>
             )}
           </div>

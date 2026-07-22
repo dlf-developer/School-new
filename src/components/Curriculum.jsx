@@ -492,7 +492,7 @@ export default function Curriculum() {
             </div>
 
             {/* Worldwide Cambridge Network & Recognition */}
-            <div className="bg-gradient-to-br from-brand-greenDeep/5 via-white to-brand-gold/5 rounded-3xl border border-gray-150 p-6 sm:p-10 space-y-6">
+            <div className={`bg-gradient-to-br from-${theme.primary}/5 via-white to-brand-gold/5 rounded-3xl border border-gray-150 p-6 sm:p-10 space-y-6`}>
               <div className="text-center max-w-2xl mx-auto space-y-2">
                 <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>Global Footprint</span>
                 <h4 className={`font-serif text-2xl font-bold text-${theme.primary}`}>Worldwide Cambridge Network</h4>

@@ -138,8 +138,11 @@ function SparklesIcon(props) {
 }
 
 // ─── Tab 2: Fee Structure ─────────────────────────────────────────────────────
-function FeeStructure({ theme }) {
-  const feeData = [
+function FeeStructure({ theme, currentSchool }) {
+  const isDLWS = currentSchool?.id === 'dlf-greater-noida'
+  const customFees = currentSchool?.feeStructure
+
+  const dlpsFeeData = [
     { class: 'Class - Foundation', composite: '10,407', assessment: '—', total: '10,407' },
     { class: 'Class - Pre K.G.', composite: '11,893', assessment: '—', total: '11,893' },
     { class: 'Class - J.K.G.', composite: '14,867', assessment: '—', total: '14,867' },
@@ -158,6 +161,8 @@ function FeeStructure({ theme }) {
     { class: 'Class - XII', composite: '12,400', assessment: '733', total: '13,133' },
   ]
 
+  const feeData = customFees?.rows || dlpsFeeData
+
   return (
     <div className="space-y-8">
       {/* Overview & One-Time Charges Header */}
@@ -165,7 +170,7 @@ function FeeStructure({ theme }) {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-gray-100 pb-6">
           <div>
             <span className={`text-xs uppercase font-extrabold tracking-widest text-${theme.vibrant}`}>Session 2026-27</span>
-            <h3 className={`font-serif text-2xl sm:text-3xl font-bold text-${theme.primary}`}>Fee Structure Guidelines</h3>
+            <h3 className={`font-serif text-2xl sm:text-3xl font-bold text-${theme.primary}`}>Fee Structure Guidelines — {currentSchool?.name}</h3>
             <p className="text-xs sm:text-sm text-brand-muted font-inter mt-1 font-medium">
               Transparent quarterly payment cycles in accordance with state guidelines &amp; CBSE board norms.
             </p>
@@ -181,29 +186,35 @@ function FeeStructure({ theme }) {
           <div className="bg-gray-50 rounded-2xl p-5 border border-gray-150/60 space-y-2">
             <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-muted">One-Time / Non-Refundable</span>
             <h4 className="font-serif text-lg font-bold text-brand-charcoal">Registration Fee</h4>
-            <p className={`text-2xl font-bold text-${theme.primary} font-serif`}>₹ 1,500/-</p>
-            <p className="text-[11px] text-brand-muted font-inter">Payable online at the time of form submission.</p>
+            <p className={`text-2xl font-bold text-${theme.primary} font-serif`}>₹ {customFees?.registrationFee || '1,500'}/-</p>
+            <p className="text-[11px] text-brand-muted font-inter">Payable at the time of Registration.</p>
           </div>
 
           <div className="bg-gray-50 rounded-2xl p-5 border border-gray-150/60 space-y-2">
             <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-muted">One-Time / Non-Refundable</span>
             <h4 className="font-serif text-lg font-bold text-brand-charcoal">Admission Fee</h4>
-            <p className={`text-2xl font-bold text-${theme.primary} font-serif`}>₹ 51,000/-</p>
+            <p className={`text-2xl font-bold text-${theme.primary} font-serif`}>₹ {customFees?.admissionFee || '51,000'}/-</p>
             <p className="text-[11px] text-brand-muted font-inter">Payable upon seat confirmation after selection.</p>
           </div>
 
           <div className="bg-gray-50 rounded-2xl p-5 border border-gray-150/60 space-y-2">
             <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-muted">One-Time / Refundable</span>
             <h4 className="font-serif text-lg font-bold text-brand-charcoal">Security Deposit</h4>
-            <p className={`text-2xl font-bold text-${theme.primary} font-serif`}>₹ 10,000/-</p>
+            <p className={`text-2xl font-bold text-${theme.primary} font-serif`}>₹ {customFees?.securityDeposit || '10,000'}/-</p>
             <p className="text-[11px] text-brand-muted font-inter">Refundable as per student withdrawal policy.</p>
           </div>
         </div>
 
-        {/* Note on Annual Diary & I-Card */}
+        {/* Note on Annual Auxiliary Charge / Nutrition Meal */}
         <div className="bg-amber-50/70 border border-amber-200/80 rounded-2xl p-4 flex items-center gap-3 text-xs text-amber-900 font-inter">
           <AlertCircle className="w-4 h-4 text-amber-700 shrink-0" />
-          <span><strong>Annual Auxiliary Charge:</strong> Nominal charge of <strong>₹ 380/- per annum</strong> for Student I-Card &amp; School Diary.</span>
+          <span>
+            {isDLWS ? (
+              <><strong>Nutrition Meal (Quarterly):</strong> {customFees?.nutritionMeal}</>
+            ) : (
+              <><strong>Annual Auxiliary Charge:</strong> Nominal charge of <strong>₹ 380/- per annum</strong> for Student I-Card &amp; School Diary.</>
+            )}
+          </span>
         </div>
       </div>
 
@@ -226,8 +237,8 @@ function FeeStructure({ theme }) {
             <thead>
               <tr className={`bg-${theme.primary} text-white text-xs uppercase font-extrabold tracking-wider font-inter`}>
                 <th className="py-4 px-6">Grade / Class</th>
-                <th className="py-4 px-6">Composite Fee (₹)</th>
-                <th className="py-4 px-6">Assessment Fee (₹)</th>
+                <th className="py-4 px-6">Composite Fee (Monthly ₹)</th>
+                <th className="py-4 px-6">{isDLWS ? 'External Programs' : 'Assessment Fee (₹)'}</th>
                 <th className="py-4 px-6 text-right">Total Monthly Fee (₹)</th>
               </tr>
             </thead>
@@ -236,7 +247,7 @@ function FeeStructure({ theme }) {
                 <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-gray-50/50 hover:bg-gray-50'}>
                   <td className="py-3.5 px-6 font-bold">{row.class}</td>
                   <td className="py-3.5 px-6">{row.composite}</td>
-                  <td className="py-3.5 px-6">{row.assessment}</td>
+                  <td className="py-3.5 px-6">{row.external || row.assessment}</td>
                   <td className={`py-3.5 px-6 text-right font-extrabold text-${theme.primary}`}>{row.total}</td>
                 </tr>
               ))}
@@ -613,7 +624,7 @@ export default function SchoolAdmissions() {
         {/* Tab Content */}
         <div>
           {activeTab === 'enquiry' && <EnquiryForm theme={theme} />}
-          {activeTab === 'fee-structure' && <FeeStructure theme={theme} />}
+          {activeTab === 'fee-structure' && <FeeStructure theme={theme} currentSchool={currentSchool} />}
           {activeTab === 'procedure' && <AdmissionProcedure theme={theme} />}
           {activeTab === 'scholarships' && <Scholarships theme={theme} />}
         </div>
@@ -625,7 +636,7 @@ export default function SchoolAdmissions() {
             <p className="text-white/70 text-xs font-inter mt-1">Our admissions helpline is active Mon–Sat, 9 AM–5 PM.</p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 shrink-0 w-full sm:w-auto">
-            <a href="tel:+919818166400" className="bg-white text-brand-greenDeep font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-xl hover:bg-brand-gold hover:text-white transition-all duration-300 text-center flex items-center justify-center gap-2">
+            <a href="tel:+919818166400" className={`bg-white text-${theme.primary} font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-xl hover:bg-brand-gold hover:text-white transition-all duration-300 text-center flex items-center justify-center gap-2`}>
               <Phone className="w-4 h-4" /> Call: +91-9818166400
             </a>
             <button onClick={() => setTab('enquiry')} className="bg-brand-gold text-white font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-xl hover:bg-brand-goldlight transition-all duration-300 cursor-pointer text-center">

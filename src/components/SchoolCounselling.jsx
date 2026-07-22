@@ -129,7 +129,7 @@ export default function SchoolCounselling() {
                 </div>
 
                 <div className="p-3.5 space-y-1">
-                  <h4 className="font-serif text-xs font-bold text-brand-charcoal group-hover:text-brand-greenDeep transition-colors leading-snug">
+                  <h4 className={`font-serif text-xs font-bold text-brand-charcoal group-hover:text-${theme.primary} transition-colors leading-snug`}>
                     {slot.title}
                   </h4>
                   <p className="text-[10px] text-brand-muted font-inter leading-relaxed line-clamp-2">
@@ -296,7 +296,7 @@ export default function SchoolCounselling() {
                 </div>
                 <div className="p-4 space-y-1.5 flex-1 flex flex-col justify-between">
                   <div>
-                    <h4 className="font-serif text-sm font-bold text-brand-charcoal group-hover:text-brand-greenDeep transition-colors leading-snug">
+                    <h4 className={`font-serif text-sm font-bold text-brand-charcoal group-hover:text-${theme.primary} transition-colors leading-snug`}>
                       {pic.title}
                     </h4>
                     <p className="text-[11px] text-brand-muted font-inter leading-relaxed mt-1">

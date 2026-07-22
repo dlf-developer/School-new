@@ -94,26 +94,70 @@ export const schoolsData = {
       cardBg: '#2c204d'
     },
     hero: {
-      image: 'https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&q=80&w=1920',
-      legacy: 'New Age Learning Environment',
+      image: '/images/dlws/dlws-hollistic-learning-educational-excursions-1.jpg',
+      legacy: 'Futuristic 5-Acre Eco-Campus',
       titleLine1: 'Nurturing',
       italicWord1: 'Thinkers',
       titleLine2: 'Empowering',
       underlineWord: 'Leaders',
       titleLine3: 'Creating',
       vibrantWord: 'Pioneers',
-      subtitle: 'At DLF World School, Greater Noida, we provide a futuristic, child-centric learning space designed to foster design thinking and digital-age readiness.',
+      subtitle: 'At DLF World School, Greater Noida, we provide a futuristic, child-centric learning space designed to foster design thinking, digital fluency, and authentic human values.',
       stats: [
         { value: 'Ranked #1', label: 'In G. Noida' },
         { value: '100%', label: 'Board Success' }
       ]
     },
     campus: {
-      description: 'Our Greater Noida campus boasts modern laboratories, digital smart classrooms, creative design studios, and outstanding athletic facilities.',
+      description: 'Our 5-acre future-ready campus features air-conditioned smart classrooms, state-of-the-art STEAM & THOTS laboratories, Discovery Den indoor play zone, Olympic-size skating rink, lawn tennis court, pickleball court, and professional football turf.',
       images: [
-        'https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=1000'
+        '/images/dlws/dlws-holistic-learning-1.jpg',
+        '/images/dlws/dlws-hollistic-learning-educational-excursions-1.jpg',
+        '/images/dlws/dlws-hollistic-learning-educational-excursions-2.jpg',
+        '/images/dlws/dlws-hollistic-learning-educational-excursions-3.jpg',
+        '/images/dlws/dlws-curriculum-1.jpg',
+        '/images/dlws/dlws-curriculum-2.jpg'
       ]
+    },
+    principalDesk: {
+      title: "From the Principal's Desk",
+      quote: '"Every school has a story written not merely through the passage of time, but through the lives it shapes, the values it nurtures, and the aspirations it inspires."',
+      paragraphs: [
+        'Namaste! The DLF Family’s journey has been one of purpose, partnership, and continuous growth. We are deeply grateful to the generations of students, parents, teachers, and well-wishers whose faith and support have enabled us to build a vibrant learning community founded on trust and shared commitment.',
+        'At DLF, education is viewed as a transformative journey rather than the pursuit of academic achievement alone. While excellence in scholarship remains important, our larger purpose is to help every learner develop into an inquisitive mind, a responsible citizen, a compassionate individual, and a confident contributor to society.',
+        'Every child who enters our campus brings unique strengths, interests, and possibilities. Whether a learner’s talent lies in science, the arts, sports, leadership, innovation, service, or quiet determination, our endeavour is to provide opportunities that allow each child to discover their own potential.',
+        'Creating a caring and inclusive learning environment remains central to everything we do. We strive to ensure that every student feels respected, encouraged, and valued, irrespective of their individual learning journey.',
+        'Learning extends far beyond classrooms. It is enriched through meaningful discussions, collaborative projects, creative expression, scientific inquiry, sporting experiences, community engagement, and opportunities to solve real-world challenges.'
+      ]
+    },
+    achievements: [
+      { title: 'Overall Rolling Trophy at Kalamanjusha', desc: 'Awarded the Overall Rolling Trophy at Kalamanjusha by KC International School, with 36 students winning Gold, Silver & Bronze medals across 15 out of 17 events.' },
+      { title: 'Sustainability Superstar Award (2024 & 2025)', desc: 'Honored by Go Sharpener for two consecutive years for outstanding commitment to UN Sustainable Development Goals.' },
+      { title: 'First in Math Annual Global Ranking 2025–26', desc: 'Recognized globally for exceptional mathematical skills, critical thinking, and consistent performance.' },
+      { title: 'Project S.O.R.T. Certificate of Appreciation', desc: 'Awarded by Indian Pollution Control Association (IPCA) for waste segregation at source leadership.' },
+      { title: 'World Skill Challenge National Winners', desc: 'Overall National Winner titles & cash prizes in Drone X Big and Mystery Makers categories.' }
+    ],
+    feeStructure: {
+      registrationFee: '500',
+      admissionFee: '25,000',
+      securityDeposit: '5,000',
+      rows: [
+        { class: 'Pre KG & J KG', composite: '6,833', external: '—', total: '6,833' },
+        { class: 'S KG', composite: '7,233', external: 'THOTS, FIM', total: '7,233' },
+        { class: 'Class I', composite: '7,833', external: 'THOTS, FIM, Assessment', total: '7,833' },
+        { class: 'Class II', composite: '7,833', external: 'THOTS, FIM, Assessment', total: '7,833' },
+        { class: 'Class III', composite: '7,833', external: 'THOTS, FIM, Assessment, CARE, Aerobay', total: '7,833' },
+        { class: 'Class IV', composite: '8,000', external: 'THOTS, FIM, Assessment, CARE, Mindspark, Aerobay, Go Sharpener', total: '8,000' },
+        { class: 'Class V', composite: '8,500', external: 'THOTS, FIM, Assessment, CARE, Mindspark, Aerobay, Go Sharpener', total: '8,500' },
+        { class: 'Class VI', composite: '8,500', external: 'Assessment, CARE, Mindspark, Aerobay, Go Sharpener', total: '8,500' },
+        { class: 'Class VII', composite: '8,500', external: 'Assessment, CARE, Mindspark, Aerobay, Go Sharpener', total: '8,500' },
+        { class: 'Class VIII', composite: '8,500', external: 'Assessment, CARE, Mindspark, Aerobay, Go Sharpener', total: '8,500' },
+        { class: 'Class IX', composite: '8,667', external: 'Assessment, CARE, Aerobay, Go Sharpener', total: '8,667' },
+        { class: 'Class X', composite: '8,667', external: 'Assessment, Asset, Aerobay, Go Sharpener', total: '8,667' },
+        { class: 'Class XI', composite: '8,667', external: 'Assessment, Go Sharpener', total: '8,667' },
+        { class: 'Class XII', composite: '9,133', external: 'Assessment, Go Sharpener', total: '9,133' },
+      ],
+      nutritionMeal: '₹ 2,600 (PreN–N) / ₹ 4,000 (KG–XII) per quarter'
     },
     admissions: {
       guide: "Admissions open for 2026-27. Secure your child's futuristic education pathway digitally.",
@@ -133,8 +177,8 @@ export const schoolsData = {
       ]
     },
     holistic: {
-      performingArts: 'Design, visual arts, music, and performance wings.',
-      sports: 'Multipurpose sports complex supporting basketball, cricket, and lawn tennis.'
+      performingArts: 'Design, visual arts, music, theatre, and performance wings.',
+      sports: 'Olympic-size skating rink, pickleball court, football turf, lawn tennis, and indoor basketball arenas.'
     }
   }
 }

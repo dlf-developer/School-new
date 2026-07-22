@@ -70,6 +70,40 @@ export default function SchoolWinning({ isHomePage = false }) {
     }
   ]
 
+  const dlwsAchievements = [
+    {
+      category: 'School Accolades & Awards',
+      color: theme.primary,
+      items: [
+        { img: '/images/dlws/dlws-school-achievements-dlws-1.jpg', caption: 'Kalamanjusha Overall Rolling Trophy — DLF World School won the Overall Rolling Trophy at KC International School with 36 medalists across 15 out of 17 events.' },
+        { img: '/images/dlws/dlws-hollistic-learning-educational-excursions-1.jpg', caption: 'Sustainability Superstar Award (2024 & 2025) — Conferred by Go Sharpener for 2 consecutive years for UN SDG leadership.' },
+        { img: '/images/dlws/dlws-curriculum-1.jpg', caption: 'First in Math Annual Global Ranking 2025–26 — Global recognition for outstanding mathematical skills and critical thinking.' },
+        { img: '/images/dlws/dlws-curriculum-2.jpg', caption: 'Project S.O.R.T. Certificate of Appreciation — Awarded by IPCA for leading waste segregation at source in the school community.' }
+      ]
+    },
+    {
+      category: 'Innovation, Robotics & STEM',
+      color: theme.vibrant,
+      items: [
+        { img: '/images/dlws/dlws-hollistic-learning-educational-excursions-4.jpg', caption: 'World Skill Challenge National Champions (2026) — Overall Winner Title & ₹16,000 Cash Prize in Drone X Big (Faridabad Nationals).' },
+        { img: '/images/dlws/dlws-hollistic-learning-educational-excursions-5.jpg', caption: 'World Skill Challenge Mystery Makers (2026) — National Overall Winner Title & ₹5,000 Cash Prize.' },
+        { img: '/images/dlws/dlws-hollistic-learning-educational-excursions-6.jpg', caption: 'Manak Inspire Awards — 1st Position & ₹10,000 Cash Prize for Smart Ambulance, Fake Plate Buster, Smart Dustbin & Smart Watch innovations.' },
+        { img: '/images/dlws/dlws-hollistic-learning-educational-excursions-7.jpg', caption: 'SOARFEST 2025 Aero-modelling — 1st Position in Unique Rocketeer, Youngest Innovator, and RC Flying at Sikarpur Airport, Udaipur.' }
+      ]
+    },
+    {
+      category: 'Sports & Cultural Excellence',
+      color: theme.primary,
+      items: [
+        { img: '/images/dlws/dlws-hollistic-learning-educational-excursions-8.jpg', caption: 'UP State Swimming Championship — Amaris Patel (Class 7) won 2 Gold & 1 Silver Medal in 100m, 200m & 50m Butterfly.' },
+        { img: '/images/dlws/dlws-hollistic-learning-educational-excursions-9.jpg', caption: 'Krida Bharti District Skating Championship — Gayatri Ganjoo (1st), Jayditya Sharma (2nd), Hitanshi Bhati (3rd) at YMCA Greater Noida.' },
+        { img: '/images/dlws/dlws-hollistic-learning-educational-excursions-10.jpg', caption: 'WSC State E-Sports Champions — 1st Position in State Level E-Sports competition at Greater Noida.' }
+      ]
+    }
+  ]
+
+  const achievementsToRender = activeBranch === 'dlf-greater-noida' ? dlwsAchievements : studentAchievements
+
   return (
     <div className={`${isHomePage ? 'py-10' : 'pt-28 pb-20 min-h-screen'} text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden font-sans`}>
       <style>{`
@@ -182,7 +216,7 @@ export default function SchoolWinning({ isHomePage = false }) {
               </p>
             </div>
 
-            {studentAchievements.map((group, gIdx) => (
+            {achievementsToRender.map((group, gIdx) => (
               <div key={gIdx} className="space-y-4">
                 <h4 className={`text-xs uppercase font-extrabold tracking-widest text-${group.color} font-inter`}>{group.category}</h4>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">

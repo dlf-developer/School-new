@@ -71,8 +71,8 @@ export default function OurCampus() {
           {/* Main Hero Photo */}
           <div className={`md:col-span-8 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-md aspect-[16/10] relative`}>
             <ImageWithLoader 
-              src="/campus/campus1.jpg" 
-              alt="DLF Public School campus exterior" 
+              src={campusData.images?.[0] || '/campus/campus1.jpg'} 
+              alt={`${currentSchool.name} campus exterior`} 
               imgClassName="transition-transform duration-1000 group-hover:scale-105"
               loading="lazy"
             />
@@ -86,8 +86,8 @@ export default function OurCampus() {
           {/* Side Photo 1 */}
           <div className={`md:col-span-4 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-sm relative`} style={{minHeight:'260px'}}>
             <ImageWithLoader 
-              src="/campus/campus2.jpg" 
-              alt="DLF School corridors and classrooms" 
+              src={campusData.images?.[1] || '/campus/campus2.jpg'} 
+              alt={`${currentSchool.name} corridors and classrooms`} 
               imgClassName="transition-transform duration-1000 group-hover:scale-105"
               loading="lazy"
             />
@@ -101,30 +101,30 @@ export default function OurCampus() {
           {/* Lower Photo 2 */}
           <div className={`md:col-span-4 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-sm relative`} style={{minHeight:'260px'}}>
             <ImageWithLoader 
-              src="/campus/campus3.jpg" 
-              alt="School labs and innovation spaces" 
+              src={campusData.images?.[2] || '/campus/campus3.jpg'} 
+              alt={`${currentSchool.name} labs and innovation spaces`} 
               imgClassName="transition-transform duration-1000 group-hover:scale-105"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/70 via-transparent to-transparent opacity-90 z-10"></div>
             <div className="absolute bottom-6 left-6 text-white z-20">
               <p className={`text-[10px] uppercase tracking-widest font-semibold text-${theme.accent}`}>Innovation</p>
-              <h3 className="font-serif text-lg font-bold">Innovation Hub & ICT Labs</h3>
+              <h3 className="font-serif text-lg font-bold">Innovation Hub &amp; ICT Labs</h3>
             </div>
           </div>
 
           {/* Lower Hero Photo 3 */}
           <div className={`md:col-span-8 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-md aspect-[16/10] relative`}>
             <ImageWithLoader 
-              src="/campus/campus5.jpg" 
-              alt="DLF School sports and outdoor spaces" 
+              src={campusData.images?.[3] || '/campus/campus5.jpg'} 
+              alt={`${currentSchool.name} sports and outdoor spaces`} 
               imgClassName="transition-transform duration-1000 group-hover:scale-105"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/80 via-transparent to-transparent opacity-90 z-10"></div>
             <div className="absolute bottom-6 left-6 text-white z-20">
               <p className={`text-[10px] uppercase tracking-widest font-semibold text-${theme.accent}`}>Sports Infrastructure</p>
-              <h3 className="font-serif text-xl sm:text-2xl font-bold">Olympic Rink · Tennis Courts · Swimming Pool</h3>
+              <h3 className="font-serif text-xl sm:text-2xl font-bold">Olympic Rink · Lawn Tennis · Pickleball Court</h3>
             </div>
           </div>
 

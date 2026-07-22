@@ -141,39 +141,92 @@ export default function SchoolHolistic() {
     ]
   }
 
-  const subsectionPhotos = {
+  const dlwsSubsectionFeatures = {
     performingArts: [
-      { src: '/achievements/Nrityanjali.jpeg', caption: 'Classical dance performance at Nrityanjali Inter-School Competition' },
-      { placeholder: true, title: 'Annual Dance & Music Fest', caption: 'Stage performance during Annual Cultural Extravaganza (Photos coming soon)' },
-      { placeholder: true, title: 'Instrumental & Vocal Studio', caption: 'Student choir & band rehearsal session (Photos coming soon)' }
+      'Dance & Movement Studio (Integrating Indian classical, contemporary, and folk stagecraft).',
+      'Vocal Music Training (Hindustani classical, light vocal, and choir practice sessions).',
+      'Instrumental Music Suite (Keyboards, drums, guitar, harmonium, and tabla).',
+      'Stagecraft & Public Speaking (Assembly presentations, annual day performances, and theatrical hosting).'
     ],
     sports: [
-      { src: '/achievements/Nandini Kansal.jpg', caption: 'Nandini Kansal — Represented India at ITF Nepal & Africa, AITA #21 (UP)' },
-      { src: '/achievements/Shreeja Singh at UP State Championship.jpg', caption: 'Shreeja Singh — 5 Golds & 5 State Records, Best Swimmer at UP State Championship' },
-      { placeholder: true, title: 'Synthetic Football Turf Arena', caption: 'High-intensity match action on professional turf (Photos coming soon)' },
-      { placeholder: true, title: 'Olympic-Size Skating Rink & Pickleball', caption: 'Skating drills & pickleball coaching sessions (Photos coming soon)' }
+      'Synthetic Football Turf (Professional-grade arena for competitive training and friendly matches).',
+      'Olympic-Size Skating Rink (Developing balance, speed, precision, and state-level competitive edge).',
+      'Exclusive Pickleball Court (State-of-the-art court introducing fast-paced modern racket sports).',
+      'Lawn Tennis Court & Outdoor Arena (Fostering tactical agility, endurance, and sportsmanship).',
+      'Discovery Den Indoor Play Zone (Sensory kinetic play equipment for kindergarten learners).'
     ],
     visualArts: [
-      { src: '/achievements/Unique Hospital Bed.jpg', caption: 'Design & sculpture models created by students at the Design Studio' },
-      { placeholder: true, title: 'Annual Art & Sculpture Exhibition', caption: 'Canvas paintings & clay models on display (Photos coming soon)' },
-      { placeholder: true, title: 'Craft & Digital Design Studio', caption: 'Students crafting mixed-media artworks (Photos coming soon)' }
+      'Art & Design Studio (Sketching, pencil shading, canvas painting, and color harmony).',
+      'Clay Modeling & Sculpting (Tactile 3D pottery, relief modeling, and ceramics).',
+      'Mixed Media & Craft Studio (Upcycled art installations, block printing, and paper-mâché).',
+      'Digital Graphic Design (Exploring visual storytelling, creative software, and poster art).'
     ],
     scholastic: [
-      { src: '/achievements/Pendulum Pump.png', caption: 'Mechanical Pendulum Pump — Top 3 at CBSE National Science Exhibition' },
-      { placeholder: true, title: 'Thots Lab & Innovation Hub', caption: 'Hands-on robotics and thinking process session (Photos coming soon)' },
-      { placeholder: true, title: 'Central Library & Seminar Hall', caption: 'DEAR reading period and academic lectures (Photos coming soon)' }
+      'THOTS & Mindspark Labs (Structured cognitive thinking processes and adaptive math learning).',
+      'STEAM & Science Laboratories (Advanced Physics, Chemistry, and Biology research spaces).',
+      'ICT & Computer Labs (High-speed digital labs equipped with smart coding platforms).',
+      '3000+ Book Central Library (Curated literature, class reading corners, and DEAR periods).'
     ],
     schoolExcursions: [
-      { src: '/achievements/ramjas (1).jpg', caption: 'Students participating in inter-school outreach and educational camps' },
-      { placeholder: true, title: 'Outstation Leadership Camp (Chakrata/Dharamshala)', caption: 'Adventure camping & trekking expedition (Photos coming soon)' },
-      { placeholder: true, title: 'International Exchange Tour (Russia/Malaysia)', caption: 'Global student immersion and cultural exchange (Photos coming soon)' }
+      'Historical & Heritage Tours (Exploring national monuments, museums, and heritage walks).',
+      'Institutional Expeditions (Visits to scientific centers, planetariums, and biodiversity parks).',
+      'Adventure & Camping Expeditions (Outstation camps fostering resilience and team bonding).',
+      'Environmental Outreach (Project S.O.R.T. waste segregation drives & eco-sustainability walks).'
     ],
     studentAchievements: [
-      { src: '/achievements/Aadya Singh.jpg', caption: 'Arsalan Alam & Aadya Singh — SPARC Scholars & VC Grant Innovators' },
-      { src: '/achievements/Shreeja Singh at UP State Championship.jpg', caption: 'Shreeja Singh — Best Swimmer UP State Championship' },
-      { src: '/achievements/Ishika Singh cricket.jpg', caption: 'Ishika Singh — Delhi Premier League All-Rounder' }
+      'Kalamanjusha Overall Rolling Trophy — 36 medalists winning 15 out of 17 events at KC International.',
+      'Sustainability Superstar Award (2024 & 2025) — Conferred by Go Sharpener for 2 consecutive years.',
+      'First in Math Annual Global Ranking 2025–26 — Global recognition for mathematical problem solving.',
+      'World Skill Challenge National Champions — Overall Winner Titles in Drone X Big & Mystery Makers.',
+      'Manak Inspire Awardees — 1st Position & ₹10,000 Cash Prize for Smart Ambulance & Fake Plate Buster.'
     ]
   }
+
+  const dlwsSubsectionPhotos = {
+    performingArts: [
+      { src: '/images/dlws/dlws-hollistic-learning-educational-excursions-1.jpg', caption: 'Stage performance & cultural presentations at DLF World School' },
+      { src: '/images/dlws/dlws-hollistic-learning-educational-excursions-2.jpg', caption: 'Student music & theatrical ensemble rehearsal' },
+      { src: '/images/dlws/dlws-hollistic-learning-educational-excursions-3.jpg', caption: 'Creative movement & dance showcase' }
+    ],
+    sports: [
+      { src: '/images/dlws/dlws-hollistic-learning-educational-excursions-8.jpg', caption: 'UP State Swimming Champions — Amaris Patel (Class 7) winning Gold & Silver Medals' },
+      { src: '/images/dlws/dlws-hollistic-learning-educational-excursions-9.jpg', caption: 'District Skating Champions — Gayatri Ganjoo & Jayditya Sharma at YMCA Rink' },
+      { src: '/images/dlws/dlws-hollistic-learning-educational-excursions-10.jpg', caption: 'State Level E-Sports Championship Winners at Greater Noida' }
+    ],
+    visualArts: [
+      { src: '/images/dlws/dlws-holistic-learning-1.jpg', caption: 'Art & Design Studio — Visual arts, clay modeling, and creative exhibits' },
+      { src: '/images/dlws/dlws-curriculum-3.jpg', caption: 'Canvas painting & design workstations' }
+    ],
+    scholastic: [
+      { src: '/images/dlws/dlws-curriculum-1.jpg', caption: 'THOTS & Mindspark Lab — Cognitive thinking & adaptive math sessions' },
+      { src: '/images/dlws/dlws-curriculum-2.jpg', caption: 'Digital ICT & STEAM Research Lab' },
+      { src: '/images/dlws/dlws-curriculum-4.jpg', caption: 'Air-conditioned Smart Classroom with interactive displays' }
+    ],
+    schoolExcursions: [
+      { src: '/images/dlws/dlws-hollistic-learning-educational-excursions-4.jpg', caption: 'World Skill Challenge National Champions in Drone X Big' },
+      { src: '/images/dlws/dlws-hollistic-learning-educational-excursions-5.jpg', caption: 'World Skill Challenge Mystery Makers National Winners' },
+      { src: '/images/dlws/dlws-hollistic-learning-educational-excursions-6.jpg', caption: 'Manak Inspire Award Innovation Projects' },
+      { src: '/images/dlws/dlws-hollistic-learning-educational-excursions-7.jpg', caption: 'SOARFEST 2025 Aero-modelling competition at Sikarpur Airport, Udaipur' }
+    ],
+    studentAchievements: [
+      { src: '/images/dlws/dlws-school-achievements-dlws-1.jpg', caption: 'Kalamanjusha Overall Rolling Trophy Winners — DLF World School (36 Medalists)' },
+      { src: '/images/dlws/dlws-hollistic-learning-educational-excursions-1.jpg', caption: 'Sustainability Superstar Award (2024 & 2025) by Go Sharpener' },
+      { src: '/images/dlws/dlws-hollistic-learning-educational-excursions-4.jpg', caption: 'World Skill Challenge Drone X Big National Overall Champions' }
+    ]
+  }
+
+  const dlwsCategoryThumbnails = {
+    performingArts: '/images/dlws/dlws-hollistic-learning-educational-excursions-1.jpg',
+    sports: '/images/dlws/dlws-hollistic-learning-educational-excursions-8.jpg',
+    visualArts: '/images/dlws/dlws-holistic-learning-1.jpg',
+    scholastic: '/images/dlws/dlws-curriculum-1.jpg',
+    schoolExcursions: '/images/dlws/dlws-hollistic-learning-educational-excursions-4.jpg',
+    studentAchievements: '/images/dlws/dlws-school-achievements-dlws-1.jpg'
+  }
+
+  const featuresToRender = activeBranch === 'dlf-greater-noida' ? dlwsSubsectionFeatures : subsectionFeatures
+  const photosToRender = activeBranch === 'dlf-greater-noida' ? dlwsSubsectionPhotos : subsectionPhotos
+  const thumbnailsToRender = activeBranch === 'dlf-greater-noida' ? dlwsCategoryThumbnails : categoryThumbnails
 
   const keys = ['performingArts', 'sports', 'visualArts', 'scholastic', 'schoolExcursions', 'studentAchievements']
   const ActiveIcon = iconMap[activeSub]
@@ -236,7 +289,7 @@ export default function SchoolHolistic() {
                   }`}
                 >
                   <div className="w-14 h-12 rounded-xl overflow-hidden shrink-0 relative bg-gray-100 shadow-inner flex items-center justify-center">
-                    <img src={categoryThumbnails[key]} alt="" className="w-full h-full object-cover" />
+                    <img src={thumbnailsToRender[key]} alt="" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white">
                       <Icon className="w-4 h-4" />
                     </div>
@@ -254,7 +307,7 @@ export default function SchoolHolistic() {
               {/* Category Cover Image Banner */}
               <div className="w-full h-48 sm:h-60 rounded-2xl overflow-hidden relative shadow-md">
                 <img 
-                  src={categoryThumbnails[activeSub]} 
+                  src={thumbnailsToRender[activeSub]} 
                   alt={sectionTitles[activeSub]} 
                   className="w-full h-full object-cover"
                 />
@@ -283,7 +336,7 @@ export default function SchoolHolistic() {
                   <Sparkles className="w-3.5 h-3.5" /> Key Highlights &amp; Offerings
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                  {subsectionFeatures[activeSub].map((feat, idx) => (
+                  {featuresToRender[activeSub].map((feat, idx) => (
                     <div key={idx} className="flex gap-2.5 items-start bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
                       <CheckCircle2 className={`w-4 h-4 text-${theme.accent} shrink-0 mt-0.5`} />
                       <span className="text-xs font-semibold text-brand-charcoal font-inter leading-relaxed">{feat}</span>
@@ -293,13 +346,13 @@ export default function SchoolHolistic() {
               </div>
 
               {/* Subsection Photos & Placeholders */}
-              {subsectionPhotos[activeSub]?.length > 0 && (
+              {photosToRender[activeSub]?.length > 0 && (
                 <div className="space-y-4 border-t border-gray-100 pt-6">
                   <h4 className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant} font-inter`}>
                     Media & Photo Gallery
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                    {subsectionPhotos[activeSub].map((photo, i) => (
+                    {photosToRender[activeSub].map((photo, i) => (
                       <div key={i} className="rounded-xl overflow-hidden border border-gray-150 shadow-sm bg-white flex flex-col justify-between group">
                         {photo.placeholder ? (
                           <div className="aspect-[4/3] bg-gray-50 flex flex-col items-center justify-center p-4 text-center border-b border-gray-100 space-y-2">
@@ -329,7 +382,38 @@ export default function SchoolHolistic() {
                     <h4 className={`font-serif text-xl font-bold text-${theme.primary}`}>Hall of Fame & Multi-Dimensional Achievers</h4>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {[
+                    {(activeBranch === 'dlf-greater-noida' ? [
+                      {
+                        name: "DLWS Kalamanjusha Team",
+                        achievement: "Overall Rolling Trophy Winners",
+                        desc: "36 students won Gold, Silver & Bronze medals across 15 out of 17 events at KC International School.",
+                        img: "/images/dlws/dlws-school-achievements-dlws-1.jpg"
+                      },
+                      {
+                        name: "Drone X Big Team",
+                        achievement: "WSC National Champions (2026)",
+                        desc: "National Overall Winner title & ₹16,000 cash prize at World Skill Challenge Faridabad Nationals.",
+                        img: "/images/dlws/dlws-hollistic-learning-educational-excursions-4.jpg"
+                      },
+                      {
+                        name: "Amaris Patel (Class VII)",
+                        achievement: "UP State Swimming Medalist",
+                        desc: "Won 2 Gold Medals and 1 Silver Medal in 100m, 200m & 50m Butterfly events at UP State Swimming Championship.",
+                        img: "/images/dlws/dlws-hollistic-learning-educational-excursions-8.jpg"
+                      },
+                      {
+                        name: "Gayatri Ganjoo & Jayditya Sharma",
+                        achievement: "District Skating Champions",
+                        desc: "1st & 2nd positions at Krida Bharti District Skating Championship at YMCA Greater Noida.",
+                        img: "/images/dlws/dlws-hollistic-learning-educational-excursions-9.jpg"
+                      },
+                      {
+                        name: "Manak Inspire Innovators",
+                        achievement: "National STEM Innovators",
+                        desc: "1st Position & ₹10,000 grant for Smart Ambulance, Fake Plate Buster & Smart Dustbin innovations.",
+                        img: "/images/dlws/dlws-hollistic-learning-educational-excursions-6.jpg"
+                      }
+                    ] : [
                       {
                         name: "Arsalan Alam",
                         achievement: "Research Scholar & Innovator",
@@ -360,7 +444,7 @@ export default function SchoolHolistic() {
                         desc: "Represented India at ITF Kazakhstan. Holds AITA Men's Ranking of 262.",
                         img: "/achievements/Uday Kaul.jpg"
                       }
-                    ].map((p, idx) => (
+                    ]).map((p, idx) => (
                       <div key={idx} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 flex gap-3 items-center">
                         <img src={p.img} alt={p.name} className="w-14 h-14 rounded-xl object-cover shrink-0 border border-gray-150" />
                         <div className="space-y-0.5">
