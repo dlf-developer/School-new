@@ -515,14 +515,14 @@ export default function Pedagogy() {
 
               {/* Admissions Open CTA */}
               <div className="lg:col-span-4 bg-brand-bg/40 p-6 rounded-2xl border border-brand-masterDeep/5 space-y-4">
-                <GraduationCap className="w-8 h-8 text-brand-gold" />
+                <GraduationCap className="w-8 h-8 text-brand-greenDeep" />
                 <h3 className="font-serif text-lg font-bold text-brand-masterDeep">Admissions Open</h3>
                 <p className="text-xs text-brand-muted font-sans leading-relaxed">
                   Learn how our developmental pedagogy prepares children for an evolving world. Connect with our admissions desk today.
                 </p>
                 <div className="pt-2 flex items-center">
                   <Link 
-                    to="/school/dlf-sahibabad/admissions" 
+                    to="/admission-enquiry" 
                     className="inline-flex items-center gap-1.5 text-brand-greenDeep hover:text-brand-greenVibrant font-bold text-xs uppercase tracking-wider transition-colors"
                   >
                     Apply Online <ArrowRight className="w-4 h-4" />
@@ -550,12 +550,6 @@ export default function Pedagogy() {
                       <Play className="w-6 h-6 fill-current translate-x-0.5" />
                     </div>
                   </div>
-                  {/* Reel badge */}
-                  <div className="absolute top-3 left-3">
-                    <span className="bg-brand-gold text-brand-charcoal text-[9px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full shadow">
-                      Reel
-                    </span>
-                  </div>
                 </div>
 
                 {/* Info beside video */}
@@ -565,7 +559,7 @@ export default function Pedagogy() {
                     {activeStage.media.videos[0].title}
                   </h3>
                   <p className="text-white/70 text-sm font-sans leading-relaxed max-w-sm">
-                    Watch this featured reel capturing real learning moments from the {activeStage.title} at DLF Public School.
+                    Watch this featured video capturing real learning moments from the {activeStage.title} at DLF Public School.
                   </p>
                   <button
                     onClick={() => setLightboxMedia({ type: 'video', src: activeStage.media.videos[0].src, title: activeStage.media.videos[0].title })}
@@ -626,12 +620,6 @@ export default function Pedagogy() {
                             </div>
                           </div>
                         )}
-
-                        {displayCaption && (
-                          <p className="text-[10px] italic text-brand-gold mt-2.5 font-sans leading-normal">
-                            {displayCaption}
-                          </p>
-                        )}
                       </div>
                     )
                   })
@@ -639,12 +627,12 @@ export default function Pedagogy() {
               </div>
             </div>
 
-            {/* More Reels — remaining videos in a horizontal scroll strip */}
+            {/* More Videos — remaining videos in a horizontal scroll strip */}
             {activeStage.media.videos && activeStage.media.videos.length > 1 && (
               <div className="space-y-4 pt-6 border-t border-brand-masterDeep/5">
                 <div className="flex items-center gap-2">
                   <span className="h-px bg-brand-gold w-8"></span>
-                  <h3 className="text-sm uppercase tracking-widest font-extrabold text-brand-gold">More Reels</h3>
+                  <h3 className="text-sm uppercase tracking-widest font-extrabold text-brand-gold">More Videos</h3>
                 </div>
 
                 <div className="flex gap-4 overflow-x-auto pb-3 no-scrollbar">
@@ -660,8 +648,7 @@ export default function Pedagogy() {
                         preload="metadata"
                         className="w-full h-full object-cover pointer-events-none"
                       />
-                      <div className="absolute inset-0 bg-black/40 flex flex-col justify-between p-3 transition-all duration-300 group-hover/vid:bg-black/55">
-                        <span className="text-[8px] font-bold text-brand-gold uppercase tracking-widest bg-black/40 px-2 py-0.5 rounded-full w-max">Reel</span>
+                      <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-3 transition-all duration-300 group-hover/vid:bg-black/55">
                         <div className="space-y-2">
                           <div className="w-9 h-9 rounded-full bg-white/90 text-brand-greenDeep flex items-center justify-center shadow-md mx-auto transform transition-transform duration-300 group-hover/vid:scale-110">
                             <Play className="w-4 h-4 fill-current translate-x-0.5" />
@@ -757,7 +744,8 @@ export default function Pedagogy() {
                 src={lightboxMedia.src} 
                 controls 
                 autoPlay
-                className="max-h-[75vh] max-w-full rounded-lg shadow-2xl border border-white/10 animate-scaleIn"
+                playsInline
+                className="max-h-[80vh] max-w-[90vw] object-contain rounded-2xl shadow-2xl border border-white/10 animate-scaleIn"
               />
             )}
 
@@ -765,9 +753,6 @@ export default function Pedagogy() {
             <div className="text-center mt-4 space-y-1 px-4 max-w-2xl">
               {lightboxMedia.title && (
                 <h4 className="text-white text-base font-bold font-serif">{lightboxMedia.title}</h4>
-              )}
-              {lightboxMedia.caption && (
-                <p className="text-brand-gold text-xs italic font-sans">{lightboxMedia.caption}</p>
               )}
             </div>
           </div>

@@ -10,7 +10,7 @@ export default function PortalHome() {
       <section className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 pt-4 pb-6 text-center space-y-4">
         <div className="inline-flex items-center gap-2 bg-brand-masterDeep/5 border border-brand-masterDeep/10 rounded-full px-4 py-1.5 text-xs text-brand-masterDeep font-bold">
           <span className="w-2 h-2 rounded-full bg-brand-gold animate-ping"></span>
-          <span>Unified Group Portal</span>
+          <span>Darbari Lal Foundation</span>
         </div>
         
         <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-brand-masterDeep leading-[1.05] tracking-tight">
@@ -76,7 +76,7 @@ export default function PortalHome() {
           >
             <div className="h-52 sm:h-60 w-full overflow-hidden relative bg-brand-purpleDeep">
               <img 
-                src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&q=80&w=1000" 
+                src="/dlws.jpeg" 
                 alt="DLF World School Greater Noida Campus" 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />

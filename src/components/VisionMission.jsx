@@ -26,6 +26,7 @@ export default function VisionMission() {
               src={vm.galleryImage} 
               alt={vm.heroTitle || "Vision & Mission"} 
               imgClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103" 
+              style={{ objectPosition: 'center 80%' }}
               loading="eager" 
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-masterDeep/90 via-brand-masterDeep/45 to-transparent flex flex-col justify-end p-8 sm:p-12">
@@ -70,27 +71,13 @@ export default function VisionMission() {
                 <h3 className="font-serif text-2xl font-bold text-brand-masterDeep">{vm.vision?.title || "Our Vision"}</h3>
               </div>
               
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <p className="font-serif text-base sm:text-lg text-brand-greenDeep italic font-bold leading-relaxed">
                   {vm.vision?.quote}
                 </p>
-                
-                {expandedVision && (
-                  <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-sans pt-2 border-t border-gray-100">
-                    We envision a transformative learning environment where students discover their creative self, cultivate scientific inquiry, and build character to lead as empathetic, responsible planetary stewards in an interconnected global community.
-                  </p>
-                )}
-
-                <button 
-                  onClick={() => setExpandedVision(!expandedVision)}
-                  className="inline-flex items-center gap-1 text-[11px] font-extrabold uppercase tracking-wider text-brand-greenDeep hover:text-brand-greenVibrant transition-colors cursor-pointer self-start mt-2"
-                >
-                  {expandedVision ? (
-                    <>View Less <ChevronUp className="w-3.5 h-3.5" /></>
-                  ) : (
-                    <>View More <ChevronDown className="w-3.5 h-3.5" /></>
-                  )}
-                </button>
+                <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-sans pt-2 border-t border-gray-100">
+                  We envision a transformative learning environment where students discover their creative self, cultivate scientific inquiry, and build character to lead as empathetic, responsible planetary stewards in an interconnected global community.
+                </p>
               </div>
             </div>
           </div>
@@ -115,27 +102,13 @@ export default function VisionMission() {
                 <h3 className="font-serif text-2xl font-bold text-brand-masterDeep">{vm.mission?.title || "Our Mission"}</h3>
               </div>
               
-              <div className="space-y-2">
-                <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-sans font-semibold">
+              <div className="space-y-3">
+                <p className="font-serif text-base sm:text-lg text-brand-greenDeep italic font-bold leading-relaxed">
                   {vm.mission?.text}
                 </p>
-                
-                {expandedMission && (
-                  <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-sans pt-2 border-t border-gray-100">
-                    To deliver developmental education that fosters critical analysis, collaborative problem-solving, values of social responsibility (SSR), and ecological stewardship, ensuring our learners grow with strong cultural roots and 21st-century capabilities.
-                  </p>
-                )}
-
-                <button 
-                  onClick={() => setExpandedMission(!expandedMission)}
-                  className="inline-flex items-center gap-1 text-[11px] font-extrabold uppercase tracking-wider text-brand-greenDeep hover:text-brand-greenVibrant transition-colors cursor-pointer self-start mt-2"
-                >
-                  {expandedMission ? (
-                    <>View Less <ChevronUp className="w-3.5 h-3.5" /></>
-                  ) : (
-                    <>View More <ChevronDown className="w-3.5 h-3.5" /></>
-                  )}
-                </button>
+                <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-sans pt-2 border-t border-gray-100">
+                  To deliver developmental education that fosters critical analysis, collaborative problem-solving, values of social responsibility (SSR), and ecological stewardship, ensuring our learners grow with strong cultural roots and 21st-century capabilities.
+                </p>
               </div>
             </div>
           </div>
@@ -146,7 +119,7 @@ export default function VisionMission() {
           <div className="max-w-2xl mx-auto space-y-6 pt-6">
             <div className="text-center space-y-3">
               <span className="text-[10px] uppercase font-bold text-brand-gold tracking-widest">
-                Publications & Archives
+                Publications
               </span>
               <h3 className="font-serif text-3xl font-bold text-brand-masterDeep">
                 {vm.publications[0].title}

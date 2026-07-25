@@ -302,7 +302,7 @@ export default function CommonPages() {
         </div>
 
         {/* ── Campuses Info Section (Hero Area - Side by Side) ── */}
-        <div className={`grid grid-cols-1 ${(!schoolId) ? 'md:grid-cols-2' : 'max-w-xl'} gap-8 max-w-6xl mx-auto`}>
+        <div className={`grid grid-cols-1 ${!schoolId ? 'md:grid-cols-2' : 'max-w-xl'} gap-8 max-w-6xl mx-auto`}>
           {/* ── Card: DLF Public School, Sahibabad ── */}
           {(!schoolId || isSahibabad) && (
             <div className="bg-white rounded-3xl border border-brand-greenDeep/10 shadow-lg hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
@@ -377,13 +377,13 @@ export default function CommonPages() {
 
           {/* ── Card: DLF World School, Greater Noida ── */}
           {(!schoolId || isGreaterNoida) && (
-            <div className="bg-white rounded-3xl border border-brand-gold/25 shadow-lg hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
-              <div className={`absolute top-0 left-0 w-1.5 h-full ${isGreaterNoida ? 'bg-brand-purpleDeep' : 'bg-brand-gold'} rounded-l-3xl`}></div>
+            <div className="bg-white rounded-3xl border border-brand-purpleDeep/20 shadow-lg hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-1.5 h-full bg-brand-purpleDeep rounded-l-3xl"></div>
               <div className="p-6 pl-8 space-y-4">
                 {/* Header */}
                 <div>
                   <span className="bg-brand-gold/10 text-brand-gold text-[9px] font-extrabold uppercase tracking-widest px-3 py-1.5 rounded-full w-max inline-block mb-2.5 font-inter">World School Campus</span>
-                  <h3 className={`font-serif text-xl sm:text-2xl font-bold ${isGreaterNoida ? 'text-brand-purpleDeep' : 'text-brand-charcoal'}`}>DLF World School</h3>
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-brand-purpleDeep">DLF World School</h3>
                   <p className="text-[10px] text-brand-muted font-inter uppercase tracking-wider mt-0.5">Greater Noida, UP — CBSE Aff. No. 2131920</p>
                 </div>
 
@@ -401,7 +401,7 @@ export default function CommonPages() {
                   </svg>
                   <div className="flex-1">
                     <span className="block text-[9px] text-brand-muted uppercase tracking-wider font-bold font-inter">WhatsApp</span>
-                    <span className={`text-xs ${isGreaterNoida ? 'text-brand-purpleDeep' : 'text-brand-charcoal'} font-semibold font-inter group-hover:text-brand-greenDeep transition-colors`}>+91-9910966700</span>
+                    <span className="text-xs text-brand-purpleDeep font-semibold font-inter group-hover:text-brand-purpleVibrant transition-colors">+91-9910966700</span>
                   </div>
                 </a>
 
@@ -409,21 +409,21 @@ export default function CommonPages() {
                 <div className="space-y-1.5">
                   <p className="text-[9px] font-bold text-brand-muted uppercase tracking-widest font-inter pb-0.5">Departments</p>
                   {dlwsDepts.map((dept) => (
-                    <div key={dept.id} className="bg-brand-bg/70 rounded-xl px-3.5 py-2.5 border border-brand-greenDeep/5 space-y-1.5">
-                      <div className={`flex items-center gap-2 text-[9px] font-bold ${isGreaterNoida ? 'text-brand-purpleDeep' : 'text-brand-greenDeep'} uppercase tracking-wider font-inter`}>
+                    <div key={dept.id} className="bg-brand-bg/70 rounded-xl px-3.5 py-2.5 border border-brand-purpleDeep/10 space-y-1.5">
+                      <div className="flex items-center gap-2 text-[9px] font-bold text-brand-purpleDeep uppercase tracking-wider font-inter">
                         <span className="text-brand-gold">{dept.icon}</span>
                         {dept.label}
                       </div>
                       <div className="pl-5 space-y-1">
                         {dept.phones.map((ph) => (
                           <a key={ph} href={`tel:${ph.replace(/[\s-]/g, '')}`}
-                            className="flex items-center gap-2 text-xs text-brand-muted hover:text-brand-greenDeep transition-colors font-inter">
+                            className="flex items-center gap-2 text-xs text-brand-muted hover:text-brand-purpleDeep transition-colors font-inter">
                             <Phone className="w-3 h-3 shrink-0 text-brand-gold" />{ph}
                           </a>
                         ))}
                         {dept.emails.map((em) => (
                           <a key={em} href={`mailto:${em}`}
-                            className="flex items-center gap-2 text-xs text-brand-muted hover:text-brand-greenDeep transition-colors font-inter">
+                            className="flex items-center gap-2 text-xs text-brand-muted hover:text-brand-purpleDeep transition-colors font-inter">
                             <Mail className="w-3 h-3 shrink-0 text-brand-gold" />{em}
                           </a>
                         ))}
@@ -449,218 +449,79 @@ export default function CommonPages() {
           )}
         </div>
 
-        {/* ── Main Layout: Form & Location side by side ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-6xl mx-auto">
-          {/* Inquiry Form */}
-          <div className="lg:col-span-7">
-            <div className="bg-white rounded-3xl border border-brand-greenDeep/5 shadow-xl p-8 relative overflow-hidden">
-              <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${isGreaterNoida ? 'from-brand-purpleDeep via-brand-gold to-brand-purpleVibrant' : 'from-brand-greenDeep via-brand-gold to-brand-greenVibrant'} rounded-t-3xl`}></div>
-
-              {submitted ? (
-                <div className="py-16 text-center space-y-4">
-                  <div className={`w-16 h-16 ${primaryBg} rounded-full flex items-center justify-center mx-auto mb-4`}>
-                    <svg className={`w-8 h-8 ${primaryText}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <h3 className={`font-serif text-2xl font-bold ${primaryText}`}>Message Sent Successfully!</h3>
-                  <p className="text-sm text-brand-muted max-w-sm mx-auto font-inter">Thank you for reaching out. We will forward your inquiry to the campus coordinator and respond shortly.</p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6 pt-3">
-                  <div>
-                    <h3 className={`font-serif text-xl font-bold ${primaryText} mb-1`}>Get in Touch</h3>
-                    <p className="text-xs text-brand-muted font-inter">Complete the fields below to dispatch an official inquiry.</p>
-                  </div>
-
-                  <div className="space-y-4">
-                    {/* Select Campus (Only show if on unified page) */}
-                    {!schoolId && (
-                      <div>
-                        <label htmlFor="school" className="block text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-2 font-inter">Select School Campus</label>
-                        <div className="relative">
-                          <select id="school" name="school" value={formData.school} onChange={handleChange} required
-                            className="w-full bg-brand-bg/50 border border-brand-greenDeep/10 rounded-2xl px-4 py-3.5 text-sm font-semibold text-brand-charcoal focus:outline-none focus:border-brand-greenDeep focus:ring-1 focus:ring-brand-greenDeep transition-all font-inter appearance-none cursor-pointer">
-                            <option value="dlf-sahibabad">DLF Public School, Sahibabad</option>
-                            <option value="dlf-greater-noida">DLF World School, Greater Noida</option>
-                          </select>
-                          <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-brand-muted">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" /></svg>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Name + Phone */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="name" className="block text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-2 font-inter">Full Name</label>
-                        <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required placeholder="John Doe"
-                          className={`w-full bg-brand-bg/50 border ${primaryBorder} rounded-2xl px-4 py-3.5 text-sm text-brand-charcoal focus:outline-none focus:border-brand-greenDeep focus:ring-1 focus:ring-brand-greenDeep transition-all font-inter font-medium placeholder-brand-muted/50`} />
-                      </div>
-                      <div>
-                        <label htmlFor="phone" className="block text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-2 font-inter">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} required placeholder="+91 XXXXX XXXXX"
-                          className={`w-full bg-brand-bg/50 border ${primaryBorder} rounded-2xl px-4 py-3.5 text-sm text-brand-charcoal focus:outline-none focus:border-brand-greenDeep focus:ring-1 focus:ring-brand-greenDeep transition-all font-inter font-medium placeholder-brand-muted/50`} />
-                      </div>
-                    </div>
-
-                    {/* Email + Subject */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-2 font-inter">Email Address</label>
-                        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required placeholder="name@example.com"
-                          className={`w-full bg-brand-bg/50 border ${primaryBorder} rounded-2xl px-4 py-3.5 text-sm text-brand-charcoal focus:outline-none focus:border-brand-greenDeep focus:ring-1 focus:ring-brand-greenDeep transition-all font-inter font-medium placeholder-brand-muted/50`} />
-                      </div>
-                      <div>
-                        <label htmlFor="subject" className="block text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-2 font-inter">Subject</label>
-                        <input type="text" id="subject" name="subject" value={formData.subject} onChange={handleChange} required placeholder="Admissions, Transfer request…"
-                          className={`w-full bg-brand-bg/50 border ${primaryBorder} rounded-2xl px-4 py-3.5 text-sm text-brand-charcoal focus:outline-none focus:border-brand-greenDeep focus:ring-1 focus:ring-brand-greenDeep transition-all font-inter font-medium placeholder-brand-muted/50`} />
-                      </div>
-                    </div>
-
-                    {/* Message */}
-                    <div>
-                      <label htmlFor="message" className="block text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-2 font-inter">Your Message</label>
-                      <textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows="4" placeholder="Type details of your inquiry here…"
-                        className={`w-full bg-brand-bg/50 border ${primaryBorder} rounded-2xl px-4 py-3.5 text-sm text-brand-charcoal focus:outline-none focus:border-brand-greenDeep focus:ring-1 focus:ring-brand-greenDeep transition-all font-inter font-medium placeholder-brand-muted/50 resize-none`}></textarea>
-                    </div>
-                  </div>
-
-                  <button type="submit"
-                    className={`w-full ${primaryBtn} text-white py-4 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 group cursor-pointer`}>
-                    <span>Send Message</span>
-                    <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </button>
-                </form>
-              )}
-            </div>
+        {/* ── Direct Embedded Google Maps Section (No Modal) ── */}
+        <div className="max-w-6xl mx-auto space-y-6 pt-4">
+          <div className="flex items-center gap-4">
+            <div className="w-8 h-[2px] bg-brand-gold"></div>
+            <span className="text-xs font-bold text-brand-gold uppercase tracking-widest font-inter">Find Us on the Map</span>
+            <div className="flex-1 h-px bg-brand-greenDeep/5"></div>
           </div>
 
-          {/* Right: Map / Location trigger buttons */}
-          <div className="lg:col-span-5">
-            <div className="bg-white rounded-3xl border border-brand-greenDeep/5 shadow-xl p-8 relative overflow-hidden space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="w-8 h-[2px] bg-brand-gold"></div>
-                <span className="text-xs font-bold text-brand-gold uppercase tracking-widest font-inter">Find Us on the Map</span>
-                <div className="flex-1 h-px bg-brand-greenDeep/5"></div>
-              </div>
-
-              <div className="space-y-4">
-                {/* Sahibabad Campus Map Button */}
-                {(!schoolId || isSahibabad) && (
-                  <button
-                    type="button"
-                    onClick={() => setActiveMapModal({
-                      title: 'DLF Public School, Sahibabad',
-                      subtitle: 'Sector II, Rajendra Nagar, Sahibabad, Ghaziabad',
-                      iframeUrl: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7000.128406067131!2d77.349823!3d28.687726!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4430cf367ba0e3f6!2sDLF+Public+School!5e0!3m2!1sen!2sin!4v1490767670966',
-                      appUrl: 'https://www.google.com/maps/search/?api=1&query=DLF+Public+School+Sahibabad',
-                      themeColor: 'bg-brand-greenDeep'
-                    })}
-                    className="flex items-center gap-4 bg-brand-bg/50 border border-brand-greenDeep/10 hover:border-brand-greenDeep/20 p-5 rounded-3xl transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group text-left w-full focus:outline-none"
+          <div className={`grid grid-cols-1 ${!schoolId ? 'md:grid-cols-2' : 'max-w-3xl mx-auto'} gap-8`}>
+            {/* Sahibabad Campus Direct Map */}
+            {(!schoolId || isSahibabad) && (
+              <div className="bg-white rounded-3xl border border-brand-greenDeep/10 shadow-lg overflow-hidden flex flex-col justify-between">
+                <div className="p-5 pb-3 bg-brand-bg/50 border-b border-brand-greenDeep/5 flex items-center justify-between">
+                  <div>
+                    <h4 className="font-serif font-bold text-brand-greenDeep text-sm leading-tight font-sans">DLF Public School, Sahibabad</h4>
+                    <p className="text-[10px] text-brand-muted font-inter">Sector II, Rajendra Nagar, Sahibabad, Ghaziabad</p>
+                  </div>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=DLF+Public+School+Sahibabad"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] font-bold text-brand-gold hover:underline inline-flex items-center gap-1 shrink-0"
                   >
-                    <div className="w-12 h-12 rounded-2xl bg-brand-greenDeep/5 flex items-center justify-center text-brand-greenDeep group-hover:bg-brand-greenDeep group-hover:text-white transition-all duration-300 shrink-0">
-                      <Map className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h4 className="font-serif font-bold text-brand-greenDeep text-sm leading-tight font-sans">Sahibabad Campus Map</h4>
-                      <p className="text-[10px] text-brand-muted mt-1 font-inter">Click to view location & routes</p>
-                    </div>
-                  </button>
-                )}
-
-                {/* Greater Noida Campus Map Button */}
-                {(!schoolId || isGreaterNoida) && (
-                  <button
-                    type="button"
-                    onClick={() => setActiveMapModal({
-                      title: 'DLF World School, Greater Noida',
-                      subtitle: 'HS-31, Sector Zeta-1, Greater Noida',
-                      iframeUrl: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d28048.189511260713!2d77.52816!3d28.50893500000002!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ceae353377837%3A0x90a2aa79fd19a6f4!2sDLWS+Greater+Noida+%7C+Darbari+Lal+Foundation+World+School!5e0!3m2!1sen!2sin!4v1429681042702',
-                      appUrl: 'https://www.google.com/maps/search/?api=1&query=DLF+World+School+Greater+Noida',
-                      themeColor: isGreaterNoida ? 'bg-brand-purpleDeep' : 'bg-brand-greenDeep'
-                    })}
-                    className={`flex items-center gap-4 bg-brand-bg/50 border ${isGreaterNoida ? 'border-brand-purpleDeep/10 hover:border-brand-purpleDeep/20' : 'border-brand-greenDeep/10 hover:border-brand-greenDeep/20'} p-5 rounded-3xl transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group text-left w-full focus:outline-none`}
-                  >
-                    <div className={`w-12 h-12 rounded-2xl ${isGreaterNoida ? 'bg-brand-purpleDeep/5 text-brand-purpleDeep group-hover:bg-brand-purpleDeep' : 'bg-brand-greenDeep/5 text-brand-greenDeep group-hover:bg-brand-greenDeep'} flex items-center justify-center group-hover:text-white transition-all duration-300 shrink-0`}>
-                      <Map className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h4 className={`font-serif font-bold ${isGreaterNoida ? 'text-brand-purpleDeep' : 'text-brand-greenDeep'} text-sm leading-tight font-sans`}>Greater Noida Campus Map</h4>
-                      <p className="text-[10px] text-brand-muted mt-1 font-inter">Click to view location & routes</p>
-                    </div>
-                  </button>
-                )}
+                    Open App ↗
+                  </a>
+                </div>
+                <div className="aspect-[16/10] w-full bg-gray-100 min-h-[260px]">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7000.128406067131!2d77.349823!3d28.687726!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4430cf367ba0e3f6!2sDLF+Public+School!5e0!3m2!1sen!2sin!4v1490767670966"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0, display: 'block' }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    title="Sahibabad Map"
+                  />
+                </div>
               </div>
-            </div>
+            )}
+
+            {/* Greater Noida Campus Direct Map */}
+            {(!schoolId || isGreaterNoida) && (
+              <div className="bg-white rounded-3xl border border-brand-purpleDeep/10 shadow-lg overflow-hidden flex flex-col justify-between">
+                <div className="p-5 pb-3 bg-brand-bg/50 border-b border-brand-purpleDeep/5 flex items-center justify-between">
+                  <div>
+                    <h4 className="font-serif font-bold text-brand-purpleDeep text-sm leading-tight font-sans">DLF World School, Greater Noida</h4>
+                    <p className="text-[10px] text-brand-muted font-inter">HS-31, Sector Zeta-1, Greater Noida</p>
+                  </div>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=DLF+World+School+Greater+Noida"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] font-bold text-brand-gold hover:underline inline-flex items-center gap-1 shrink-0"
+                  >
+                    Open App ↗
+                  </a>
+                </div>
+                <div className="aspect-[16/10] w-full bg-gray-100 min-h-[260px]">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d28048.189511260713!2d77.52816!3d28.50893500000002!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ceae353377837%3A0x90a2aa79fd19a6f4!2sDLWS+Greater+Noida+%7C+Darbari+Lal+Foundation+World+School!5e0!3m2!1sen!2sin!4v1429681042702"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0, display: 'block' }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    title="Greater Noida Map"
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
-
-      {/* Interactive Map Modal */}
-      {activeMapModal && (
-        <div 
-          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity duration-300 animate-fadeIn"
-          onClick={() => setActiveMapModal(null)}
-        >
-          <div 
-            className="bg-white rounded-3xl overflow-hidden w-full max-w-4xl shadow-2xl relative border border-brand-masterDeep/10 flex flex-col md:flex-row animate-scaleIn"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Map iframe container */}
-            <div className="flex-1 aspect-video md:aspect-[4/3] bg-brand-bg relative">
-              <iframe
-                src={activeMapModal.iframeUrl}
-                width="100%"
-                height="100%"
-                style={{ border: 0, display: 'block' }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title={activeMapModal.title}
-              />
-            </div>
-
-            {/* Sidebar with route and navigation tools */}
-            <div className="w-full md:w-80 p-8 flex flex-col justify-between bg-white border-t md:border-t-0 md:border-l border-brand-masterDeep/5">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between gap-4">
-                  <span className="text-[10px] font-bold text-brand-gold uppercase tracking-widest block">Campus Navigation</span>
-                  <button 
-                    onClick={() => setActiveMapModal(null)}
-                    className="text-brand-muted hover:text-brand-charcoal p-1.5 rounded-full hover:bg-brand-bg transition-colors"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
-                <div>
-                  <h3 className="font-serif text-lg font-bold text-brand-masterDeep">{activeMapModal.title}</h3>
-                  <p className="text-[11px] text-brand-muted mt-1 font-inter">{activeMapModal.subtitle}</p>
-                </div>
-                <p className="text-xs text-brand-muted font-inter leading-relaxed">
-                  Interactive map loaded. You can view navigation steps or choose to open the directions directly inside the Google Maps mobile app on your phone.
-                </p>
-              </div>
-
-              <div className="pt-6">
-                <a
-                  href={activeMapModal.appUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full text-center flex items-center justify-center gap-2 bg-brand-greenDeep hover:bg-brand-greenVibrant text-white text-xs font-bold uppercase tracking-wider py-4 rounded-2xl shadow-lg transition-all duration-300 hover:scale-[1.03] font-inter"
-                >
-                  <ExternalLink className="w-4.5 h-4.5" />
-                  <span>Open Google Maps App</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
     </div>
   )
 }

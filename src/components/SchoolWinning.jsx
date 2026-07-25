@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useSiteData } from '../hooks/useSiteData'
-import { ArrowLeft, Award, Zap, Smile, X, ArrowRight } from 'lucide-react'
+import { ArrowLeft, Award, Zap, Smile, X, ArrowRight, Sparkles } from 'lucide-react'
 
 export default function SchoolWinning({ isHomePage = false }) {
   const { schoolId } = useParams()
@@ -104,8 +104,104 @@ export default function SchoolWinning({ isHomePage = false }) {
 
   const achievementsToRender = activeBranch === 'dlf-greater-noida' ? dlwsAchievements : studentAchievements
 
+  const statistics = [
+    {
+      value: '100%',
+      label: 'Board Success',
+      desc: 'Consistent perfect scores in Science & Commerce streams.'
+    },
+    {
+      value: 'No. 1',
+      label: 'Ranking In Our Area',
+      desc: 'Top rank among the leading schools in the region.'
+    },
+    {
+      value: '15+',
+      label: 'Global Innovation Grants',
+      desc: 'Awarded to students for sustainable tech prototypes.'
+    },
+    {
+      value: '30+',
+      label: 'Years of Legacy',
+      desc: 'Empowering generation after generation of innovators.'
+    }
+  ]
+
+  if (isHomePage) {
+    return (
+      <div className="py-10 text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden font-sans">
+        {/* Ambient background glows matching index.css styles */}
+        <div className="absolute top-20 left-1/4 w-[400px] h-[400px] ambient-glow-1 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] ambient-glow-2 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="w-[96%] max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12 relative z-10">
+          {/* Page Header (Housed inside a solid card) */}
+          <div className="bg-white rounded-3xl border border-brand-masterDeep/5 p-8 sm:p-10 shadow-sm">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-7 space-y-3">
+                <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-brand-gold animate-pulse" />
+                  School Accolades & Recognition
+                </span>
+                <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-masterDeep">
+                  A Winning School
+                </h2>
+                <p className="text-sm sm:text-base text-brand-muted font-medium leading-relaxed">
+                  Our students have emerged as District, State, and National toppers in academics, earned global innovation grants, represented India at prestigious international platforms, won national hackathons, and built ventures that solve real-world problems. Yet, beyond every accolade lies a culture that teaches children to succeed without losing their sensitivity, individuality, or humanity.
+                </p>
+              </div>
+              <div className="lg:col-span-5">
+                <div className="rounded-2xl overflow-hidden aspect-[16/10] border border-brand-masterDeep/5 bg-brand-bg relative shadow-sm group">
+                  <img
+                    src="/achievements/TOI Winners.jpeg"
+                    alt="School Accolades & Awards"
+                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Highlight Stats Dashboard (Each metric is its own card) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {statistics.map((stat, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-3xl p-6 sm:p-8 border border-brand-masterDeep/5 hover:border-brand-greenDeep/20 shadow-sm hover:shadow-md flex flex-col justify-between space-y-4 hover:-translate-y-1 transition-all duration-300 group"
+              >
+                <div className="space-y-2">
+                  <span className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-brand-greenDeep group-hover:text-brand-greenVibrant transition-colors duration-500">
+                    {stat.value}
+                  </span>
+                  <h4 className="text-xs font-bold text-brand-gold uppercase tracking-wider">
+                    {stat.label}
+                  </h4>
+                </div>
+                <p className="text-xs text-brand-muted leading-relaxed font-medium">
+                  {stat.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA Link */}
+          <div className="text-center pt-6 pb-2">
+            <Link
+              to="/awards"
+              className="inline-flex items-center gap-3 bg-brand-masterDeep hover:bg-brand-masterVibrant text-white px-8 py-4 rounded-full font-bold text-xs sm:text-sm uppercase tracking-widest transition-all duration-300 shadow-xl shadow-brand-masterDeep/20 hover:scale-105"
+            >
+              <span>View More About Our Winning Record</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div className={`${isHomePage ? 'py-10' : 'pt-28 pb-20 min-h-screen'} text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden font-sans`}>
+    <div className="pt-28 pb-20 min-h-screen text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden font-sans">
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; }
@@ -131,24 +227,22 @@ export default function SchoolWinning({ isHomePage = false }) {
             <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>School Accolades</span>
             <h2 className={`font-serif text-3xl sm:text-4xl font-bold text-${theme.primary}`}>A Winning School</h2>
             <p className="text-xs sm:text-sm text-brand-muted mt-1 font-inter font-medium">
-              Beyond standard parameters: sculpting academic toppers, international sports champions, and ecological pioneers.
+              Our students have emerged as District, State, and National toppers in academics, earned global innovation grants, represented India at prestigious international platforms, won national hackathons, and built ventures that solve real-world problems. Yet, beyond every accolade lies a culture that teaches children to succeed without losing their sensitivity, individuality, or humanity.
             </p>
           </div>
-          {!isHomePage && (
-            <Link 
-              to={`/school/${activeBranch}`}
-              className={`flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-${theme.primary} hover:opacity-80 transition-opacity shrink-0`}
-            >
-              <ArrowLeft className="w-4 h-4" /> Back to School Home
-            </Link>
-          )}
+          <Link 
+            to={`/school/${activeBranch}`}
+            className={`flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-${theme.primary} hover:opacity-80 transition-opacity shrink-0`}
+          >
+            <ArrowLeft className="w-4 h-4" /> Back to School Home
+          </Link>
         </div>
 
         {/* Counter Stats Section */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-4 text-center">
           {[
             { val: '100%', label: 'Board Success', desc: 'Consistent perfect scores in Science & Commerce streams.' },
-            { val: 'No. 5', label: 'Leadership & Governance', desc: 'National rank among the country\'s co-educational schools.' },
+            { val: 'No. 1', label: 'Ranking In Our Area', desc: 'Top rank among the leading schools in the region.' },
             { val: '15+', label: 'Global Innovation Grants', desc: 'Awarded to students for sustainable tech prototypes.' },
             { val: '30+', label: 'Years of Legacy', desc: 'Empowering generation after generation of innovators.' }
           ].map((stat, idx) => (
@@ -194,53 +288,40 @@ export default function SchoolWinning({ isHomePage = false }) {
           </div>
         </div>
 
-        {isHomePage && (
-          <div className="text-center pt-8">
-            <Link 
-              to={`/school/${activeBranch}/winning-school`}
-              className={`inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-${theme.primary} text-white font-sans text-xs uppercase font-extrabold tracking-widest hover:opacity-90 shadow-md hover:shadow-lg transition-all duration-300 group`}
-            >
-              View More About Our Winning Record
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </div>
-        )}
         {/* Student Achievements Photo Gallery — only on full page */}
-        {!isHomePage && (
-          <div className="space-y-10 pt-4">
-            <div className="border-t border-gray-100 pt-8">
-              <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>Student Achievements Gallery</span>
-              <h3 className={`font-serif text-2xl sm:text-3xl font-bold text-${theme.primary} mt-1`}>Our Students, On Every Stage</h3>
-              <p className="text-xs sm:text-sm text-brand-muted font-inter font-medium mt-2 max-w-2xl">
-                From CBSE national exhibitions and international sports arenas to global innovation grants — Delfites shine everywhere.
-              </p>
-            </div>
-
-            {achievementsToRender.map((group, gIdx) => (
-              <div key={gIdx} className="space-y-4">
-                <h4 className={`text-xs uppercase font-extrabold tracking-widest text-${group.color} font-inter`}>{group.category}</h4>
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                  {group.items.map((item, iIdx) => (
-                    <div
-                      key={iIdx}
-                      onClick={() => setLightboxImage(item.img)}
-                      className="group cursor-zoom-in bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
-                    >
-                      <div className="aspect-square overflow-hidden bg-gray-50">
-                        <img
-                          src={item.img}
-                          alt={item.caption}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </div>
-                      <p className="text-[10px] text-brand-muted font-inter font-medium leading-relaxed p-3 line-clamp-3">{item.caption}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
+        <div className="space-y-10 pt-4">
+          <div className="border-t border-gray-100 pt-8">
+            <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>Student Achievements Gallery</span>
+            <h3 className={`font-serif text-2xl sm:text-3xl font-bold text-${theme.primary} mt-1`}>Our Students, On Every Stage</h3>
+            <p className="text-xs sm:text-sm text-brand-muted font-inter font-medium mt-2 max-w-2xl">
+              From CBSE national exhibitions and international sports arenas to global innovation grants — Delfites shine everywhere.
+            </p>
           </div>
-        )}
+
+          {achievementsToRender.map((group, gIdx) => (
+            <div key={gIdx} className="space-y-4">
+              <h4 className={`text-xs uppercase font-extrabold tracking-widest text-${group.color} font-inter`}>{group.category}</h4>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                {group.items.map((item, iIdx) => (
+                  <div
+                    key={iIdx}
+                    onClick={() => setLightboxImage(item.img)}
+                    className="group cursor-zoom-in bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+                  >
+                    <div className="aspect-square overflow-hidden bg-gray-50">
+                      <img
+                        src={item.img}
+                        alt={item.caption}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                    <p className="text-[10px] text-brand-muted font-inter font-medium leading-relaxed p-3 line-clamp-3">{item.caption}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
 
       </div>
 
@@ -271,3 +352,4 @@ export default function SchoolWinning({ isHomePage = false }) {
     </div>
   )
 }
+

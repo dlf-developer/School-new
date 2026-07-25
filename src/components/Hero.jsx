@@ -157,7 +157,7 @@ export default function Hero() {
 
             <div ref={ctasRef} className="flex flex-wrap gap-2.5 pt-2">
               <Link 
-                to={`/school/${schoolId}/admissions`}
+                to={schoolId ? `/school/${schoolId}/admissions` : "/admission-enquiry"}
                 className={`bg-${theme.accent} hover:opacity-90 text-white px-5 sm:px-6 py-3 rounded-full font-bold uppercase tracking-widest text-[10px] sm:text-xs transition-all duration-300 shadow-lg flex items-center justify-center gap-1.5 group`}
               >
                 <span>Admissions Open</span>

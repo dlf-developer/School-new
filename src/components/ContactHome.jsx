@@ -1,201 +1,143 @@
-import React, { useState } from 'react'
-import { Phone, Mail, MapPin, Clock, ArrowRight, CheckCircle2 } from 'lucide-react'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Phone, Mail, MapPin, Clock, ArrowRight, Building2, ExternalLink } from 'lucide-react'
 
 export default function ContactHome() {
-  const [submitted, setSubmitted] = useState(false)
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    school: 'dlf-sahibabad',
-    message: ''
-  })
-
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setSubmitted(true)
-  }
+  const campuses = [
+    {
+      id: 'dlf-sahibabad',
+      name: 'DLF Public School',
+      location: 'Sahibabad, Ghaziabad',
+      address: 'Sector-II, Rajendra Nagar, Sahibabad, Ghaziabad, UP 201005',
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=DLF+Public+School+Sahibabad+Ghaziabad+UP+201005',
+      phones: ['+91-9871034444', '+91-120-4563955'],
+      email: 'contactus@dlps.co.in',
+      hours: '8:00 AM – 3:30 PM',
+      bgColor: 'bg-[#1B3B22]', // DLPS Deep Forest Green Theme
+      badgeBg: 'bg-brand-gold/15 text-brand-gold border-brand-gold/30',
+      btnBg: 'bg-brand-gold text-brand-masterDeep hover:bg-white',
+      accentColor: 'text-brand-gold',
+      contactRoute: '/contact',
+      badgeText: 'DLPS Sahibabad'
+    },
+    {
+      id: 'dlf-greater-noida',
+      name: 'DLF World School',
+      location: 'Greater Noida',
+      address: 'HS-17, Sector-Sigma II, Greater Noida, UP 201308',
+      mapUrl: 'https://www.google.com/maps/search/?api=1&query=DLF+World+School+Greater+Noida+UP+201308',
+      phones: ['+91-9821182700', '+91-9871034444'],
+      email: 'contact@dlws.edu.in',
+      hours: '8:00 AM – 3:30 PM',
+      bgColor: 'bg-[#2C1844]', // DLWS Deep Royal Purple Theme
+      badgeBg: 'bg-brand-gold/15 text-brand-gold border-brand-gold/30',
+      btnBg: 'bg-brand-gold text-brand-masterDeep hover:bg-white',
+      accentColor: 'text-brand-gold',
+      contactRoute: '/contact',
+      badgeText: 'DLWS G. Noida'
+    }
+  ]
 
   return (
-    <section id="contact-home" className="py-20 bg-transparent relative overflow-hidden">
+    <section id="contact-home" className="py-20 bg-transparent relative overflow-hidden selection:bg-brand-gold/30">
       {/* Background ambient glows */}
-      <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] ambient-glow-1 rounded-full blur-3xl pointer-events-none -translate-y-1/2"></div>
+      <div className="absolute top-1/2 left-1/4 w-[450px] h-[450px] ambient-glow-1 rounded-full blur-3xl pointer-events-none -translate-y-1/2"></div>
+      <div className="absolute top-1/2 right-1/4 w-[450px] h-[450px] ambient-glow-2 rounded-full blur-3xl pointer-events-none -translate-y-1/2"></div>
 
-      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 relative z-10">
+      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 relative z-10 space-y-14">
         
-        <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
+        {/* Header Block */}
+        <div className="text-center max-w-2xl mx-auto space-y-3">
           <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold">Reach Out</span>
           <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-brand-masterDeep">Contact Us</h3>
-          <div className="w-12 h-[2px] bg-brand-gold mx-auto"></div>
+          <div className="w-16 h-[2px] bg-brand-gold mx-auto"></div>
           <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter">
-            Have questions about admissions, academic programs, or campus facilities? Our coordinators are ready to assist.
+            Have questions about admissions, academic programs, or campus facilities? Contact our campus coordinators directly.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch max-w-6xl mx-auto">
-          
-          {/* Info Card Column */}
-          <div className="lg:col-span-5 bg-brand-greenDeep text-white rounded-3xl p-8 lg:p-10 flex flex-col justify-between relative overflow-hidden shadow-xl">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-3xl"></div>
-            
-            <div className="space-y-8">
-              <div className="space-y-2">
-                <span className="text-[10px] uppercase font-bold tracking-widest text-brand-gold">Get in Touch</span>
-                <h4 className="font-serif text-2xl sm:text-3xl font-bold">Campus Coordinates</h4>
-              </div>
+        {/* 2 Campus Cards Grid in respective school themes */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto items-stretch">
+          {campuses.map((campus) => (
+            <div
+              key={campus.id}
+              className={`${campus.bgColor} text-white rounded-3xl p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden shadow-2xl border border-white/10 hover:-translate-y-1.5 transition-all duration-500 group`}
+            >
+              {/* Background Glow Effect */}
+              <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
 
-              <div className="space-y-6">
-                {/* Sahibabad coordinates */}
-                <div className="space-y-3 pb-5 border-b border-white/10">
-                  <p className="text-xs font-extrabold uppercase tracking-widest text-brand-gold">DLF Public School, Sahibabad</p>
-                  <div className="flex items-start gap-3.5 text-xs text-white/80 leading-relaxed font-sans">
-                    <MapPin className="w-4 h-4 text-brand-gold shrink-0 mt-0.5" />
-                    <span>Sector-II, Rajendra Nagar, Sahibabad, Ghaziabad, UP 201005</span>
-                  </div>
-                  <div className="flex items-center gap-3.5 text-xs text-white/80 font-sans">
-                    <Phone className="w-4 h-4 text-brand-gold shrink-0" />
-                    <span>+91-9871034444, +91-120-4563955</span>
-                  </div>
-                </div>
-
-                {/* Greater Noida coordinates */}
+              <div className="space-y-8 relative z-10">
+                {/* Top Badge & School Name */}
                 <div className="space-y-3">
-                  <p className="text-xs font-extrabold uppercase tracking-widest text-brand-gold">DLF World School, Greater Noida</p>
-                  <div className="flex items-start gap-3.5 text-xs text-white/80 leading-relaxed font-sans">
-                    <MapPin className="w-4 h-4 text-brand-gold shrink-0 mt-0.5" />
-                    <span>HS-17, Sector-Sigma II, Greater Noida, UP 201308</span>
+                  <div className="flex items-center justify-between">
+                    <span className={`text-[10px] uppercase font-extrabold tracking-widest px-3.5 py-1 rounded-full border ${campus.badgeBg}`}>
+                      {campus.badgeText}
+                    </span>
+                    <Building2 className="w-5 h-5 text-brand-gold/60" />
                   </div>
-                  <div className="flex items-center gap-3.5 text-xs text-white/80 font-sans">
-                    <Phone className="w-4 h-4 text-brand-gold shrink-0" />
-                    <span>+91-9821182700, +91-9871034444</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-8 border-t border-white/10 mt-8 flex items-center gap-3 text-xs text-white/60 font-sans font-bold uppercase tracking-wider">
-              <Clock className="w-4 h-4 text-brand-gold" />
-              <span>Office Hours: 8:00 AM – 3:30 PM</span>
-            </div>
-          </div>
-
-          {/* Form Column */}
-          <div className="lg:col-span-7 bg-white rounded-3xl border border-brand-greenDeep/5 shadow-md p-8 lg:p-10 relative overflow-hidden flex flex-col justify-center">
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-greenDeep via-brand-gold to-brand-greenVibrant rounded-t-3xl"></div>
-
-            {submitted ? (
-              <div className="py-12 text-center space-y-4">
-                <div className="w-14 h-14 bg-brand-greenDeep/10 text-brand-greenDeep rounded-full flex items-center justify-center mx-auto mb-2">
-                  <CheckCircle2 className="w-8 h-8" />
-                </div>
-                <h4 className="font-serif text-2xl font-bold text-brand-greenDeep">Thank You!</h4>
-                <p className="text-xs sm:text-sm text-brand-muted max-w-sm mx-auto font-sans font-medium">
-                  Your inquiry message has been submitted successfully. A coordinator from the selected campus will get in touch with you shortly.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div>
-                  <h4 className="font-serif text-2xl font-bold text-brand-masterDeep">Send a Message</h4>
-                  <p className="text-xs text-brand-muted font-sans font-medium mt-1">Complete the fields below to submit an inquiry.</p>
+                  <h4 className="font-serif text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                    {campus.name}
+                  </h4>
+                  <p className="text-xs font-bold uppercase tracking-wider text-brand-gold">
+                    {campus.location}
+                  </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="home-name" className="block text-[10px] font-extrabold uppercase tracking-widest text-brand-charcoal mb-1.5 font-sans">Full Name</label>
-                    <input 
-                      type="text" 
-                      id="home-name" 
-                      name="name" 
-                      value={formData.name} 
-                      onChange={handleChange} 
-                      required 
-                      placeholder="Your Name"
-                      className="w-full bg-brand-bg/60 border border-brand-greenDeep/10 rounded-xl px-4 py-3 text-xs text-brand-charcoal focus:outline-none focus:border-brand-greenDeep transition-all font-sans font-semibold placeholder-brand-muted/40"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="home-phone" className="block text-[10px] font-extrabold uppercase tracking-widest text-brand-charcoal mb-1.5 font-sans">Phone Number</label>
-                    <input 
-                      type="tel" 
-                      id="home-phone" 
-                      name="phone" 
-                      value={formData.phone} 
-                      onChange={handleChange} 
-                      required 
-                      placeholder="Contact No."
-                      className="w-full bg-brand-bg/60 border border-brand-greenDeep/10 rounded-xl px-4 py-3 text-xs text-brand-charcoal focus:outline-none focus:border-brand-greenDeep transition-all font-sans font-semibold placeholder-brand-muted/40"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="home-email" className="block text-[10px] font-extrabold uppercase tracking-widest text-brand-charcoal mb-1.5 font-sans">Email Address</label>
-                    <input 
-                      type="email" 
-                      id="home-email" 
-                      name="email" 
-                      value={formData.email} 
-                      onChange={handleChange} 
-                      required 
-                      placeholder="your.email@example.com"
-                      className="w-full bg-brand-bg/60 border border-brand-greenDeep/10 rounded-xl px-4 py-3 text-xs text-brand-charcoal focus:outline-none focus:border-brand-greenDeep transition-all font-sans font-semibold placeholder-brand-muted/40"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="home-school" className="block text-[10px] font-extrabold uppercase tracking-widest text-brand-charcoal mb-1.5 font-sans">Select Campus</label>
-                    <div className="relative">
-                      <select 
-                        id="home-school" 
-                        name="school" 
-                        value={formData.school} 
-                        onChange={handleChange} 
-                        required
-                        className="w-full bg-brand-bg/60 border border-brand-greenDeep/10 rounded-xl px-4 py-3 text-xs text-brand-charcoal focus:outline-none focus:border-brand-greenDeep transition-all font-sans font-semibold appearance-none cursor-pointer"
+                {/* Details List */}
+                <div className="space-y-4 pt-2 border-t border-white/10">
+                  {/* Address & Separate Google Maps Line */}
+                  <div className="space-y-2">
+                    <div className="flex items-start gap-3.5 text-xs text-white/90 leading-relaxed font-sans">
+                      <MapPin className="w-4 h-4 text-brand-gold shrink-0 mt-0.5" />
+                      <span>{campus.address}</span>
+                    </div>
+                    <div className="pl-7">
+                      <a
+                        href={campus.mapUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-[11px] font-bold text-brand-gold hover:text-white transition-colors underline group/map cursor-pointer"
+                        title="Click to view campus location on Google Maps"
                       >
-                        <option value="dlf-sahibabad">DLF Public School, Sahibabad</option>
-                        <option value="dlf-greater-noida">DLF World School, Greater Noida</option>
-                      </select>
-                      <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-brand-muted">
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" /></svg>
-                      </div>
+                        <span>Open in Google Maps</span>
+                        <ExternalLink className="w-3 h-3 group-hover/map:translate-x-0.5 transition-transform" />
+                      </a>
                     </div>
                   </div>
-                </div>
 
-                <div>
-                  <label htmlFor="home-message" className="block text-[10px] font-extrabold uppercase tracking-widest text-brand-charcoal mb-1.5 font-sans">Message</label>
-                  <textarea 
-                    id="home-message" 
-                    name="message" 
-                    value={formData.message} 
-                    onChange={handleChange} 
-                    required 
-                    rows="3" 
-                    placeholder="Enter your query details..."
-                    className="w-full bg-brand-bg/60 border border-brand-greenDeep/10 rounded-xl px-4 py-3 text-xs text-brand-charcoal focus:outline-none focus:border-brand-greenDeep transition-all font-sans font-semibold placeholder-brand-muted/40 resize-none"
-                  ></textarea>
-                </div>
+                  {/* Phone */}
+                  <div className="flex items-start gap-3.5 text-xs text-white/90 font-sans">
+                    <Phone className="w-4 h-4 text-brand-gold shrink-0 mt-0.5" />
+                    <span>{campus.phones.join(', ')}</span>
+                  </div>
 
-                <button 
-                  type="submit" 
-                  className="w-full bg-brand-greenDeep text-white hover:bg-brand-greenVibrant py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-md flex items-center justify-center gap-2 cursor-pointer group"
+                  {/* Email */}
+                  <div className="flex items-center gap-3.5 text-xs text-white/90 font-sans">
+                    <Mail className="w-4 h-4 text-brand-gold shrink-0" />
+                    <span>{campus.email}</span>
+                  </div>
+
+                  {/* Office Hours */}
+                  <div className="flex items-center gap-3.5 text-xs text-white/70 font-sans font-semibold pt-2">
+                    <Clock className="w-4 h-4 text-brand-gold shrink-0" />
+                    <span>Office Hours: {campus.hours}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Button: Redirects to School Contact Us Page */}
+              <div className="pt-8 border-t border-white/10 mt-8 relative z-10">
+                <Link
+                  to={campus.contactRoute}
+                  className={`w-full ${campus.btnBg} font-extrabold text-xs uppercase tracking-widest py-4 px-6 rounded-2xl transition-all duration-300 shadow-lg flex items-center justify-center gap-2.5 cursor-pointer group-hover:shadow-xl`}
                 >
-                  Submit Inquiry 
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </button>
-              </form>
-            )}
-          </div>
-
+                  <span>View More Info</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
-
       </div>
     </section>
   )

@@ -1,49 +1,53 @@
-import React, { useState } from 'react'
-import { Brain, Sparkles, Award, GraduationCap, Heart, Quote, ChevronDown, ChevronUp } from 'lucide-react'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Brain, Sparkles, Award, GraduationCap, Heart, Quote, CheckCircle2, ArrowRight } from 'lucide-react'
 import ImageWithLoader from './ImageWithLoader'
 import { useSiteData } from '../hooks/useSiteData'
 
 const ICON_MAP = { Brain, Sparkles, Award, GraduationCap, Heart }
 
+// Default 3 feature cards for each pillar matching design specification
+const DEFAULT_PILLAR_FEATURES = {
+  'Caring School': [
+    { title: 'Empathy & Humane Values', desc: 'Belief that being Good is more fundamental than being just Smart.' },
+    { title: 'Smiley Badges & Positivity', desc: 'Positive reinforcement culture that nurtures emotional well-being.' },
+    { title: 'Social Responsibility (SSR)', desc: 'Discipline through reflection and inspiring students to give back.' }
+  ],
+  'Innovating School': [
+    { title: 'Innovation Hub', desc: 'State-of-the-art labs fostering AI, scientific research & prototype building.' },
+    { title: 'Inspire Manak Grants', desc: 'Annual ₹10,000 national innovation grants awarded to student inventors.' },
+    { title: 'Student Enterprises', desc: 'Real-world entrepreneurship, sports leadership & social impact initiatives.' }
+  ],
+  'Skill Building School': [
+    { title: 'Tinkering & Maker Labs', desc: '3D printing, robotics, automation & design thinking.' },
+    { title: 'Agriculture & Life Sciences', desc: 'Biodiversity registers, plant nursery & microgreens.' },
+    { title: 'Human Services & Vocational', desc: 'Healthcare, family health & culinary arts.' }
+  ],
+  'Winning School': [
+    { title: 'Academic Excellence', desc: 'District, State & North India toppers across CBSE board examinations.' },
+    { title: 'Global Platforms', desc: 'Representing India at international innovation summits & hackathons.' },
+    { title: 'International Sports', desc: 'Delfites competing globally in international arenas across Kazakhstan & Africa.' }
+  ],
+  'Thinking School with a Soul': [
+    { title: 'AQAD Questions', desc: 'Non-routine daily questions prompting students to reflect and reason.' },
+    { title: 'Thinkrooms & Thinklines', desc: 'Classrooms transformed into interactive spaces of inquiry & research.' },
+    { title: 'Reflection Over Rhetoric', desc: 'Failures treated as feedback, empowering deep self-governance.' }
+  ]
+}
+
+const PILLAR_ROUTES = {
+  'Thinking School with a Soul': '/pedagogy/early-years',
+  'Innovating School': '/what-sets-us-apart',
+  'Skill Building School': '/pedagogy/senior-years',
+  'Winning School': '/awards',
+  'Caring School': '/counselling'
+}
+
 export default function ThinkingSchool() {
   const { global } = useSiteData()
   const ts = global.thinkingSchool || {}
-  const [expandedPillars, setExpandedPillars] = useState({})
-
-  const togglePillar = (title) => {
-    setExpandedPillars(prev => ({ ...prev, [title]: !prev[title] }))
-  }
 
   const pillars = (ts.pillars || []).map(p => ({ ...p, icon: ICON_MAP[p.icon] || Brain }))
-  const galleryImages = ts.gallery || []
-
-  const _legacyPillars = [
-    {
-      title: 'Thinking School with a Soul',
-      desc: 'We nurture a culture of research and innovation—classrooms transform into Thinkrooms, failures become feedback, and learning extends far beyond textbooks. Every lesson begins with open-ended, non-routine Thinking questions that challenge children to go beyond the rhetoric. Everyday children get A Thinking Question A Day (AQAD) that makes them reflect, reason, and explore new possibilities.',
-      icon: Brain,
-      color: 'from-blue-500/10 to-indigo-500/10',
-      iconColor: 'text-indigo-600',
-    },
-    {
-      title: 'Innovating School',
-      desc: 'Innovation is a deliberate outcome of a carefully nurtured environment. Each year our Innovation Hub churns out multiple Innovators who receive grants of ₹10,000 each, under the Inspire Manak award, to work on their scientific innovations. Whether it is building AI-powered innovations, launching student enterprises, excelling in sports and arts, or leading social impact initiatives, every Delfite is encouraged to discover not just what they want to become, but who they want to be.',
-      icon: Sparkles,
-      color: 'from-amber-500/10 to-orange-500/10',
-      iconColor: 'text-amber-600',
-    },
-    {
-      title: 'Winning School',
-      desc: 'We are a winning school. Our students have emerged as District, State, and North India toppers in academics, earned global innovation grants, represented India at prestigious international platforms, won national hackathons, and built ventures that solve real-world problems. Yet, beyond every accolade lies a culture that teaches children to succeed without losing their sensitivity, individuality, or humanity. Similarly in sports our Delfites have represented India in Africa and Kazakhstan on international platforms.',
-      icon: Award,
-      color: 'from-emerald-500/10 to-teal-500/10',
-      iconColor: 'text-emerald-600',
-    },
-    {
-      title: 'Skill Building School',
-      desc: 'A Skill-Building School where learning is translated into capability, creativity, and confidence.',
-    }
-  ] // _legacyPillars — not used; data sourced from useSiteData()
 
   return (
     <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden">
@@ -88,45 +92,69 @@ export default function ThinkingSchool() {
             {pillars.map((pillar, idx) => {
               const Icon = pillar.icon
               const isEven = idx % 2 === 0;
-              const isExpanded = !!expandedPillars[pillar.title];
+              const features = pillar.features || DEFAULT_PILLAR_FEATURES[pillar.title] || DEFAULT_PILLAR_FEATURES['Thinking School with a Soul']
 
               return (
                 <div 
                   key={pillar.title} 
                   className="bg-white rounded-3xl border border-brand-masterDeep/5 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col md:flex-row overflow-hidden group"
                 >
+                  {/* Image Banner */}
                   <div className={`w-full md:w-1/2 aspect-[16/10] md:aspect-auto bg-brand-bg relative overflow-hidden ${isEven ? 'md:order-1' : 'md:order-2'}`}>
                     <ImageWithLoader 
                       src={pillar.image} 
                       alt={pillar.imageAlt || pillar.title} 
                       className="absolute inset-0"
                       imgClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                      style={{ objectPosition: pillar.objectPosition || 'center 25%' }}
                       loading="lazy" 
                     />
                   </div>
                   
-                  <div className={`w-full md:w-1/2 p-6 md:p-8 lg:p-10 flex flex-col justify-center space-y-3 ${isEven ? 'md:order-2' : 'md:order-1'}`}>
-                    <div className="flex items-center gap-3.5 md:flex-col md:items-start md:gap-3">
-                      <div className={`w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br ${pillar.color} flex items-center justify-center shadow-sm ${pillar.iconColor}`}>
-                        <Icon className="w-6 h-6" />
+                  {/* Content Column */}
+                  <div className={`w-full md:w-1/2 p-6 md:p-8 lg:p-10 flex flex-col justify-center space-y-6 ${isEven ? 'md:order-2' : 'md:order-1'}`}>
+                    <div className="space-y-4">
+                      {/* Header */}
+                      <div className="flex items-center gap-3.5 md:flex-col md:items-start md:gap-3">
+                        <div className={`w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br ${pillar.color} flex items-center justify-center shadow-sm ${pillar.iconColor}`}>
+                          <Icon className="w-6 h-6" />
+                        </div>
+                        <h3 className="font-serif text-xl sm:text-2xl font-bold text-brand-masterDeep">{pillar.title}</h3>
                       </div>
-                      <h3 className="font-serif text-xl sm:text-2xl font-bold text-brand-masterDeep">{pillar.title}</h3>
-                    </div>
-                    
-                    <div className="space-y-2">
+                      
+                      {/* Description */}
                       <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-sans">
-                        {isExpanded ? pillar.desc : `${pillar.desc.slice(0, 160)}...`}
+                        {pillar.desc}
                       </p>
-                      <button 
-                        onClick={() => togglePillar(pillar.title)}
-                        className="inline-flex items-center gap-1 text-[11px] font-extrabold uppercase tracking-wider text-brand-greenDeep hover:text-brand-greenVibrant transition-colors cursor-pointer self-start mt-1"
+
+                      {/* 3 Small Feature Cards Grid (Matching User Spec) */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                        {features.slice(0, 3).map((feat, fIdx) => (
+                          <div 
+                            key={fIdx} 
+                            className="bg-brand-bg/60 rounded-2xl p-3.5 border border-brand-greenDeep/10 hover:border-brand-gold/50 transition-all duration-300 space-y-1 group/subcard"
+                          >
+                            <div className="flex items-center gap-2 font-bold text-xs text-brand-masterDeep">
+                              <CheckCircle2 className="w-4 h-4 text-brand-gold shrink-0 group-hover/subcard:scale-110 transition-transform" />
+                              <span>{feat.title}</span>
+                            </div>
+                            <p className="text-[11px] text-brand-muted leading-relaxed font-sans pl-6">
+                              {feat.desc}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* View More Button */}
+                    <div className="pt-2">
+                      <Link 
+                        to={pillar.route || PILLAR_ROUTES[pillar.title] || "/what-sets-us-apart"} 
+                        className="inline-flex items-center gap-2 bg-brand-greenDeep hover:bg-brand-greenVibrant text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] cursor-pointer"
                       >
-                        {isExpanded ? (
-                          <>View Less <ChevronUp className="w-3.5 h-3.5" /></>
-                        ) : (
-                          <>View More <ChevronDown className="w-3.5 h-3.5" /></>
-                        )}
-                      </button>
+                        <span>View More</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
                     </div>
                   </div>
                 </div>

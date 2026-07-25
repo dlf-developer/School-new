@@ -37,6 +37,7 @@ import SchoolEditorials from './components/SchoolEditorials'
 import SchoolAdmissions from './components/SchoolAdmissions'
 import UsefulLinks from './components/UsefulLinks'
 import ContactHome from './components/ContactHome'
+import AdmissionEnquiry from './components/AdmissionEnquiry'
 
 
 // Premium Section Separator Component
@@ -220,8 +221,12 @@ export default function App() {
           <Route path="/alumni" element={<CommonPages />} />
           <Route path="/careers" element={<CommonPages />} />
           <Route path="/sports-arena" element={<CommonPages />} />
+          <Route path="/counselling" element={<SchoolCounselling />} />
+          <Route path="/dlf-sahibabad/counselling" element={<Navigate to="/counselling" replace />} />
           <Route path="/contact" element={<CommonPages />} />
           <Route path="/useful-links" element={<UsefulLinks />} />
+          <Route path="/admission-enquiry" element={<AdmissionEnquiry />} />
+          <Route path="/admissions" element={<Navigate to="/admission-enquiry" replace />} />
           
           {/* Dynamic Branch Routes */}
           <Route path="/school/:schoolId" element={<Home />} />
@@ -233,7 +238,7 @@ export default function App() {
           <Route path="/school/:schoolId/curriculum/:pathway" element={<Curriculum />} />
           <Route path="/school/:schoolId/holistic-learning" element={<SchoolHolistic />} />
           <Route path="/school/:schoolId/holistic-learning/:sectionId" element={<SchoolHolistic />} />
-          <Route path="/school/:schoolId/counselling" element={<SchoolCounselling />} />
+          <Route path="/school/:schoolId/counselling" element={<Navigate to="/counselling" replace />} />
           <Route path="/school/:schoolId/winning-school" element={<SchoolWinning />} />
           <Route path="/school/:schoolId/editorials" element={<SchoolEditorials />} />
           <Route path="/school/:schoolId/disclosures" element={<Disclosures />} />

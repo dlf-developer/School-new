@@ -6,8 +6,7 @@ import { Heart, Compass, ShieldAlert, ArrowLeft, Send, CheckCircle2, Award, Chev
 export default function SchoolCounselling() {
   const { schoolId } = useParams()
   const { schools } = useSiteData()
-  const activeBranch = schoolId && schools[schoolId] ? schoolId : 'dlf-sahibabad'
-  const currentSchool = schools[activeBranch]
+  const currentSchool = schoolId ? schools[schoolId] : null
 
   const theme = currentSchool?.theme || {
     primary: 'brand-greenDeep',
@@ -44,14 +43,14 @@ export default function SchoolCounselling() {
             <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>Support & Guidance</span>
             <h2 className={`font-serif text-3xl sm:text-4xl font-bold text-${theme.primary}`}>Counselling, Career & Wellness</h2>
             <p className="text-xs sm:text-sm text-brand-muted mt-1 font-inter font-medium">
-              Providing emotional security, career navigation, and comprehensive healthcare systems.
+              Providing emotional security, career navigation, and comprehensive healthcare systems across DLF Group Schools.
             </p>
           </div>
           <Link 
-            to={`/school/${activeBranch}`}
+            to={schoolId ? `/school/${schoolId}` : "/"}
             className={`flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-${theme.primary} hover:opacity-80 transition-opacity shrink-0`}
           >
-            <ArrowLeft className="w-4 h-4" /> Back to School Home
+            <ArrowLeft className="w-4 h-4" /> {schoolId ? 'Back to School Home' : 'Back to Home'}
           </Link>
         </div>
 
@@ -427,7 +426,7 @@ export default function SchoolCounselling() {
             </div>
             <div className="pt-6 border-t border-gray-200 mt-6 text-xs text-brand-muted font-inter">
               <strong>Wellness & Guidance Center</strong><br />
-              {currentSchool.name}
+              {currentSchool?.name || 'DLF Group Schools'}
             </div>
           </div>
 

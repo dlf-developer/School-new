@@ -54,7 +54,7 @@ export default function Footer() {
                 {schoolId ? 'DLF SCHOOL' : 'DLF SCHOOLS'}
               </span>
               <h4 className="font-serif text-base sm:text-lg font-black uppercase tracking-tight leading-tight mt-1">
-                {currentSchool ? currentSchool.name : 'UNIFIED GROUP PORTAL'}
+                {currentSchool ? currentSchool.name : 'DARBARI LAL FOUNDATION'}
               </h4>
               <p className={`text-[9px] text-${theme.accent} uppercase tracking-widest font-semibold font-inter mt-1`}>
                 {currentSchool ? `${currentSchool.shortLocation} • ${currentSchool.cbseInfo}` : 'Sahibabad & Greater Noida'}
@@ -107,7 +107,7 @@ export default function Footer() {
                 <li><Link to={`/school/${schoolId}/admissions`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Admissions & Fees</Link></li>
                 <li><Link to={`/school/${schoolId}/curriculum`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; School Curriculum</Link></li>
                 <li><Link to={`/school/${schoolId}/holistic-learning`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Holistic Learning</Link></li>
-                <li><Link to={`/school/${schoolId}/counselling`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Counselling & Wellness</Link></li>
+                <li><Link to="/counselling" className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Counselling & Wellness</Link></li>
                 <li><Link to={`/school/${schoolId}/winning-school`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Winning School Awards</Link></li>
                 <li><Link to={`/school/${schoolId}/editorials`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; DLF Editorials</Link></li>
                 <li><Link to={`/school/${schoolId}/disclosures`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Mandated Disclosures</Link></li>

@@ -230,7 +230,18 @@ export default function Awards() {
     })
   }, [searchTerm, activeCategory])
 
-  // Group filtered awards by year and find first available image for the year
+  const AWARD_IMAGES = [
+    '/RIDS.JPG',
+    '/Wipro Earthian Award for Sustainability.jpeg',
+    '/Sustainability Superstar Award.jpg',
+    '/WMARS.jpeg',
+    '/Consistently number 2.jpeg',
+    '/C Fore Ranking.jpg',
+    '/the Silver Award.jpeg',
+    '/Skillbuilder Certificate.jpeg',
+  ]
+
+  // Group filtered awards by year and ensure each picture is used ONLY ONCE (no repeats)
   const groupedAwards = useMemo(() => {
     const groups = {}
     filteredAwards.forEach(item => {
@@ -247,7 +258,39 @@ export default function Awards() {
       }
     })
     
-    return Object.values(groups).sort((a, b) => b.year.localeCompare(a.year))
+    const sorted = Object.values(groups).sort((a, b) => b.year.localeCompare(a.year))
+    const usedImages = new Set()
+    
+    // First pass: track explicitly defined unique images
+    sorted.forEach(g => {
+      if (g.img && !usedImages.has(g.img)) {
+        usedImages.add(g.img)
+      } else {
+        g.img = null
+      }
+    })
+    
+    // Second pass: fill empty timeline slots with unused images strictly once
+    let imgIdx = 0
+    return sorted.map(group => {
+      if (group.img) return group
+      
+      while (imgIdx < AWARD_IMAGES.length && usedImages.has(AWARD_IMAGES[imgIdx])) {
+        imgIdx++
+      }
+      
+      let assignedImg = null
+      if (imgIdx < AWARD_IMAGES.length) {
+        assignedImg = AWARD_IMAGES[imgIdx]
+        usedImages.add(assignedImg)
+        imgIdx++
+      }
+      
+      return {
+        ...group,
+        img: assignedImg
+      }
+    })
   }, [filteredAwards])
 
   return (
@@ -267,57 +310,12 @@ export default function Awards() {
           </h1>
           <div className="w-16 h-[2px] bg-brand-gold mx-auto"></div>
           <p className="text-base text-brand-muted leading-relaxed font-sans max-w-2xl mx-auto">
-            DLF Public School’s continuous pursuit of excellence is validated by prominent rankings, ecological accolades, and national recognition.
+            Our group's continuous pursuit of excellence is validated by prominent rankings, ecological accolades, and national recognition.
           </p>
         </div>
 
-        {/* 1. Visual Hall of Fame */}
-        <section className="space-y-8 max-w-6xl mx-auto">
-          <div className="flex items-center justify-between border-b border-brand-masterDeep/5 pb-4">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-brand-masterDeep flex items-center gap-2">
-              <Trophy className="w-6 h-6 text-brand-gold" />
-              Hall of Fame Highlights
-            </h2>
-            <span className="text-xs text-brand-muted font-semibold uppercase tracking-wider hidden sm:inline-block">Major Accolades</span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {hallOfFame.map((item, idx) => (
-              <div 
-                key={idx} 
-                className="bg-white rounded-3xl border border-brand-masterDeep/5 shadow-sm overflow-hidden flex flex-col hover:shadow-md transition-all duration-300 group"
-              >
-                {/* Visual Image container with aspect ratio */}
-                <div className="overflow-hidden bg-brand-bg aspect-[4/3] relative border-b border-brand-masterDeep/5">
-                  <ImageWithLoader 
-                    src={item.img} 
-                    alt={item.title} 
-                    imgClassName="w-full h-full object-cover transition-transform duration-750 group-hover:scale-103" 
-                    loading="lazy" 
-                  />
-                  <div className="absolute top-3 left-3 bg-brand-masterDeep/90 backdrop-blur-sm text-white text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border border-white/10">
-                    {item.year}
-                  </div>
-                </div>
-
-                <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                  <div className="space-y-2">
-                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-gold block">{item.by}</span>
-                    <h3 className="font-serif text-lg font-bold text-brand-masterDeep group-hover:text-brand-greenDeep transition-colors leading-snug">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-brand-muted leading-relaxed font-sans">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 2. Interactive Timeline / List of Achievements */}
-        <section className="space-y-8 max-w-5xl mx-auto pt-8">
+        {/* Interactive Timeline / List of Achievements */}
+        <section className="space-y-8 max-w-5xl mx-auto pt-4">
           <div className="space-y-4">
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-brand-masterDeep text-center lg:text-left">
               Historical Timeline

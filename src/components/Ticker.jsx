@@ -1,12 +1,23 @@
 import React from 'react'
-import { Award, Leaf, Globe } from 'lucide-react'
+import { Award, Leaf, Globe, Sparkles, Zap, Trophy, ShieldCheck } from 'lucide-react'
 import { useSiteData } from '../hooks/useSiteData'
 
-const ICON_MAP = { Award, Leaf, Globe }
+const ICON_MAP = { Award, Leaf, Globe, Sparkles, Zap, Trophy, ShieldCheck }
+
+const DEFAULT_ITEMS = [
+  { id: 'tick-1', icon: 'Globe', text: 'Recognition of International Dimension in Schools' },
+  { id: 'tick-2', icon: 'Leaf', text: 'Wipro Earthian Award for Sustainability' },
+  { id: 'tick-3', icon: 'Award', text: 'Go Sharpener Sustainability Superstar' },
+  { id: 'tick-4', icon: 'Leaf', text: 'First Plastic Neutral School in Delhi-NCR' },
+  { id: 'tick-5', icon: 'Award', text: 'ET Tech X School Excellence Award' },
+  { id: 'tick-6', icon: 'Award', text: 'School Excellence Recognition' },
+  { id: 'tick-7', icon: 'Globe', text: 'British Council International School Award' },
+  { id: 'tick-8', icon: 'Award', text: 'Microsoft Entrepreneurship & Innovation Award' }
+]
 
 export default function Ticker() {
   const { global } = useSiteData()
-  const items = global.ticker?.items || []
+  const items = (global?.ticker?.items && global.ticker.items.length > 0) ? global.ticker.items : DEFAULT_ITEMS
 
   return (
     <section className="bg-brand-greenDeep text-brand-bg py-5 sm:py-6 overflow-hidden relative border-y border-brand-gold/15">
@@ -36,3 +47,4 @@ export default function Ticker() {
     </section>
   )
 }
+

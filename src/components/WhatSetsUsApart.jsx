@@ -72,10 +72,7 @@ export default function WhatSetsUsApart({
                   What Sets Us Apart
                 </h1>
                 <p className="text-sm sm:text-base text-brand-muted font-medium leading-relaxed">
-                  We cultivate futuristic job creators,
-                  global citizens, and compassionate
-                  change-makers through real-world immersion
-                  and structural programs.
+                  Character building at DLF is intentionally woven into everyday learning. Whether it is through collaborative projects, community outreach, leadership opportunities, or classroom discussions, students are encouraged to make ethical choices and stand by them.
                 </p>
               </div>
               <div className="lg:col-span-5">
@@ -99,11 +96,8 @@ export default function WhatSetsUsApart({
                 <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-masterDeep">
                   What Sets Us Apart
                 </h1>
-                <p className="text-sm sm:text-base text-brand-muted max-w-2xl font-medium">
-                  We cultivate futuristic job creators,
-                  global citizens, and compassionate
-                  change-makers through real-world immersion
-                  and structural programs.
+                <p className="text-sm sm:text-base text-brand-muted max-w-2xl font-medium leading-relaxed">
+                  Character building at DLF is intentionally woven into everyday learning. Whether it is through collaborative projects, community outreach, leadership opportunities, or classroom discussions, students are encouraged to make ethical choices and stand by them.
                 </p>
               </div>
             </div>
