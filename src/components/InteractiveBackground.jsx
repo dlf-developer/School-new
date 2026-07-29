@@ -6,6 +6,9 @@ export default function InteractiveBackground() {
   const canvasRef = useRef(null)
   const location = useLocation()
 
+  // Detect active school route for plain background rendering
+  const isSchoolPage = location.pathname.startsWith('/school/')
+
   // Detect active school route in render to pass to animation refs
   const match = location.pathname.match(/^\/school\/([^/]+)/)
   const schoolId = match && schoolsData[match[1]] ? match[1] : null
@@ -18,6 +21,8 @@ export default function InteractiveBackground() {
   }, [schoolId])
 
   useEffect(() => {
+    if (isSchoolPage) return
+
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -435,6 +440,14 @@ export default function InteractiveBackground() {
       cancelAnimationFrame(animationFrameId)
     }
   }, [])
+
+  if (isSchoolPage) {
+    return (
+      <div className="fixed inset-0 bg-[#FBFBFC] z-[-1] pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-[#F9FAFB] to-[#F3F4F6]" />
+      </div>
+    )
+  }
 
   return (
     <canvas

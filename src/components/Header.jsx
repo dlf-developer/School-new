@@ -519,7 +519,7 @@ export default function Header() {
           {/* Right Portal Anchors */}
           <div className="hidden lg:flex items-center gap-3 xl:gap-4 shrink-0 font-semibold uppercase tracking-widest text-[10px] text-white">
             <Link
-              to="/counselling"
+              to={schoolId ? `/school/${schoolId}/counselling` : "/counselling"}
               className="hover:text-brand-gold transition-colors duration-300"
             >
               Counselling &amp; Wellness
@@ -532,19 +532,31 @@ export default function Header() {
               School in News
             </Link>
             <span className="text-white/20">|</span>
-            <Link
-              to="/careers"
-              className="hover:text-brand-gold transition-colors duration-300"
+            <a
+              href={
+                schoolId === "dlf-greater-noida"
+                  ? "https://forms.edunexttechnologies.com/forms/dlws/recruitment/"
+                  : "https://forms.edunexttechnologies.com/forms/dlps/recruitment/"
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-brand-gold transition-colors duration-300 flex items-center gap-1"
             >
-              Careers
-            </Link>
+              Careers ↗
+            </a>
             <span className="text-white/20">|</span>
-            <Link
-              to="/useful-links"
-              className="hover:text-brand-gold transition-colors duration-300"
+            <a
+              href={
+                schoolId === "dlf-greater-noida"
+                  ? "https://www.dlws.edu.in/useful-links"
+                  : "https://www.dlps.co.in/useful-links"
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-brand-gold transition-colors duration-300 flex items-center gap-1"
             >
-              Useful Links
-            </Link>
+              Useful Links ↗
+            </a>
           </div>
         </div>
       </div>
@@ -733,7 +745,7 @@ export default function Header() {
             {schoolId ? (
               <>
                 {/* 0. School Mega Menu Trigger */}
-                <div className="relative group py-1 flex items-center justify-center">
+                <div className="group py-1 flex items-center justify-center">
                   <Link
                     to={`/school/${schoolId}`}
                     className={`flex items-center gap-1 text-${theme.primary} font-serif font-black text-sm sm:text-base hover:opacity-85 transition-opacity cursor-pointer`}
@@ -747,7 +759,7 @@ export default function Header() {
                   {/* ── SCHOOL SITE: full mega menu on hover ── */}
                   <div
                     className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 text-left pointer-events-none group-hover:pointer-events-auto"
-                    style={{ width: "1008px", zIndex: 200 }}
+                    style={{ width: "960px", maxWidth: "94vw", zIndex: 200 }}
                   >
                     <div className="translate-y-2 group-hover:translate-y-0 transition-transform duration-300 relative">
                       <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex">
@@ -1036,13 +1048,15 @@ export default function Header() {
                         <BookOpen className="w-3.5 h-3.5 shrink-0 text-gray-400" />
                         CBSE Pathway
                       </Link>
-                      <Link
-                        to={`/school/${schoolId}/curriculum/cambridge`}
-                        className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.endsWith("/cambridge") ? `text-${theme.vibrant}` : ""}`}
-                      >
-                        <Globe className="w-3.5 h-3.5 shrink-0 text-gray-400" />
-                        Cambridge Pathway
-                      </Link>
+                      {schoolId !== "dlf-greater-noida" && (
+                        <Link
+                          to={`/school/${schoolId}/curriculum/cambridge`}
+                          className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.endsWith("/cambridge") ? `text-${theme.vibrant}` : ""}`}
+                        >
+                          <Globe className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                          Cambridge Pathway
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -1106,8 +1120,26 @@ export default function Header() {
                         <Award className="w-3.5 h-3.5 shrink-0 text-gray-400" />
                         Student Achievements
                       </Link>
+                      <Link
+                        to={`/school/${schoolId}/holistic-learning/student-life`}
+                        className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.endsWith("/student-life") ? `text-${theme.vibrant}` : ""}`}
+                      >
+                        <Users className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                        Student Life &amp; Guild
+                      </Link>
                     </div>
                   </div>
+                </div>
+
+                {/* 6. Virtual Tour */}
+                <div className="relative py-2 flex flex-col items-center justify-center">
+                  <a
+                    href="#virtual-tour"
+                    onClick={(e) => handleHashClick(e, "#virtual-tour")}
+                    className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold flex items-center gap-1`}
+                  >
+                    <span>Virtual Tour</span>
+                  </a>
                 </div>
               </>
             ) : (
@@ -1340,15 +1372,21 @@ export default function Header() {
                     </Link>
                   </div>
 
-                  <Link
-                    to="/useful-links"
+                  <a
+                    href={
+                      schoolId === "dlf-greater-noida"
+                        ? "https://www.dlws.edu.in/useful-links"
+                        : "https://www.dlps.co.in/useful-links"
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={() =>
                       setIsMobileMenuOpen(false)
                     }
-                    className="hover:text-brand-gold py-1"
+                    className="hover:text-brand-gold py-1 flex items-center gap-1"
                   >
-                    Useful Links
-                  </Link>
+                    Useful Links ↗
+                  </a>
                   <Link
                     to="/alumni"
                     onClick={() =>
@@ -1358,15 +1396,21 @@ export default function Header() {
                   >
                     Alumni Network
                   </Link>
-                  <Link
-                    to="/careers"
+                  <a
+                    href={
+                      schoolId === "dlf-greater-noida"
+                        ? "https://forms.edunexttechnologies.com/forms/dlws/recruitment/"
+                        : "https://forms.edunexttechnologies.com/forms/dlps/recruitment/"
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={() =>
                       setIsMobileMenuOpen(false)
                     }
-                    className="hover:text-brand-gold py-1"
+                    className="hover:text-brand-gold py-1 flex items-center gap-1"
                   >
-                    Careers
-                  </Link>
+                    Careers ↗
+                  </a>
                 </>
               )}
 
@@ -1551,6 +1595,15 @@ export default function Header() {
                       className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}
                     >
                       Student Achievements
+                    </Link>
+                    <Link
+                      to={`/school/${schoolId}/holistic-learning/student-life`}
+                      onClick={() =>
+                        setIsMobileMenuOpen(false)
+                      }
+                      className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}
+                    >
+                      Student Life &amp; Guild
                     </Link>
                   </div>
                   <Link

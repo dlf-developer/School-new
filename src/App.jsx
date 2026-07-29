@@ -38,7 +38,7 @@ import SchoolAdmissions from './components/SchoolAdmissions'
 import UsefulLinks from './components/UsefulLinks'
 import ContactHome from './components/ContactHome'
 import AdmissionEnquiry from './components/AdmissionEnquiry'
-
+import CbseResults from './components/CbseResults'
 
 // Premium Section Separator Component
 function SectionSeparator() {
@@ -52,48 +52,34 @@ function SectionSeparator() {
 }
 
 // Master Home page sections aggregator matching exact section order from design spec:
-// 1st Section – Video (Hero)
-// 2nd Section – School Awards
-// 3rd Section – Our Pedagogy
-// 4th Section – Our Schools
-// 5th Section – What Sets Us Apart
-// 6th Section – Admissions 
-// 7th Section – Contact Us
 function MasterHome() {
   return (
     <>
-      {/* 1st Section – Video Hero (no glass, full-bleed) */}
       <Hero />
       <Ticker />
 
       <SectionSeparator />
 
-      {/* 2nd Section – School Awards */}
       <SchoolWinning isHomePage={true} />
 
       <SectionSeparator />
 
-      {/* 3rd Section – Our Pedagogy */}
       <Curriculum />
 
       <SectionSeparator />
 
-      {/* 4th Section – Our Schools */}
       <PortalHome />
 
       <SectionSeparator />
 
-      {/* 5th Section – What sets us apart (Preview mode) */}
       <WhatSetsUsApart isPreview={true} />
 
       <SectionSeparator />
 
-      {/* 6th Section – Admissions */}
       <Admissions />
 
       <SectionSeparator />
 
-      {/* 7th Section – Contact Us */}
       <ContactHome />
     </>
   )
@@ -107,9 +93,11 @@ function Home() {
       <Ticker />
       <Vision />
       <Stats />
+      <CbseResults />
       <Curriculum />
       <Pillars />
       <Holistic />
+      <Testimonials />
       <VirtualTour />
       <Admissions />
     </>

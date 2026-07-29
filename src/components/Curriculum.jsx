@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import {
   Sparkles,
   BookOpen,
@@ -9,19 +9,25 @@ import {
   GraduationCap,
   TrendingUp,
   ArrowRight,
+  Globe,
+  Award,
 } from "lucide-react";
 import gsap from "gsap";
 import { useSiteData } from "../hooks/useSiteData";
 import ImageWithLoader from "./ImageWithLoader";
+import CbseResults from "./CbseResults";
 
 export default function Curriculum() {
-  const { schoolId } = useParams();
+  const { schoolId, pathway: urlPathway } = useParams();
+  const location = useLocation();
+  const isCurriculumPage = location.pathname.includes("/curriculum");
   const { schools } = useSiteData();
   const activeBranch =
     schoolId && schools[schoolId]
       ? schoolId
       : "dlf-sahibabad";
   const currentSchool = schools[activeBranch];
+  const isDLWS = activeBranch === "dlf-greater-noida";
 
   const theme = currentSchool?.theme || {
     primary: "brand-greenDeep",
@@ -30,6 +36,9 @@ export default function Curriculum() {
     accentHex: "#C59B27",
   };
 
+  const [pathway, setPathway] = useState(
+    isDLWS ? "cbse" : (urlPathway === "cambridge" ? "cambridge" : "cbse")
+  );
   const [activeTab, setActiveTab] = useState("primary");
   const panesRef = useRef({});
 
@@ -75,24 +84,61 @@ export default function Curriculum() {
       id="curriculum"
       className="py-16 sm:py-24 bg-transparent relative overflow-hidden text-brand-charcoal selection:bg-brand-gold/30"
     >
-      {/* Background ambient glows matching Pedagogy */}
+      {/* Background ambient glows */}
       <div className="absolute top-20 right-1/4 w-[400px] h-[400px] ambient-glow-2 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-20 left-1/4 w-[450px] h-[450px] ambient-glow-1 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-10 space-y-12">
-        {/* Header Block matching screenshot styling */}
+        {/* Header Block */}
         <div className="text-center max-w-2xl mx-auto space-y-4">
           <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold">
-            Nurturing Learning Pathways
+            Academic Excellence &amp; Pathways
           </span>
           <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-brand-masterDeep">
-            Our Pedagogy
+            Academic Curriculum &amp; Pathways
           </h1>
           <div className="w-16 h-[2px] bg-brand-gold mx-auto"></div>
           <p className="text-base text-brand-muted leading-relaxed font-sans max-w-xl mx-auto">
-            Experiential, stage-wise education aligned with cognitive developmental milestones for progressive learning.
+            {isDLWS
+              ? "Comprehensive CBSE Board Curriculum designed for experiential learning, analytical thinking, and future readiness."
+              : "Dual Academic Curriculum offering CBSE Board Pathway and Cambridge International Board Pathway."}
           </p>
         </div>
+
+        {/* Pathway Switcher Buttons (DLPS gets CBSE + Cambridge; DLWS gets CBSE only) */}
+        {!isDLWS ? (
+          <div className="flex items-center justify-center gap-3">
+            <button
+              onClick={() => setPathway("cbse")}
+              className={`flex items-center gap-2 px-6 py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer shadow-sm ${
+                pathway === "cbse"
+                  ? `bg-${theme.primary} text-white shadow-md`
+                  : "bg-white text-brand-charcoal border border-gray-150 hover:bg-gray-50"
+              }`}
+            >
+              <BookOpen className="w-4 h-4" />
+              <span>CBSE Pathway</span>
+            </button>
+            <button
+              onClick={() => setPathway("cambridge")}
+              className={`flex items-center gap-2 px-6 py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all cursor-pointer shadow-sm ${
+                pathway === "cambridge"
+                  ? `bg-${theme.primary} text-white shadow-md`
+                  : "bg-white text-brand-charcoal border border-gray-150 hover:bg-gray-50"
+              }`}
+            >
+              <Globe className="w-4 h-4 text-brand-gold" />
+              <span>Cambridge Pathway</span>
+            </button>
+          </div>
+        ) : (
+          <div className="flex items-center justify-center">
+            <div className={`inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-${theme.primary}/10 text-${theme.primary} font-bold text-xs uppercase tracking-wider border border-${theme.primary}/20`}>
+              <BookOpen className="w-4 h-4" />
+              <span>CBSE Curriculum Pathway — {currentSchool?.name}</span>
+            </div>
+          </div>
+        )}
 
         {/* Stats Ribbon (4 cards preserved as requested) */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
@@ -362,13 +408,20 @@ export default function Curriculum() {
           </div>
         </div>
 
+        {/* Embedded CBSE Results Showcase (rendered on dedicated Curriculum page) */}
+        {isCurriculumPage && (
+          <div className="pt-8">
+            <CbseResults isEmbedded={true} />
+          </div>
+        )}
+
         {/* CTA Redirect Button */}
         <div className="text-center pt-4">
           <Link
             to="/pedagogy/early-years"
             className="inline-flex items-center gap-3 bg-brand-masterDeep hover:bg-brand-masterVibrant text-white px-8 py-4 rounded-full font-bold text-xs sm:text-sm uppercase tracking-widest transition-all duration-300 shadow-xl shadow-brand-masterDeep/20 hover:scale-105"
           >
-            <span>Explore Our Full Pedagogy</span>
+            <span>Explore Our Stage-wise Pedagogy</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

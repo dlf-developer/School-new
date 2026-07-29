@@ -12,7 +12,9 @@ import {
   Heart, 
   CheckCircle2, 
   Image as ImageIcon,
-  Sparkles
+  Sparkles,
+  Users,
+  FileText
 } from 'lucide-react'
 
 const iconMap = {
@@ -21,7 +23,8 @@ const iconMap = {
   visualArts: Palette,
   scholastic: BookOpen,
   schoolExcursions: Compass,
-  studentAchievements: Award
+  studentAchievements: Award,
+  studentLife: Users
 }
 
 const sectionTitles = {
@@ -30,7 +33,8 @@ const sectionTitles = {
   visualArts: 'Visual Arts, Clay Modeling & Design Studio',
   scholastic: 'Scholastic Learning Spaces, Labs & Library',
   schoolExcursions: 'School Excursions & Experiential Learning Journeys',
-  studentAchievements: 'Student Achievements & Delfite Trailblazers'
+  studentAchievements: 'Student Achievements & Delfite Trailblazers',
+  studentLife: 'Student Life, DLF Student Guild & Co-Curricular Clubs'
 }
 
 const categoryThumbnails = {
@@ -39,7 +43,8 @@ const categoryThumbnails = {
   visualArts: '/achievements/Unique Hospital Bed.jpg',
   scholastic: '/achievements/Pendulum Pump.png',
   schoolExcursions: '/achievements/ramjas (1).jpg',
-  studentAchievements: '/achievements/Aadya Singh.jpg'
+  studentAchievements: '/achievements/Aadya Singh.jpg',
+  studentLife: '/achievements/ramjas (1).jpg'
 }
 
 const sectionKeyMap = {
@@ -55,7 +60,11 @@ const sectionKeyMap = {
   'school-excursions': 'schoolExcursions',
   'schoolExcursions': 'schoolExcursions',
   'student-achievements': 'studentAchievements',
-  'studentAchievements': 'studentAchievements'
+  'studentAchievements': 'studentAchievements',
+  'student-life': 'studentLife',
+  'studentLife': 'studentLife',
+  'student-guild': 'studentLife',
+  'student-corner': 'studentLife'
 }
 
 export default function SchoolHolistic() {
@@ -89,7 +98,8 @@ export default function SchoolHolistic() {
     visualArts: 'Visual Arts at DLF Schools go far beyond conventional drawing and painting. Students engage with a wide range of creative mediums—sketching, canvas painting, clay modeling, sculpture, mixed media, and digital design—allowing them to experiment, take creative risks, and discover their own artistic voice. The focus is on observation, interpretation, and original expression. Art becomes a mode of critical thinking and emotional articulation, enhanced by our art-integrated academic approach where visual arts intersect with core subjects.',
     scholastic: 'Our scholastic foundation is anchored in state-of-the-art tinkering labs, digital hubs, and rich library resources. The THOTS Lab and Innovation Hub are dedicated spaces where analytical reasoning and scientific inquiry are nurtured. Our scholastic learning environments include Physics, Chemistry, Biology, and ICT Labs, alongside the FIM Lab. These are complemented by a central library housing over 20,000 books, class libraries (Nursery-XII), the DEAR (Drop Everything And Read) period, and modern presentation spaces including an Auditorium, Assembly Hall, Seminar Halls, and Conference Rooms.',
     schoolExcursions: 'Educational excursions are not a break from learning—they are learning in motion. Delfites participate in a rich variety of journeys: historical heritage walks, industry visits, science explorations, biodiversity parks, village immersions, museums, and outdoor leadership camps. Visits to prestigious institutions such as the President\'s Estate, National Physical Laboratory, Parliament Museum, and university research centres enable students to witness knowledge in action. Outdoor camps in Lohagarh Farms, Dharamshala, and Chakrata build resilience. Our students also participate in international exchange tours to countries like Russia, Malaysia, and beyond.',
-    studentAchievements: 'Every Delfite is encouraged to pursue multi-dimensional excellence—mastering academics, sports, and arts. Student Achievements showcase the remarkable triumphs of our Delfite Trailblazers across international sports championships, national science exhibitions, venture capital grants, and state records.'
+    studentAchievements: 'Every Delfite is encouraged to pursue multi-dimensional excellence—mastering academics, sports, and arts. Student Achievements showcase the remarkable triumphs of our Delfite Trailblazers across international sports championships, national science exhibitions, venture capital grants, and state records.',
+    studentLife: 'At DLF, we are on a mission to transform the world one child at a time. We believe that education should not confine learners to a syllabus but expose them to life. To be the individuals who will take charge of the world tomorrow, our children have to have the necessary Life Skills and the right Attitude. We offer numerous opportunities and platforms to Delfites so that they not only discover themselves but also create themselves. These opportunities to rub shoulder with life are significantly greater for Class XI & XII be it through the leadership roles they get or through inculcating Entrepreneurial skills as our young learners of Class XI cultivate themselves to be job creators rather than job seekers. Our Academic Outcomes too have consistently celebrated this culture of transformation—nurturing achievers and cultivating winners for over 22 years with a steady track record of State and District toppers.'
   }
 
   const subsectionFeatures = {
@@ -138,6 +148,14 @@ export default function SchoolHolistic() {
       'Ishika Singh — Prime All-Rounder in Delhi Premier League (DPL) Cricket for South Delhi Superstarz.',
       'Nandini Kansal — ITF International Tennis Representative in Nepal & Africa (AITA #21 UP Rank).',
       'Uday Kaul — ITF Kazakhstan Tennis Representative (AITA Men\'s All India Ranking 262).'
+    ],
+    studentLife: [
+      'DLF Student Guild (Comprising Peer Educators and Student Leaders putting leadership into practice with responsibility and ownership).',
+      'Month-Long Screening & Sifting Process (Student leaders chosen annually by school committee and outgoing Guild).',
+      'The 4 Planet Houses — Mercury (Yellow), Venus (Blue), Mars (Red), and Jupiter (Green) competing for the annual House Trophy.',
+      'House & School Assemblies Ownership (Student leaders organize and run assemblies, promoting mental health, integrity, and peer synergy).',
+      'Class XI & XII Entrepreneurial Cultivation (Inculcating entrepreneurial skills so young learners become job creators rather than job seekers).',
+      'Student Manifesto & Democratic Roles (Assuming small leadership roles in learning transactions, time management, and delegation).'
     ]
   }
 
@@ -172,6 +190,11 @@ export default function SchoolHolistic() {
       { src: '/achievements/Aadya Singh.jpg', caption: 'Arsalan Alam & Aadya Singh — SPARC Scholars & VC Grant Innovators' },
       { src: '/achievements/Shreeja Singh at UP State Championship.jpg', caption: 'Shreeja Singh — Best Swimmer UP State Championship' },
       { src: '/achievements/Ishika Singh cricket.jpg', caption: 'Ishika Singh — Delhi Premier League All-Rounder' }
+    ],
+    studentLife: [
+      { src: '/achievements/ramjas (1).jpg', caption: 'DLF Student Guild — Peer Educators & Student Leaders Investiture Ceremony' },
+      { src: '/achievements/Nrityanjali.jpeg', caption: 'Inter-House Competitions — Mercury, Venus, Mars & Jupiter Houses' },
+      { src: '/achievements/Pendulum Pump.png', caption: 'Class XI & XII Entrepreneurial & Leadership Showcase' }
     ]
   }
 
@@ -213,6 +236,14 @@ export default function SchoolHolistic() {
       'First in Math Annual Global Ranking 2025–26 — Global recognition for mathematical problem solving.',
       'World Skill Challenge National Champions — Overall Winner Titles in Drone X Big & Mystery Makers.',
       'Manak Inspire Awardees — 1st Position & ₹10,000 Cash Prize for Smart Ambulance & Fake Plate Buster.'
+    ],
+    studentLife: [
+      'DLF World School Student Guild (Peer Educators & Student Leaders fostering ownership and democratic leadership).',
+      'Month-Long Screening Process (Annual selection of student council members by school committee and outgoing Guild).',
+      '4 Planet House System — Mercury, Venus, Mars, and Jupiter competing for academic, sports, and House trophies.',
+      'Assembly & Community Ownership (Student leaders running House & School assemblies, peer support, and team building).',
+      'Entrepreneurial Skill Cultivation (Preparing senior students with Life Skills and leadership to be future leaders).',
+      'Student Manifesto Guidelines (Inculcating time management, delegation, and caring global citizenship).'
     ]
   }
 
@@ -246,6 +277,11 @@ export default function SchoolHolistic() {
       { src: '/images/dlws/dlws-school-achievements-dlws-1.jpg', caption: 'Kalamanjusha Overall Rolling Trophy Winners — DLF World School (36 Medalists)' },
       { src: '/images/dlws/dlws-hollistic-learning-educational-excursions-1.jpg', caption: 'Sustainability Superstar Award (2024 & 2025) by Go Sharpener' },
       { src: '/images/dlws/dlws-hollistic-learning-educational-excursions-4.jpg', caption: 'World Skill Challenge Drone X Big National Overall Champions' }
+    ],
+    studentLife: [
+      { src: '/images/dlws/dlws-school-achievements-dlws-1.jpg', caption: 'DLF World School Student Guild Leaders & House Captains' },
+      { src: '/images/dlws/dlws-hollistic-learning-educational-excursions-1.jpg', caption: 'Inter-House Cultural Showcase & Assembly Leaders' },
+      { src: '/images/dlws/dlws-hollistic-learning-educational-excursions-4.jpg', caption: 'STEAM & Innovation Club National Champions' }
     ]
   }
 
@@ -255,14 +291,15 @@ export default function SchoolHolistic() {
     visualArts: '/images/dlws/dlws-holistic-learning-1.jpg',
     scholastic: '/images/dlws/dlws-curriculum-1.jpg',
     schoolExcursions: '/images/dlws/dlws-hollistic-learning-educational-excursions-4.jpg',
-    studentAchievements: '/images/dlws/dlws-school-achievements-dlws-1.jpg'
+    studentAchievements: '/images/dlws/dlws-school-achievements-dlws-1.jpg',
+    studentLife: '/images/dlws/dlws-school-achievements-dlws-1.jpg'
   }
 
   const featuresToRender = activeBranch === 'dlf-greater-noida' ? dlwsSubsectionFeatures : subsectionFeatures
   const photosToRender = activeBranch === 'dlf-greater-noida' ? dlwsSubsectionPhotos : subsectionPhotos
   const thumbnailsToRender = activeBranch === 'dlf-greater-noida' ? dlwsCategoryThumbnails : categoryThumbnails
 
-  const keys = ['performingArts', 'sports', 'visualArts', 'scholastic', 'schoolExcursions', 'studentAchievements']
+  const keys = ['performingArts', 'sports', 'visualArts', 'scholastic', 'schoolExcursions', 'studentAchievements', 'studentLife']
   const ActiveIcon = iconMap[activeSub]
 
   return (
@@ -272,7 +309,7 @@ export default function SchoolHolistic() {
         {/* Page Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-6">
           <div>
-            <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>School Life & Wings</span>
+            <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>School Life &amp; Wings</span>
             <h2 className={`font-serif text-3xl sm:text-4xl font-bold text-${theme.primary}`}>Holistic Learning</h2>
             <p className="text-xs sm:text-sm text-brand-muted mt-1 font-inter font-medium">
               Fostering kinetic, creative, scholastic, and social intelligence beyond standard classroom boundaries.
@@ -290,7 +327,7 @@ export default function SchoolHolistic() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Navigation Sidebar */}
-          <div className="lg:col-span-4 bg-white rounded-3xl border border-gray-150 shadow-md p-5 space-y-3">
+          <div className="lg:col-span-4 lg:sticky lg:top-32 self-start bg-white rounded-3xl border border-gray-150 shadow-md p-5 space-y-3">
             <span className="text-[10px] font-extrabold uppercase tracking-widest text-gray-400 block px-2 mb-1">Holistic Learning Wings</span>
             {keys.map(key => {
               const Icon = iconMap[key]
@@ -300,7 +337,8 @@ export default function SchoolHolistic() {
                 : key === 'visualArts' ? 'Visual Arts' 
                 : key === 'scholastic' ? 'Scholastic' 
                 : key === 'schoolExcursions' ? 'School Excursions' 
-                : 'Student Achievements'
+                : key === 'studentAchievements' ? 'Student Achievements'
+                : 'Student Life, Guild & Clubs'
               
               const subRouteMap = {
                 performingArts: 'performing-arts',
@@ -308,7 +346,8 @@ export default function SchoolHolistic() {
                 visualArts: 'visual-arts',
                 scholastic: 'scholastic',
                 schoolExcursions: 'school-excursions',
-                studentAchievements: 'student-achievements'
+                studentAchievements: 'student-achievements',
+                studentLife: 'student-life'
               }
 
               return (
@@ -364,46 +403,179 @@ export default function SchoolHolistic() {
                 {holisticData[activeSub]}
               </p>
 
-              {/* Highlighted Bullets List */}
+              {/* Highlighted Bullets List — Clean & Content-Focused */}
               <div className="space-y-4 pt-2">
                 <h4 className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant} font-inter flex items-center gap-1.5`}>
                   <Sparkles className="w-3.5 h-3.5" /> Key Highlights &amp; Offerings
                 </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                  {featuresToRender[activeSub].map((feat, idx) => (
-                    <div key={idx} className="flex gap-2.5 items-start bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
-                      <CheckCircle2 className={`w-4 h-4 text-${theme.accent} shrink-0 mt-0.5`} />
-                      <span className="text-xs font-semibold text-brand-charcoal font-inter leading-relaxed">{feat}</span>
-                    </div>
-                  ))}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {featuresToRender[activeSub].map((feat, idx) => {
+                    let title = feat
+                    let desc = ''
+                    if (feat.includes('(')) {
+                      const parts = feat.split('(')
+                      title = parts[0].trim()
+                      desc = parts.slice(1).join('(').replace(/\)$/, '').trim()
+                    } else if (feat.includes('—')) {
+                      const parts = feat.split('—')
+                      title = parts[0].trim()
+                      desc = parts.slice(1).join('—').trim()
+                    }
+
+                    return (
+                      <div key={idx} className="bg-gray-50/70 p-5 rounded-2xl border border-gray-150 shadow-xs hover:border-brand-gold/40 hover:bg-white transition-all space-y-2 group">
+                        <div className="flex items-center gap-2.5">
+                          <div className={`w-7 h-7 rounded-lg bg-${theme.primary}/10 text-${theme.primary} flex items-center justify-center shrink-0`}>
+                            <CheckCircle2 className="w-4 h-4 text-brand-gold" />
+                          </div>
+                          <h5 className={`text-xs font-extrabold text-${theme.primary} font-serif tracking-wide`}>
+                            {title}
+                          </h5>
+                        </div>
+                        {desc && (
+                          <p className="text-[11px] text-brand-muted font-inter leading-relaxed pl-9">
+                            {desc}
+                          </p>
+                        )}
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
 
-              {/* Subsection Photos & Placeholders */}
-              {photosToRender[activeSub]?.length > 0 && (
+              {/* Subsection Photos — Only Actual High-Res Media (No Placeholders) */}
+              {activeSub !== 'studentLife' && photosToRender[activeSub]?.filter(p => !p.placeholder).length > 0 && (
                 <div className="space-y-4 border-t border-gray-100 pt-6">
                   <h4 className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant} font-inter`}>
-                    Media & Photo Gallery
+                    Media &amp; Photo Gallery
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                    {photosToRender[activeSub].map((photo, i) => (
+                    {photosToRender[activeSub].filter(p => !p.placeholder).map((photo, i) => (
                       <div key={i} className="rounded-xl overflow-hidden border border-gray-150 shadow-sm bg-white flex flex-col justify-between group">
-                        {photo.placeholder ? (
-                          <div className="aspect-[4/3] bg-gray-50 flex flex-col items-center justify-center p-4 text-center border-b border-gray-100 space-y-2">
-                            <div className="w-10 h-10 rounded-full bg-brand-gold/10 text-brand-gold flex items-center justify-center">
-                              <ImageIcon className="w-5 h-5" />
-                            </div>
-                            <span className="text-[11px] font-bold text-brand-charcoal font-serif">{photo.title}</span>
-                            <span className="text-[9px] text-brand-muted font-extrabold uppercase tracking-wider bg-gray-200/60 px-2 py-0.5 rounded-full">Photo Placeholder</span>
-                          </div>
-                        ) : (
-                          <div className="aspect-[4/3] overflow-hidden bg-gray-50 border-b border-gray-100">
-                            <img src={photo.src} alt={photo.caption} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                          </div>
-                        )}
-                        <p className="text-[9.5px] text-brand-muted font-inter p-2.5 leading-tight">{photo.caption}</p>
+                        <div className="aspect-[4/3] overflow-hidden bg-gray-50 border-b border-gray-100">
+                          <img src={photo.src} alt={photo.caption} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        </div>
+                        <p className="text-[9.5px] text-brand-muted font-inter p-2.5 leading-tight font-medium">{photo.caption}</p>
                       </div>
                     ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Render Custom Student Life & DLF Student Guild Showcase */}
+              {activeSub === 'studentLife' && (
+                <div className="space-y-8 pt-4">
+                  {/* Mission Quote Banner */}
+                  <div className="bg-gradient-to-r from-emerald-900 via-brand-greenDeep to-emerald-950 text-white rounded-3xl p-8 shadow-lg space-y-4 relative overflow-hidden">
+                    <div className="absolute -right-10 -bottom-10 opacity-10 text-white pointer-events-none">
+                      <Sparkles className="w-64 h-64" />
+                    </div>
+                    <div className="inline-flex items-center gap-2 bg-amber-400/20 border border-amber-400/30 text-amber-300 px-3.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest">
+                      <span>Sanctimonious Mission for 22+ Years</span>
+                    </div>
+                    <h4 className="font-serif text-xl sm:text-2xl font-bold leading-snug">
+                      "Transforming the World One Child at a Time"
+                    </h4>
+                    <p className="text-xs sm:text-sm text-white/85 font-inter leading-relaxed font-medium">
+                      We believe that education should not confine learners to a syllabus but expose them to life. To be the individuals who will take charge of the world tomorrow, our children have to have the necessary <strong>Life Skills</strong> and the right <strong>Attitude</strong>. We offer numerous opportunities so Delfites not only discover themselves but also create themselves.
+                    </p>
+                  </div>
+
+                  {/* Leadership & Entrepreneurship Pillars */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Box 1: DLF Student Guild */}
+                    <div className="bg-gray-50/80 rounded-2xl p-6 border border-gray-150 space-y-3">
+                      <div className="w-10 h-10 rounded-xl bg-brand-gold/10 text-brand-gold flex items-center justify-center font-bold">
+                        <Award className="w-5 h-5" />
+                      </div>
+                      <h5 className="font-serif text-base font-bold text-brand-charcoal">DLF Student Guild &amp; Peer Educators</h5>
+                      <p className="text-xs text-brand-muted font-inter leading-relaxed">
+                        Comprising Peer Educators and Student Leaders, the Guild puts leadership into practice, inculcating a deep sense of responsibility and ownership. Chosen through a month-long arduous screening and sifting process by the school committee and outgoing Guild, members run House and School assemblies, promote mental health, self-esteem, integrity, and peer synergy.
+                      </p>
+                    </div>
+
+                    {/* Box 2: Job Creators vs Job Seekers */}
+                    <div className="bg-gray-50/80 rounded-2xl p-6 border border-gray-150 space-y-3">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
+                        <Sparkles className="w-5 h-5" />
+                      </div>
+                      <h5 className="font-serif text-base font-bold text-brand-charcoal">Class XI &amp; XII Entrepreneurial Cultivation</h5>
+                      <p className="text-xs text-brand-muted font-inter leading-relaxed">
+                        Opportunities to rub shoulders with real life are significantly greater for Class XI &amp; XII learners. Through high-level leadership roles and inculcating entrepreneurial skills, our young learners cultivate themselves to be <strong>job creators rather than job seekers</strong>.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* The 4 Planet Houses Showcase */}
+                  <div className="bg-white rounded-3xl border border-gray-150 p-6 sm:p-8 space-y-6 shadow-xs">
+                    <div>
+                      <span className="text-[10px] font-extrabold uppercase tracking-widest text-gray-400">House Governance System</span>
+                      <h4 className="font-serif text-lg font-bold text-brand-charcoal">The 4 Planet Houses</h4>
+                      <p className="text-xs text-brand-muted font-inter mt-1">
+                        Each student is allocated to one of four planet houses. Houses earn points throughout the year for academic success, team participation, and pastoral leadership, culminating in the Annual House Trophy.
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                      {/* Mercury */}
+                      <div className="bg-amber-50/50 rounded-2xl p-5 border border-amber-200/60 space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-black uppercase tracking-wider text-amber-900 bg-[#f6f646] px-3 py-1 rounded-full border border-amber-300">Mercury</span>
+                          <span className="text-[10px] font-bold text-amber-700">Yellow House</span>
+                        </div>
+                        <p className="text-[11px] text-brand-charcoal font-inter leading-relaxed pt-1">
+                          Fostering intellect, rapid problem solving, inter-house debating, and academic excellence.
+                        </p>
+                      </div>
+
+                      {/* Venus */}
+                      <div className="bg-sky-50/50 rounded-2xl p-5 border border-sky-200/60 space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-black uppercase tracking-wider text-sky-950 bg-[#00b0f0] text-white px-3 py-1 rounded-full">Venus</span>
+                          <span className="text-[10px] font-bold text-sky-700">Blue House</span>
+                        </div>
+                        <p className="text-[11px] text-brand-charcoal font-inter leading-relaxed pt-1">
+                          Championing creative expression, fine arts, cultural events, and stagecraft mastery.
+                        </p>
+                      </div>
+
+                      {/* Mars */}
+                      <div className="bg-rose-50/50 rounded-2xl p-5 border border-rose-200/60 space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-black uppercase tracking-wider bg-[#eb2525] text-white px-3 py-1 rounded-full">Mars</span>
+                          <span className="text-[10px] font-bold text-rose-700">Red House</span>
+                        </div>
+                        <p className="text-[11px] text-brand-charcoal font-inter leading-relaxed pt-1">
+                          Embodying courage, high-intensity athletic fixtures, track events, and Sports Day triumphs.
+                        </p>
+                      </div>
+
+                      {/* Jupiter */}
+                      <div className="bg-emerald-50/50 rounded-2xl p-5 border border-emerald-200/60 space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-black uppercase tracking-wider bg-[#92d050] text-emerald-950 px-3 py-1 rounded-full font-bold">Jupiter</span>
+                          <span className="text-[10px] font-bold text-emerald-700">Green House</span>
+                        </div>
+                        <p className="text-[11px] text-brand-charcoal font-inter leading-relaxed pt-1">
+                          Nurturing wisdom, environmental sustainability drives, community outreach, and team synergy.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Student Manifesto Download Banner */}
+                  <div className="bg-gradient-to-r from-brand-gold/10 via-amber-500/10 to-brand-gold/10 border border-brand-gold/30 rounded-2xl p-6 text-center space-y-3">
+                    <h5 className="font-serif text-base font-bold text-brand-charcoal">Student Guild Manifesto &amp; Guidelines (2026-27)</h5>
+                    <p className="text-xs text-brand-muted font-inter max-w-xl mx-auto">
+                      Learners aiming for Student Guild leadership roles can access the official manifesto guidelines and application criteria for session 2026-27.
+                    </p>
+                    <button 
+                      onClick={() => alert("Downloading official Student Manifesto Form 2026-27")}
+                      className="inline-flex items-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-full transition-all shadow-md cursor-pointer hover:scale-105"
+                    >
+                      <FileText className="w-4 h-4" />
+                      <span>Click here to Download Student Manifesto Form 2026-27</span>
+                    </button>
                   </div>
                 </div>
               )}
