@@ -76,7 +76,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Column 2: Group Portal Links */}
+        {/* Column 2: Group Portals Links */}
         <div className="space-y-4">
           <h4 className={`font-serif font-bold text-base text-${theme.accent}`}>Group Portals</h4>
           <div className={`w-8 h-[1px] bg-${theme.accent}`}></div>
@@ -95,6 +95,20 @@ export default function Footer() {
                 className={`hover:text-${theme.accent} transition-colors block py-1`}
               >
                 &bull; Careers at DLF ↗
+              </a>
+            </li>
+            <li>
+              <a
+                href={
+                  schoolId === "dlf-greater-noida"
+                    ? "https://www.dlws.edu.in/useful-links"
+                    : "https://www.dlps.co.in/useful-links"
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`hover:text-${theme.accent} transition-colors block py-1`}
+              >
+                &bull; Useful Links ↗
               </a>
             </li>
             <li><Link to="/alumni" className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; Alumni Network</Link></li>
@@ -120,6 +134,34 @@ export default function Footer() {
                 <li><Link to={`/school/${schoolId}/admissions`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Admissions & Fees</Link></li>
                 <li><Link to={`/school/${schoolId}/curriculum`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; School Curriculum</Link></li>
                 <li><Link to={`/school/${schoolId}/holistic-learning`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Holistic Learning</Link></li>
+                <li>
+                  <a
+                    href={
+                      schoolId === "dlf-greater-noida"
+                        ? "https://forms.edunexttechnologies.com/forms/dlws/recruitment/"
+                        : "https://forms.edunexttechnologies.com/forms/dlps/recruitment/"
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`hover:text-${theme.accent} transition-colors block py-0.5`}
+                  >
+                    &bull; School Careers ↗
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={
+                      schoolId === "dlf-greater-noida"
+                        ? "https://www.dlws.edu.in/useful-links"
+                        : "https://www.dlps.co.in/useful-links"
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`hover:text-${theme.accent} transition-colors block py-0.5`}
+                  >
+                    &bull; Useful Links ↗
+                  </a>
+                </li>
                 <li><Link to="/counselling" className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Counselling & Wellness</Link></li>
                 <li><Link to={`/school/${schoolId}/winning-school`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Winning School Awards</Link></li>
                 <li><Link to={`/school/${schoolId}/editorials`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; DLF Editorials</Link></li>

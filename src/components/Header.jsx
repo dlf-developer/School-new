@@ -531,32 +531,37 @@ export default function Header() {
             >
               School in News
             </Link>
-            <span className="text-white/20">|</span>
-            <a
-              href={
-                schoolId === "dlf-greater-noida"
-                  ? "https://forms.edunexttechnologies.com/forms/dlws/recruitment/"
-                  : "https://forms.edunexttechnologies.com/forms/dlps/recruitment/"
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-brand-gold transition-colors duration-300 flex items-center gap-1"
-            >
-              Careers ↗
-            </a>
-            <span className="text-white/20">|</span>
-            <a
-              href={
-                schoolId === "dlf-greater-noida"
-                  ? "https://www.dlws.edu.in/useful-links"
-                  : "https://www.dlps.co.in/useful-links"
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-brand-gold transition-colors duration-300 flex items-center gap-1"
-            >
-              Useful Links ↗
-            </a>
+
+            {schoolId && (
+              <>
+                <span className="text-white/20">|</span>
+                <a
+                  href={
+                    schoolId === "dlf-greater-noida"
+                      ? "https://forms.edunexttechnologies.com/forms/dlws/recruitment/"
+                      : "https://forms.edunexttechnologies.com/forms/dlps/recruitment/"
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand-gold transition-colors duration-300 flex items-center gap-1"
+                >
+                  Careers ↗
+                </a>
+                <span className="text-white/20">|</span>
+                <a
+                  href={
+                    schoolId === "dlf-greater-noida"
+                      ? "https://www.dlws.edu.in/useful-links"
+                      : "https://www.dlps.co.in/useful-links"
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand-gold transition-colors duration-300 flex items-center gap-1"
+                >
+                  Useful Links ↗
+                </a>
+              </>
+            )}
           </div>
         </div>
       </div>

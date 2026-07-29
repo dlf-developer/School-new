@@ -8,7 +8,6 @@ const DEFAULT_ITEMS = [
   { id: 'tick-1', icon: 'Globe', text: 'Recognition of International Dimension in Schools' },
   { id: 'tick-2', icon: 'Leaf', text: 'Wipro Earthian Award for Sustainability' },
   { id: 'tick-3', icon: 'Award', text: 'Go Sharpener Sustainability Superstar' },
-  { id: 'tick-4', icon: 'Leaf', text: 'First Plastic Neutral School in Delhi-NCR' },
   { id: 'tick-5', icon: 'Award', text: 'ET Tech X School Excellence Award' },
   { id: 'tick-6', icon: 'Award', text: 'School Excellence Recognition' },
   { id: 'tick-7', icon: 'Globe', text: 'British Council International School Award' },
