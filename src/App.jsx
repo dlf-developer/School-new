@@ -256,6 +256,9 @@ export default function App() {
           <Route path="/school/:schoolId/contact" element={<CommonPages />} />
 
           {/* Redirects for legacy/direct paths to Sahibabad default */}
+          <Route path="/curriculum" element={<Navigate to="/school/dlf-sahibabad/curriculum" replace />} />
+          <Route path="/curriculum/cbse" element={<Navigate to="/school/dlf-sahibabad/curriculum/cbse" replace />} />
+          <Route path="/curriculum/cambridge" element={<Navigate to="/school/dlf-sahibabad/curriculum/cambridge" replace />} />
           <Route path="/about-us/our-campus" element={<Navigate to="/school/dlf-sahibabad/campus" replace />} />
           <Route path="/about-us/parent-as-partners" element={<Navigate to="/parent-partners" replace />} />
         </Routes>
