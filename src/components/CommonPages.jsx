@@ -94,23 +94,116 @@ export default function CommonPages() {
     return (
       <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
         <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 space-y-12">
+
+          {/* Page Header */}
           <div className="text-center max-w-2xl mx-auto space-y-4">
             <span className="text-xs uppercase tracking-widest font-extrabold text-brand-greenVibrant">Work With Us</span>
-            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-greenDeep">Careers</h2>
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-greenDeep">Careers at DLF Schools</h2>
             <div className="w-12 h-[2px] bg-brand-gold mx-auto"></div>
-            <p className="text-sm text-brand-muted leading-relaxed font-inter">Join a community of progressive educators, mentors, and administrators redefining school education in India.</p>
+            <p className="text-sm text-brand-muted leading-relaxed font-inter">
+              Join a community of progressive educators, mentors, and administrators redefining school education in India. Select your campus below to view current openings and apply.
+            </p>
           </div>
-          <div className="bg-white max-w-2xl mx-auto p-8 sm:p-12 rounded-3xl border border-brand-greenDeep/5 shadow-md space-y-6 text-center">
-            <h3 className="font-serif text-2xl font-bold text-brand-greenDeep">Open Positions</h3>
-            <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter">We recruit passionate PGTs, TGTs, PRTs, and administrative support staff. Mail your updated curriculum vitae to our recruitment panel.</p>
-            <div className="pt-4">
-              <a href="mailto:careers@dlfps.com" className="inline-block bg-brand-greenDeep hover:bg-brand-greenVibrant text-white px-8 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-md">Email CV to Careers Team</a>
-            </div>
+
+          {/* Two School Career Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+            {/* DLPS Card */}
+            <a
+              href="https://forms.edunexttechnologies.com/forms/dlps/recruitment/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative bg-white rounded-3xl border border-gray-100 shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col"
+            >
+              {/* Top colour bar */}
+              <div className="h-1.5 w-full bg-brand-greenDeep" />
+              {/* Campus thumbnail */}
+              <div className="h-44 overflow-hidden relative bg-brand-greenDeep">
+                <img
+                  src="/images/home-hero.jpg"
+                  alt="DLF Public School Sahibabad Campus"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-brand-greenDeep/20 to-brand-greenDeep/60" />
+                <div className="absolute bottom-4 left-5">
+                  <span className="inline-block bg-white/20 backdrop-blur-sm text-white text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full border border-white/30">
+                    Sahibabad · Ghaziabad
+                  </span>
+                </div>
+              </div>
+              {/* Body */}
+              <div className="p-7 space-y-4 flex flex-col flex-1">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-brand-greenVibrant shrink-0" />
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-greenDeep">DLF Public School</span>
+                  </div>
+                  <h3 className="font-serif text-xl font-bold text-brand-charcoal">CBSE Affiliation No. 2130384</h3>
+                  <p className="text-xs text-brand-muted font-inter leading-relaxed">
+                    We recruit passionate PGTs, TGTs, PRTs, and administrative support staff. Click to view current openings and submit your application directly via the recruitment portal.
+                  </p>
+                </div>
+                <div className="flex items-center gap-2 text-brand-greenDeep font-bold text-xs uppercase tracking-wider mt-auto pt-4 border-t border-gray-100 group-hover:gap-3 transition-all">
+                  <ExternalLink className="w-4 h-4 shrink-0" />
+                  <span>Apply at DLPS Careers Portal</span>
+                </div>
+              </div>
+            </a>
+
+            {/* DLWS Card */}
+            <a
+              href="https://forms.edunexttechnologies.com/forms/dlws/recruitment/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative bg-white rounded-3xl border border-gray-100 shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col"
+            >
+              {/* Top colour bar */}
+              <div className="h-1.5 w-full bg-brand-purpleDeep" />
+              {/* Campus thumbnail */}
+              <div className="h-44 overflow-hidden relative bg-brand-purpleDeep">
+                <img
+                  src="/dlws.jpeg"
+                  alt="DLF World School Greater Noida Campus"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-brand-purpleDeep/20 to-brand-purpleDeep/60" />
+                <div className="absolute bottom-4 left-5">
+                  <span className="inline-block bg-white/20 backdrop-blur-sm text-white text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full border border-white/30">
+                    Greater Noida
+                  </span>
+                </div>
+              </div>
+              {/* Body */}
+              <div className="p-7 space-y-4 flex flex-col flex-1">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-brand-purpleVibrant shrink-0" />
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-purpleDeep">DLF World School</span>
+                  </div>
+                  <h3 className="font-serif text-xl font-bold text-brand-charcoal">CBSE Affiliation No. 2131920</h3>
+                  <p className="text-xs text-brand-muted font-inter leading-relaxed">
+                    We recruit dedicated educators, counsellors, and administrative professionals. Click to explore available roles and submit your application via the DLWS recruitment portal.
+                  </p>
+                </div>
+                <div className="flex items-center gap-2 text-brand-purpleDeep font-bold text-xs uppercase tracking-wider mt-auto pt-4 border-t border-gray-100 group-hover:gap-3 transition-all">
+                  <ExternalLink className="w-4 h-4 shrink-0" />
+                  <span>Apply at DLWS Careers Portal</span>
+                </div>
+              </div>
+            </a>
+
           </div>
+
+          {/* Bottom note */}
+          <p className="text-center text-xs text-brand-muted font-inter max-w-xl mx-auto">
+            Both portals are managed via <strong>Edunext Technologies</strong>. For general HR queries, email <a href="mailto:hr@dlps.co.in" className="text-brand-greenDeep font-bold hover:underline">hr@dlps.co.in</a>
+          </p>
+
         </div>
       </div>
     )
   }
+
 
   // ── Sports Arena ──────────────────────────────────────────────────────────
   if (path.includes('sports-arena')) {

@@ -532,15 +532,30 @@ export default function Header() {
               School in News
             </Link>
             <span className="text-white/20">|</span>
-            <Link
-              to="/careers"
-              className="hover:text-brand-gold transition-colors duration-300"
-            >
-              Careers
-            </Link>
+            {schoolId ? (
+              <a
+                href={
+                  schoolId === "dlf-greater-noida"
+                    ? "https://forms.edunexttechnologies.com/forms/dlws/recruitment/"
+                    : "https://forms.edunexttechnologies.com/forms/dlps/recruitment/"
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-brand-gold transition-colors duration-300"
+              >
+                Careers
+              </a>
+            ) : (
+              <Link
+                to="/careers"
+                className="hover:text-brand-gold transition-colors duration-300"
+              >
+                Careers
+              </Link>
+            )}
             <span className="text-white/20">|</span>
             <Link
-              to="/useful-links"
+              to={schoolId ? `/school/${schoolId}/useful-links` : "/useful-links"}
               className="hover:text-brand-gold transition-colors duration-300"
             >
               Useful Links
@@ -733,7 +748,7 @@ export default function Header() {
             {schoolId ? (
               <>
                 {/* 0. School Mega Menu Trigger */}
-                <div className="relative group py-1 flex items-center justify-center">
+                <div className="group py-1 flex items-center justify-center">
                   <Link
                     to={`/school/${schoolId}`}
                     className={`flex items-center gap-1 text-${theme.primary} font-serif font-black text-sm sm:text-base hover:opacity-85 transition-opacity cursor-pointer`}
@@ -948,6 +963,18 @@ export default function Header() {
                   )}
                 </div>
 
+                {/* 1b. Virtual Tour */}
+                <div className="relative py-2 flex flex-col items-center justify-center">
+                  <a
+                    href={schoolId === "dlf-greater-noida" ? "https://www.dlws.edu.in" : "https://www.dlps.co.in"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold`}
+                  >
+                    Virtual Tour
+                  </a>
+                </div>
+
                 {/* 2. Leadership (No dropdown) */}
                 <div className="relative py-2 flex flex-col items-center justify-center">
                   <Link
@@ -1012,40 +1039,56 @@ export default function Header() {
                   </div>
                 </div>
 
-                {/* 4. Curriculum Dropdown */}
-                <div className="relative group py-2 flex flex-col items-center justify-center">
-                  <button
-                    className={`flex items-center gap-1 hover:text-${theme.vibrant} transition-colors duration-300 cursor-pointer font-semibold ${isCurriculumActive ? `text-${theme.vibrant} font-bold` : ""}`}
-                  >
-                    Curriculum{" "}
-                    <ChevronDown
-                      className={`w-3.5 h-3.5 text-${theme.accent}`}
-                    />
-                  </button>
-                  {isCurriculumActive && (
-                    <span
-                      className={`absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-${theme.vibrant}`}
-                    ></span>
-                  )}
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white text-brand-charcoal rounded-xl shadow-xl border border-gray-100 p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                    <div className="space-y-1 text-xs">
-                      <Link
-                        to={`/school/${schoolId}/curriculum/cbse`}
-                        className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.endsWith("/cbse") || location.pathname.endsWith("/curriculum") ? `text-${theme.vibrant}` : ""}`}
-                      >
-                        <BookOpen className="w-3.5 h-3.5 shrink-0 text-gray-400" />
-                        CBSE Pathway
-                      </Link>
-                      <Link
-                        to={`/school/${schoolId}/curriculum/cambridge`}
-                        className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.endsWith("/cambridge") ? `text-${theme.vibrant}` : ""}`}
-                      >
-                        <Globe className="w-3.5 h-3.5 shrink-0 text-gray-400" />
-                        Cambridge Pathway
-                      </Link>
+                {/* 4. Curriculum Link / Dropdown */}
+                {schoolId === "dlf-greater-noida" ? (
+                  <div className="relative py-2 flex flex-col items-center justify-center">
+                    <Link
+                      to={`/school/${schoolId}/curriculum`}
+                      className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold ${isCurriculumActive ? `text-${theme.vibrant} font-bold` : ""}`}
+                    >
+                      Curriculum
+                    </Link>
+                    {isCurriculumActive && (
+                      <span
+                        className={`absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-${theme.vibrant}`}
+                      ></span>
+                    )}
+                  </div>
+                ) : (
+                  <div className="relative group py-2 flex flex-col items-center justify-center">
+                    <button
+                      className={`flex items-center gap-1 hover:text-${theme.vibrant} transition-colors duration-300 cursor-pointer font-semibold ${isCurriculumActive ? `text-${theme.vibrant} font-bold` : ""}`}
+                    >
+                      Curriculum{" "}
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 text-${theme.accent}`}
+                      />
+                    </button>
+                    {isCurriculumActive && (
+                      <span
+                        className={`absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-${theme.vibrant}`}
+                      ></span>
+                    )}
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white text-brand-charcoal rounded-xl shadow-xl border border-gray-100 p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                      <div className="space-y-1 text-xs">
+                        <Link
+                          to={`/school/${schoolId}/curriculum/cbse`}
+                          className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.endsWith("/cbse") || location.pathname.endsWith("/curriculum") ? `text-${theme.vibrant}` : ""}`}
+                        >
+                          <BookOpen className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                          CBSE Pathway
+                        </Link>
+                        <Link
+                          to={`/school/${schoolId}/curriculum/cambridge`}
+                          className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.endsWith("/cambridge") ? `text-${theme.vibrant}` : ""}`}
+                        >
+                          <Globe className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                          Cambridge Pathway
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
 
                 {/* 5. Holistic Learning Dropdown */}
                 <div className="relative group py-2 flex flex-col items-center justify-center">

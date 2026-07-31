@@ -39,6 +39,8 @@ import UsefulLinks from './components/UsefulLinks'
 import ContactHome from './components/ContactHome'
 import AdmissionEnquiry from './components/AdmissionEnquiry'
 
+import CbseResults from './components/CbseResults'
+import VideoTestimonials from './components/VideoTestimonials'
 
 // Premium Section Separator Component
 function SectionSeparator() {
@@ -73,27 +75,33 @@ function MasterHome() {
 
       <SectionSeparator />
 
-      {/* 3rd Section – Our Pedagogy */}
-      <Curriculum />
+      {/* 3rd Section – Last Year CBSE Results & Video Testimonials */}
+      <CbseResults schoolName="DLF Schools" />
+      <VideoTestimonials schoolName="DLF Schools" />
 
       <SectionSeparator />
 
-      {/* 4th Section – Our Schools */}
+      {/* 4th Section – Our Pedagogy */}
+      <Curriculum isHomePage={true} />
+
+      <SectionSeparator />
+
+      {/* 5th Section – Our Schools */}
       <PortalHome />
 
       <SectionSeparator />
 
-      {/* 5th Section – What sets us apart (Preview mode) */}
+      {/* 6th Section – What sets us apart (Preview mode) */}
       <WhatSetsUsApart isPreview={true} />
 
       <SectionSeparator />
 
-      {/* 6th Section – Admissions */}
+      {/* 7th Section – Admissions */}
       <Admissions />
 
       <SectionSeparator />
 
-      {/* 7th Section – Contact Us */}
+      {/* 8th Section – Contact Us */}
       <ContactHome />
     </>
   )
@@ -107,7 +115,9 @@ function Home() {
       <Ticker />
       <Vision />
       <Stats />
-      <Curriculum />
+      <CbseResults />
+      <VideoTestimonials />
+      <Curriculum isHomePage={true} />
       <Pillars />
       <Holistic />
       <VirtualTour />
@@ -242,6 +252,7 @@ export default function App() {
           <Route path="/school/:schoolId/winning-school" element={<SchoolWinning />} />
           <Route path="/school/:schoolId/editorials" element={<SchoolEditorials />} />
           <Route path="/school/:schoolId/disclosures" element={<Disclosures />} />
+          <Route path="/school/:schoolId/useful-links" element={<UsefulLinks />} />
           <Route path="/school/:schoolId/contact" element={<CommonPages />} />
 
           {/* Redirects for legacy/direct paths to Sahibabad default */}

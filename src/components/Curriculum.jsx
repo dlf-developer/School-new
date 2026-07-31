@@ -1,27 +1,22 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import {
-  Sparkles,
   BookOpen,
-  CheckCircle,
-  Compass,
-  Cpu,
+  Globe,
   GraduationCap,
-  TrendingUp,
+  CheckCircle,
   ArrowRight,
 } from "lucide-react";
-import gsap from "gsap";
 import { useSiteData } from "../hooks/useSiteData";
-import ImageWithLoader from "./ImageWithLoader";
+import CbseResults from "./CbseResults";
 
-export default function Curriculum() {
-  const { schoolId } = useParams();
+export default function Curriculum({ isHomePage = false }) {
+  const { schoolId, pathway } = useParams();
   const { schools } = useSiteData();
   const activeBranch =
-    schoolId && schools[schoolId]
-      ? schoolId
-      : "dlf-sahibabad";
+    schoolId && schools[schoolId] ? schoolId : "dlf-sahibabad";
   const currentSchool = schools[activeBranch];
+  const isDLWS = activeBranch === "dlf-greater-noida";
 
   const theme = currentSchool?.theme || {
     primary: "brand-greenDeep",
@@ -30,348 +25,253 @@ export default function Curriculum() {
     accentHex: "#C59B27",
   };
 
-  const [activeTab, setActiveTab] = useState("primary");
-  const panesRef = useRef({});
+  const [activeTab, setActiveTab] = useState(
+    pathway === "cambridge" && !isDLWS ? "cambridge" : "cbse"
+  );
 
-  const handleTabChange = (newTab) => {
-    if (newTab === activeTab) return;
+  const tabs = isDLWS
+    ? [{ id: "cbse", label: "CBSE Pathway", Icon: BookOpen }]
+    : [
+        { id: "cbse", label: "CBSE Pathway", Icon: BookOpen },
+        { id: "cambridge", label: "Cambridge Pathway", Icon: Globe },
+      ];
 
-    const currentPane = panesRef.current[activeTab];
-    const targetPane = panesRef.current[newTab];
-
-    if (currentPane && targetPane) {
-      gsap.to(currentPane, {
-        opacity: 0,
-        y: 10,
-        duration: 0.25,
-        onComplete: () => {
-          setActiveTab(newTab);
-          gsap.fromTo(
-            targetPane,
-            { opacity: 0, y: -10 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.35,
-              ease: "power2.out",
-            },
-          );
-        },
-      });
-    } else {
-      setActiveTab(newTab);
-    }
+  const cbseContent = {
+    badge: "Central Board of Secondary Education",
+    title: "CBSE Academic Pathway",
+    subtitle:
+      "A structured, nationally recognised curriculum aligned with NEP 2020 that builds rigorous academic foundations from Foundation through Class XII.",
+    stats: [
+      { val: isDLWS ? "2131920" : "2130384", label: "CBSE Affiliation No.", desc: "Fully affiliated and compliant with CBSE norms." },
+      { val: "Foundation–XII", label: "Grade Coverage", desc: "Continuous academic pathway from early years to board exams." },
+      { val: "100%", label: "Board Pass Rate", desc: "Consistent board exam excellence over the last decade." },
+      { val: "NEP 2020", label: "Aligned Curriculum", desc: "Redesigned to meet National Education Policy guidelines." },
+    ],
+    stages: [
+      {
+        grade: "Foundation & Pre-Primary",
+        classes: "Foundation · Pre-KG · JKG · SKG",
+        color: "bg-emerald-50 border-emerald-200",
+        titleColor: "text-emerald-700",
+        subjects: ["Language & Literacy", "Numeracy & Logical Thinking", "Environmental Awareness", "Art, Music & Movement", "Social & Emotional Learning"],
+        desc: "Play-based, child-centric learning aligned with NCF-FS and NEP 2020 Foundational Stage guidelines.",
+      },
+      {
+        grade: "Primary Years",
+        classes: "Class I – V",
+        color: "bg-blue-50 border-blue-200",
+        titleColor: "text-blue-700",
+        subjects: ["English & Hindi Language", "Mathematics", "Environmental Studies (EVS)", "General Knowledge", "Computer Science", "Art & Craft / Physical Education"],
+        desc: "Competency-based learning with NCERT-aligned textbooks fostering inquiry, reading, and foundational skills.",
+      },
+      {
+        grade: "Middle Years",
+        classes: "Class VI – VIII",
+        color: "bg-violet-50 border-violet-200",
+        titleColor: "text-violet-700",
+        subjects: ["English & Second Language", "Mathematics", "Science (Physics, Chemistry, Biology)", "Social Science", "Computer Science / IT", "Sanskrit / French (Optional)"],
+        desc: "Transition to abstract learning with NEP 2020 skill domains — tinkering, vocational exposure, and integrated STEM.",
+      },
+      {
+        grade: "Secondary",
+        classes: "Class IX – X",
+        color: "bg-amber-50 border-amber-200",
+        titleColor: "text-amber-700",
+        subjects: ["English (Core)", "Mathematics (Standard / Basic)", "Science (Physics, Chemistry, Biology)", "Social Science", "Information Technology / IT", "Third Language"],
+        desc: "Board-aligned curriculum preparing students for CBSE Class X examinations with continuous internal assessments.",
+      },
+      {
+        grade: "Senior Secondary",
+        classes: "Class XI – XII",
+        color: "bg-rose-50 border-rose-200",
+        titleColor: "text-rose-700",
+        subjects: ["Science Stream: Physics, Chemistry, Biology / Mathematics", "Commerce Stream: Accountancy, Business Studies, Economics", "Humanities Stream: History, Geography, Political Science", "English Core (All Streams)", "Electives: Computer Science, Physical Education, Fine Arts"],
+        desc: "Multidisciplinary senior school offering Science, Commerce, and Humanities streams with full board exam preparation.",
+      },
+    ],
+    cta: { label: "Apply for CBSE Admissions", to: `/school/${activeBranch}/admissions` },
   };
 
-  const tabs = [
-    { id: "primary", label: "Early Years", Icon: Sparkles },
-    { id: "middle", label: "Primary Years", Icon: Compass },
-    { id: "secondary", label: "Middle Years", Icon: Cpu },
-    { id: "senior", label: "Senior Years", Icon: GraduationCap },
-  ];
+  const cambridgeContent = {
+    badge: "Cambridge Assessment International Education",
+    title: "Cambridge International Pathway",
+    subtitle:
+      "A globally recognised international curriculum from Class I onwards, preparing students for Cambridge IGCSE and A-Level examinations accepted by universities worldwide.",
+    stats: [
+      { val: "Cambridge", label: "CAIE Affiliated", desc: "Recognised by 160+ countries and leading global universities." },
+      { val: "Class I+", label: "Entry Point", desc: "International curriculum begins from Class I onwards." },
+      { val: "IGCSE", label: "Global Qualification", desc: "World's most popular international qualification." },
+      { val: "AS/A Level", label: "Senior Pathway", desc: "Advanced qualifications for global university admissions." },
+    ],
+    stages: [
+      {
+        grade: "Cambridge Primary",
+        classes: "Class I – V",
+        color: "bg-sky-50 border-sky-200",
+        titleColor: "text-sky-700",
+        subjects: ["Cambridge Primary English", "Cambridge Primary Mathematics", "Cambridge Primary Science", "ICT & Digital Literacy", "Creative Arts & Physical Education"],
+        desc: "Internationally benchmarked primary learning with Cambridge Primary Checkpoint assessments and project-based inquiry.",
+      },
+      {
+        grade: "Cambridge Lower Secondary",
+        classes: "Class VI – VIII",
+        color: "bg-indigo-50 border-indigo-200",
+        titleColor: "text-indigo-700",
+        subjects: ["Cambridge English", "Cambridge Mathematics", "Cambridge Science", "Global Perspectives", "ICT / Computer Science", "Second Language"],
+        desc: "Lower Secondary Checkpoint assessments provide international benchmarking and smooth transition to IGCSE.",
+      },
+      {
+        grade: "Cambridge IGCSE",
+        classes: "Class IX – X",
+        color: "bg-teal-50 border-teal-200",
+        titleColor: "text-teal-700",
+        subjects: ["English Language & Literature", "Mathematics (Core / Extended)", "Sciences: Physics, Chemistry, Biology", "Geography / History", "Computer Science", "Business Studies / Global Perspectives"],
+        desc: "Cambridge IGCSE — the world's most popular international qualification for 14–16 year olds.",
+      },
+      {
+        grade: "Cambridge AS & A Level",
+        classes: "Class XI – XII",
+        color: "bg-orange-50 border-orange-200",
+        titleColor: "text-orange-700",
+        subjects: ["AS & A Level Mathematics / Further Mathematics", "AS & A Level Sciences (Physics, Chemistry, Biology)", "AS & A Level Economics / Business", "AS & A Level English Language", "AS & A Level Computer Science"],
+        desc: "Advanced qualifications providing direct entry to leading universities in the UK, US, Canada, Australia, and India.",
+      },
+    ],
+    cta: { label: "Enquire for Cambridge Pathway", to: `/school/${activeBranch}/admissions?tab=enquiry` },
+  };
+
+  const content = activeTab === "cambridge" ? cambridgeContent : cbseContent;
 
   return (
     <section
       id="curriculum"
       className="py-16 sm:py-24 bg-transparent relative overflow-hidden text-brand-charcoal selection:bg-brand-gold/30"
     >
-      {/* Background ambient glows matching Pedagogy */}
-      <div className="absolute top-20 right-1/4 w-[400px] h-[400px] ambient-glow-2 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-20 left-1/4 w-[450px] h-[450px] ambient-glow-1 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-20 right-1/4 w-[400px] h-[400px] ambient-glow-2 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 left-1/4 w-[450px] h-[450px] ambient-glow-1 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-10 space-y-12">
-        {/* Header Block matching screenshot styling */}
+
+        {/* Page Header */}
         <div className="text-center max-w-2xl mx-auto space-y-4">
-          <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold">
-            Nurturing Learning Pathways
+          <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.accent}`}>
+            Academic Curriculum
           </span>
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-brand-masterDeep">
-            Our Pedagogy
+          <h1 className={`font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-${theme.primary}`}>
+            Academic Pathways
           </h1>
-          <div className="w-16 h-[2px] bg-brand-gold mx-auto"></div>
+          <div className={`w-16 h-[2px] bg-${theme.accent} mx-auto`} />
           <p className="text-base text-brand-muted leading-relaxed font-sans max-w-xl mx-auto">
-            Experiential, stage-wise education aligned with cognitive developmental milestones for progressive learning.
+            {isDLWS
+              ? "DLF World School delivers a CBSE-aligned, nationally recognised academic programme from Foundation through Class XII."
+              : "DLF Public School offers two globally recognised academic pathways — CBSE and Cambridge International — providing families the freedom to choose."}
           </p>
         </div>
 
-        {/* Stats Ribbon (4 cards preserved as requested) */}
+        {/* Tab Selector (hidden for DLWS) */}
+        {!isDLWS && (
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            {tabs.map(({ id, label, Icon }) => {
+              const isActive = activeTab === id;
+              return (
+                <button
+                  key={id}
+                  onClick={() => setActiveTab(id)}
+                  className={`flex items-center gap-2.5 px-7 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer whitespace-nowrap ${
+                    isActive
+                      ? `bg-${theme.primary} text-white border-${theme.primary} shadow-md`
+                      : "bg-white text-brand-charcoal hover:bg-gray-50 border-gray-200 shadow-sm"
+                  }`}
+                >
+                  <Icon className="w-4 h-4 shrink-0" />
+                  {label}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Stats Row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-          {[
-            {
-              val: "2500+",
-              label: "Enrolled Students",
-              desc: "Nurtured across progressive learning programs.",
-            },
-            {
-              val: "1:17",
-              label: "Teacher Student Ratio",
-              desc: "Ensuring personal attention & mentor focus.",
-            },
-            {
-              val: "CBSE Board",
-              label: "Foundation to Class XII",
-              desc: "Fully aligned to CBSE & NEP 2020 guidelines.",
-            },
-            {
-              val: "Cambridge Board",
-              label: "Class-I Onwards",
-              desc: "Globally recognised International pathway.",
-            },
-          ].map((stat, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
-            >
-              <span
-                className={`font-serif text-2xl font-extrabold text-${theme.primary}`}
-              >
-                {stat.val}
-              </span>
-              <h4 className="text-[11px] font-bold text-brand-charcoal mt-1">
-                {stat.label}
-              </h4>
-              <p className="text-[9px] text-brand-muted font-inter leading-relaxed mt-0.5">
-                {stat.desc}
-              </p>
+          {content.stats.map((stat, idx) => (
+            <div key={idx} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+              <span className={`font-serif text-xl font-extrabold text-${theme.primary}`}>{stat.val}</span>
+              <h4 className="text-[11px] font-bold text-brand-charcoal mt-1">{stat.label}</h4>
+              <p className="text-[9px] text-brand-muted font-inter leading-relaxed mt-0.5">{stat.desc}</p>
             </div>
           ))}
         </div>
 
-        {/* TAB SELECTOR HEADER (Pill style with icons) */}
-        <div className="flex flex-wrap items-center justify-center gap-3 pb-3 max-w-5xl mx-auto px-4">
-          {tabs.map((tab) => {
-            const Icon = tab.Icon;
-            const isActive = activeTab === tab.id;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => handleTabChange(tab.id)}
-                className={`flex items-center gap-2 px-5 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer whitespace-nowrap ${
-                  isActive
-                    ? `bg-brand-greenDeep text-white border-brand-greenDeep shadow-md`
-                    : `bg-white text-brand-charcoal hover:bg-brand-greenDeep/5 border-gray-200 shadow-sm`
-                }`}
-              >
-                <Icon className="w-4 h-4 shrink-0" />
-                {tab.label}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* CURRICULAR DETAIL BOARD */}
-        <div
-          id="curriculum-content"
-          className="bg-white rounded-3xl p-6 sm:p-10 shadow-md border border-gray-100 min-h-[350px] transition-all duration-500 relative"
-        >
-          {/* Tab Panel: Early Years */}
-          <div
-            ref={(el) => (panesRef.current["primary"] = el)}
-            id="tab-primary"
-            className={`tab-pane grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${activeTab === "primary" ? "active" : "hidden"}`}
-          >
-            <div className="space-y-4">
-              <div
-                className={`inline-flex items-center gap-1.5 bg-${theme.primary}/5 text-${theme.primary} px-3 py-1 rounded-full text-xs font-bold`}
-              >
-                <Sparkles className="w-3.5 h-3.5 text-brand-gold" />{" "}
-                Foundational Stage
+        {/* If rendered on Home Page, only show the header, tabs & stats cards */}
+        {!isHomePage && (
+          <>
+            {/* Pathway Header Card */}
+            <div className={`bg-${theme.primary} rounded-3xl p-8 sm:p-10 text-white`}>
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div className="space-y-2 max-w-2xl">
+                  <span className="inline-block text-[10px] font-extrabold uppercase tracking-widest text-brand-gold bg-brand-gold/20 px-3 py-1 rounded-full">
+                    {content.badge}
+                  </span>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-bold">{content.title}</h2>
+                  <p className="text-sm text-white/80 leading-relaxed font-inter">{content.subtitle}</p>
+                </div>
+                <Link
+                  to={content.cta.to}
+                  className="inline-flex items-center gap-2 bg-white text-brand-charcoal font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-brand-gold hover:text-white transition-all duration-300 shadow-lg shrink-0"
+                >
+                  {content.cta.label}
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
-              <h4
-                className={`font-serif text-xl sm:text-2xl font-bold text-${theme.primary}`}
-              >
-                Early Years Pedagogy
-              </h4>
-              <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter font-medium">
-                Aligned with the vision of NEP 2020 and NCF-FS principles, our Foundation Stage pedagogy is child-centric, play-based, inclusive, and experiential.
-              </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                {[
-                  { title: "Play-Based Exploration", desc: "Free & guided play in curated Discovery Dens." },
-                  { title: "Story & Toy Pedagogy", desc: "Puppetry, role-play & tactile building blocks." },
-                  { title: "Art & Sports Integrated", desc: "Music, dance, yoga & motor skill drills." },
-                  { title: "Multilingual & Inclusive", desc: "Multisensory corners where every child thrives." }
-                ].map((card, idx) => (
-                  <div key={idx} className="bg-gray-50/80 p-3 rounded-xl border border-gray-100 hover:border-brand-gold/40 transition-colors space-y-1">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className={`w-3.5 h-3.5 text-${theme.accent} shrink-0`} />
-                      <h5 className="text-[11px] font-bold text-brand-charcoal leading-snug">{card.title}</h5>
+            </div>
+
+            {/* Grade Stages */}
+            <div className="space-y-5">
+              <h3 className={`font-serif text-xl font-bold text-${theme.primary}`}>Grade-wise Curriculum Overview</h3>
+              {content.stages.map((stage, idx) => (
+                <div key={idx} className={`rounded-2xl border p-6 sm:p-8 ${stage.color} hover:shadow-md transition-all duration-300`}>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+                    <div>
+                      <span className={`text-[10px] font-extrabold uppercase tracking-widest ${stage.titleColor}`}>{stage.classes}</span>
+                      <h4 className={`font-serif text-lg sm:text-xl font-bold ${stage.titleColor}`}>{stage.grade}</h4>
                     </div>
-                    <p className="text-[10px] text-brand-muted font-inter leading-relaxed pl-5.5">{card.desc}</p>
+                    <GraduationCap className={`w-6 h-6 ${stage.titleColor} opacity-40 shrink-0`} />
                   </div>
-                ))}
-              </div>
-            </div>
-            <div className="rounded-2xl overflow-hidden aspect-video shadow-md relative group mt-4 lg:mt-0">
-              <ImageWithLoader
-                src="/pedagogy/pictures/Discovery Den.jpg"
-                alt="DLF Early Years Pedagogy - Discovery Den"
-                loading="lazy"
-                imgClassName="object-cover"
-                style={{ objectPosition: "center 25%" }}
-              />
-            </div>
-          </div>
-
-          {/* Tab Panel: Primary Years */}
-          <div
-            ref={(el) => (panesRef.current["middle"] = el)}
-            id="tab-middle"
-            className={`tab-pane grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${activeTab === "middle" ? "active" : "hidden"}`}
-          >
-            <div className="space-y-4">
-              <div
-                className={`inline-flex items-center gap-1.5 bg-${theme.primary}/5 text-${theme.primary} px-3 py-1 rounded-full text-xs font-bold`}
-              >
-                <Compass className="w-3.5 h-3.5" /> Primary Stage
-              </div>
-              <h4
-                className={`font-serif text-xl sm:text-2xl font-bold text-${theme.primary}`}
-              >
-                Primary Years Pedagogy
-              </h4>
-              <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter font-medium">
-                The Primary Years mark the transition from foundational exploration to structured discovery toward independent thinking and authentic application.
-              </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                {[
-                  { title: "Inquiry & THOTS Lab", desc: "Curiosity & higher-order problem solving." },
-                  { title: "Competency-Based", desc: "Hands-on field tasks & active application." },
-                  { title: "Tech & Story Integrated", desc: "Interactive digital tools & real-life narratives." },
-                  { title: "DEAR Reading Modules", desc: "Dedicated reading periods fostering love for books." }
-                ].map((card, idx) => (
-                  <div key={idx} className="bg-gray-50/80 p-3 rounded-xl border border-gray-100 hover:border-brand-gold/40 transition-colors space-y-1">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className={`w-3.5 h-3.5 text-${theme.accent} shrink-0`} />
-                      <h5 className="text-[11px] font-bold text-brand-charcoal leading-snug">{card.title}</h5>
-                    </div>
-                    <p className="text-[10px] text-brand-muted font-inter leading-relaxed pl-5.5">{card.desc}</p>
+                  <p className="text-xs sm:text-sm text-brand-muted font-inter leading-relaxed mb-4">{stage.desc}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                    {stage.subjects.map((subj, sIdx) => (
+                      <div key={sIdx} className="flex items-center gap-2 bg-white/70 rounded-xl px-3 py-2 border border-white/80">
+                        <CheckCircle className={`w-3.5 h-3.5 ${stage.titleColor} shrink-0`} />
+                        <span className="text-[11px] font-semibold text-brand-charcoal">{subj}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
-            <div className="rounded-2xl overflow-hidden aspect-video shadow-md relative group mt-4 lg:mt-0">
-              <ImageWithLoader
-                src="/pedagogy/primary-years/7C1A0167.jpg"
-                alt="DLF Primary Years Classroom"
-                loading="lazy"
-                imgClassName="object-cover"
-                style={{ objectPosition: "center 25%" }}
-              />
-            </div>
-          </div>
 
-          {/* Tab Panel: Middle Years */}
-          <div
-            ref={(el) => (panesRef.current["secondary"] = el)}
-            id="tab-secondary"
-            className={`tab-pane grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${activeTab === "secondary" ? "active" : "hidden"}`}
-          >
-            <div className="space-y-4">
-              <div
-                className={`inline-flex items-center gap-1.5 bg-${theme.primary}/5 text-${theme.primary} px-3 py-1 rounded-full text-xs font-bold`}
-              >
-                <Cpu className="w-3.5 h-3.5" /> Middle Stage
-              </div>
-              <h4
-                className={`font-serif text-xl sm:text-2xl font-bold text-${theme.primary}`}
-              >
-                Middle Years Pedagogy
-              </h4>
-              <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter font-medium">
-                Aligned with NEP 2020 and NCF-SE 2023, Delfites transition to abstract concepts in science, math, arts, and humanities through Innovation Hubs and skill domains.
-              </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                {[
-                  { title: "APJ Abdul Kalam Tinkering", desc: "Tinkering & design thinking in Innovation Hub." },
-                  { title: "Life Forms & Agriculture", desc: "Biodiversity registers, plant nursery & microgreens." },
-                  { title: "Machines & Materials", desc: "3D printing, robotics, automation & maker skills." },
-                  { title: "Human Services", desc: "Healthcare, family health & culinary arts." }
-                ].map((card, idx) => (
-                  <div key={idx} className="bg-gray-50/80 p-3 rounded-xl border border-gray-100 hover:border-brand-gold/40 transition-colors space-y-1">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className={`w-3.5 h-3.5 text-${theme.accent} shrink-0`} />
-                      <h5 className="text-[11px] font-bold text-brand-charcoal leading-snug">{card.title}</h5>
-                    </div>
-                    <p className="text-[10px] text-brand-muted font-inter leading-relaxed pl-5.5">{card.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="rounded-2xl overflow-hidden aspect-video shadow-md relative group mt-4 lg:mt-0">
-              <ImageWithLoader
-                src="/pedagogy/middle-years/7C1A1782.jpg"
-                alt="Middle School STEM &amp; Innovation Lab"
-                loading="lazy"
-                imgClassName="object-cover"
-                style={{ objectPosition: "center 25%" }}
-              />
-            </div>
-          </div>
+            {/* CBSE Results Section */}
+            <CbseResults theme={theme} schoolName={currentSchool?.name} />
 
-          {/* Tab Panel: Senior Years */}
-          <div
-            ref={(el) => (panesRef.current["senior"] = el)}
-            id="tab-senior"
-            className={`tab-pane grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${activeTab === "senior" ? "active" : "hidden"}`}
-          >
-            <div className="space-y-4">
-              <div
-                className={`inline-flex items-center gap-1.5 bg-${theme.primary}/5 text-${theme.primary} px-3 py-1 rounded-full text-xs font-bold`}
+            {/* Bottom CTAs */}
+            <div className="text-center pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                to={`/school/${activeBranch}/admissions`}
+                className={`inline-flex items-center gap-3 bg-${theme.primary} hover:bg-${theme.vibrant} text-white px-8 py-4 rounded-full font-bold text-xs sm:text-sm uppercase tracking-widest transition-all duration-300 shadow-xl hover:scale-105`}
               >
-                <GraduationCap className="w-3.5 h-3.5" /> Secondary &amp; Senior Stage
-              </div>
-              <h4
-                className={`font-serif text-xl sm:text-2xl font-bold text-${theme.primary}`}
+                <span>Begin Admissions</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/pedagogy"
+                className="inline-flex items-center gap-3 bg-white border border-gray-200 text-brand-charcoal px-8 py-4 rounded-full font-bold text-xs sm:text-sm uppercase tracking-widest transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105"
               >
-                Senior Years Pedagogy
-              </h4>
-              <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter font-medium">
-                Focusing on multidisciplinary study, flexibility, and future readiness across Science, Commerce, and Humanities streams.
-              </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                {[
-                  { title: "Multidisciplinary Streams", desc: "Flexibility across Science, Commerce & Humanities." },
-                  { title: "Case & Problem Research", desc: "Real-world case analysis & decision-making." },
-                  { title: "Corporate Internships", desc: "Field exposure, internships & innovation challenges." },
-                  { title: "University & Career Prep", desc: "AI, computational thinking & competitive exam prep." }
-                ].map((card, idx) => (
-                  <div key={idx} className="bg-gray-50/80 p-3 rounded-xl border border-gray-100 hover:border-brand-gold/40 transition-colors space-y-1">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className={`w-3.5 h-3.5 text-${theme.accent} shrink-0`} />
-                      <h5 className="text-[11px] font-bold text-brand-charcoal leading-snug">{card.title}</h5>
-                    </div>
-                    <p className="text-[10px] text-brand-muted font-inter leading-relaxed pl-5.5">{card.desc}</p>
-                  </div>
-                ))}
-              </div>
+                <span>Explore Our Pedagogy</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
-            <div className="rounded-2xl overflow-hidden aspect-video shadow-md relative group mt-4 lg:mt-0">
-              <ImageWithLoader
-                src="/pedagogy/senior-years/7C1A0335.jpg"
-                alt="DLF Senior Years Classroom"
-                loading="lazy"
-                imgClassName="object-cover"
-                style={{ objectPosition: "center 25%" }}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* CTA Redirect Button */}
-        <div className="text-center pt-4">
-          <Link
-            to="/pedagogy/early-years"
-            className="inline-flex items-center gap-3 bg-brand-masterDeep hover:bg-brand-masterVibrant text-white px-8 py-4 rounded-full font-bold text-xs sm:text-sm uppercase tracking-widest transition-all duration-300 shadow-xl shadow-brand-masterDeep/20 hover:scale-105"
-          >
-            <span>Explore Our Full Pedagogy</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
+          </>
+        )}
 
       </div>
     </section>

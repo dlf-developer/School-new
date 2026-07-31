@@ -83,9 +83,29 @@ export default function Footer() {
           <ul className="space-y-2 text-xs font-semibold text-brand-bg/85 font-inter">
             <li><Link to="/" className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; Portal Home</Link></li>
             <li><Link to="/news" className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; DLF in the News</Link></li>
-            <li><Link to="/careers" className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; Careers at DLF</Link></li>
+            <li>
+              {schoolId ? (
+                <a
+                  href={
+                    schoolId === "dlf-greater-noida"
+                      ? "https://forms.edunexttechnologies.com/forms/dlws/recruitment/"
+                      : "https://forms.edunexttechnologies.com/forms/dlps/recruitment/"
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`hover:text-${theme.accent} transition-colors block py-1`}
+                >
+                  &bull; Careers at {currentSchool.shortLocation}
+                </a>
+              ) : (
+                <Link to="/careers" className={`hover:text-${theme.accent} transition-colors block py-1`}>
+                  &bull; Careers at DLF
+                </Link>
+              )}
+            </li>
             <li><Link to="/alumni" className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; Alumni Network</Link></li>
             <li><Link to="/sports-arena" className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; Sports Arena</Link></li>
+            <li><Link to={schoolId ? `/school/${schoolId}/useful-links` : "/useful-links"} className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; Useful Links</Link></li>
             <li><Link to={schoolId ? `/school/${schoolId}/contact` : "/contact"} className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; {schoolId ? "Contact School" : "Contact Corporate"}</Link></li>
           </ul>
         </div>
@@ -107,6 +127,7 @@ export default function Footer() {
                 <li><Link to={`/school/${schoolId}/admissions`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Admissions & Fees</Link></li>
                 <li><Link to={`/school/${schoolId}/curriculum`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; School Curriculum</Link></li>
                 <li><Link to={`/school/${schoolId}/holistic-learning`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Holistic Learning</Link></li>
+                <li><Link to={`/school/${schoolId}/useful-links`} className={`hover:text-${theme.accent} transition-colors block py-0.5 font-bold text-brand-gold`}>&bull; Useful Links ({currentSchool.shortLocation})</Link></li>
                 <li><Link to="/counselling" className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Counselling & Wellness</Link></li>
                 <li><Link to={`/school/${schoolId}/winning-school`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Winning School Awards</Link></li>
                 <li><Link to={`/school/${schoolId}/editorials`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; DLF Editorials</Link></li>

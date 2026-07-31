@@ -289,8 +289,8 @@ export default function SchoolHolistic() {
         {/* Holistic Layout: Left Menu / Right Details */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Navigation Sidebar */}
-          <div className="lg:col-span-4 bg-white rounded-3xl border border-gray-150 shadow-md p-5 space-y-3">
+          {/* Left Navigation Sidebar (Sticky on scroll) */}
+          <div className="lg:col-span-4 lg:sticky lg:top-32 z-10 bg-white rounded-3xl border border-gray-150 shadow-md p-5 space-y-3">
             <span className="text-[10px] font-extrabold uppercase tracking-widest text-gray-400 block px-2 mb-1">Holistic Learning Wings</span>
             {keys.map(key => {
               const Icon = iconMap[key]
@@ -364,18 +364,58 @@ export default function SchoolHolistic() {
                 {holisticData[activeSub]}
               </p>
 
-              {/* Highlighted Bullets List */}
+              {/* Highlighted Bullets List formatted into cards with picture slots */}
               <div className="space-y-4 pt-2">
                 <h4 className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant} font-inter flex items-center gap-1.5`}>
                   <Sparkles className="w-3.5 h-3.5" /> Key Highlights &amp; Offerings
                 </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                  {featuresToRender[activeSub].map((feat, idx) => (
-                    <div key={idx} className="flex gap-2.5 items-start bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
-                      <CheckCircle2 className={`w-4 h-4 text-${theme.accent} shrink-0 mt-0.5`} />
-                      <span className="text-xs font-semibold text-brand-charcoal font-inter leading-relaxed">{feat}</span>
-                    </div>
-                  ))}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {featuresToRender[activeSub].map((feat, idx) => {
+                    // Extract bold title before opening parenthesis or dash
+                    const match = feat.match(/^([^(—–]+)(.*)$/)
+                    const title = match ? match[1].trim() : feat
+                    const details = match ? match[2].trim() : ''
+
+                    return (
+                      <div
+                        key={idx}
+                        className="bg-white rounded-2xl border border-gray-150 p-4 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between gap-3 group"
+                      >
+                        {/* Picture Slot / Thumbnail */}
+                        <div className="w-full h-32 rounded-xl overflow-hidden bg-gray-100 relative border border-gray-100 flex items-center justify-center">
+                          <img
+                            src={
+                              photosToRender[activeSub]?.[idx % (photosToRender[activeSub]?.length || 1)]?.src ||
+                              thumbnailsToRender[activeSub]
+                            }
+                            alt={title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                          <div className="absolute bottom-2 left-3 right-3 text-white">
+                            <span className="text-[10px] font-extrabold uppercase tracking-wider bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/30">
+                              {activeSub}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Highlighted Bold Title & Text */}
+                        <div className="space-y-1">
+                          <div className="flex items-start gap-2">
+                            <CheckCircle2 className={`w-4 h-4 text-${theme.accent} shrink-0 mt-0.5`} />
+                            <h5 className={`font-bold text-xs text-${theme.primary} font-serif leading-tight`}>
+                              {title}
+                            </h5>
+                          </div>
+                          {details && (
+                            <p className="text-[11px] text-brand-muted font-inter leading-relaxed pl-6">
+                              {details}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
 
