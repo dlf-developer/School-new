@@ -32,7 +32,7 @@ export default function Hero() {
     subtitle: 'Nurturing thinkers, sculpting scientific temperaments, and empowering global pioneers across our state-of-the-art educational institutions.',
     stats: [
       { value: '30+ Years', label: 'Legacy of Excellence' },
-      { value: '3,000+', label: 'Active Learners' }
+      { value: '2,200+', label: 'Active Learners' }
     ]
   }
 

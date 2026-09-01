@@ -21,6 +21,7 @@ import ScrollToTop from './components/ScrollToTop'
 import InteractiveBackground from './components/InteractiveBackground'
 import PortalHome from './components/PortalHome'
 import Pedagogy from './components/Pedagogy'
+import MasterPedagogy from './components/MasterPedagogy'
 import WhatSetsUsApart from './components/WhatSetsUsApart'
 import Management from './components/Management'
 import Awards from './components/Awards'
@@ -41,6 +42,7 @@ import AdmissionEnquiry from './components/AdmissionEnquiry'
 
 import CbseResults from './components/CbseResults'
 import VideoTestimonials from './components/VideoTestimonials'
+import SchoolVirtualTour from './components/SchoolVirtualTour'
 
 // Premium Section Separator Component
 function SectionSeparator() {
@@ -75,14 +77,13 @@ function MasterHome() {
 
       <SectionSeparator />
 
-      {/* 3rd Section – Last Year CBSE Results & Video Testimonials */}
-      <CbseResults schoolName="DLF Schools" />
+      {/* School Video Testimonials */}
       <VideoTestimonials schoolName="DLF Schools" />
 
       <SectionSeparator />
 
       {/* 4th Section – Our Pedagogy */}
-      <Curriculum isHomePage={true} />
+      <MasterPedagogy />
 
       <SectionSeparator />
 
@@ -118,7 +119,6 @@ function Home() {
       <CbseResults />
       <VideoTestimonials />
       <Curriculum isHomePage={true} />
-      <Pillars />
       <Holistic />
       <VirtualTour />
       <Admissions />
@@ -182,7 +182,7 @@ export default function App() {
   return (
     <>
       {/* Interactive Canvas Background Layer */}
-      <InteractiveBackground />
+      {/* <InteractiveBackground /> */}
 
       {/* Glowing Top Progress Loader */}
       {progress > 0 && (
@@ -248,7 +248,8 @@ export default function App() {
           <Route path="/school/:schoolId/curriculum/:pathway" element={<Curriculum />} />
           <Route path="/school/:schoolId/holistic-learning" element={<SchoolHolistic />} />
           <Route path="/school/:schoolId/holistic-learning/:sectionId" element={<SchoolHolistic />} />
-          <Route path="/school/:schoolId/counselling" element={<Navigate to="/counselling" replace />} />
+          <Route path="/virtual-tour" element={<SchoolVirtualTour />} />
+          <Route path="/school/:schoolId/virtual-tour" element={<SchoolVirtualTour />} />
           <Route path="/school/:schoolId/winning-school" element={<SchoolWinning />} />
           <Route path="/school/:schoolId/editorials" element={<SchoolEditorials />} />
           <Route path="/school/:schoolId/disclosures" element={<Disclosures />} />

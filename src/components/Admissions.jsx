@@ -10,8 +10,8 @@ export default function Admissions() {
   const primaryColor = currentSchool ? currentSchool.theme.primary : 'brand-masterDeep'
 
   return (
-    <section id="procedure" className="py-16 sm:py-24 bg-transparent relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-16 items-center">
+    <section id="procedure" className="py-12 sm:py-16 bg-transparent relative overflow-hidden">
+      <div className="w-[96%] max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-16 items-center">
         {/* Left Side: Procedure Steps */}
         <div className="lg:col-span-6 space-y-8 sm:space-y-12">
           <div className="space-y-3 sm:space-y-4">

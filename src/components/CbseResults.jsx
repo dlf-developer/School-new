@@ -1,12 +1,27 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import { Trophy, Award, Star, CheckCircle2, TrendingUp, Sparkles } from 'lucide-react'
+import { useSiteData } from '../hooks/useSiteData'
 
-export default function CbseResults({ theme, schoolName = "DLF School" }) {
-  const primaryColor = theme?.primary || 'brand-greenDeep'
-  const vibrantColor = theme?.vibrant || 'brand-greenVibrant'
-  const accentColor = theme?.accent || 'brand-gold'
+export default function CbseResults() {
+  const { schoolId } = useParams()
+  const { schools } = useSiteData()
+  const activeBranch = schoolId && schools[schoolId] ? schoolId : 'dlf-sahibabad'
+  const currentSchool = schools[activeBranch]
+  const isDLWS = activeBranch === 'dlf-greater-noida'
 
-  const topScorers = [
+  const theme = currentSchool?.theme || {
+    primary: 'brand-greenDeep',
+    vibrant: 'brand-greenVibrant',
+    accent: 'brand-gold',
+    accentHex: '#C59B27'
+  }
+
+  const primaryColor = theme.primary
+  const vibrantColor = theme.vibrant
+  const schoolName = currentSchool?.name || 'DLF School'
+
+  const dlpsTopScorers = [
     {
       name: "Aadya Singh",
       score: "98.8%",
@@ -37,33 +52,73 @@ export default function CbseResults({ theme, schoolName = "DLF School" }) {
     },
   ]
 
-  const stats = [
+  const dlwsTopScorers = [
+    {
+      name: "Aarav Sharma",
+      score: "97.4%",
+      stream: "Class X — All Subjects",
+      achievement: "Class X School Topper",
+      image: "/baby_boy.jpg"
+    },
+    {
+      name: "Diya Patel",
+      score: "96.8%",
+      stream: "Class X — Science & Math",
+      achievement: "Subject Distinction 100/100",
+      image: "/baby_girl.jpeg"
+    },
+    {
+      name: "Kabir Verma",
+      score: "96.2%",
+      stream: "Class X — Social & Lang",
+      achievement: "Merit Scholar Award",
+      image: "/campus/campus3.jpg"
+    },
+    {
+      name: "Rhea Gupta",
+      score: "95.8%",
+      stream: "Class X — All Subjects",
+      achievement: "Academic Excellence",
+      image: "/campus/campus2.jpg"
+    },
+  ]
+
+  const topScorers = isDLWS ? dlwsTopScorers : dlpsTopScorers
+
+  const dlpsStats = [
     { value: "100%", label: "Pass Percentage", sub: "Class X & XII Board Exams" },
     { value: "98.8%", label: "Highest Percentage", sub: "Class XII Board Result 2025" },
     { value: "54%", label: "Scored 90%+ Marks", sub: "Across all streams" },
     { value: "88.4%", label: "Average Aggregate", sub: "School Class Average" },
   ]
 
+  const dlwsStats = [
+    { value: "100%", label: "Pass Percentage", sub: "Class X Board Examinations" },
+    { value: "97.4%", label: "Highest Percentage", sub: "Class X Board Result 2025" },
+    { value: "48%", label: "Scored 90%+ Marks", sub: "Across all sections" },
+    { value: "86.8%", label: "Average Aggregate", sub: "School Class Average" },
+  ]
+
+  const stats = isDLWS ? dlwsStats : dlpsStats
+
   return (
-    <section className="py-16 bg-white rounded-3xl border border-gray-100 shadow-sm p-8 sm:p-12 space-y-10 my-8">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-6">
-        <div>
-          <span className={`text-xs uppercase font-extrabold tracking-widest text-${vibrantColor}`}>
-            Academic Benchmark
-          </span>
-          <h3 className={`font-serif text-2xl sm:text-4xl font-bold text-${primaryColor} mt-1`}>
-            Last Year's CBSE Board Results
-          </h3>
-          <p className="text-xs sm:text-sm text-brand-muted font-inter mt-1 font-medium">
-            Outstanding academic performance of {schoolName} students in the CBSE Class X &amp; XII Board Examinations.
-          </p>
-        </div>
-        <div className="inline-flex items-center gap-2 bg-brand-gold/10 text-brand-gold px-4 py-2 rounded-2xl text-xs font-bold shrink-0">
-          <Trophy className="w-4 h-4" />
-          <span>Session 2024-25 Results</span>
-        </div>
-      </div>
+    <div className="py-10 text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden font-sans">
+      <div className="w-[96%] max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <section className="bg-white rounded-3xl border border-brand-greenDeep/5 shadow-sm p-8 sm:p-10 space-y-10">
+          {/* Header */}
+          <div className="border-b border-gray-100 pb-6">
+            <div>
+              <span className={`text-xs uppercase font-extrabold tracking-widest text-${vibrantColor}`}>
+                Academic Benchmark
+              </span>
+              <h3 className={`font-serif text-2xl sm:text-4xl font-bold text-${primaryColor} mt-1`}>
+                Last Year's CBSE Board Results
+              </h3>
+              <p className="text-xs sm:text-sm text-brand-muted font-inter mt-1 font-medium">
+                Outstanding academic performance of {schoolName} students in the CBSE Class X &amp; XII Board Examinations.
+              </p>
+            </div>
+          </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -133,5 +188,7 @@ export default function CbseResults({ theme, schoolName = "DLF School" }) {
         </div>
       </div>
     </section>
+      </div>
+    </div>
   )
 }

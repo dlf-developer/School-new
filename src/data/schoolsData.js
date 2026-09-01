@@ -24,7 +24,7 @@ export const schoolsData = {
       titleLine3: "Creating",
       vibrantWord: "Pioneers",
       subtitle:
-        "At DLF Public School, Sahibabad (Ghaziabad), we believe in cultivating a scientific temperament, social responsibility, and the courage to build an eco-friendly tomorrow.",
+        "At DLF Public School, we believe in cultivating a scientific temperament, social responsibility, and the courage to build an eco-friendly tomorrow.",
       stats: [
         { value: "Ranked #1", label: "In Ghaziabad" },
         { value: "100%", label: "Board Success" },

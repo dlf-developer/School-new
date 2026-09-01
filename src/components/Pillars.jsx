@@ -22,7 +22,7 @@ export default function Pillars() {
       {/* Floating shapes */}
       <div className={`absolute right-0 bottom-0 w-[30rem] sm:w-[50rem] h-[30rem] sm:h-[50rem] rounded-full bg-${theme.vibrant}/10 blur-3xl -z-10`}></div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-10">
+      <div className="w-[96%] max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 sm:gap-8 mb-12 sm:mb-16">
           <div className="max-w-2xl space-y-3 sm:space-y-4">
             <span className={`text-xs uppercase tracking-widest font-bold text-${theme.accent}`}>

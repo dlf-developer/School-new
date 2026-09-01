@@ -39,7 +39,7 @@ export const schoolsData = {
       titleLine3: "Creating",
       vibrantWord: "Pioneers",
       subtitle:
-        "At DLF Public School, Sahibabad (Ghaziabad), we believe in cultivating a scientific temperament, social responsibility, and the courage to build an eco-friendly tomorrow.",
+        "At DLF Public School, we believe in cultivating a scientific temperament, social responsibility, and the courage to build an eco-friendly tomorrow.",
       stats: [
         { value: "Ranked #1", label: "In Ghaziabad" },
         { value: "100%", label: "Board Success" },
@@ -152,12 +152,15 @@ export const schoolsData = {
       ],
     },
     principalDesk: {
-      title: "From the Principal's Desk",
+      title: "From the School Head's Desk",
+      name: "Ruchi Jain",
+      designation: "School Head",
+      author: "Ruchi Jain | School Head, DLF World School",
       quote:
-        '"Every school has a story written not merely through the passage of time, but through the lives it shapes, the values it nurtures, and the aspirations it inspires."',
+        '"At DLF World School, we nurture thinkers, empower leaders, and inspire young minds through design thinking, scientific temper, and digital-age readiness while keeping them rooted in values and compassion."',
       paragraphs: [
         "Namaste! The DLF Family’s journey has been one of purpose, partnership, and continuous growth. We are deeply grateful to the generations of students, parents, teachers, and well-wishers whose faith and support have enabled us to build a vibrant learning community founded on trust and shared commitment.",
-        "At DLF, education is viewed as a transformative journey rather than the pursuit of academic achievement alone. While excellence in scholarship remains important, our larger purpose is to help every learner develop into an inquisitive mind, a responsible citizen, a compassionate individual, and a confident contributor to society.",
+        "At DLF World School, education is viewed as a transformative journey rather than the pursuit of academic achievement alone. While excellence in scholarship remains important, our larger purpose is to help every learner develop into an inquisitive mind, a responsible citizen, a compassionate individual, and a confident contributor to society.",
         "Every child who enters our campus brings unique strengths, interests, and possibilities. Whether a learner’s talent lies in science, the arts, sports, leadership, innovation, service, or quiet determination, our endeavour is to provide opportunities that allow each child to discover their own potential.",
         "Creating a caring and inclusive learning environment remains central to everything we do. We strive to ensure that every student feels respected, encouraged, and valued, irrespective of their individual learning journey.",
         "Learning extends far beyond classrooms. It is enriched through meaningful discussions, collaborative projects, creative expression, scientific inquiry, sporting experiences, community engagement, and opportunities to solve real-world challenges.",
@@ -405,7 +408,7 @@ export const globalData = {
       },
       {
         id: "stat-2",
-        target: 3000,
+        target: 2200,
         suffix: "+",
         label: "Active Learners",
         color: "brand-gold",
@@ -628,6 +631,65 @@ export const globalData = {
         role: "Parent of Class XII student",
         initials: "RM",
         color: "brand-greenDeep",
+      },
+    ],
+  },
+
+  // ── 2g-2. VIDEO TESTIMONIALS ──────────────────────────────────────────────
+  videoTestimonials: {
+    sectionLabel: "Community Voices",
+    sectionTitle: "Video Testimonials",
+    sectionSubtitle:
+      "Hear directly from our parents, alumni, and students about their educational journeys at DLF Schools.",
+    satisfactionBadge: "Parent Satisfaction",
+    videos: [
+      {
+        id: "vtest-1",
+        title: "Life at DLF — School Ethos & Celebration",
+        speaker: "DLF Public School (@dlfpublicschool)",
+        quote:
+          "Experience the joyous spirit, holistic growth, and dynamic student community at DLF Public School.",
+        thumbnail: "",
+        duration: "Reel",
+        videoType: "instagram",
+        videoUrl: "https://www.instagram.com/reel/DCEtpffSF9d/",
+        tag: "Campus Reel",
+      },
+      {
+        id: "vtest-2",
+        title: "Student Spotlight — Joyful Learning & Growth",
+        speaker: "DLF Public School (@dlfpublicschool)",
+        quote:
+          "Discover how DLF Public School fosters confidence, creativity, and values in every young learner.",
+        thumbnail: "",
+        duration: "Reel",
+        videoType: "instagram",
+        videoUrl: "https://www.instagram.com/reel/DUD_4iKD0kP/",
+        tag: "Student Life",
+      },
+      {
+        id: "vtest-3",
+        title: "Student Joy & Creative Expression",
+        speaker: "DLF Public School (@dlfpublicschool)",
+        quote:
+          "Fostering curious minds, expressive talents, and enduring values at DLF Public School.",
+        thumbnail: "",
+        duration: "Reel",
+        videoType: "instagram",
+        videoUrl: "https://www.instagram.com/reel/DXPBljsD-I6/",
+        tag: "Campus Reel",
+      },
+      {
+        id: "vtest-4",
+        title: "Life at DLF World School — G. Noida Campus",
+        speaker: "DLF World School (@dlfworldschool)",
+        quote:
+          "Nurturing thinkers, empowering leaders, and inspiring young minds through dynamic learning at DLF World School.",
+        thumbnail: "",
+        duration: "Reel",
+        videoType: "instagram",
+        videoUrl: "https://www.instagram.com/reel/DQCKFEXk_Cw/",
+        tag: "DLWS Reel",
       },
     ],
   },

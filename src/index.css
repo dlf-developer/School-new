@@ -14,9 +14,10 @@
   --color-brand-charcoal: #1E2522;        
   --color-brand-muted: #616A66;            
 
-  --font-serif: "Playfair Display", serif;
-  --font-sans: "Plus Jakarta Sans", sans-serif;
-  --font-inter: "Inter", sans-serif;
+  --font-serif: "Fira Sans", sans-serif;
+  --font-sans: "Fira Sans", sans-serif;
+  --font-inter: "Fira Sans", sans-serif;
+  --font-fira: "Fira Sans", sans-serif;
 }
 
 /* Native smooth scrolling configuration styles */

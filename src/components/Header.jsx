@@ -33,6 +33,7 @@ import {
   Globe,
   Music,
   Palette,
+  Video,
 } from "lucide-react";
 
 export default function Header() {
@@ -397,83 +398,93 @@ export default function Header() {
                 className={`w-[66.67%] p-6 ${!schoolId ? "bg-brand-greenDeep" : `bg-${theme.primary}`} text-white flex flex-col justify-between`}
               >
                 <div>
-                  <p className="text-[9px] font-extrabold uppercase tracking-widest text-brand-gold mb-4">
-                    Darbari Lal Foundation Directory
-                  </p>
-                  <div className="grid grid-cols-2 gap-x-8 gap-y-1">
-                    {[
-                      {
-                        label: "Group Home",
-                        to: "/",
-                        Icon: Home,
-                      },
-                      {
-                        label: "Thinking School",
-                        to: "/thinking-school",
-                        Icon: BookMarked,
-                      },
-                      {
-                        label: "Vision & Mission",
-                        to: "/vision-mission",
-                        Icon: Compass,
-                      },
-                      {
-                        label: "Our Pedagogy",
-                        to: "/pedagogy",
-                        Icon: GraduationCap,
-                      },
-                      {
-                        label: "Our Management",
-                        to: "/management",
-                        Icon: Users,
-                      },
-                      {
-                        label: "Parents as Partners",
-                        to: "/parent-partners",
-                        Icon: Handshake,
-                      },
-                      {
-                        label: "School Awards",
-                        to: "/awards",
-                        Icon: Award,
-                      },
-                      {
-                        label: "Sports Arena",
-                        to: "/sports-arena",
-                        Icon: Trophy,
-                      },
-                      {
-                        label: "DLF in the News",
-                        to: "/news",
-                        Icon: Newspaper,
-                      },
-                      {
-                        label: "Alumni Network",
-                        to: "/alumni",
-                        Icon: Handshake,
-                      },
-                      {
-                        label: "Contact Us",
-                        to: schoolId
-                          ? `/school/${schoolId}/contact`
-                          : "/contact",
-                        Icon: PhoneCall,
-                      },
-                    ].map(
-                      ({ label, to, Icon: NavIcon }) => (
-                        <Link
-                          key={to}
-                          to={to}
-                          className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-white/10 group/link transition-colors duration-200"
-                        >
-                          <NavIcon className="w-3.5 h-3.5 text-white/60 group-hover/link:text-white transition-colors shrink-0" />
-                          <span className="text-[11.5px] font-semibold text-white/90 group-hover/link:text-white transition-colors">
-                            {label}
-                          </span>
-                          <ArrowRight className="w-3 h-3 text-white/40 group-hover/link:text-white group-hover/link:translate-x-0.5 transition-all ml-auto" />
-                        </Link>
-                      ),
-                    )}
+                  <div className="border-b border-white/15 pb-2.5 mb-4 flex items-center justify-between">
+                    <h3 className="text-xs sm:text-sm font-black uppercase tracking-widest text-brand-gold font-sans">
+                      DARBARI LAL FOUNDATION
+                    </h3>
+                    <Link
+                      to="/"
+                      className="text-[10px] font-bold uppercase tracking-wider text-white/80 hover:text-brand-gold flex items-center gap-1 transition-colors"
+                    >
+                      <span>Home</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-5">
+                    {/* Column 1: About Us (Non-clickable Header) */}
+                    <div className="space-y-2">
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-brand-gold/90 block border-b border-white/10 pb-1 cursor-default select-none">
+                        About Us
+                      </span>
+                      <ul className="space-y-1 text-[11px] text-white/85">
+                        {[
+                          { label: "Thinking School", to: "/thinking-school" },
+                          { label: "Vision & Mission", to: "/vision-mission" },
+                          { label: "Our Management", to: "/management" },
+                          { label: "Parents as Partners", to: "/parent-partners" },
+                          { label: "School Awards", to: "/awards" }
+                        ].map((link, idx) => (
+                          <li key={idx}>
+                            <Link
+                              to={link.to}
+                              className="hover:text-brand-gold transition-colors block py-0.5"
+                            >
+                              {link.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Column 2: Our Pedagogy (Header + 4 Stage Children) */}
+                    <div className="space-y-2">
+                      <Link
+                        to="/pedagogy"
+                        className="text-[10px] font-extrabold uppercase tracking-wider text-brand-gold/90 hover:text-white transition-colors block border-b border-white/10 pb-1"
+                      >
+                        Our Pedagogy &rarr;
+                      </Link>
+                      <ul className="space-y-1 text-[11px] text-white/85">
+                        {[
+                          { label: "Early Years", to: "/pedagogy/early-years" },
+                          { label: "Primary Years", to: "/pedagogy/primary-years" },
+                          { label: "Middle Years", to: "/pedagogy/middle-years" },
+                          { label: "Senior Years", to: "/pedagogy/senior-years" }
+                        ].map((link, idx) => (
+                          <li key={idx}>
+                            <Link
+                              to={link.to}
+                              className="hover:text-brand-gold transition-colors block py-0.5"
+                            >
+                              {link.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Column 3: Explore */}
+                    <div className="space-y-2">
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-brand-gold/90 block border-b border-white/10 pb-1 cursor-default select-none">
+                        Explore
+                      </span>
+                      <ul className="space-y-1 text-[11px] text-white/85">
+                        {[
+                          { label: "What Sets Us Apart", to: "/what-sets-us-apart" },
+                          { label: "Contact Us", to: "/contact" }
+                        ].map((link, idx) => (
+                          <li key={idx}>
+                            <Link
+                              to={link.to}
+                              className="hover:text-brand-gold transition-colors block py-0.5"
+                            >
+                              {link.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -608,7 +619,7 @@ export default function Header() {
                   <img
                     src="/name_in _the_picture.png"
                     alt="Darbari Lal Foundation"
-                    className="h-full w-auto object-contain max-h-8 rounded-lg"
+                    className="h-full w-auto object-contain max-h-8 sm:max-h-10 rounded-lg"
                   />
                 </div>
               </div>
@@ -621,23 +632,37 @@ export default function Header() {
                     className="w-full h-full object-contain p-0.5"
                   />
                 </div>
-                <div className="flex flex-col justify-center">
-                  <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.2em] leading-none text-brand-gold">
-                    DLF SCHOOL
-                  </span>
-                  <h1
-                    className={`font-serif text-${theme.primary} text-sm sm:text-base md:text-lg font-black uppercase tracking-tight leading-tight mt-1`}
-                  >
-                    {currentSchool
-                      ? currentSchool.name
-                      : "DARBARI LAL FOUNDATION"}
-                  </h1>
-                  <p className="text-[8px] sm:text-[8.5px] text-brand-muted font-inter uppercase tracking-widest font-semibold mt-0.5">
-                    {currentSchool
-                      ? `${currentSchool.shortLocation} · ${currentSchool.cbseInfo}`
-                      : ""}
-                  </p>
-                </div>
+                {schoolId === "dlf-sahibabad" ? (
+                  <div className="h-8 sm:h-10 flex items-center justify-center">
+                    <img
+                      src="/images/dlps-logo.png"
+                      alt="DLF Public School"
+                      className="h-full w-auto object-contain max-h-8 sm:max-h-10"
+                    />
+                  </div>
+                ) : schoolId === "dlf-greater-noida" ? (
+                  <div className="h-7 sm:h-9 flex items-center justify-center">
+                    <img
+                      src="/dlws-logo.png"
+                      alt="DLF World School"
+                      className="h-full w-auto object-contain max-h-7 sm:max-h-9"
+                    />
+                  </div>
+                ) : (
+                  <div className="flex flex-col justify-center">
+                    <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.2em] leading-none text-brand-gold">
+                      DLF SCHOOLS
+                    </span>
+                    <h1
+                      className={`font-serif text-${theme.primary} text-sm sm:text-base md:text-lg font-black uppercase tracking-tight leading-tight mt-1`}
+                    >
+                      DARBARI LAL FOUNDATION
+                    </h1>
+                    <p className="text-[8px] sm:text-[8.5px] text-brand-muted font-inter uppercase tracking-widest font-semibold mt-0.5">
+                      Sahibabad &amp; Greater Noida
+                    </p>
+                  </div>
+                )}
               </>
             )}
           </Link>
@@ -761,7 +786,7 @@ export default function Header() {
 
                   {/* ── SCHOOL SITE: full mega menu on hover ── */}
                   <div
-                    className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 text-left pointer-events-none group-hover:pointer-events-auto"
+                    className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 text-left pointer-events-none group-hover:pointer-events-auto before:content-[''] before:absolute before:-top-4 before:left-0 before:w-full before:h-6 before:bg-transparent"
                     style={{ width: "1008px", zIndex: 200 }}
                   >
                     <div className="translate-y-2 group-hover:translate-y-0 transition-transform duration-300 relative">
@@ -850,93 +875,95 @@ export default function Header() {
                           className={`w-[66.67%] p-6 ${!schoolId ? "bg-brand-greenDeep" : `bg-${theme.primary}`} text-white flex flex-col justify-between`}
                         >
                           <div>
-                            <p className="text-[9px] font-extrabold uppercase tracking-widest text-brand-gold mb-4">
-                              Darbari Lal Foundation
-                              Directory
-                            </p>
-                            <div className="grid grid-cols-2 gap-x-8 gap-y-1">
-                              {[
-                                {
-                                  label: "Group Home",
-                                  to: "/",
-                                  Icon: Home,
-                                },
-                                {
-                                  label: "Thinking School",
-                                  to: "/thinking-school",
-                                  Icon: BookMarked,
-                                },
-                                {
-                                  label: "Vision & Mission",
-                                  to: "/vision-mission",
-                                  Icon: Compass,
-                                },
-                                {
-                                  label: "Our Pedagogy",
-                                  to: "/pedagogy",
-                                  Icon: GraduationCap,
-                                },
-                                {
-                                  label: "Our Management",
-                                  to: "/management",
-                                  Icon: Users,
-                                },
-                                {
-                                  label:
-                                    "Parents as Partners",
-                                  to: "/parent-partners",
-                                  Icon: Handshake,
-                                },
-                                {
-                                  label: "School Awards",
-                                  to: "/awards",
-                                  Icon: Award,
-                                },
-                                {
-                                  label: "Sports Arena",
-                                  to: "/sports-arena",
-                                  Icon: Trophy,
-                                },
-                                {
-                                  label: "DLF in the News",
-                                  to: "/news",
-                                  Icon: Newspaper,
-                                },
-                                {
-                                  label: "Alumni Network",
-                                  to: "/alumni",
-                                  Icon: Handshake,
-                                },
-                                {
-                                  label: "Contact Us",
-                                  to: schoolId
-                                    ? `/school/${schoolId}/contact`
-                                    : "/contact",
-                                  Icon: PhoneCall,
-                                },
-                              ].map(
-                                ({
-                                  label,
-                                  to,
-                                  Icon: NavIcon,
-                                }) => (
-                                  <Link
-                                    key={to}
-                                    to={to}
-                                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-white/10 group/link transition-colors duration-200"
-                                  >
-                                    <NavIcon className="w-3.5 h-3.5 text-white/60 group-hover/link:text-white transition-colors shrink-0" />
-                                    <span className="text-[11.5px] font-semibold text-white/90 group-hover/link:text-white transition-colors">
-                                      {label}
-                                    </span>
-                                    <ArrowRight className="w-3 h-3 text-white/40 group-hover/link:text-white group-hover/link:translate-x-0.5 transition-all ml-auto" />
-                                  </Link>
-                                ),
-                              )}
+                            <div className="border-b border-white/15 pb-2.5 mb-4 flex items-center justify-between">
+                              <h3 className="text-xs sm:text-sm font-black uppercase tracking-widest text-brand-gold font-sans">
+                                DARBARI LAL FOUNDATION
+                              </h3>
+                              <Link
+                                to="/"
+                                className="text-[10px] font-bold uppercase tracking-wider text-white/80 hover:text-brand-gold flex items-center gap-1 transition-colors"
+                              >
+                                <span>Home</span>
+                                <ArrowRight className="w-3 h-3" />
+                              </Link>
                             </div>
-                            {/* end grid */}
+
+                            <div className="grid grid-cols-3 gap-5">
+                              {/* Column 1: About Us (Non-clickable Header) */}
+                              <div className="space-y-2">
+                                <span className="text-[10px] font-extrabold uppercase tracking-wider text-brand-gold/90 block border-b border-white/10 pb-1 cursor-default select-none">
+                                  About Us
+                                </span>
+                                <ul className="space-y-1 text-[11px] text-white/85">
+                                  {[
+                                    { label: "Thinking School", to: "/thinking-school" },
+                                    { label: "Vision & Mission", to: "/vision-mission" },
+                                    { label: "Our Management", to: "/management" },
+                                    { label: "Parents as Partners", to: "/parent-partners" },
+                                    { label: "School Awards", to: "/awards" }
+                                  ].map((link, idx) => (
+                                    <li key={idx}>
+                                      <Link
+                                        to={link.to}
+                                        className="hover:text-brand-gold transition-colors block py-0.5"
+                                      >
+                                        {link.label}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+
+                              {/* Column 2: Our Pedagogy (Header + 4 Stage Children) */}
+                              <div className="space-y-2">
+                                <Link
+                                  to="/pedagogy"
+                                  className="text-[10px] font-extrabold uppercase tracking-wider text-brand-gold/90 hover:text-white transition-colors block border-b border-white/10 pb-1"
+                                >
+                                  Our Pedagogy &rarr;
+                                </Link>
+                                <ul className="space-y-1 text-[11px] text-white/85">
+                                  {[
+                                    { label: "Early Years", to: "/pedagogy/early-years" },
+                                    { label: "Primary Years", to: "/pedagogy/primary-years" },
+                                    { label: "Middle Years", to: "/pedagogy/middle-years" },
+                                    { label: "Senior Years", to: "/pedagogy/senior-years" }
+                                  ].map((link, idx) => (
+                                    <li key={idx}>
+                                      <Link
+                                        to={link.to}
+                                        className="hover:text-brand-gold transition-colors block py-0.5"
+                                      >
+                                        {link.label}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+
+                              {/* Column 3: Explore */}
+                              <div className="space-y-2">
+                                <span className="text-[10px] font-extrabold uppercase tracking-wider text-brand-gold/90 block border-b border-white/10 pb-1 cursor-default select-none">
+                                  Explore
+                                </span>
+                                <ul className="space-y-1 text-[11px] text-white/85">
+                                  {[
+                                    { label: "What Sets Us Apart", to: "/what-sets-us-apart" },
+                                    { label: "Contact Us", to: schoolId ? `/school/${schoolId}/contact` : "/contact" }
+                                  ].map((link, idx) => (
+                                    <li key={idx}>
+                                      <Link
+                                        to={link.to}
+                                        className="hover:text-brand-gold transition-colors block py-0.5"
+                                      >
+                                        {link.label}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
                           </div>
-                          {/* end inner div */}
                         </div>
                         {/* end right panel */}
                       </div>
@@ -963,17 +990,7 @@ export default function Header() {
                   )}
                 </div>
 
-                {/* 1b. Virtual Tour */}
-                <div className="relative py-2 flex flex-col items-center justify-center">
-                  <a
-                    href={schoolId === "dlf-greater-noida" ? "https://www.dlws.edu.in" : "https://www.dlps.co.in"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold`}
-                  >
-                    Virtual Tour
-                  </a>
-                </div>
+
 
                 {/* 2. Leadership (No dropdown) */}
                 <div className="relative py-2 flex flex-col items-center justify-center">
@@ -1182,12 +1199,21 @@ export default function Header() {
           </nav>
 
           {/* Navigation Actions */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-3">
             {schoolId ? (
               <>
+                {/* [Virtual Tour] Button strictly on School Website */}
+                <Link
+                  to={`/school/${schoolId}/virtual-tour`}
+                  className="bg-transparent hover:bg-brand-gold/10 text-brand-gold hover:text-brand-goldlight px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-sm flex items-center gap-2 border border-brand-gold/50 hover:border-brand-gold shrink-0 cursor-pointer"
+                >
+                  <Video className="w-3.5 h-3.5 text-brand-gold shrink-0" />
+                  <span>Virtual Tour</span>
+                </Link>
+
                 <Link
                   to={`/school/${schoolId}/admissions`}
-                  className={`bg-${theme.primary} text-white hover:bg-${theme.vibrant} px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md flex items-center gap-2 relative overflow-hidden group`}
+                  className={`bg-${theme.primary} text-white hover:bg-${theme.vibrant} px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md flex items-center gap-2 relative overflow-hidden group shrink-0`}
                 >
                   <span className="relative z-10">
                     Admissions Open
@@ -1198,7 +1224,7 @@ export default function Header() {
             ) : (
               <Link
                 to="/admission-enquiry"
-                className={`bg-brand-gold text-${theme.primary} hover:bg-brand-goldlight px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md flex items-center gap-2 relative overflow-hidden group`}
+                className={`bg-brand-gold text-${theme.primary} hover:bg-brand-goldlight px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md flex items-center gap-2 relative overflow-hidden group shrink-0`}
               >
                 <span className="relative z-10">
                   Admissions Open
@@ -1241,27 +1267,47 @@ export default function Header() {
 
           <div className="space-y-8 mt-12">
             <div
-              className={`border-b border-${theme.primary}/10 pb-4`}
+              className={`p-4 border-b ${!schoolId ? "border-white/10" : "border-gray-200"} flex flex-col justify-center`}
             >
-              <div className="flex flex-col">
-                <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] leading-none text-brand-gold">
-                  {schoolId ? "DLF SCHOOL" : ""}
-                </span>
-                <p
-                  className={`font-serif ${!schoolId ? "text-white" : `text-${theme.primary}`} text-xl sm:text-2xl font-black uppercase tracking-tight leading-tight mt-1.5`}
-                >
-                  {currentSchool
-                    ? currentSchool.name
-                    : "DARBARI LAL FOUNDATION"}
-                </p>
-              </div>
-              <p
-                className={`text-[9.5px] ${!schoolId ? "text-white/70" : "text-brand-muted"} uppercase tracking-widest font-semibold mt-1`}
-              >
-                {currentSchool
-                  ? `${currentSchool.shortLocation} · ${currentSchool.cbseInfo}`
-                  : "CBSE AFFILIATED"}
-              </p>
+              {schoolId === "dlf-sahibabad" ? (
+                <div className="h-8 flex items-center">
+                  <img
+                    src="/images/dlps-logo.png"
+                    alt="DLF Public School"
+                    className="h-full w-auto object-contain max-h-8"
+                  />
+                </div>
+              ) : schoolId === "dlf-greater-noida" ? (
+                <div className="h-7 flex items-center">
+                  <img
+                    src="/dlws-logo.png"
+                    alt="DLF World School"
+                    className="h-full w-auto object-contain max-h-7"
+                  />
+                </div>
+              ) : (
+                <>
+                  <div className="flex flex-col">
+                    <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] leading-none text-brand-gold">
+                      {schoolId ? "DLF SCHOOL" : "DLF SCHOOLS"}
+                    </span>
+                    <p
+                      className={`font-serif ${!schoolId ? "text-white" : `text-${theme.primary}`} text-xl sm:text-2xl font-black uppercase tracking-tight leading-tight mt-1.5`}
+                    >
+                      {currentSchool
+                        ? currentSchool.name
+                        : "DARBARI LAL FOUNDATION"}
+                    </p>
+                  </div>
+                  <p
+                    className={`text-[9.5px] ${!schoolId ? "text-white/70" : "text-brand-muted"} uppercase tracking-widest font-semibold mt-1`}
+                  >
+                    {currentSchool
+                      ? `${currentSchool.shortLocation} · ${currentSchool.cbseInfo}`
+                      : "CBSE AFFILIATED"}
+                  </p>
+                </>
+              )}
             </div>
             <nav
               className={`space-y-3 flex flex-col font-semibold text-base ${!schoolId ? "text-white/90" : "text-brand-charcoal"}`}
@@ -1635,6 +1681,16 @@ export default function Header() {
           >
             {schoolId ? (
               <>
+                {/* [Virtual Tour] Button strictly on School Website */}
+                <Link
+                  to={`/school/${schoolId}/virtual-tour`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center justify-center gap-2 w-full bg-transparent hover:bg-brand-gold/10 text-brand-gold text-center py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs border border-brand-gold transition-colors"
+                >
+                  <Video className="w-4 h-4 text-brand-gold shrink-0" />
+                  <span>Virtual Tour</span>
+                </Link>
+
                 <Link
                   to={`/school/${schoolId}/admissions`}
                   onClick={() => setIsMobileMenuOpen(false)}

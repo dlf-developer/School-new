@@ -8,7 +8,7 @@ import {
 } from 'lucide-react'
 import ImageWithLoader from './ImageWithLoader'
 
-export default function Pedagogy() {
+export default function Pedagogy({ isPreview = false }) {
   const { stageId } = useParams()
   
   // Set default active tab to 'early-years'
@@ -432,7 +432,7 @@ export default function Pedagogy() {
   }
 
   return (
-    <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden">
+    <div className={`${isPreview ? 'py-10' : 'pt-28 pb-16 min-h-screen'} text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden font-sans`}>
       
       {/* Premium custom animations injector */}
       <style>{`
@@ -456,7 +456,7 @@ export default function Pedagogy() {
       <div className="absolute top-20 right-1/4 w-[400px] h-[400px] ambient-glow-2 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-20 left-1/4 w-[450px] h-[450px] ambient-glow-1 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 space-y-16 relative z-10">
+      <div className="w-[96%] max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12 relative z-10">
         
         {/* Header Block */}
         <div className="text-center max-w-2xl mx-auto space-y-4">

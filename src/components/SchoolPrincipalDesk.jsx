@@ -1,13 +1,14 @@
 import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useSiteData } from '../hooks/useSiteData'
-import { ArrowLeft, Target, Lightbulb, Handshake, Globe2, Quote } from 'lucide-react'
+import { ArrowLeft, Target, Lightbulb, Handshake, Globe2, Quote, Compass } from 'lucide-react'
 
 export default function SchoolPrincipalDesk() {
   const { schoolId } = useParams()
   const { schools } = useSiteData()
   const activeBranch = schoolId && schools[schoolId] ? schoolId : 'dlf-sahibabad'
   const currentSchool = schools[activeBranch]
+  const isDLWS = activeBranch === 'dlf-greater-noida'
   
   const theme = currentSchool?.theme || {
     primary: 'brand-greenDeep',
@@ -16,17 +17,37 @@ export default function SchoolPrincipalDesk() {
     accentHex: '#C59B27'
   }
 
+  const pageTitle = isDLWS ? "From the School Head's Desk" : "From the Principal's Desk"
+  const leaderDesignation = isDLWS ? "School Head" : "Principal"
+  const leaderName = isDLWS ? "Ruchi Jain" : "Dr. Seema Jerath"
+
+  const dlpsSidebarCards = [
+    { Icon: Target,    title: 'No Learner Left Behind',      desc: 'Every child feels seen, heard, valued, and advances with confidence and dignity.' },
+    { Icon: Lightbulb, title: 'Thinking Beyond Textbooks',    desc: 'Focus on future-ready skills, innovation, critical thinking, and values-driven education.' },
+    { Icon: Handshake, title: 'Home + School Partnership',    desc: 'Equally vital collaboration with parents to raise confident citizens.' },
+    { Icon: Globe2,    title: '30 Years of Legacy',           desc: 'Alumni as global changemakers, entrepreneurs, and socially conscious pioneers.' },
+  ]
+
+  const dlwsSidebarCards = [
+    { Icon: Lightbulb, title: 'Design Thinking & Innovation', desc: 'Developing creative problem-solving and digital-age capabilities in young learners.' },
+    { Icon: Target,    title: 'No Learner Left Behind',       desc: 'Personalized mentoring ensuring every learner grows with confidence and purpose.' },
+    { Icon: Handshake, title: 'Parent-School Collaboration',  desc: 'Active synergy between home and school to nurture future leaders.' },
+    { Icon: Compass,   title: 'Holistic Development',         desc: 'Harmonious blend of academics, sports dynamism, and artistic expression in Greater Noida.' },
+  ]
+
+  const sidebarCards = isDLWS ? dlwsSidebarCards : dlpsSidebarCards
+
   return (
-    <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
+    <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30 font-sans">
       <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 space-y-12">
         
         {/* Page Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-6">
           <div>
             <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>A Message From</span>
-            <h2 className={`font-serif text-3xl sm:text-4xl font-bold text-${theme.primary}`}>From the Principal's Desk</h2>
+            <h2 className={`font-serif text-3xl sm:text-4xl font-bold text-${theme.primary}`}>{pageTitle}</h2>
             <p className="text-xs sm:text-sm text-brand-muted mt-1 font-inter font-medium">
-              Warm Namaste and a message of legacy, learning, and character from the Principal.
+              Warm Namaste and a message of learning, character, and vision from the {leaderDesignation}.
             </p>
           </div>
           <Link 
@@ -43,14 +64,19 @@ export default function SchoolPrincipalDesk() {
             <div className="absolute right-4 bottom-2 text-gray-200/40 pointer-events-none">
               <Quote className="w-32 h-32 rotate-180" />
             </div>
-            <h3 className={`font-serif text-xl sm:text-2xl font-bold text-${theme.primary}`}>{currentSchool?.principalDesk?.title || "From the Principal's Desk"}</h3>
+            <h3 className={`font-serif text-xl sm:text-2xl font-bold text-${theme.primary}`}>
+              {currentSchool?.principalDesk?.title || pageTitle}
+            </h3>
             <blockquote className="font-serif italic text-base sm:text-xl text-brand-charcoal leading-relaxed relative z-10">
-              {currentSchool?.principalDesk?.quote || '"Three decades. Thousands of learners. Countless dreams & Remarkable milestones. As we celebrate this significant milestone, we look back with gratitude at the trust reposed in us by generations of parents, students, educators, and well-wishers who have been an integral part of our journey."'}
+              {currentSchool?.principalDesk?.quote || (isDLWS 
+                ? '"At DLF World School, we nurture thinkers, empower leaders, and inspire young minds through design thinking, scientific temper, and digital-age readiness while keeping them rooted in values and compassion."' 
+                : '"Three decades. Thousands of learners. Countless dreams & Remarkable milestones. As we celebrate this significant milestone, we look back with gratitude at the trust reposed in us by generations of parents, students, educators, and well-wishers who have been an integral part of our journey."'
+              )}
             </blockquote>
             <div className="flex items-center gap-3 pt-2">
               <div className={`w-8 h-0.5 bg-${theme.accent}`}></div>
               <span className="text-[10px] uppercase tracking-widest font-extrabold text-brand-muted">
-                Principal — {currentSchool?.name}
+                {leaderName} | {leaderDesignation} — {currentSchool?.name}
               </span>
             </div>
           </div>
@@ -85,12 +111,6 @@ export default function SchoolPrincipalDesk() {
                 <p>
                   Equally important is the partnership we share with parents, the first teachers in every child's life. When home and school walk together, children learn to walk confidently into the world.
                 </p>
-                <p>
-                  The true legacy of a school is not measured by buildings or accolades, but by the lives its learners go on to shape. Today, our alumni are spread across the globe as innovators, leaders, creators, entrepreneurs, and socially conscious changemakers — carrying with them a little piece of DLF wherever they go. Their achievements remind us that empowered, compassionate thinkers do not simply succeed professionally; they leave a meaningful impact on the world around them.
-                </p>
-                <p>
-                  As we celebrate three decades of learning and legacy, we continue to evolve with changing times while staying rooted in timeless values.
-                </p>
                 <p className={`font-bold text-${theme.primary} font-serif not-italic text-sm sm:text-base`}>
                   Because long after lessons are forgotten, it is character, compassion, and courage that truly endure.
                 </p>
@@ -100,12 +120,7 @@ export default function SchoolPrincipalDesk() {
 
           {/* Key Philosophy Cards Sidebar */}
           <div className="lg:col-span-4 space-y-4">
-            {[
-              { Icon: Target,    title: 'No Learner Left Behind',      desc: 'Every child feels seen, heard, valued, and advances with confidence and dignity.' },
-              { Icon: Lightbulb, title: 'Thinking Beyond Textbooks',    desc: 'Focus on future-ready skills, innovation, critical thinking, and values-driven education.' },
-              { Icon: Handshake, title: 'Home + School Partnership',    desc: 'Equally vital collaboration with parents to raise confident citizens.' },
-              { Icon: Globe2,    title: '30 Years of Legacy',           desc: 'Alumni as global changemakers, entrepreneurs, and socially conscious pioneers.' },
-            ].map((card, i) => (
+            {sidebarCards.map((card, i) => (
               <div key={i} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-3 hover:shadow-md transition-all duration-300">
                 <span className={`inline-flex items-center justify-center h-10 w-10 rounded-xl bg-${theme.primary}/10 text-${theme.primary}`}>
                   <card.Icon size={20} strokeWidth={2} />

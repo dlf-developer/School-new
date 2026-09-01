@@ -10,14 +10,16 @@ import gsap from 'gsap'
 import { useSiteData } from '../hooks/useSiteData'
 import ImageWithLoader from './ImageWithLoader'
 
-export default function Curriculum() {
+export default function Curriculum({ isHomePage = false }) {
   const { schoolId, pathway } = useParams()
   const { schools } = useSiteData()
   const activeBranch = schoolId && schools[schoolId] ? schoolId : 'dlf-sahibabad'
   const currentSchool = schools[activeBranch]
+  const schoolName = currentSchool?.name || 'DLF Public School'
   
-  // Determine active pathway: default to 'cbse' or use pathway param
-  let activePathway = pathway ? pathway.toLowerCase() : 'cbse';
+  // Manage in-place pathway selection for homepage or URL param for dedicated page
+  const [homePathway, setHomePathway] = useState(pathway ? pathway.toLowerCase() : 'cbse')
+  const activePathway = isHomePage ? homePathway : (pathway ? pathway.toLowerCase() : 'cbse')
   
   const theme = currentSchool?.theme || {
     primary: 'brand-greenDeep',
@@ -26,37 +28,17 @@ export default function Curriculum() {
     accentHex: '#C59B27'
   }
 
-  const [activeTab, setActiveTab] = useState(activePathway === 'cbse' ? 'skill-overview' : 'pathway')
+  const [activeTab, setActiveTab] = useState('skill-overview')
   const panesRef = useRef({})
 
   const handleTabChange = (newTab) => {
     if (newTab === activeTab) return
-
-    const currentPane = panesRef.current[activeTab]
-    const targetPane = panesRef.current[newTab]
-
-    if (currentPane && targetPane) {
-      gsap.to(currentPane, {
-        opacity: 0,
-        y: 10,
-        duration: 0.25,
-        onComplete: () => {
-          setActiveTab(newTab)
-          gsap.fromTo(targetPane, 
-            { opacity: 0, y: -10 },
-            { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' }
-          )
-        }
-      })
-    } else {
-      setActiveTab(newTab)
-    }
+    setActiveTab(newTab)
   }
 
   // ==========================================
-  // CBSE (Sahibabad) Specific Content
+  // CBSE Specific Tabs
   // ==========================================
-  
   const cbseTabs = [
     { id: 'skill-overview', label: 'Skill Education' },
     { id: 'kaushal-bodh', label: 'Kaushal Bodh (VI-VIII)' },
@@ -64,45 +46,226 @@ export default function Curriculum() {
     { id: 'streams', label: 'Streams Offered (XI-XII)' }
   ]
 
+  // Homepage Concise Pointer Data (3 Cards Per Tab)
+  const homeCbsePointerData = {
+    'skill-overview': {
+      badge: '21st Century Capabilities',
+      title: 'NEP 2020 Skill Integration',
+      summary: 'Aligned with NEP 2020 and CBSE initiatives, DLF embeds capability building and logical inquiry across all stages of schooling.',
+      pointers: [
+        {
+          title: 'Computational Thinking & AI',
+          desc: 'Class III onwards fostering algorithm design, digital fluency, and logical problem solving.',
+          icon: Cpu
+        },
+        {
+          title: 'Experiential Maker Studios',
+          desc: 'Dedicated tinkering and robotics spaces translating classroom theory into real-world prototypes.',
+          icon: Lightbulb
+        },
+        {
+          title: 'Life & Vocational Readiness',
+          desc: 'Age-appropriate hands-on modules nurturing critical thinking, adaptability, and leadership.',
+          icon: Target
+        }
+      ]
+    },
+    'kaushal-bodh': {
+      badge: 'Grades VI–VIII',
+      title: 'Kaushal Bodh (Middle Years)',
+      summary: 'Skill discovery curriculum allowing middle-schoolers to explore machine tools, ecological agriculture, and creative design systems.',
+      pointers: [
+        {
+          title: 'Work with Machines & Materials',
+          desc: 'AI assistants, 3D printing, animation, robotics, and applied maker craft.',
+          icon: Cpu
+        },
+        {
+          title: 'Work with Agriculture & Food',
+          desc: 'Organic food preservation, sustainable gardening, and food chemistry techniques.',
+          icon: Compass
+        },
+        {
+          title: 'Work with Human Services',
+          desc: 'Health and wellness portfolios, design thinking, and communication studios.',
+          icon: Users
+        }
+      ]
+    },
+    'kaushal-vikas': {
+      badge: 'Grades IX–X',
+      title: 'Kaushal Vikas (Secondary Years)',
+      summary: 'Application-based skill projects fostering conceptual depth, research inquiry, and vocational capability in national board classes.',
+      pointers: [
+        {
+          title: 'Artificial Intelligence & Coding',
+          desc: 'Machine learning fundamentals, algorithm modeling, and ethical technology.',
+          icon: Cpu
+        },
+        {
+          title: 'Financial Literacy & Marketing',
+          desc: 'Practical economics, financial planning, and entrepreneurial startup concepts.',
+          icon: TrendingUp
+        },
+        {
+          title: 'Information Technology',
+          desc: 'Advanced software tools, digital publishing, and collaborative workflows.',
+          icon: ShieldCheck
+        }
+      ]
+    },
+    'streams': {
+      badge: 'Grades XI–XII',
+      title: 'Specialized Senior Secondary Streams',
+      summary: 'Flexible academic choices across Science, Commerce, and Humanities preparing students for premier universities and global careers.',
+      pointers: [
+        {
+          title: 'Science Stream (Med & Non-Med)',
+          desc: 'Physics, Chemistry, Math/Bio, Computer Science, and Artificial Intelligence with research labs.',
+          icon: Award
+        },
+        {
+          title: 'Commerce Stream',
+          desc: 'Accountancy, Business Studies, Economics, Applied Math, and Entrepreneurship.',
+          icon: TrendingUp
+        },
+        {
+          title: 'Humanities Stream',
+          desc: 'Political Science, Psychology, Sociology, History, Mass Media, and Fine Arts.',
+          icon: BookOpen
+        }
+      ]
+    }
+  }
+
+  const homeCambridgePointerData = {
+    badge: 'Cambridge International (Classes I–VIII)',
+    title: 'Global Curriculum & Inquiry Pathways',
+    summary: 'Globally recognized curriculum preparing learners to be confident, responsible, reflective, innovative, and engaged thinkers.',
+    pointers: [
+      {
+        title: 'Cambridge Primary (Grades I–V)',
+        desc: 'Foundational English, Mathematics, and Science rooted in active, joyful inquiry.',
+        icon: BookOpenCheck
+      },
+      {
+        title: 'Cambridge Lower Secondary (VI–VIII)',
+        desc: 'Rigorous conceptual frameworks preparing students for Cambridge Checkpoint assessments.',
+        icon: Target
+      },
+      {
+        title: 'Global Perspectives & Attributes',
+        desc: 'Cross-disciplinary research, analysis, and global citizenship skills.',
+        icon: Globe
+      }
+    ]
+  }
+
+  const isDLWS = activeBranch === 'dlf-greater-noida'
+
+  // Single dedicated image per pathway
+  const cbsePathwayImage = {
+    src: isDLWS ? '/dlws.jpeg' : '/campus/campus2.jpg',
+    alt: isDLWS ? 'DLF World School CBSE & Skill Innovation' : 'CBSE & NEP 2020 Academic & Skill Core',
+    tag: isDLWS ? 'DLWS CBSE' : 'CBSE Pathway'
+  }
+
+  const cambridgePathwayImage = {
+    src: '/cambridge/image1.png',
+    alt: 'Cambridge Assessment International Education - Cambridge International School',
+    tag: 'Cambridge Assessment'
+  }
+
+  const currentHomeCbse = homeCbsePointerData[activeTab] || homeCbsePointerData['skill-overview']
+
+  const dlpsCurriculumStats = [
+    { val: "2200+", label: "Students", desc: "Enrolled across progressive learning programs." },
+    { val: "1:17", label: "Teacher Student Ratio", desc: "Ensuring personal attention & mentor focus." },
+    { val: "CBSE Board", label: "Foundation- XII", desc: "Fully aligned to CBSE & NEP 2020 guidelines." },
+    { val: "Cambridge Board", label: "I- VIII", desc: "Authorized Cambridge learning pathway." }
+  ]
+
+  const dlwsCurriculumStats = [
+    { val: "Nursery - X", label: "Classes Offered", desc: "Foundational early years to secondary board." },
+    { val: "1:15", label: "Teacher Student Ratio", desc: "Individual attention and dedicated mentor focus." },
+    { val: "CBSE Board", label: "Affiliated", desc: "Aligned with CBSE & NEP 2020 framework." },
+    { val: "STEM & Design", label: "Innovation Hubs", desc: "Robotics, coding, and maker design labs." }
+  ]
+
+  const curriculumStats = isDLWS ? dlwsCurriculumStats : dlpsCurriculumStats
+
   // ==========================================
   // Render Branch-Specific Curriculums
   // ==========================================
 
   return (
-    <section id="curriculum" className="py-6 sm:py-8 bg-transparent relative overflow-hidden text-brand-charcoal selection:bg-brand-gold/30">
+    <section id="curriculum" className="py-8 sm:py-10 bg-transparent relative overflow-hidden text-brand-charcoal selection:bg-brand-gold/30 font-sans">
       {/* Ambient Glow */}
       <div className="absolute top-1/3 left-0 w-80 h-80 rounded-full ambient-glow-1 -translate-y-1/2 opacity-40"></div>
       <div className="absolute bottom-1/4 right-0 w-96 h-96 rounded-full ambient-glow-2 opacity-30"></div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-12 relative z-10 space-y-4 sm:space-y-5">
+      <div className="w-[96%] max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
         
-        {/* Pathway Switcher Pills */}
-        <div className="flex justify-center items-center gap-3">
-          <Link
-            to={`/school/${activeBranch}/curriculum/cbse`}
-            className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${
-              activePathway === 'cbse'
-                ? `bg-${theme.primary} text-white border-${theme.primary} shadow-md`
-                : `bg-white text-brand-charcoal hover:bg-gray-50 border-gray-200`
-            }`}
-          >
-            <BookOpen className="w-4 h-4" />
-            CBSE Pathway
-          </Link>
-          <Link
-            to={`/school/${activeBranch}/curriculum/cambridge`}
-            className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${
-              activePathway === 'cambridge'
-                ? `bg-${theme.primary} text-white border-${theme.primary} shadow-md`
-                : `bg-white text-brand-charcoal hover:bg-gray-50 border-gray-200`
-            }`}
-          >
-            <Globe className="w-4 h-4" />
-            Cambridge Pathway
-          </Link>
-        </div>
+        {/* Pathway Switcher Buttons (Only shown for branches offering dual pathways like DLPS) */}
+        {!isDLWS && (
+          <div className="flex justify-center items-center gap-3">
+            {isHomePage ? (
+              <>
+                <button
+                  type="button"
+                  onClick={() => setHomePathway('cbse')}
+                  className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${
+                    activePathway === 'cbse'
+                      ? `bg-${theme.primary} text-white border-${theme.primary} shadow-md`
+                      : `bg-white text-brand-charcoal hover:bg-gray-50 border-gray-200`
+                  }`}
+                >
+                  <BookOpen className="w-4 h-4" />
+                  CBSE Pathway
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setHomePathway('cambridge')}
+                  className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${
+                    activePathway === 'cambridge'
+                      ? `bg-${theme.primary} text-white border-${theme.primary} shadow-md`
+                      : `bg-white text-brand-charcoal hover:bg-gray-50 border-gray-200`
+                  }`}
+                >
+                  <Globe className="w-4 h-4" />
+                  Cambridge Pathway
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  to={`/school/${activeBranch}/curriculum/cbse`}
+                  className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${
+                    activePathway === 'cbse'
+                      ? `bg-${theme.primary} text-white border-${theme.primary} shadow-md`
+                      : `bg-white text-brand-charcoal hover:bg-gray-50 border-gray-200`
+                  }`}
+                >
+                  <BookOpen className="w-4 h-4" />
+                  CBSE Pathway
+                </Link>
+                <Link
+                  to={`/school/${activeBranch}/curriculum/cambridge`}
+                  className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${
+                    activePathway === 'cambridge'
+                      ? `bg-${theme.primary} text-white border-${theme.primary} shadow-md`
+                      : `bg-white text-brand-charcoal hover:bg-gray-50 border-gray-200`
+                  }`}
+                >
+                  <Globe className="w-4 h-4" />
+                  Cambridge Pathway
+                </Link>
+              </>
+            )}
+          </div>
+        )}
 
-        {/* Top Header */}
+        {/* Top Header with Reduced Summary */}
         <div className="text-center max-w-4xl mx-auto space-y-2">
           <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>
             {activePathway === 'cbse' ? 'CBSE Affiliated Pathway' : 'Cambridge International School'}
@@ -110,26 +273,202 @@ export default function Curriculum() {
           <h3 className={`font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-${theme.primary}`}>
             {activePathway === 'cbse' ? 'Academic Progression & Skill Core' : 'The Cambridge Pathway'}
           </h3>
-          <div className={`w-12 h-[2.5px] bg-${theme.accent} mx-auto`}></div>
-          <div className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter font-medium text-left md:text-center space-y-2">
+          <div className={`w-12 h-[2.5px] bg-${theme.accent} mx-auto mt-2`}></div>
+          <div className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter font-medium text-center max-w-3xl mx-auto pt-1">
             {activePathway === 'cbse' ? (
-              <>
-                <p>
-                  Our school is affiliated to the <strong className="text-brand-charcoal">CENTRAL BOARD OF SECONDARY EDUCATION (CBSE)</strong>. The School offers a wide range of academic choices. Aligned with the CBSE prescribed syllabus and in sync with the National Education Policy 2020, the focus extends beyond mastering content to building competencies that matter—critical thinking, problem-solving, creativity, and adaptability.
-                </p>
-                <p>
-                  The curriculum is designed in accordance with the guidelines and recommendations of the <strong className="text-brand-charcoal">National Education Policy (NEP) 2020</strong>, fostering academic excellence, holistic development, and competency-based learning. It aims to nurture academically competent, socially responsible, and future-ready learners by providing a balanced blend of knowledge, skills, values, and real-world learning experiences.
-                </p>
-              </>
+              <p>
+                Affiliated to the Central Board of Secondary Education (CBSE) and aligned with NEP 2020. Our progressive curriculum combines academic excellence with competency-based learning, critical thinking, and future-ready skill education across all stages.
+              </p>
             ) : (
-              <p className="text-center">
-                Authorized Cambridge school offering a globally recognized curriculum from Classes I–VIII, with higher grades added progressively. Nurturing learners to be confident, responsible, reflective, innovative, and engaged.
+              <p>
+                Authorized Cambridge International School offering a globally recognized curriculum from Classes I–VIII, nurturing learners to be confident, responsible, reflective, innovative, and engaged global citizens.
               </p>
             )}
           </div>
         </div>
 
-        {activePathway === 'cbse' ? (
+        {/* ── HOMEPAGE COMPACT TABBED VIEW ── */}
+        {isHomePage ? (
+          <div className="space-y-6">
+            {/* Stats Ribbon */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              {curriculumStats.map((stat, idx) => (
+                <div key={idx} className="bg-white rounded-2xl p-4 sm:p-5 border border-gray-100 shadow-sm">
+                  <span className={`font-serif text-2xl sm:text-3xl font-extrabold text-${theme.primary}`}>{stat.val}</span>
+                  <h4 className="text-[11px] font-bold text-brand-charcoal mt-1">{stat.label}</h4>
+                  <p className="text-[9px] text-brand-muted font-inter leading-relaxed mt-0.5">{stat.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            {activePathway === 'cbse' ? (
+              <div className="space-y-5">
+                {/* 4 Tabs Selector */}
+                <div className="flex items-center justify-center flex-wrap gap-2 sm:gap-3">
+                  {cbseTabs.map(tab => (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      onClick={() => handleTabChange(tab.id)}
+                      className={`px-4 sm:px-5 py-2.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 border shrink-0 cursor-pointer ${
+                        activeTab === tab.id
+                          ? `bg-${theme.primary} text-white border-${theme.primary} shadow-md`
+                          : `bg-white text-brand-charcoal hover:bg-${theme.primary}/5 border-gray-200`
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Tab Summary Card with 3 Pointer Cards + Single CBSE Pathway Image */}
+                <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-gray-100">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    {/* Left Column: Text & 3 Pointers */}
+                    <div className="lg:col-span-7 space-y-4">
+                      <div>
+                        <span className={`text-[10px] uppercase font-extrabold tracking-widest text-${theme.vibrant} bg-${theme.primary}/5 px-3 py-1 rounded-full inline-block mb-2`}>
+                          {currentHomeCbse.badge}
+                        </span>
+                        <h4 className={`font-serif text-xl sm:text-2xl font-bold text-${theme.primary}`}>
+                          {currentHomeCbse.title}
+                        </h4>
+                        <p className="text-xs sm:text-sm text-brand-muted font-inter font-medium leading-relaxed mt-1">
+                          {currentHomeCbse.summary}
+                        </p>
+                      </div>
+
+                      {/* 3 Pointer Cards Stack */}
+                      <div className="space-y-2.5 pt-1">
+                        {currentHomeCbse.pointers.map((ptr, pIdx) => {
+                          const IconComponent = ptr.icon
+                          return (
+                            <div
+                              key={pIdx}
+                              className="bg-gray-50/80 rounded-2xl p-3.5 sm:p-4 border border-gray-150 hover:bg-white hover:border-gray-200 hover:shadow-sm transition-all duration-300 flex items-start gap-3.5"
+                            >
+                              <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-${theme.primary}/10 text-${theme.primary} flex items-center justify-center shrink-0 mt-0.5`}>
+                                <IconComponent className="w-4 h-4" />
+                              </div>
+                              <div className="space-y-0.5 flex-1">
+                                <h5 className="font-serif text-xs sm:text-sm font-bold text-brand-charcoal leading-snug">
+                                  {ptr.title}
+                                </h5>
+                                <p className="text-[11px] sm:text-xs text-brand-muted font-inter leading-relaxed font-medium">
+                                  {ptr.desc}
+                                </p>
+                              </div>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Right Column: Single Fixed CBSE Image */}
+                    <div className="lg:col-span-5 relative">
+                      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border-2 border-white bg-gray-100 group">
+                        <ImageWithLoader
+                          src={cbsePathwayImage.src}
+                          alt={cbsePathwayImage.alt}
+                          loading="lazy"
+                          imgClassName="group-hover:scale-105 transition-transform duration-700 object-cover w-full h-full"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
+                        <div className="absolute bottom-3 left-3 right-3 z-20 flex items-center justify-between">
+                          <span className="text-[9px] uppercase font-bold tracking-widest text-white bg-black/50 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/20">
+                            {cbsePathwayImage.tag}
+                          </span>
+                          <span className="text-[9px] font-bold text-white/90">
+                            {schoolName}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              /* Cambridge Pathway Homepage Card with Single Fixed Cambridge Image */
+              <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-gray-100">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  {/* Left Column: Text & 3 Pointers */}
+                  <div className="lg:col-span-7 space-y-4">
+                    <div>
+                      <span className={`text-[10px] uppercase font-extrabold tracking-widest text-${theme.vibrant} bg-${theme.primary}/5 px-3 py-1 rounded-full inline-block mb-2`}>
+                        {homeCambridgePointerData.badge}
+                      </span>
+                      <h4 className={`font-serif text-xl sm:text-2xl font-bold text-${theme.primary}`}>
+                        {homeCambridgePointerData.title}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-brand-muted font-inter font-medium leading-relaxed mt-1">
+                        {homeCambridgePointerData.summary}
+                      </p>
+                    </div>
+
+                    {/* 3 Pointer Cards Stack */}
+                    <div className="space-y-2.5 pt-1">
+                      {homeCambridgePointerData.pointers.map((ptr, pIdx) => {
+                        const IconComponent = ptr.icon
+                        return (
+                          <div
+                            key={pIdx}
+                            className="bg-gray-50/80 rounded-2xl p-3.5 sm:p-4 border border-gray-150 hover:bg-white hover:border-gray-200 hover:shadow-sm transition-all duration-300 flex items-start gap-3.5"
+                          >
+                            <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-${theme.primary}/10 text-${theme.primary} flex items-center justify-center shrink-0 mt-0.5`}>
+                              <IconComponent className="w-4 h-4" />
+                            </div>
+                            <div className="space-y-0.5 flex-1">
+                              <h5 className="font-serif text-xs sm:text-sm font-bold text-brand-charcoal leading-snug">
+                                {ptr.title}
+                              </h5>
+                              <p className="text-[11px] sm:text-xs text-brand-muted font-inter leading-relaxed font-medium">
+                                {ptr.desc}
+                              </p>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Right Column: Single Fixed Cambridge Image */}
+                  <div className="lg:col-span-5 relative">
+                    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-gray-150 bg-white p-8 sm:p-10 flex items-center justify-center group">
+                      <img
+                        src={cambridgePathwayImage.src}
+                        alt={cambridgePathwayImage.alt}
+                        className="max-h-36 sm:max-h-44 max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                        <span className="text-[9px] uppercase font-extrabold tracking-widest text-brand-charcoal bg-gray-50 px-2.5 py-1 rounded-full border border-gray-200 shadow-xs">
+                          {cambridgePathwayImage.tag}
+                        </span>
+                        <span className="text-[9px] font-bold text-brand-muted">
+                          {schoolName}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* View More External Pill Button */}
+            <div className="text-center pt-3">
+              <Link
+                to={`/school/${activeBranch}/curriculum/${activePathway}`}
+                className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-charcoal text-white hover:bg-brand-greenDeep transition-all duration-300 shadow-md group cursor-pointer"
+              >
+                <span>View Full Curriculum &amp; Academic Pathways</span>
+                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
+              </Link>
+            </div>
+          </div>
+        ) : (
+          // ── FULL CURRICULUM DETAILED PAGE (WHEN ON DEDICATED ROUTE) ──
+          <>
+            {activePathway === 'cbse' ? (
           // ========================================================
           // ── CBSE LAYOUT (DLPS Sahibabad) ──
           // ========================================================
@@ -719,6 +1058,8 @@ export default function Curriculum() {
 
           </div>
         )}
+      </>
+    )}
 
       </div>
     </section>
