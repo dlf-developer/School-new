@@ -1,194 +1,363 @@
 import React from 'react'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { Phone, Mail } from 'lucide-react'
-import { Facebook, Twitter, Instagram, Youtube } from './Icons'
+import { Link, useLocation } from 'react-router-dom'
+import { Phone, Mail, MapPin, Building2, ShieldCheck, MessageSquare } from 'lucide-react'
 import { schoolsData } from '../data/schoolsData'
 
 export default function Footer() {
-  const navigate = useNavigate()
   const location = useLocation()
 
-  // 1. Detect if we are in a school route context
+  // Detect if we are in a specific school branch context
   const match = location.pathname.match(/^\/school\/([^/]+)/)
   const schoolId = match && schoolsData[match[1]] ? match[1] : null
   const currentSchool = schoolId ? schoolsData[schoolId] : null
+  const isDLWS = schoolId === 'dlf-greater-noida'
 
-  // Define dynamic theme configurations based on the selected school
-  const theme = currentSchool ? currentSchool.theme : {
-    primary: 'brand-greenDeep',
-    vibrant: 'brand-greenVibrant',
-    accent: 'brand-gold',
-    accentHex: '#C59B27'
-  }
-
-  const handleHashClick = (e, hash) => {
-    e.preventDefault()
-    const targetPath = schoolId ? `/school/${schoolId}` : '/'
-    if (location.pathname === targetPath) {
-      const element = document.querySelector(hash)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
-      }
-      navigate(targetPath + hash, { replace: true })
-    } else {
-      navigate(targetPath + hash)
-    }
-  }
+  // Dynamic Theme Colors
+  const footerBg = isDLWS ? 'bg-brand-purpleDeep' : 'bg-brand-greenDeep'
+  const subBarBg = isDLWS ? 'bg-[#22183d]' : 'bg-[#1b3518]'
+  const goldBorder = 'border-brand-gold/30'
 
   return (
-    <footer className={`bg-${theme.primary} text-brand-bg relative overflow-hidden border-t-2 border-${theme.accent}/30 transition-all duration-300`}>
-      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 py-12 sm:py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+    <footer className={`${footerBg} text-brand-bg relative overflow-hidden border-t-2 ${goldBorder} transition-colors duration-500 font-sans`}>
+      {/* Subtle ambient lighting */}
+      <div className="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-white/[0.03] blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-96 h-96 rounded-full bg-brand-gold/[0.03] blur-3xl pointer-events-none" />
+
+      {/* Main Grid: 4 Core Sections */}
+      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-10 py-12 sm:py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 relative z-10">
         
-        {/* Column 1: Brand & Philosophy */}
-        <div className="space-y-6">
-          <div className="flex items-center gap-3">
-            <div className={`w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-md p-1 overflow-hidden`}>
+        {/* ── SECTION 1: DARBARI LAL FOUNDATION ── */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-3 pb-2 border-b border-white/10">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-md p-1 shrink-0 overflow-hidden">
               <img 
                 src="/images/dlf-crest.png" 
-                alt="DLF Logo Crest" 
+                alt="Darbari Lal Foundation Crest" 
                 className="w-full h-full object-contain" 
               />
             </div>
-            <div className="flex flex-col">
-              <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.2em] leading-none text-brand-gold">
-                {schoolId ? 'DLF SCHOOL' : 'DLF SCHOOLS'}
+            <div>
+              <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-brand-gold block leading-none">
+                Established 1996
               </span>
-              <h4 className="font-serif text-base sm:text-lg font-black uppercase tracking-tight leading-tight mt-1">
-                {currentSchool ? currentSchool.name : 'DARBARI LAL FOUNDATION'}
+              <h4 className="font-serif text-sm font-black uppercase tracking-tight text-white mt-0.5">
+                Darbari Lal Foundation
               </h4>
-              <p className={`text-[9px] text-${theme.accent} uppercase tracking-widest font-semibold font-inter mt-1`}>
-                {currentSchool ? `${currentSchool.shortLocation} • ${currentSchool.cbseInfo}` : 'Sahibabad & Greater Noida'}
+            </div>
+          </div>
+
+          <p className="text-xs text-brand-bg/75 leading-relaxed font-inter">
+            Redefining education through experiential thinking, ethical leadership, and 30+ years of scholastic legacy.
+          </p>
+
+          <div className="space-y-2">
+            <h5 className="text-[11px] uppercase tracking-widest font-extrabold text-brand-gold font-inter">
+              Darbari Lal Foundation
+            </h5>
+            <ul className="space-y-1.5 text-xs text-brand-bg/85 font-semibold font-inter">
+              <li>
+                <Link to="/" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Foundation Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/thinking-school" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; A Thinking School with a Soul
+                </Link>
+              </li>
+              <li>
+                <Link to="/vision-mission" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Vision &amp; Mission
+                </Link>
+              </li>
+              <li>
+                <Link to="/pedagogy" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Our Pedagogy &amp; Philosophy
+                </Link>
+              </li>
+              <li>
+                <Link to="/management" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Executive Management
+                </Link>
+              </li>
+              <li>
+                <Link to="/awards" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Institutional Awards &amp; Honors
+                </Link>
+              </li>
+              <li>
+                <Link to="/what-sets-us-apart" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; What Sets Us Apart
+                </Link>
+              </li>
+              <li>
+                <Link to="/parent-partners" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Parents as Partners
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* ── SECTION 2: DLF PUBLIC SCHOOL (SAHIBABAD) MAJOR LINKS ── */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-2 pb-2 border-b border-white/10">
+            <span className="w-2.5 h-2.5 rounded-full bg-brand-greenVibrant shrink-0" />
+            <div>
+              <h4 className="font-serif text-sm font-black uppercase tracking-tight text-white">
+                DLF Public School
+              </h4>
+              <p className="text-[10px] text-brand-gold font-semibold uppercase tracking-wider">
+                Sahibabad, Ghaziabad &bull; Aff. 2130384
               </p>
             </div>
           </div>
+
           <p className="text-xs text-brand-bg/75 leading-relaxed font-inter">
-            Redefining education with continuous innovation, dynamic experiential pedagogy, and zero-waste models.
+            Ranked #1 in Ghaziabad with 30+ years of 100% board excellence, science exhibitions, and state athletic records.
           </p>
+
           <div className="space-y-2">
-            <h5 className={`text-xs uppercase tracking-widest font-bold text-${theme.accent} font-inter`}>About the Group</h5>
+            <h5 className="text-[11px] uppercase tracking-widest font-extrabold text-brand-gold font-inter">
+              Sahibabad Campus Links
+            </h5>
             <ul className="space-y-1.5 text-xs text-brand-bg/85 font-semibold font-inter">
-              <li><Link to="/thinking-school" className={`hover:text-${theme.accent} transition-colors`}>&bull; Thinking School</Link></li>
-              <li><Link to="/vision-mission" className={`hover:text-${theme.accent} transition-colors`}>&bull; Vision & Mission</Link></li>
-              <li><Link to="/parent-partners" className={`hover:text-${theme.accent} transition-colors`}>&bull; Parents as Partners</Link></li>
-              <li><Link to="/pedagogy" className={`hover:text-${theme.accent} transition-colors`}>&bull; Our Pedagogy</Link></li>
-              <li><Link to="/what-sets-us-apart" className={`hover:text-${theme.accent} transition-colors`}>&bull; What Sets Us Apart</Link></li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Column 2: Group Portal Links */}
-        <div className="space-y-4">
-          <h4 className={`font-serif font-bold text-base text-${theme.accent}`}>Group Portals</h4>
-          <div className={`w-8 h-[1px] bg-${theme.accent}`}></div>
-          <ul className="space-y-2 text-xs font-semibold text-brand-bg/85 font-inter">
-            <li><Link to="/" className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; Portal Home</Link></li>
-            <li><Link to="/news" className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; DLF in the News</Link></li>
-            <li>
-              {schoolId ? (
-                <a
-                  href={
-                    schoolId === "dlf-greater-noida"
-                      ? "https://forms.edunexttechnologies.com/forms/dlws/recruitment/"
-                      : "https://forms.edunexttechnologies.com/forms/dlps/recruitment/"
-                  }
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`hover:text-${theme.accent} transition-colors block py-1`}
-                >
-                  &bull; Careers at {currentSchool.shortLocation}
-                </a>
-              ) : (
-                <Link to="/careers" className={`hover:text-${theme.accent} transition-colors block py-1`}>
-                  &bull; Careers at DLF
+              <li>
+                <Link to="/school/dlf-sahibabad/admissions" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Admissions Open 2026–27 &amp; Fees
                 </Link>
-              )}
-            </li>
-            <li><Link to="/alumni" className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; Alumni Network</Link></li>
-            <li><Link to="/sports-arena" className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; Sports Arena</Link></li>
-            <li><Link to={schoolId ? `/school/${schoolId}/useful-links` : "/useful-links"} className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; Useful Links</Link></li>
-            <li><Link to={schoolId ? `/school/${schoolId}/contact` : "/contact"} className={`hover:text-${theme.accent} transition-colors block py-1`}>&bull; {schoolId ? "Contact School" : "Contact Corporate"}</Link></li>
-          </ul>
-        </div>
-
-        {/* Column 3: School Campuses & Context Links */}
-        <div className="space-y-4">
-          <h4 className={`font-serif font-bold text-base text-${theme.accent}`}>School Campuses</h4>
-          <div className={`w-8 h-[1px] bg-${theme.accent}`}></div>
-          <ul className="space-y-2 text-xs font-semibold text-brand-bg/85 font-inter">
-            <li><Link to="/school/dlf-sahibabad" className={`hover:text-${theme.accent} transition-colors block py-1 font-bold`}>&bull; DLF Public School, Sahibabad</Link></li>
-            <li><Link to="/school/dlf-greater-noida" className={`hover:text-${theme.accent} transition-colors block py-1 font-bold`}>&bull; DLF World School, G. Noida</Link></li>
-            
-            {schoolId && (
-              <>
-                <div className="border-t border-white/10 my-2 pt-2"></div>
-                <p className={`text-[10px] uppercase font-bold tracking-widest text-${theme.accent}/70 mb-1.5`}>{currentSchool.name} Links</p>
-                <li><Link to={`/school/${schoolId}/campus`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Campus Infrastructure</Link></li>
-                <li><Link to={`/school/${schoolId}/leadership`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; School Leadership</Link></li>
-                <li><Link to={`/school/${schoolId}/admissions`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Admissions & Fees</Link></li>
-                <li><Link to={`/school/${schoolId}/curriculum`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; School Curriculum</Link></li>
-                <li><Link to={`/school/${schoolId}/holistic-learning`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Holistic Learning</Link></li>
-                <li><Link to={`/school/${schoolId}/useful-links`} className={`hover:text-${theme.accent} transition-colors block py-0.5 font-bold text-brand-gold`}>&bull; Useful Links ({currentSchool.shortLocation})</Link></li>
-                <li><Link to="/counselling" className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Counselling & Wellness</Link></li>
-                <li><Link to={`/school/${schoolId}/winning-school`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Winning School Awards</Link></li>
-                <li><Link to={`/school/${schoolId}/editorials`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; DLF Editorials</Link></li>
-                <li><Link to={`/school/${schoolId}/disclosures`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Mandated Disclosures</Link></li>
-                <li><Link to={`/school/${schoolId}/contact`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Contact School</Link></li>
-              </>
-            )}
-          </ul>
-        </div>
-
-        {/* Column 4: Compliance & Contact */}
-        <div className="space-y-6 font-inter">
-          <div className="space-y-4">
-            <h4 className={`font-serif font-bold text-base text-${theme.accent}`}>Compliance & CBSE</h4>
-            <div className={`w-8 h-[1px] bg-${theme.accent}`}></div>
-            <ul className="space-y-2 text-xs font-semibold text-brand-bg/85">
-              {schoolId ? (
-                <li><Link to={`/school/${schoolId}/disclosures`} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Mandatory Public Disclosure</Link></li>
-              ) : (
-                <li><Link to="/contact" className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Mandatory Public Disclosure</Link></li>
-              )}
-              <li><a href="#committee" onClick={(e) => handleHashClick(e, '#committee')} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Parents Teachers Association</a></li>
-              <li><a href="#safety" onClick={(e) => handleHashClick(e, '#safety')} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Safety Certificates</a></li>
-              <li><a href="#academic-calendar" onClick={(e) => handleHashClick(e, '#academic-calendar')} className={`hover:text-${theme.accent} transition-colors block py-0.5`}>&bull; Year Academic Calendar</a></li>
+              </li>
+              <li>
+                <Link to="/school/dlf-sahibabad/virtual-tour" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; 360° Virtual Campus Tour
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-sahibabad/leadership" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; School Leadership &amp; Principal Desk
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-sahibabad/curriculum" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; CBSE &amp; Cambridge Pathways
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-sahibabad/curriculum/academic-results" className="hover:text-brand-gold transition-colors block py-0.5 font-bold text-brand-gold">
+                  &bull; Academic Results &amp; Board Toppers
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-sahibabad/holistic-learning" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Holistic Learning &amp; Sports
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-sahibabad/campus" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Zero-Waste Campus Infrastructure
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-sahibabad/winning-school" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Winning School &amp; Accolades
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-sahibabad/contact" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Contact DLPS Sahibabad
+                </Link>
+              </li>
             </ul>
           </div>
+        </div>
 
-          <div className="space-y-3 pt-2">
-            <h5 className={`text-xs uppercase tracking-widest font-bold text-${theme.accent}`}>Contact Details</h5>
-            <p className="text-[11px] text-brand-bg/75 leading-relaxed">
-              {currentSchool ? (
-                currentSchool.id === 'dlf-sahibabad' ? (
-                  <>DLF Public School, Sector-II,<br />Rajendra Nagar, Sahibabad,<br />Ghaziabad, UP 201005</>
-                ) : (
-                  <>DLF World School, Delta-I,<br />HS-17, Delta Sector,<br />Greater Noida, UP 201308</>
-                )
-              ) : (
-                <>DLF Schools Corporate Office,<br />Rajendra Nagar, Sahibabad,<br />Ghaziabad, UP 201005</>
-              )}
+        {/* ── SECTION 3: DLF WORLD SCHOOL (GREATER NOIDA) MAJOR LINKS ── */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-2 pb-2 border-b border-white/10">
+            <span className="w-2.5 h-2.5 rounded-full bg-brand-purpleVibrant shrink-0" />
+            <div>
+              <h4 className="font-serif text-sm font-black uppercase tracking-tight text-white">
+                DLF World School
+              </h4>
+              <p className="text-[10px] text-brand-gold font-semibold uppercase tracking-wider">
+                Greater Noida
+              </p>
+            </div>
+          </div>
+
+          <p className="text-xs text-brand-bg/75 leading-relaxed font-inter">
+            Futuristic 5-acre eco-campus fostering design thinking, THOTS cognitive labs, and global robotics excellence.
+          </p>
+
+          <div className="space-y-2">
+            <h5 className="text-[11px] uppercase tracking-widest font-extrabold text-brand-gold font-inter">
+              Greater Noida Campus Links
+            </h5>
+            <ul className="space-y-1.5 text-xs text-brand-bg/85 font-semibold font-inter">
+              <li>
+                <Link to="/school/dlf-greater-noida/admissions" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Admissions Open 2026–27 &amp; Fees
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-greater-noida/virtual-tour" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; 360° Virtual Campus Tour
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-greater-noida/principal-desk" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; From the School Head's Desk
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-greater-noida/curriculum" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Progressive CBSE Curriculum
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-greater-noida/curriculum/academic-results" className="hover:text-brand-gold transition-colors block py-0.5 font-bold text-brand-gold">
+                  &bull; Academic Results &amp; Honors
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-greater-noida/holistic-learning" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; STEAM, Skating Rink &amp; Sports
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-greater-noida/campus" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; 5-Acre Futuristic Campus
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-greater-noida/winning-school" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Kalamanjusha &amp; Drone X Champions
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-greater-noida/contact" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Contact DLWS Greater Noida
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* ── SECTION 4: CAMPUS LOCATIONS & CONTACTS (OFFICIAL CONTACT US DATA) ── */}
+        <div className="space-y-5 font-inter">
+          <div className="flex items-center gap-2 pb-2 border-b border-white/10">
+            <Building2 className="w-4 h-4 text-brand-gold shrink-0" />
+            <h4 className="font-serif text-sm font-black uppercase tracking-tight text-white">
+              Campus Locations &amp; Contacts
+            </h4>
+          </div>
+
+          {/* School 1: DLF Public School, Sahibabad */}
+          <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 space-y-2.5">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-extrabold text-white uppercase tracking-wider">
+                DLF Public School, Sahibabad
+              </span>
+              <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-brand-greenVibrant/30 text-green-300">
+                CBSE 2130384
+              </span>
+            </div>
+            <p className="text-[11px] text-brand-bg/75 flex items-start gap-1.5 leading-snug">
+              <MapPin className="w-3.5 h-3.5 text-brand-gold shrink-0 mt-0.5" />
+              <span>Sector-II, Rajendra Nagar, Sahibabad, Ghaziabad, UP 201005</span>
             </p>
-            <div className="space-y-1 text-xs font-semibold">
-              <p className="flex items-center gap-2"><Phone className={`w-3.5 h-3.5 text-${theme.accent}`} /> {currentSchool ? currentSchool.phone : '+91-9871034444'}</p>
-              <p className="flex items-center gap-2"><Mail className={`w-3.5 h-3.5 text-${theme.accent}`} /> {currentSchool ? (currentSchool.id === 'dlf-sahibabad' ? 'contact@dlfps.com' : 'contact@dlfworldschool.com') : 'contact@dlfps.com'}</p>
+            <div className="space-y-1.5 text-xs font-semibold text-brand-bg/90">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <a href="tel:+918130971400" className="flex items-center gap-1.5 hover:text-brand-gold transition-colors">
+                  <Phone className="w-3 h-3 text-brand-gold shrink-0" />
+                  <span>+91-8130971400</span>
+                </a>
+                <a href="tel:01204563955" className="flex items-center gap-1 hover:text-brand-gold transition-colors text-brand-bg/80 text-[11px]">
+                  <span>0120-4563955</span>
+                </a>
+              </div>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <a href="mailto:contactus@dlps.co.in" className="flex items-center gap-1.5 hover:text-brand-gold transition-colors">
+                  <Mail className="w-3 h-3 text-brand-gold shrink-0" />
+                  <span>contactus@dlps.co.in</span>
+                </a>
+                <a href="mailto:admission@dlps.co.in" className="flex items-center gap-1 hover:text-brand-gold transition-colors text-brand-bg/80 text-[11px]">
+                  <span>admission@dlps.co.in</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* School 2: DLF World School, Greater Noida */}
+          <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 space-y-2.5">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-extrabold text-white uppercase tracking-wider">
+                DLF World School, Greater Noida
+              </span>
+            </div>
+            <p className="text-[11px] text-brand-bg/75 flex items-start gap-1.5 leading-snug">
+              <MapPin className="w-3.5 h-3.5 text-brand-gold shrink-0 mt-0.5" />
+              <span>HS-31, Sector Zeta-1, Greater Noida (UP), PIN 201308</span>
+            </p>
+            <div className="space-y-1.5 text-xs font-semibold text-brand-bg/90">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <a href="tel:+919821182700" className="flex items-center gap-1.5 hover:text-brand-gold transition-colors">
+                  <Phone className="w-3 h-3 text-brand-gold shrink-0" />
+                  <span>+91-9821182700</span>
+                </a>
+                <a href="tel:+919958855700" className="flex items-center gap-1 hover:text-brand-gold transition-colors text-brand-bg/80 text-[11px]">
+                  <span>+91-9958855700</span>
+                </a>
+              </div>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <a href="mailto:contact@dlws.edu.in" className="flex items-center gap-1.5 hover:text-brand-gold transition-colors">
+                  <Mail className="w-3 h-3 text-brand-gold shrink-0" />
+                  <span>contact@dlws.edu.in</span>
+                </a>
+                <a href="mailto:admission@dlws.edu.in" className="flex items-center gap-1 hover:text-brand-gold transition-colors text-brand-bg/80 text-[11px]">
+                  <span>admission@dlws.edu.in</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
 
-      <div className={`bg-${theme.primary}/90 py-6 border-t border-white/10 text-center text-[10px] sm:text-[11px] text-brand-bg/70 tracking-wider`}>
-        <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p>&copy; 2026 {currentSchool ? currentSchool.name : 'DLF Schools Group'}. All Rights Reserved.</p>
-          <p className="flex gap-4 font-inter font-semibold">
-            <Link to="/" className={`hover:text-${theme.accent}`}>Portal Home</Link>
-            <Link to="/thinking-school" className={`hover:text-${theme.accent}`}>Thinking School</Link>
-            <Link to="/pedagogy" className={`hover:text-${theme.accent}`}>Pedagogy</Link>
+      {/* ── BOTTOM UTILITY BAR WITH SINGLE "MANDATORY DISCLOSURES" LINK ── */}
+      <div className={`${subBarBg} py-6 border-t border-white/10 text-center text-[11px] sm:text-xs text-brand-bg/75 tracking-wider font-inter`}>
+        <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-brand-bg/80">
+            &copy; 2026 {currentSchool ? currentSchool.name : 'Darbari Lal Foundation'}. All Rights Reserved.
           </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 font-semibold">
+            {/* Single Link for Mandatory Disclosures */}
+            <Link 
+              to="/mandatory-disclosures" 
+              className="inline-flex items-center gap-1.5 text-brand-gold hover:text-yellow-300 transition-colors font-bold underline underline-offset-4"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-brand-gold" />
+              Mandatory Disclosures
+            </Link>
+
+            <Link to="/admission-enquiry" className="hover:text-brand-gold transition-colors">
+              Admission Enquiry
+            </Link>
+
+            <Link to="/contact" className="hover:text-brand-gold transition-colors">
+              Contact Us
+            </Link>
+
+            <Link to="/useful-links" className="hover:text-brand-gold transition-colors">
+              Useful Links
+            </Link>
+          </div>
         </div>
       </div>
 
-      {/* Large Background Text */}
-      <div className="absolute bottom-[-4rem] right-0 text-[15vw] font-serif font-bold text-white/[0.02] select-none pointer-events-none leading-none">
+      {/* Large Ambient Watermark */}
+      <div className="absolute bottom-[-3rem] right-0 text-[14vw] font-serif font-bold text-white/[0.02] select-none pointer-events-none leading-none">
         EST. 1996
       </div>
     </footer>

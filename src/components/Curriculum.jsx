@@ -4,7 +4,7 @@ import {
   BookOpen, CheckCircle, Compass, Cpu, TrendingUp, 
   HelpCircle, Users, BookOpenCheck, ChevronDown, 
   Award, Globe, ClipboardList, Flame, Lightbulb, 
-  Target, GraduationCap, ShieldCheck, ArrowRight, X 
+  Target, GraduationCap, ShieldCheck, ArrowRight, X, Trophy 
 } from 'lucide-react'
 import gsap from 'gsap'
 import { useSiteData } from '../hooks/useSiteData'
@@ -206,9 +206,9 @@ export default function Curriculum({ isHomePage = false }) {
 
       <div className="w-[96%] max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
         
-        {/* Pathway Switcher Buttons (Only shown for branches offering dual pathways like DLPS) */}
-        {!isDLWS && (
-          <div className="flex justify-center items-center gap-3">
+        {/* Pathway Switcher Buttons */}
+        {!isDLWS ? (
+          <div className="flex flex-wrap justify-center items-center gap-3">
             {isHomePage ? (
               <>
                 <button
@@ -235,6 +235,13 @@ export default function Curriculum({ isHomePage = false }) {
                   <Globe className="w-4 h-4" />
                   Cambridge Pathway
                 </button>
+                <Link
+                  to={`/school/${activeBranch}/curriculum/academic-results`}
+                  className="flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer bg-white text-brand-charcoal hover:bg-gray-50 border-gray-200 hover:border-brand-gold/50"
+                >
+                  <Trophy className="w-4 h-4 text-brand-gold" />
+                  Academic Results
+                </Link>
               </>
             ) : (
               <>
@@ -260,8 +267,36 @@ export default function Curriculum({ isHomePage = false }) {
                   <Globe className="w-4 h-4" />
                   Cambridge Pathway
                 </Link>
+                <Link
+                  to={`/school/${activeBranch}/curriculum/academic-results`}
+                  className="flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer bg-white text-brand-charcoal hover:bg-gray-50 border-gray-200 hover:border-brand-gold/50"
+                >
+                  <Trophy className="w-4 h-4 text-brand-gold" />
+                  Academic Results
+                </Link>
               </>
             )}
+          </div>
+        ) : (
+          <div className="flex flex-wrap justify-center items-center gap-3">
+            <Link
+              to={`/school/${activeBranch}/curriculum`}
+              className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${
+                !isHomePage
+                  ? `bg-${theme.primary} text-white border-${theme.primary} shadow-md`
+                  : `bg-white text-brand-charcoal hover:bg-gray-50 border-gray-200`
+              }`}
+            >
+              <BookOpen className="w-4 h-4" />
+              Curriculum Overview
+            </Link>
+            <Link
+              to={`/school/${activeBranch}/curriculum/academic-results`}
+              className="flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer bg-white text-brand-charcoal hover:bg-gray-50 border-gray-200 hover:border-brand-gold/50"
+            >
+              <Trophy className="w-4 h-4 text-brand-gold" />
+              Academic Results
+            </Link>
           </div>
         )}
 

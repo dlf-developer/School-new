@@ -419,35 +419,6 @@ export default function SchoolHolistic() {
                 </div>
               </div>
 
-              {/* Subsection Photos & Placeholders */}
-              {photosToRender[activeSub]?.length > 0 && (
-                <div className="space-y-4 border-t border-gray-100 pt-6">
-                  <h4 className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant} font-inter`}>
-                    Media & Photo Gallery
-                  </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                    {photosToRender[activeSub].map((photo, i) => (
-                      <div key={i} className="rounded-xl overflow-hidden border border-gray-150 shadow-sm bg-white flex flex-col justify-between group">
-                        {photo.placeholder ? (
-                          <div className="aspect-[4/3] bg-gray-50 flex flex-col items-center justify-center p-4 text-center border-b border-gray-100 space-y-2">
-                            <div className="w-10 h-10 rounded-full bg-brand-gold/10 text-brand-gold flex items-center justify-center">
-                              <ImageIcon className="w-5 h-5" />
-                            </div>
-                            <span className="text-[11px] font-bold text-brand-charcoal font-serif">{photo.title}</span>
-                            <span className="text-[9px] text-brand-muted font-extrabold uppercase tracking-wider bg-gray-200/60 px-2 py-0.5 rounded-full">Photo Placeholder</span>
-                          </div>
-                        ) : (
-                          <div className="aspect-[4/3] overflow-hidden bg-gray-50 border-b border-gray-100">
-                            <img src={photo.src} alt={photo.caption} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                          </div>
-                        )}
-                        <p className="text-[9.5px] text-brand-muted font-inter p-2.5 leading-tight">{photo.caption}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
               {/* Render Student Achievements Cards inside Student Achievements tab */}
               {activeSub === 'studentAchievements' && (
                 <div className="space-y-6 border-t border-gray-100 pt-6">

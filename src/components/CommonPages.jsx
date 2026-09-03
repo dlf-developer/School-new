@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { Mail, Phone, MapPin, Map, ExternalLink, X } from 'lucide-react'
 import { useSiteData } from '../hooks/useSiteData'
+import Alumni from './Alumni'
+import SchoolNews from './SchoolNews'
 
 export default function CommonPages() {
   const { global } = useSiteData()
@@ -43,50 +45,12 @@ export default function CommonPages() {
 
   // ── News ──────────────────────────────────────────────────────────────────
   if (path.includes('news')) {
-    return (
-      <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
-        <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 space-y-12">
-          <div className="text-center max-w-2xl mx-auto space-y-4">
-            <span className="text-xs uppercase tracking-widest font-extrabold text-brand-greenVibrant">{news.sectionLabel}</span>
-            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-greenDeep">{news.sectionTitle}</h2>
-            <div className="w-12 h-[2px] bg-brand-gold mx-auto"></div>
-            <p className="text-sm text-brand-muted leading-relaxed font-inter">{news.sectionSubtitle}</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8">
-            {news.articles?.map((article) => (
-              <div key={article.id} className="bg-white p-8 rounded-3xl border border-brand-greenDeep/5 shadow-md space-y-4">
-                <span className="text-xs font-bold text-brand-gold">{article.source}</span>
-                <h3 className="font-serif text-xl font-bold text-brand-greenDeep">{article.title}</h3>
-                <p className="text-xs text-brand-muted leading-relaxed font-inter">{article.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    )
+    return <SchoolNews />
   }
 
   // ── Alumni ────────────────────────────────────────────────────────────────
   if (path.includes('alumni')) {
-    return (
-      <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30">
-        <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 space-y-12">
-          <div className="text-center max-w-2xl mx-auto space-y-4">
-            <span className="text-xs uppercase tracking-widest font-extrabold text-brand-greenVibrant">Global Network</span>
-            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-brand-greenDeep">Alumni Network</h2>
-            <div className="w-12 h-[2px] bg-brand-gold mx-auto"></div>
-            <p className="text-sm text-brand-muted leading-relaxed font-inter">Stay connected with thousands of DLF alumni pioneering in technology, science, business, and arts globally.</p>
-          </div>
-          <div className="bg-white max-w-2xl mx-auto p-8 sm:p-12 rounded-3xl border border-brand-greenDeep/5 shadow-md space-y-6 text-center">
-            <h3 className="font-serif text-2xl font-bold text-brand-greenDeep">Connect With Your Alma Mater</h3>
-            <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter">Register in our global database to receive updates, participate in mentorship initiatives, and attend alumni reunions.</p>
-            <div className="pt-4">
-              <a href="mailto:alumni@dlfps.com" className="inline-block bg-brand-greenDeep hover:bg-brand-greenVibrant text-white px-8 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-md">Register as Alumni</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
+    return <Alumni />
   }
 
   // ── Careers ───────────────────────────────────────────────────────────────

@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { ArrowRight, Play } from 'lucide-react'
+import { ArrowRight, Play, Pause, Volume2, VolumeX } from 'lucide-react'
 import { useSiteData } from '../hooks/useSiteData'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -43,6 +43,28 @@ export default function Hero() {
   const subRef = useRef(null)
   const ctasRef = useRef(null)
   const statsRef = useRef(null)
+  const videoRef = useRef(null)
+  const [isMuted, setIsMuted] = useState(true)
+  const [isPlaying, setIsPlaying] = useState(true)
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted
+      setIsMuted(videoRef.current.muted)
+    }
+  }
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play()
+        setIsPlaying(true)
+      } else {
+        videoRef.current.pause()
+        setIsPlaying(false)
+      }
+    }
+  }
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -83,17 +105,70 @@ export default function Hero() {
 
   return (
     <section id="hero-trigger" className={`relative min-h-[92vh] sm:min-h-screen flex items-center pt-16 sm:pt-20 pb-16 overflow-hidden bg-black`}>
-      {/* Background YouTube Video (Vibrant, high-visibility loop) */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        <iframe 
-          className="w-[300%] h-[300%] -translate-x-[33%] -translate-y-[33%] object-cover opacity-85 scale-125 transition-opacity duration-1000" 
-          src="https://www.youtube.com/embed/Gj3QXoCh9y8?autoplay=1&mute=1&loop=1&playlist=Gj3QXoCh9y8&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1" 
-          title="DLF Public School Video Background" 
-          allow="autoplay; encrypted-media"
-        ></iframe>
+      {/* Background Video (Master Video, DLWS Video, or DLPS YouTube loop) */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+        {!schoolId ? (
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted={isMuted}
+            playsInline
+            preload="auto"
+            className="w-full h-full object-cover transition-opacity duration-1000"
+          >
+            <source src="/1786617107481119.mov" type="video/mp4" />
+            <source src="/1786617107481119.mov" type="video/quicktime" />
+            Your browser does not support the video tag.
+          </video>
+        ) : schoolId === 'dlf-greater-noida' ? (
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted={isMuted}
+            playsInline
+            preload="auto"
+            className="w-full h-full object-cover transition-opacity duration-1000"
+          >
+            <source src="/School_dlws.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <iframe 
+            className="w-[300%] h-[300%] -translate-x-[33%] -translate-y-[33%] object-cover opacity-85 scale-125 transition-opacity duration-1000 pointer-events-none" 
+            src="https://www.youtube.com/embed/Gj3QXoCh9y8?autoplay=1&mute=1&loop=1&playlist=Gj3QXoCh9y8&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1" 
+            title="DLF Public School Video Background" 
+            allow="autoplay; encrypted-media"
+          ></iframe>
+        )}
         {/* Subtle vignette for edge framing */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/30 to-transparent w-full md:w-3/4"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/25 to-transparent w-full md:w-3/4 pointer-events-none"></div>
       </div>
+
+      {/* Floating Audio & Playback Controls on Master and DLWS Video */}
+      {(!schoolId || schoolId === 'dlf-greater-noida') && (
+        <div className="absolute bottom-6 right-6 sm:right-10 z-30 flex items-center gap-2.5">
+          <button
+            type="button"
+            onClick={togglePlay}
+            className="p-3 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md border border-white/20 text-white transition-all duration-300 shadow-xl cursor-pointer hover:scale-110 active:scale-95"
+            aria-label={isPlaying ? 'Pause Video' : 'Play Video'}
+            title={isPlaying ? 'Pause Video' : 'Play Video'}
+          >
+            {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-current" />}
+          </button>
+          <button
+            type="button"
+            onClick={toggleMute}
+            className="p-3 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md border border-white/20 text-white transition-all duration-300 shadow-xl cursor-pointer hover:scale-110 active:scale-95"
+            aria-label={isMuted ? 'Unmute Audio' : 'Mute Audio'}
+            title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
+          >
+            {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+          </button>
+        </div>
+      )}
 
       <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         {/* Frosted Glass Container around Left Content */}
@@ -103,18 +178,22 @@ export default function Hero() {
             className="lg:col-span-7 xl:col-span-8 max-w-xl lg:max-w-[560px] space-y-6 sm:space-y-7 bg-white/10 backdrop-blur-xl p-6 sm:p-10 rounded-3xl border border-white/20 shadow-2xl relative order-2 lg:order-1"
           >
             {/* Logo Identity Block — above heading */}
-            <div ref={statsRef} className="flex items-center gap-3.5">
-              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white flex items-center justify-center shadow-lg overflow-hidden border border-white/20 shrink-0">
+            <div ref={statsRef} className="flex items-center gap-3.5 sm:gap-4">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white flex items-center justify-center shadow-lg overflow-hidden border border-white/20 shrink-0">
                 <img 
                   src="/images/dlf-crest.png" 
                   alt={`${currentSchool?.name} Crest`} 
                   className="w-full h-full object-contain p-1"
                 />
               </div>
-              <div className="text-left space-y-0.5">
-                <h3 className="font-serif text-sm sm:text-base font-bold text-white leading-tight drop-shadow-md">
-                  {currentSchool?.name}
-                </h3>
+              <div className="text-left space-y-1">
+                <div className="h-6 sm:h-7.5 flex items-center">
+                  <img
+                    src={schoolId === 'dlf-greater-noida' ? '/dlws-logo.png' : '/images/dlps-logo.png'}
+                    alt={currentSchool?.name || 'DLF School'}
+                    className="h-full w-auto object-contain max-h-6 sm:max-h-7.5 brightness-0 invert drop-shadow-md"
+                  />
+                </div>
                 <p className={`text-[9px] text-${theme.accent} font-inter uppercase tracking-widest font-semibold drop-shadow-md`}>
                   {currentSchool?.cbseInfo || 'CBSE Affiliated'}
                 </p>

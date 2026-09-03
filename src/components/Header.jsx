@@ -399,9 +399,12 @@ export default function Header() {
               >
                 <div>
                   <div className="border-b border-white/15 pb-2.5 mb-4 flex items-center justify-between">
-                    <h3 className="text-xs sm:text-sm font-black uppercase tracking-widest text-brand-gold font-sans">
+                    <Link
+                      to="/"
+                      className="text-xs sm:text-sm font-black uppercase tracking-widest text-brand-gold font-sans hover:text-white transition-colors cursor-pointer"
+                    >
                       DARBARI LAL FOUNDATION
-                    </h3>
+                    </Link>
                     <Link
                       to="/"
                       className="text-[10px] font-bold uppercase tracking-wider text-white/80 hover:text-brand-gold flex items-center gap-1 transition-colors"
@@ -606,20 +609,20 @@ export default function Header() {
           >
             {!schoolId ? (
               <div className="flex items-center gap-2.5 sm:gap-3">
-                {/* Old DLF Crest logo */}
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-500 overflow-hidden shrink-0 border border-gray-100">
+                {/* DLF Crest logo */}
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-500 overflow-hidden shrink-0 border border-gray-100 p-0.5">
                   <img
                     src="/images/dlf-crest.png"
                     alt="DLF Crest"
                     className="w-full h-full object-contain p-0.5"
                   />
                 </div>
-                {/* Name in the picture logo */}
-                <div className="h-8 sm:h-10 flex items-center justify-center">
+                {/* Master Logo Text */}
+                <div className="h-6.5 sm:h-8 flex items-center justify-center">
                   <img
                     src="/name_in _the_picture.png"
                     alt="Darbari Lal Foundation"
-                    className="h-full w-auto object-contain max-h-8 sm:max-h-10 rounded-lg"
+                    className="h-full w-auto object-contain max-h-6.5 sm:max-h-8 rounded-lg"
                   />
                 </div>
               </div>
@@ -633,19 +636,19 @@ export default function Header() {
                   />
                 </div>
                 {schoolId === "dlf-sahibabad" ? (
-                  <div className="h-8 sm:h-10 flex items-center justify-center">
+                  <div className="h-6.5 sm:h-8 flex items-center justify-center">
                     <img
                       src="/images/dlps-logo.png"
                       alt="DLF Public School"
-                      className="h-full w-auto object-contain max-h-8 sm:max-h-10"
+                      className="h-full w-auto object-contain max-h-6.5 sm:max-h-8"
                     />
                   </div>
                 ) : schoolId === "dlf-greater-noida" ? (
-                  <div className="h-7 sm:h-9 flex items-center justify-center">
+                  <div className="h-6.5 sm:h-8 flex items-center justify-center">
                     <img
                       src="/dlws-logo.png"
                       alt="DLF World School"
-                      className="h-full w-auto object-contain max-h-7 sm:max-h-9"
+                      className="h-full w-auto object-contain max-h-6.5 sm:max-h-8"
                     />
                   </div>
                 ) : (
@@ -876,9 +879,12 @@ export default function Header() {
                         >
                           <div>
                             <div className="border-b border-white/15 pb-2.5 mb-4 flex items-center justify-between">
-                              <h3 className="text-xs sm:text-sm font-black uppercase tracking-widest text-brand-gold font-sans">
+                              <Link
+                                to="/"
+                                className="text-xs sm:text-sm font-black uppercase tracking-widest text-brand-gold font-sans hover:text-white transition-colors cursor-pointer"
+                              >
                                 DARBARI LAL FOUNDATION
-                              </h3>
+                              </Link>
                               <Link
                                 to="/"
                                 className="text-[10px] font-bold uppercase tracking-wider text-white/80 hover:text-brand-gold flex items-center gap-1 transition-colors"
@@ -1058,18 +1064,38 @@ export default function Header() {
 
                 {/* 4. Curriculum Link / Dropdown */}
                 {schoolId === "dlf-greater-noida" ? (
-                  <div className="relative py-2 flex flex-col items-center justify-center">
-                    <Link
-                      to={`/school/${schoolId}/curriculum`}
-                      className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold ${isCurriculumActive ? `text-${theme.vibrant} font-bold` : ""}`}
+                  <div className="relative group py-2 flex flex-col items-center justify-center">
+                    <button
+                      className={`flex items-center gap-1 hover:text-${theme.vibrant} transition-colors duration-300 cursor-pointer font-semibold ${isCurriculumActive ? `text-${theme.vibrant} font-bold` : ""}`}
                     >
-                      Curriculum
-                    </Link>
+                      Curriculum{" "}
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 text-${theme.accent}`}
+                      />
+                    </button>
                     {isCurriculumActive && (
                       <span
                         className={`absolute -bottom-1.5 w-1.5 h-1.5 rounded-full bg-${theme.vibrant}`}
                       ></span>
                     )}
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white text-brand-charcoal rounded-xl shadow-xl border border-gray-100 p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                      <div className="space-y-1 text-xs">
+                        <Link
+                          to={`/school/${schoolId}/curriculum`}
+                          className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname === `/school/${schoolId}/curriculum` ? `text-${theme.vibrant}` : ""}`}
+                        >
+                          <BookOpen className="w-3.5 h-3.5 shrink-0 text-gray-400" />
+                          Curriculum Overview
+                        </Link>
+                        <Link
+                          to={`/school/${schoolId}/curriculum/academic-results`}
+                          className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.includes("/academic-results") ? `text-${theme.vibrant}` : ""}`}
+                        >
+                          <Trophy className="w-3.5 h-3.5 shrink-0 text-brand-gold" />
+                          Academic Results
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                 ) : (
                   <div className="relative group py-2 flex flex-col items-center justify-center">
@@ -1090,7 +1116,7 @@ export default function Header() {
                       <div className="space-y-1 text-xs">
                         <Link
                           to={`/school/${schoolId}/curriculum/cbse`}
-                          className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.endsWith("/cbse") || location.pathname.endsWith("/curriculum") ? `text-${theme.vibrant}` : ""}`}
+                          className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.endsWith("/cbse") || location.pathname === `/school/${schoolId}/curriculum` ? `text-${theme.vibrant}` : ""}`}
                         >
                           <BookOpen className="w-3.5 h-3.5 shrink-0 text-gray-400" />
                           CBSE Pathway
@@ -1101,6 +1127,13 @@ export default function Header() {
                         >
                           <Globe className="w-3.5 h-3.5 shrink-0 text-gray-400" />
                           Cambridge Pathway
+                        </Link>
+                        <Link
+                          to={`/school/${schoolId}/curriculum/academic-results`}
+                          className={`flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-50 hover:text-${theme.vibrant} transition-colors font-bold ${location.pathname.includes("/academic-results") ? `text-${theme.vibrant}` : ""}`}
+                        >
+                          <Trophy className="w-3.5 h-3.5 shrink-0 text-brand-gold" />
+                          Academic Results
                         </Link>
                       </div>
                     </div>
@@ -1270,11 +1303,11 @@ export default function Header() {
               className={`p-4 border-b ${!schoolId ? "border-white/10" : "border-gray-200"} flex flex-col justify-center`}
             >
               {schoolId === "dlf-sahibabad" ? (
-                <div className="h-8 flex items-center">
+                <div className="h-7 flex items-center">
                   <img
                     src="/images/dlps-logo.png"
                     alt="DLF Public School"
-                    className="h-full w-auto object-contain max-h-8"
+                    className="h-full w-auto object-contain max-h-7"
                   />
                 </div>
               ) : schoolId === "dlf-greater-noida" ? (
@@ -1318,7 +1351,7 @@ export default function Header() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`hover:text-${theme.vibrant} py-1.5 border-b border-${theme.primary}/10 text-xs uppercase tracking-widest font-extrabold flex items-center gap-1.5`}
                 >
-                  &larr; Back to Group Website
+                  &larr; Back to Darbari Lal Foundation
                 </Link>
               )}
               {!schoolId && (
@@ -1561,24 +1594,58 @@ export default function Header() {
                     <p className="text-[10px] uppercase font-bold tracking-wider text-brand-muted mb-1.5">
                       Curriculum
                     </p>
-                    <Link
-                      to={`/school/${schoolId}/curriculum/cbse`}
-                      onClick={() =>
-                        setIsMobileMenuOpen(false)
-                      }
-                      className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}
-                    >
-                      CBSE Pathway
-                    </Link>
-                    <Link
-                      to={`/school/${schoolId}/curriculum/cambridge`}
-                      onClick={() =>
-                        setIsMobileMenuOpen(false)
-                      }
-                      className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}
-                    >
-                      Cambridge Pathway
-                    </Link>
+                    {schoolId === "dlf-greater-noida" ? (
+                      <>
+                        <Link
+                          to={`/school/${schoolId}/curriculum`}
+                          onClick={() =>
+                            setIsMobileMenuOpen(false)
+                          }
+                          className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}
+                        >
+                          Curriculum Overview
+                        </Link>
+                        <Link
+                          to={`/school/${schoolId}/curriculum/academic-results`}
+                          onClick={() =>
+                            setIsMobileMenuOpen(false)
+                          }
+                          className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs font-semibold`}
+                        >
+                          Academic Results
+                        </Link>
+                      </>
+                    ) : (
+                      <>
+                        <Link
+                          to={`/school/${schoolId}/curriculum/cbse`}
+                          onClick={() =>
+                            setIsMobileMenuOpen(false)
+                          }
+                          className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}
+                        >
+                          CBSE Pathway
+                        </Link>
+                        <Link
+                          to={`/school/${schoolId}/curriculum/cambridge`}
+                          onClick={() =>
+                            setIsMobileMenuOpen(false)
+                          }
+                          className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs`}
+                        >
+                          Cambridge Pathway
+                        </Link>
+                        <Link
+                          to={`/school/${schoolId}/curriculum/academic-results`}
+                          onClick={() =>
+                            setIsMobileMenuOpen(false)
+                          }
+                          className={`hover:text-${theme.vibrant} block py-1 pl-3 text-xs font-semibold`}
+                        >
+                          Academic Results
+                        </Link>
+                      </>
+                    )}
                   </div>
                   {/* Holistic Learning sub-links */}
                   <div

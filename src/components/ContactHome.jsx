@@ -10,7 +10,7 @@ export default function ContactHome() {
       location: 'Sahibabad, Ghaziabad',
       address: 'Sector-II, Rajendra Nagar, Sahibabad, Ghaziabad, UP 201005',
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=DLF+Public+School+Sahibabad+Ghaziabad+UP+201005',
-      phones: ['+91-9871034444', '+91-120-4563955'],
+      phones: ['+91-8130971400', '+91-120-4563955'],
       email: 'contactus@dlps.co.in',
       hours: '8:00 AM – 3:30 PM',
       bgColor: 'bg-[#1B3B22]', // DLPS Deep Forest Green Theme
@@ -24,9 +24,9 @@ export default function ContactHome() {
       id: 'dlf-greater-noida',
       name: 'DLF World School',
       location: 'Greater Noida',
-      address: 'HS-17, Sector-Sigma II, Greater Noida, UP 201308',
+      address: 'HS-31, Sector Zeta-1, Greater Noida (UP), PIN 201308',
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=DLF+World+School+Greater+Noida+UP+201308',
-      phones: ['+91-9821182700', '+91-9871034444'],
+      phones: ['+91-9821182700', '+91-9958855700'],
       email: 'contact@dlws.edu.in',
       hours: '8:00 AM – 3:30 PM',
       bgColor: 'bg-[#2C1844]', // DLWS Deep Royal Purple Theme

@@ -5,7 +5,7 @@ import {
   ArrowLeft, CheckCircle2, ClipboardList, IndianRupee, Award,
   ChevronRight, FileText, User, AlertCircle, Phone, Calendar,
   Download, HelpCircle, ShieldAlert, GraduationCap, Check, ExternalLink,
-  Sparkles, ArrowRight, ChevronDown, Trophy
+  Sparkles, ArrowRight, ChevronDown, Trophy, Info, Globe, X
 } from 'lucide-react'
 
 // ─── Tab 1: Enquiry Form ──────────────────────────────────────────────────────
@@ -17,49 +17,46 @@ function EnquiryForm({ theme, currentSchool }) {
 
   return (
     <div className="space-y-8">
-      {/* Banner / Header Card */}
-      <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-8 sm:p-10 space-y-6 relative overflow-hidden">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="space-y-2 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/10 text-brand-gold font-extrabold text-[10px] uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" /> Session 2026-27 Admissions Open
-            </div>
-            <h3 className={`font-serif text-2xl sm:text-3xl font-bold text-${theme.primary}`}>
+      {/* ── UNIFIED OFFICIAL EDUNEXT ENQUIRY & REGISTRATION CARD ── */}
+      <div className="bg-white rounded-3xl border-2 border-brand-gold/30 shadow-xl overflow-hidden p-6 sm:p-8 lg:p-10 space-y-6">
+        {/* Card Header */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-100 pb-5">
+          <div className="space-y-1.5 max-w-2xl">
+            <h3 className={`font-serif text-2xl sm:text-3xl font-black text-${theme.primary}`}>
               Online Enquiry &amp; Registration Form
             </h3>
             <p className="text-xs sm:text-sm text-brand-muted font-inter leading-relaxed font-medium">
-              Begin your child's educational journey at {currentSchool?.name || 'DLF School'}. Complete the official Edunext digital enquiry form to generate your Enquiry Number.
+              Begin your child's educational journey at {currentSchool?.name || 'DLF School'}. Complete the official Edunext digital enquiry form below to generate your Enquiry Number.
             </p>
           </div>
 
-          <div className="flex flex-col items-center sm:items-end gap-2 shrink-0 w-full sm:w-auto">
+          <div className="flex items-center gap-3 shrink-0">
             <a
               href={enquiryUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`w-full sm:w-auto bg-${theme.primary} hover:bg-${theme.vibrant} text-white font-bold text-xs uppercase tracking-wider px-8 py-4 rounded-2xl flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:scale-105`}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-brand-charcoal text-xs font-bold transition-all shrink-0 border border-gray-200"
             >
-              <ExternalLink className="w-4 h-4" />
-              Fill Online Enquiry Form
+              <ExternalLink className="w-3.5 h-3.5 text-brand-gold" />
+              <span>Open in Full Screen</span>
             </a>
-            <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-              ✓ Portal Active
-            </span>
           </div>
         </div>
 
-        {/* 4-Step Registration Process Flow */}
-        <div className="pt-6 border-t border-gray-100 space-y-4">
-          <h4 className="font-extrabold text-xs uppercase tracking-widest text-brand-charcoal">Online Registration Steps:</h4>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* 4-Step Online Registration Steps */}
+        <div className="space-y-3">
+          <h4 className="font-extrabold text-xs uppercase tracking-widest text-brand-charcoal">
+            Online Registration Steps:
+          </h4>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
             {[
-              { num: '01', title: 'Submit Enquiry', desc: 'Fill out the online enquiry form on the portal.' },
+              { num: '01', title: 'Submit Enquiry', desc: 'Fill out the online enquiry form below.' },
               { num: '02', title: 'Get Enquiry No.', desc: 'System automatically generates your unique Enquiry Number.' },
               { num: '03', title: 'Complete Form', desc: 'Use Enquiry Number + mobile to submit full registration.' },
               { num: '04', title: 'Interaction Date', desc: 'Date & time for interaction/assessment sent via email.' },
             ].map((step, i) => (
-              <div key={i} className="bg-gray-50 p-4 rounded-2xl border border-gray-100 space-y-2">
-                <span className={`text-[11px] font-extrabold px-2.5 py-1 rounded-lg bg-${theme.primary}/10 text-${theme.primary} inline-block`}>
+              <div key={i} className="bg-gray-50 p-4 rounded-2xl border border-gray-100 space-y-1.5">
+                <span className={`text-[11px] font-extrabold px-2.5 py-0.5 rounded-lg bg-${theme.primary}/10 text-${theme.primary} inline-block`}>
                   Step {step.num}
                 </span>
                 <h5 className="font-bold text-xs text-brand-charcoal">{step.title}</h5>
@@ -68,80 +65,63 @@ function EnquiryForm({ theme, currentSchool }) {
             ))}
           </div>
         </div>
-      </div>
 
-      {/* Guidelines & Checklist Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* Left: Required Documents */}
-        <div className="lg:col-span-7 bg-white rounded-3xl border border-gray-100 p-8 space-y-5 shadow-sm">
-          <div className="flex items-center gap-3">
-            <span className={`w-9 h-9 rounded-xl bg-${theme.primary}/10 text-${theme.primary} flex items-center justify-center shrink-0`}>
-              <FileText className="w-5 h-5" />
-            </span>
-            <div>
-              <h4 className={`font-serif text-lg font-bold text-${theme.primary}`}>Upload Requirements for Online Form</h4>
-              <p className="text-[11px] text-brand-muted font-inter">Ensure soft copies are ready before starting online registration.</p>
-            </div>
-          </div>
-
-          <div className="space-y-3 pt-2">
-            {[
-              { title: 'Recent Photographs', desc: 'Photograph of child and both parents (JPEG/JPG format, max 2MB).' },
-              { title: 'Valid Email Address', desc: 'Active email ID for receiving portal credentials and interaction schedule.' },
-              { title: 'Aadhaar Card Details', desc: 'Essential during form submission. If pending, apply on priority.' },
-              { title: 'Registration Fee', desc: 'Rs. 1,500/- registration fee payable digitally upon form completion.' }
-            ].map((item, idx) => (
-              <div key={idx} className="flex items-start gap-3 p-3.5 bg-gray-50 rounded-2xl border border-gray-100">
-                <CheckCircle2 className={`w-4 h-4 text-${theme.vibrant} shrink-0 mt-0.5`} />
-                <div className="space-y-0.5">
-                  <span className="font-bold text-xs text-brand-charcoal">{item.title}</span>
-                  <p className="text-[11px] text-brand-muted font-inter leading-relaxed">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+        {/* Embedded iFrame Container */}
+        <div className="relative w-full rounded-2xl overflow-hidden border border-gray-200 bg-white min-h-[850px] sm:min-h-[1050px] shadow-inner">
+          <iframe
+            src={enquiryUrl}
+            title={`${currentSchool?.name || 'DLF School'} Dynamic Admission Enquiry Form`}
+            className="w-full min-h-[850px] sm:min-h-[1050px] border-0"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          />
         </div>
 
-        {/* Right: Important Admission Notes */}
-        <div className="lg:col-span-5 bg-white rounded-3xl border border-gray-100 p-8 space-y-5 shadow-sm flex flex-col justify-between">
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <span className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
-                <AlertCircle className="w-5 h-5" />
-              </span>
-              <h4 className="font-serif text-lg font-bold text-brand-charcoal">Important Notice</h4>
-            </div>
-
-            <div className="space-y-3 text-xs text-brand-muted font-inter leading-relaxed">
-              <p className="p-3 bg-amber-50/60 border border-amber-100 rounded-xl text-amber-900 font-medium">
-                Registration does <strong>not guarantee admission</strong> unless all criteria and interaction requirements are satisfied.
-              </p>
-              <p>
-                Incomplete registration forms or forms with inaccurate details will automatically stand cancelled.
-              </p>
-              <p className="p-3 bg-red-50/60 border border-red-100 rounded-xl text-red-900 font-medium">
-                <strong>No Capitation Fee:</strong> The school accepts no donations. Beware of third parties offering guaranteed admissions.
-              </p>
-            </div>
-          </div>
-
-          <div className="pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-inter">
-            <span className="text-brand-muted font-medium">Form Support Helpline:</span>
-            <a href="tel:+919871034444" className={`font-bold text-${theme.primary} hover:underline`}>
-              +91-9871034444
-            </a>
-          </div>
+        {/* Footer Info */}
+        <div className="flex flex-wrap items-center justify-between gap-3 text-[11px] text-brand-muted font-inter pt-2 border-t border-gray-100">
+          <span className="flex items-center gap-1.5 text-emerald-700 font-semibold">
+            🔒 256-bit SSL Encrypted &bull; Direct submission to {currentSchool?.name || 'DLF School'} Admissions Office
+          </span>
+          <a 
+            href={enquiryUrl}
+            target="_blank" 
+            rel="noopener noreferrer"
+            className={`text-${theme.primary} hover:underline font-bold`}
+          >
+            Form not loading? Click here to open directly &rarr;
+          </a>
         </div>
       </div>
+
     </div>
   )
 }
 
 // ─── Tab 2: Fee Structure (Boxed Grades with Tabular Accordion) ───────────────
-function FeeStructure({ theme, currentSchool }) {
+function FeeStructure({ theme, currentSchool, onGoToEnquiry }) {
   const isDLWS = currentSchool?.id === 'dlf-greater-noida'
   const customFees = currentSchool?.feeStructure
   const [selectedGrade, setSelectedGrade] = useState(null)
+
+  const defaultDLPSNotes = [
+    'There is an annual charge of INR 380 across all grades for I-Card and School Dairy.',
+    'There will be additional science fees for Class XI-XII Science streams.',
+    'There will be additional fees in Classes IX-XII levied by CBSE for exam and registration purposes.',
+    'There will be an additional fee in Class XI for an aptitude test.',
+    'There will be additional fees in the respective grades for the outsourced programs.',
+  ]
+
+  const defaultDLWSNotes = [
+    'Nutrition Meal (Qtr): 2,600 (PreN-N),   4,000 (KG-XII)',
+    'Transport Fee: Contact Transport Department',
+    'The external programme fee is tentative and depends on the final charges communicated by the external partner. Any change in the fee will be informed before the due date.',
+  ]
+
+  const notesList = customFees?.notes && Array.isArray(customFees.notes) && customFees.notes.length > 0
+    ? customFees.notes
+    : isDLWS
+      ? defaultDLWSNotes
+      : defaultDLPSNotes
 
   const feeRows = customFees?.rows || [
     { grade: 'Class - Foundation', composite: '10,407', assessment: '—', total: '10,407', qtrTotal: '31,221' },
@@ -207,100 +187,261 @@ function FeeStructure({ theme, currentSchool }) {
 
       {/* Grade Boxes (Accordion revealing tabular fee upon click) */}
       <div className="bg-white rounded-3xl border border-gray-100 p-8 sm:p-10 shadow-sm space-y-6">
-        <div>
+        <div className="space-y-1">
           <h3 className={`font-serif text-xl sm:text-2xl font-bold text-${theme.primary}`}>
-            Select Grade to View Fee Table
+            Select Grade to View Fee Breakdown
           </h3>
-          <p className="text-xs text-brand-muted font-inter font-medium mt-1">
-            Click any grade box to reveal detailed monthly &amp; quarterly breakdown.
+          <p className="text-xs text-brand-muted font-inter font-medium">
+            Tap any grade box below to view its complete fee breakdown in an instant modal.
           </p>
         </div>
 
-        {/* Box Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-          {feeRows.map((row, idx) => {
-            const isSelected = selectedGrade === idx
-            return (
-              <button
-                key={idx}
-                onClick={() => setSelectedGrade(isSelected ? null : idx)}
-                className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between gap-2 cursor-pointer ${
-                  isSelected
-                    ? `bg-${theme.primary} text-white border-${theme.primary} shadow-md scale-105`
-                    : 'bg-gray-50 text-brand-charcoal hover:bg-white hover:border-gray-300 hover:shadow-md'
-                }`}
-              >
-                <span className={`text-[10px] font-extrabold uppercase tracking-wider ${isSelected ? 'text-white/70' : 'text-brand-muted'}`}>
+        {/* Box Grid - Ultra Compact & Touch Friendly */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-2.5">
+          {feeRows.map((row, idx) => (
+            <button
+              key={idx}
+              type="button"
+              onClick={() => setSelectedGrade(idx)}
+              className="group p-2.5 sm:p-3 rounded-2xl border border-gray-200 bg-gray-50/70 hover:bg-white hover:border-brand-gold/70 hover:shadow-md text-left transition-all duration-200 flex flex-col justify-between gap-1.5 cursor-pointer active:scale-[0.98]"
+            >
+              <div className="space-y-0.5">
+                <span className="text-[9px] font-black uppercase tracking-wider text-brand-muted block">
                   Grade
                 </span>
-                <span className="font-serif font-bold text-sm leading-tight">
+                <span className={`font-serif font-bold text-xs sm:text-sm leading-tight text-brand-charcoal block group-hover:text-${theme.primary} transition-colors truncate`}>
                   {row.class || row.grade}
                 </span>
-                <div className="flex items-center justify-between text-[11px] font-extrabold pt-1">
-                  <span>₹ {row.total}/mo</span>
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isSelected ? 'rotate-180' : ''}`} />
-                </div>
-              </button>
-            )
-          })}
+              </div>
+              <div className={`flex items-center justify-between text-[10px] font-bold text-${theme.primary} pt-1 border-t border-gray-150/70 group-hover:border-brand-gold/30`}>
+                <span>View Fee</span>
+                <ChevronRight className="w-3.5 h-3.5 text-brand-gold transition-transform group-hover:translate-x-0.5" />
+              </div>
+            </button>
+          ))}
         </div>
 
-        {/* Revealed Tabular Fee for Selected Grade */}
+        {/* ── MODAL: DETAILED FEE BREAKDOWN POPUP ── */}
         {selectedGrade !== null && (
-          <div className="mt-6 bg-gray-50 rounded-2xl p-6 border border-gray-200 space-y-4 animate-in fade-in duration-300">
-            <div className="flex items-center justify-between border-b border-gray-200 pb-3">
-              <h4 className={`font-serif text-lg font-bold text-${theme.primary}`}>
-                Fee Breakdown — {feeRows[selectedGrade].class || feeRows[selectedGrade].grade}
-              </h4>
-              <button
-                onClick={() => setSelectedGrade(null)}
-                className="text-xs font-bold text-gray-500 hover:text-gray-700 underline"
-              >
-                Close
-              </button>
-            </div>
+          <div 
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/65 backdrop-blur-xs p-4 overflow-y-auto animate-in fade-in duration-200"
+            onClick={() => setSelectedGrade(null)}
+          >
+            <div 
+              className="relative max-w-lg w-full bg-white rounded-3xl shadow-2xl border border-gray-200 p-6 sm:p-7 space-y-5 animate-in zoom-in-95 duration-200"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Header */}
+              <div className="flex items-start justify-between gap-4 border-b border-gray-150 pb-4">
+                <div className="space-y-1">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-gold/15 text-brand-charcoal font-bold text-[10px] uppercase tracking-wider border border-brand-gold/30">
+                    <Sparkles className="w-3 h-3 text-brand-gold" />
+                    <span>Session 2026-27 &bull; Fee Breakdown</span>
+                  </div>
+                  <h4 className={`font-serif text-xl sm:text-2xl font-black text-${theme.primary}`}>
+                    Fee Breakdown — {feeRows[selectedGrade].class || feeRows[selectedGrade].grade}
+                  </h4>
+                  <p className="text-xs text-brand-muted font-inter">
+                    Official verified fee components for {currentSchool?.name || 'DLF School'}.
+                  </p>
+                </div>
 
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse bg-white rounded-xl overflow-hidden shadow-sm">
-                <thead>
-                  <tr className={`bg-${theme.primary} text-white text-xs uppercase font-extrabold tracking-wider`}>
-                    <th className="py-3 px-5">Fee Component</th>
-                    <th className="py-3 px-5">Billing Frequency</th>
-                    <th className="py-3 px-5 text-right">Amount (₹)</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100 text-xs font-inter">
-                  <tr>
-                    <td className="py-3 px-5 font-semibold">Monthly Composite Tuition Fee</td>
-                    <td className="py-3 px-5 text-brand-muted">Monthly</td>
-                    <td className="py-3 px-5 text-right font-bold">₹ {feeRows[selectedGrade].composite}</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-5 font-semibold">Assessment / Digital Learning Fee</td>
-                    <td className="py-3 px-5 text-brand-muted">Monthly</td>
-                    <td className="py-3 px-5 text-right font-bold">₹ {feeRows[selectedGrade].assessment || '—'}</td>
-                  </tr>
-                  <tr className="bg-gray-50 font-bold">
-                    <td className="py-3.5 px-5 text-brand-charcoal">Total Monthly Payable</td>
-                    <td className="py-3.5 px-5 text-brand-muted">Monthly</td>
-                    <td className={`py-3.5 px-5 text-right font-extrabold text-${theme.primary}`}>
-                      ₹ {feeRows[selectedGrade].total}
-                    </td>
-                  </tr>
-                  <tr className={`bg-${theme.primary}/10 font-bold`}>
-                    <td className={`py-3.5 px-5 text-${theme.primary}`}>Total Quarterly Installment (3 Months)</td>
-                    <td className={`py-3.5 px-5 text-${theme.primary}`}>Quarterly (Apr / Jul / Oct / Jan)</td>
-                    <td className={`py-3.5 px-5 text-right font-extrabold text-${theme.primary} text-sm font-serif`}>
-                      ₹ {feeRows[selectedGrade].qtrTotal || (parseInt(feeRows[selectedGrade].total.replace(/,/g, '')) * 3).toLocaleString()}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                <button
+                  type="button"
+                  onClick={() => setSelectedGrade(null)}
+                  className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-brand-charcoal flex items-center justify-center transition-colors cursor-pointer shrink-0"
+                  aria-label="Close Fee Breakdown Modal"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* 2-Column Clean Table */}
+              <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-2xs">
+                <table className="w-full text-left border-collapse bg-white">
+                  <thead>
+                    <tr className={`bg-${theme.primary} text-white text-xs uppercase font-extrabold tracking-wider`}>
+                      <th className="py-3 px-4 sm:px-5">Fee Component</th>
+                      <th className="py-3 px-4 sm:px-5 text-right">{isDLWS ? 'Details / Amount' : 'Amount (₹)'}</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 text-xs sm:text-sm font-inter">
+                    {isDLWS ? (
+                      <>
+                        {/* Row 1: Composite fee (Monthly) */}
+                        <tr>
+                          <td className="py-3 px-4 sm:px-5 font-semibold text-brand-charcoal">
+                            Composite fee (Monthly)
+                          </td>
+                          <td className="py-3 px-4 sm:px-5 text-right font-bold text-brand-charcoal font-serif">
+                            ₹ {feeRows[selectedGrade].composite}
+                          </td>
+                        </tr>
+
+                        {/* Row 2: External Programs */}
+                        <tr className="bg-gray-50/70">
+                          <td className="py-3 px-4 sm:px-5 font-semibold text-brand-charcoal align-middle">
+                            External Programs
+                          </td>
+                          <td className="py-3 px-4 sm:px-5 text-right font-medium text-brand-charcoal">
+                            {feeRows[selectedGrade].external && feeRows[selectedGrade].external !== '—' ? (
+                              <div className="flex flex-wrap justify-end gap-1.5 py-0.5">
+                                {feeRows[selectedGrade].external.split(',').map((prog, pIdx) => (
+                                  <span
+                                    key={pIdx}
+                                    className="text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200/80 shadow-2xs"
+                                  >
+                                    {prog.trim()}
+                                  </span>
+                                ))}
+                              </div>
+                            ) : (
+                              <span className="text-gray-400 italic font-normal">—</span>
+                            )}
+                          </td>
+                        </tr>
+
+                        {/* Row 3: Total Quarterly Installment (3 Months) */}
+                        <tr className={`bg-${theme.primary}/10 font-bold`}>
+                          <td className={`py-3.5 px-4 sm:px-5 text-${theme.primary}`}>
+                            Total Quarterly Installment (3 Months)
+                          </td>
+                          <td className={`py-3.5 px-4 sm:px-5 text-right font-extrabold text-${theme.primary} text-sm sm:text-base font-serif`}>
+                            ₹ {feeRows[selectedGrade].qtrTotal || (parseInt(feeRows[selectedGrade].total.replace(/,/g, '')) * 3).toLocaleString()}
+                          </td>
+                        </tr>
+                      </>
+                    ) : (
+                      <>
+                        <tr>
+                          <td className="py-3 px-4 sm:px-5 font-semibold text-brand-charcoal">
+                            Monthly Composite Tuition Fee
+                          </td>
+                          <td className="py-3 px-4 sm:px-5 text-right font-bold">
+                            ₹ {feeRows[selectedGrade].composite}
+                          </td>
+                        </tr>
+
+                        {/* DLPS Assessment Fee */}
+                        {feeRows[selectedGrade].assessment && feeRows[selectedGrade].assessment !== '—' && (
+                          <tr>
+                            <td className="py-3 px-4 sm:px-5 font-semibold text-brand-charcoal">Assessment / Digital Learning Fee</td>
+                            <td className="py-3 px-4 sm:px-5 text-right font-bold">₹ {feeRows[selectedGrade].assessment}</td>
+                          </tr>
+                        )}
+
+                        <tr className="bg-gray-50/80 font-bold">
+                          <td className="py-3 px-4 sm:px-5 text-brand-charcoal">Total Monthly Payable</td>
+                          <td className={`py-3 px-4 sm:px-5 text-right font-extrabold text-${theme.primary}`}>
+                            ₹ {feeRows[selectedGrade].total}
+                          </td>
+                        </tr>
+                        <tr className={`bg-${theme.primary}/10 font-bold`}>
+                          <td className={`py-3.5 px-4 sm:px-5 text-${theme.primary}`}>Total Quarterly Installment (3 Months)</td>
+                          <td className={`py-3.5 px-4 sm:px-5 text-right font-extrabold text-${theme.primary} text-sm sm:text-base font-serif`}>
+                            ₹ {feeRows[selectedGrade].qtrTotal || (parseInt(feeRows[selectedGrade].total.replace(/,/g, '')) * 3).toLocaleString()}
+                          </td>
+                        </tr>
+                      </>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Modal Footer Actions */}
+              <div className="flex items-center justify-between gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedGrade(null)
+                    onGoToEnquiry()
+                  }}
+                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-${theme.primary} hover:bg-${theme.vibrant} text-white text-xs font-bold uppercase tracking-wider transition-all shadow-sm cursor-pointer`}
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>Enquire for this Grade</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setSelectedGrade(null)}
+                  className="px-4 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-brand-charcoal text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
+                >
+                  Close
+                </button>
+              </div>
+
             </div>
           </div>
         )}
 
       </div>
+
+      {/* ── CAMBRIDGE CURRICULUM FEE STRUCTURE ENQUIRY CARD (DLPS ONLY) ── */}
+      {!isDLWS && (
+        <div className="bg-gradient-to-br from-blue-50/70 via-white to-amber-50/50 rounded-3xl border border-brand-gold/30 p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="space-y-2 max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-800 font-extrabold text-[10px] uppercase tracking-wider border border-blue-200">
+              <Globe className="w-3.5 h-3.5 text-blue-600" />
+              <span>Cambridge International Curriculum</span>
+            </div>
+            <h4 className={`font-serif text-xl sm:text-2xl font-bold text-${theme.primary}`}>
+              Cambridge Curriculum Fee Structure
+            </h4>
+            <p className="text-xs sm:text-sm text-brand-charcoal font-inter leading-relaxed">
+              Fill the above enquire form we will connect with you.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={onGoToEnquiry}
+            className={`inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-${theme.primary} hover:bg-${theme.vibrant} text-white text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md hover:scale-105 cursor-pointer shrink-0`}
+          >
+            <FileText className="w-4 h-4" />
+            <span>Fill Online Enquiry Form</span>
+          </button>
+        </div>
+      )}
+
+      {/* ── NOTE: ADDITIONAL CHARGES & PROGRAM FEES (DYNAMIC) ── */}
+      {notesList && notesList.length > 0 && (
+        <div className="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm space-y-4">
+          <div className="flex items-center gap-2 text-brand-charcoal">
+            <Info className="w-4 h-4 text-brand-gold shrink-0" />
+            <h4 className="font-serif text-base sm:text-lg font-bold italic">Note:</h4>
+          </div>
+
+          {isDLWS ? (
+            <div className="space-y-3.5 text-xs sm:text-sm text-brand-charcoal font-inter leading-relaxed pl-1">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-8 pb-3 border-b border-gray-100">
+                <span className="font-bold text-brand-charcoal w-48 shrink-0">Nutrition Meal (Qtr)</span>
+                <span className="font-semibold text-brand-charcoal">2,600 (PreN-N),&nbsp;&nbsp;&nbsp;4,000 (KG-XII)</span>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-8 pb-3 border-b border-gray-100">
+                <span className="font-bold text-brand-charcoal w-48 shrink-0">Transport Fee</span>
+                <span className="font-medium text-brand-muted">Contact Transport Department</span>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-8 pt-0.5">
+                <span className="font-bold text-brand-charcoal w-48 shrink-0">Note:</span>
+                <div className="text-brand-muted leading-relaxed space-y-1">
+                  <p>The external programme fee is tentative and depends on the final charges communicated by the external partner.</p>
+                  <p>Any change in the fee will be informed before the due date.</p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <ol className="space-y-2.5 text-xs sm:text-sm text-brand-charcoal/90 font-inter leading-relaxed pl-1">
+              {notesList.map((note, idx) => (
+                <li key={idx} className="flex items-start gap-2.5">
+                  <span className="font-bold text-brand-muted shrink-0">{idx + 1})</span>
+                  <span>{note}</span>
+                </li>
+              ))}
+            </ol>
+          )}
+        </div>
+      )}
     </div>
   )
 }
@@ -372,25 +513,28 @@ function AdmissionProcedure({ theme, currentSchool }) {
 
   const importantDocuments = [
     {
-      title: 'Admissions Guidelines 2026-27',
-      desc: 'Complete official handbook detailing eligibility criteria, age cutoffs, and seat matrix.',
-      type: 'PDF Document',
-      size: '1.2 MB',
-      url: currentSchool?.id === 'dlf-greater-noida' ? 'https://www.dlws.edu.in' : 'https://www.dlps.co.in/admission-guidline.aspx',
+      title: 'Admission Procedure and Guidelines',
+      desc: 'Age eligibility matrix, learning continuum evaluation, CBSE transfer clauses for Classes X & XII, and fee payment guidelines.',
+      type: 'Official PDF',
+      size: '104 KB',
+      file: '/documents/admission-procedure-and-guidelines.pdf',
+      downloadName: 'Admission_Procedure_and_Guidelines.pdf',
     },
     {
-      title: 'Registration Guideline & Checklist',
-      desc: 'Required documents checklist, photograph dimensions, and Aadhaar verification rules.',
-      type: 'PDF Document',
-      size: '850 KB',
-      url: currentSchool?.id === 'dlf-greater-noida' ? 'https://www.dlws.edu.in' : 'https://dlps.co.in/reg-admission-procedure.aspx',
+      title: 'Registration Procedure and Guidelines',
+      desc: 'Step-by-step registration flow, document upload checklist, and interaction schedule generation.',
+      type: 'Official PDF',
+      size: '93 KB',
+      file: '/documents/registration-procedure-and-guidelines.pdf',
+      downloadName: 'Registration_Procedure_and_Guidelines.pdf',
     },
     {
-      title: 'Student Withdrawal Guidelines',
-      desc: 'Official 3-month notice period rules, security deposit refund terms, and TC application guidelines.',
-      type: 'PDF Document',
-      size: '620 KB',
-      url: currentSchool?.id === 'dlf-greater-noida' ? 'https://www.dlws.edu.in' : 'https://dlps.co.in/fees-structure.aspx',
+      title: 'Student Withdrawal & TC Policy',
+      desc: 'Official 3-month written notice rules, security deposit refund terms, and Transfer Certificate procedures.',
+      type: 'Official PDF',
+      size: '66 KB',
+      file: '/documents/student-withdrawal-and-tc-policy.pdf',
+      downloadName: 'Student_Withdrawal_and_TC_Policy.pdf',
     },
   ]
 
@@ -457,32 +601,38 @@ function AdmissionProcedure({ theme, currentSchool }) {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {importantDocuments.map((doc, idx) => (
-            <a
+            <div
               key={idx}
-              href={doc.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group bg-gray-50 hover:bg-white rounded-2xl border border-gray-150 hover:border-brand-gold/40 p-6 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-4"
+              className="group bg-gray-50/70 hover:bg-white rounded-2xl border border-gray-150 hover:border-brand-gold/50 p-6 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-5"
             >
               <div className="space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center shrink-0 shadow-sm">
+                <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center shrink-0 shadow-xs">
                   <FileText className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-serif text-sm font-bold text-brand-charcoal group-hover:text-brand-masterDeep transition-colors">
+                  <h4 className="font-serif text-base font-bold text-brand-charcoal group-hover:text-brand-greenDeep transition-colors">
                     {doc.title}
                   </h4>
-                  <p className="text-[11px] text-brand-muted font-inter mt-1 leading-relaxed">
+                  <p className="text-xs text-brand-muted font-inter mt-1.5 leading-relaxed">
                     {doc.desc}
                   </p>
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-[11px] font-bold text-brand-masterDeep">
-                <span>{doc.type} ({doc.size})</span>
-                <Download className="w-4 h-4 text-brand-gold group-hover:translate-y-0.5 transition-transform" />
+              <div className="pt-3.5 border-t border-gray-150/70 flex items-center justify-between gap-3">
+                <span className="text-[11px] font-semibold text-brand-muted">
+                  Direct Download
+                </span>
+                <a
+                  href={doc.file}
+                  download={doc.downloadName}
+                  className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-${theme.primary} hover:bg-${theme.vibrant} text-white text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-xs hover:scale-105 cursor-pointer shrink-0`}
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Download PDF</span>
+                </a>
               </div>
-            </a>
+            </div>
           ))}
         </div>
       </div>
@@ -696,22 +846,6 @@ function Scholarships({ theme, currentSchool }) {
             </div>
           ))}
         </div>
-
-        {/* Download & Contact Bar */}
-        <div className="p-6 bg-brand-gold/5 border border-brand-gold/20 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div className="space-y-1">
-            <h4 className="font-serif text-sm font-bold text-brand-charcoal">Scholarship &amp; Concession Application Forms</h4>
-            <p className="text-xs text-brand-muted font-inter">Inquire or collect application forms directly from the School Accounts &amp; Fee Department.</p>
-          </div>
-          <a
-            href={currentSchool?.id === 'dlf-greater-noida' ? 'https://www.dlws.edu.in' : 'https://dlps.co.in/scholarship.aspx'}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`bg-${theme.primary} text-white font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl flex items-center gap-2 shrink-0 hover:bg-${theme.vibrant} transition-colors shadow-md`}
-          >
-            <Download className="w-4 h-4" /> Download Official Policy
-          </a>
-        </div>
       </div>
     </div>
   )
@@ -787,7 +921,7 @@ export default function SchoolAdmissions() {
 
         {/* Active Tab Content */}
         {activeTab === 'enquiry' && <EnquiryForm theme={theme} currentSchool={currentSchool} />}
-        {activeTab === 'fee-structure' && <FeeStructure theme={theme} currentSchool={currentSchool} />}
+        {activeTab === 'fee-structure' && <FeeStructure theme={theme} currentSchool={currentSchool} onGoToEnquiry={() => setTab('enquiry')} />}
         {activeTab === 'procedure' && <AdmissionProcedure theme={theme} currentSchool={currentSchool} />}
         {activeTab === 'scholarships' && <Scholarships theme={theme} currentSchool={currentSchool} />}
 

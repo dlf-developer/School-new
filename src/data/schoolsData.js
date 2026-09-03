@@ -86,6 +86,17 @@ export const schoolsData = {
       sports:
         "State-of-the-art sports arena featuring football, basketball, and athletics.",
     },
+    academicResults: {
+      headline: "Excellence in CBSE Board Examinations",
+      subtitle: "Upholding a 30-year legacy of stellar scholastic achievements, state records, and 100% board success.",
+      affiliation: "CBSE Affiliation No. 2130384 (School Code: 60172)",
+      stats: [
+        { value: "100%", label: "Pass Percentage", sub: "Class X & XII Board Exams" },
+        { value: "98.8%", label: "Highest Percentage", sub: "Class XII Board (AIR 14)" },
+        { value: "54%", label: "Scored 90%+ Marks", sub: "Across all academic streams" },
+        { value: "88.4%", label: "Average Aggregate", sub: "School Class Average" },
+      ],
+    },
   },
   "dlf-greater-noida": {
     id: "dlf-greater-noida",
@@ -170,6 +181,17 @@ export const schoolsData = {
         "Design, visual arts, music, and performance wings.",
       sports:
         "Multipurpose sports complex supporting basketball, cricket, and lawn tennis.",
+    },
+    academicResults: {
+      headline: "Scholastic Excellence & Innovation Benchmarks",
+      subtitle: "Empowering futuristic thinkers with robust conceptual foundations, 100% board pass rates, and global mathematical distinctions.",
+      affiliation: "CBSE Affiliation No. 2131920 (School Code: 60921)",
+      stats: [
+        { value: "100%", label: "Pass Percentage", sub: "Class X Board Examinations" },
+        { value: "97.4%", label: "Highest Percentage", sub: "Class X Board Result" },
+        { value: "48%", label: "Scored 90%+ Marks", sub: "Across all sections" },
+        { value: "86.8%", label: "Average Aggregate", sub: "School Class Average" },
+      ],
     },
   },
 };

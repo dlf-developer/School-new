@@ -50,13 +50,25 @@ export default function VirtualTour() {
           <div className="lg:col-span-7 relative">
             <div className={`relative bg-black rounded-2xl overflow-hidden aspect-video shadow-2xl border-4 border-${theme.primary}/30`}>
               {isVideoPlaying ? (
-                <iframe 
-                  className="w-full h-full" 
-                  src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
-                  title={videoTitle}
-                  allow="autoplay; encrypted-media"
-                  style={{ border: 'none' }}
-                ></iframe>
+                isDLWS ? (
+                  <video
+                    controls
+                    autoPlay
+                    playsInline
+                    className="w-full h-full object-cover"
+                  >
+                    <source src="/School_dlws.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                ) : (
+                  <iframe 
+                    className="w-full h-full" 
+                    src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
+                    title={videoTitle}
+                    allow="autoplay; encrypted-media"
+                    style={{ border: 'none' }}
+                  ></iframe>
+                )
               ) : (
                 <>
                   <img

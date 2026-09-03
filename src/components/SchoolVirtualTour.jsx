@@ -18,14 +18,26 @@ export default function SchoolVirtualTour() {
       <div className="w-[96%] max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-brand-charcoal p-2 sm:p-4 rounded-3xl shadow-2xl border-2 border-brand-gold/40 relative overflow-hidden">
           <div className="relative aspect-video rounded-2xl overflow-hidden bg-black shadow-inner">
-            <iframe 
-              className="w-full h-full"
-              src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=1`}
-              title={title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              style={{ border: 'none' }}
-            ></iframe>
+            {isDLWS ? (
+              <video
+                controls
+                autoPlay
+                playsInline
+                className="w-full h-full object-contain"
+              >
+                <source src="/School_dlws.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            ) : (
+              <iframe 
+                className="w-full h-full"
+                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=1`}
+                title={title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                style={{ border: 'none' }}
+              ></iframe>
+            )}
           </div>
         </div>
       </div>

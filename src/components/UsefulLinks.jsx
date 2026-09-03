@@ -283,7 +283,7 @@ export default function UsefulLinks() {
             to="/"
             className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-brand-masterDeep hover:opacity-80 transition-opacity shrink-0"
           >
-            <ArrowLeft className="w-4 h-4" /> Back to Group Portal
+            <ArrowLeft className="w-4 h-4" /> Back to Darbari Lal Foundation
           </Link>
         </div>
 
