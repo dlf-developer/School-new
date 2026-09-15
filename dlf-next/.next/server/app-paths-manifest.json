@@ -1,0 +1,6 @@
+{
+  "/api/sections/route": "app/api/sections/route.js",
+  "/api/schools/route": "app/api/schools/route.js",
+  "/page": "app/page.js",
+  "/school/[schoolId]/page": "app/school/[schoolId]/page.js"
+}
