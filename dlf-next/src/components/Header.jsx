@@ -34,6 +34,7 @@ import {
   Music,
   Palette,
   Video,
+  Info,
 } from "lucide-react";
 
 export default function Header() {
@@ -236,7 +237,7 @@ export default function Header() {
                   </span>
                 </div>
                 <p className="text-[9.5px] text-gray-500 font-medium">
-                  Sahibabad, Ghaziabad · CBSE Aff. 2130384
+                  Sahibabad, Ghaziabad
                 </p>
                 <span className="inline-block text-[8px] font-bold uppercase tracking-wider text-brand-greenDeep bg-brand-greenDeep/10 px-2 py-0.5 rounded-full mt-1.5">
                   Flagship Campus
@@ -264,7 +265,7 @@ export default function Header() {
                   </span>
                 </div>
                 <p className="text-[9.5px] text-gray-500 font-medium">
-                  Greater Noida · CBSE Aff. 2131920
+                  Greater Noida
                 </p>
                 <span className="inline-block text-[8px] font-bold uppercase tracking-wider text-brand-purpleDeep bg-brand-purpleDeep/10 px-2 py-0.5 rounded-full mt-1.5">
                   World School Campus
@@ -284,9 +285,24 @@ export default function Header() {
             <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex">
               {/* ── PART 1: Switch Campus (Left Panel) ── */}
               <div className="w-[33.33%] p-5 bg-gray-50 border-r border-gray-100 flex flex-col gap-3">
-                <p className="text-[9px] font-extrabold uppercase tracking-widest text-gray-400 mb-1">
-                  Switch Campus
-                </p>
+                <div className="flex items-center justify-between mb-1 pb-1 border-b border-gray-200/50">
+                  <Link
+                    to="/"
+                    className="inline-flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-brand-greenDeep hover:text-brand-gold transition-all group/home-link cursor-pointer"
+                    title="Redirect to DLF Master Website"
+                  >
+                    <Home className="w-3.5 h-3.5 text-brand-gold group-hover/home-link:scale-110 transition-transform" />
+                    <span className="underline decoration-brand-gold underline-offset-2">
+                      HOME
+                    </span>
+                    <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-brand-gold/20 text-brand-gold group-hover/home-link:bg-brand-gold group-hover/home-link:text-white transition-colors">
+                      <Info className="w-2.5 h-2.5" />
+                    </span>
+                  </Link>
+                  <span className="text-[8.5px] font-extrabold uppercase tracking-widest text-gray-400">
+                    Master Website
+                  </span>
+                </div>
                 {/* DLF Public School card */}
                 <Link
                   to="/school/dlf-sahibabad"
@@ -317,8 +333,7 @@ export default function Header() {
                       </span>
                     </div>
                     <p className="text-[9.5px] text-gray-500 pl-4">
-                      Sahibabad, Ghaziabad · CBSE Aff.
-                      2130384
+                      Sahibabad, Ghaziabad
                     </p>
                     <div className="flex gap-1.5 pl-4 mt-1.5 flex-wrap">
                       {[
@@ -370,7 +385,7 @@ export default function Header() {
                       </span>
                     </div>
                     <p className="text-[9.5px] text-gray-500 pl-4">
-                      Greater Noida · CBSE Aff. 2131920
+                      Greater Noida
                     </p>
                     <div className="flex gap-1.5 pl-4 mt-1.5 flex-wrap">
                       {[
@@ -796,9 +811,24 @@ export default function Header() {
                       <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex">
                         {/* ── PART 1: Switch Campus (Left Panel) ── */}
                         <div className="w-[33.33%] p-5 bg-gray-50 border-r border-gray-100 flex flex-col gap-3">
-                          <p className="text-[9px] font-extrabold uppercase tracking-widest text-gray-400 mb-1">
-                            Switch Campus
-                          </p>
+                          <div className="flex items-center justify-between mb-1 pb-1 border-b border-gray-200/50">
+                            <Link
+                              to="/"
+                              className="inline-flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-brand-greenDeep hover:text-brand-gold transition-all group/home-link cursor-pointer"
+                              title="Redirect to DLF Master Website"
+                            >
+                              <Home className="w-3.5 h-3.5 text-brand-gold group-hover/home-link:scale-110 transition-transform" />
+                              <span className="underline decoration-brand-gold underline-offset-2">
+                                HOME
+                              </span>
+                              <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-brand-gold/20 text-brand-gold group-hover/home-link:bg-brand-gold group-hover/home-link:text-white transition-colors">
+                                <Info className="w-2.5 h-2.5" />
+                              </span>
+                            </Link>
+                            <span className="text-[8.5px] font-extrabold uppercase tracking-widest text-gray-400">
+                              Master Website
+                            </span>
+                          </div>
                           {/* DLF Public School card */}
                           <Link
                             to="/school/dlf-sahibabad"
@@ -830,8 +860,7 @@ export default function Header() {
                                 </span>
                               </div>
                               <p className="text-[9.5px] text-gray-500 pl-4">
-                                Sahibabad, Ghaziabad · CBSE
-                                Aff. 2130384
+                                Sahibabad, Ghaziabad
                               </p>
                             </div>
                           </Link>
@@ -867,8 +896,7 @@ export default function Header() {
                                 </span>
                               </div>
                               <p className="text-[9.5px] text-gray-500 pl-4">
-                                Greater Noida · CBSE Aff.
-                                2131920
+                                Greater Noida
                               </p>
                             </div>
                           </Link>
@@ -1336,8 +1364,8 @@ export default function Header() {
                     className={`text-[9.5px] ${!schoolId ? "text-white/70" : "text-brand-muted"} uppercase tracking-widest font-semibold mt-1`}
                   >
                     {currentSchool
-                      ? `${currentSchool.shortLocation} · ${currentSchool.cbseInfo}`
-                      : "CBSE AFFILIATED"}
+                      ? (currentSchool.cbseInfo ? `${currentSchool.shortLocation} · ${currentSchool.cbseInfo}` : currentSchool.shortLocation)
+                      : "DARBARI LAL FOUNDATION"}
                   </p>
                 </>
               )}

@@ -68,11 +68,11 @@ export default function MandatoryDisclosures() {
               <span>Compilation Status: In Progress</span>
             </div>
             <p className="text-xs text-brand-muted font-inter leading-relaxed">
-              In accordance with Central Board of Secondary Education (CBSE) circular guidelines, the full disclosure gazette containing Affiliation Extension, Society Trust Deed, NOC, Building Safety, Fire Safety, and Water Sanitation certifications will be published here shortly.
+              In accordance with statutory regulatory guidelines, the full disclosure gazette containing Society Trust Deed, NOC, Building Safety, Fire Safety, and Water Sanitation certifications will be published here shortly.
             </p>
           </div>
 
-          {/* School Affiliation References */}
+          {/* School Reference Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto pt-4 text-left">
             <div className="p-5 rounded-2xl bg-white border border-gray-150 shadow-sm space-y-2">
               <div className="flex items-center gap-2">
@@ -82,9 +82,6 @@ export default function MandatoryDisclosures() {
               <p className="text-[11px] text-brand-muted">
                 Sector-II, Rajendra Nagar, Sahibabad, Ghaziabad, UP
               </p>
-              <span className="inline-block text-[10px] font-extrabold text-brand-greenDeep bg-brand-greenDeep/10 px-2 py-0.5 rounded-md">
-                CBSE Affiliation No. 2130384
-              </span>
             </div>
 
             <div className="p-5 rounded-2xl bg-white border border-gray-150 shadow-sm space-y-2">
@@ -95,9 +92,6 @@ export default function MandatoryDisclosures() {
               <p className="text-[11px] text-brand-muted">
                 HS-31, Sector Zeta-1, Greater Noida (UP), PIN 201308
               </p>
-              <span className="inline-block text-[10px] font-extrabold text-brand-purpleDeep bg-brand-purpleDeep/10 px-2 py-0.5 rounded-md">
-                CBSE Affiliation No. 2131920
-              </span>
             </div>
           </div>
 

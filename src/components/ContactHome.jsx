@@ -26,7 +26,7 @@ export default function ContactHome() {
       location: 'Greater Noida',
       address: 'HS-31, Sector Zeta-1, Greater Noida (UP), PIN 201308',
       mapUrl: 'https://www.google.com/maps/search/?api=1&query=DLF+World+School+Greater+Noida+UP+201308',
-      phones: ['+91-9821182700', '+91-9958855700'],
+      phones: ['+91 9910966700', '+91-9958855700'],
       email: 'contact@dlws.edu.in',
       hours: '8:00 AM – 3:30 PM',
       bgColor: 'bg-[#2C1844]', // DLWS Deep Royal Purple Theme

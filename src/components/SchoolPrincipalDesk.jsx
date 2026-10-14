@@ -19,7 +19,7 @@ export default function SchoolPrincipalDesk() {
 
   const pageTitle = isDLWS ? "From the School Head's Desk" : "From the Principal's Desk"
   const leaderDesignation = isDLWS ? "School Head" : "Principal"
-  const leaderName = isDLWS ? "Ruchi Jain" : "Dr. Seema Jerath"
+  const leaderName = isDLWS ? "Ruchi Jain" : "Seema Jerath"
 
   const dlpsSidebarCards = [
     { Icon: Target,    title: 'No Learner Left Behind',      desc: 'Every child feels seen, heard, valued, and advances with confidence and dignity.' },

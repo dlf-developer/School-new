@@ -325,7 +325,7 @@ export default function SchoolAcademicResults() {
           <div className="relative z-10 max-w-4xl space-y-6">
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-gold text-xs font-extrabold uppercase tracking-widest">
               <Trophy className="w-4 h-4 text-brand-gold" />
-              <span>{resultsData.affiliation || 'CBSE Affiliated Academic Benchmark'}</span>
+              <span>{resultsData.affiliation || 'Academic Benchmark'}</span>
             </div>
 
             <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
@@ -999,7 +999,7 @@ export default function SchoolAcademicResults() {
                     {currentSchool?.name} — Official Results Gazette
                   </h3>
                   <p className="text-xs text-brand-muted font-inter">
-                    {resultsData.affiliation || 'CBSE Board Examinations'}
+                    {resultsData.affiliation || 'Board Examinations'}
                   </p>
                 </div>
               </div>

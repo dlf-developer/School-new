@@ -4,7 +4,7 @@ import AppShell from '@/components/AppShell'
 export const metadata = {
   title: 'DLF Public School, Ghaziabad | Redefining Education',
   description:
-    'DLF Public School – 30 years of shaping minds, empowering futures. Ranked #1 in Ghaziabad. CBSE Affiliation No. 2130384. Admissions Open 2026-27.',
+    'DLF Public School – 30 years of shaping minds, empowering futures. Ranked #1 in Ghaziabad. Admissions Open 2026-27.',
   icons: {
     icon: '/images/dlf-crest.png',
     apple: '/images/dlf-crest.png',

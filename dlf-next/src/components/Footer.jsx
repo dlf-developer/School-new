@@ -108,7 +108,7 @@ export default function Footer() {
                 DLF Public School
               </h4>
               <p className="text-[10px] text-brand-gold font-semibold uppercase tracking-wider">
-                Sahibabad, Ghaziabad &bull; Aff. 2130384
+                Sahibabad, Ghaziabad
               </p>
             </div>
           </div>
@@ -258,9 +258,6 @@ export default function Footer() {
               <span className="text-[11px] font-extrabold text-white uppercase tracking-wider">
                 DLF Public School, Sahibabad
               </span>
-              <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-brand-greenVibrant/30 text-green-300">
-                CBSE 2130384
-              </span>
             </div>
             <p className="text-[11px] text-brand-bg/75 flex items-start gap-1.5 leading-snug">
               <MapPin className="w-3.5 h-3.5 text-brand-gold shrink-0 mt-0.5" />
@@ -301,9 +298,9 @@ export default function Footer() {
             </p>
             <div className="space-y-1.5 text-xs font-semibold text-brand-bg/90">
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                <a href="tel:+919821182700" className="flex items-center gap-1.5 hover:text-brand-gold transition-colors">
+                <a href="tel:+919910966700" className="flex items-center gap-1.5 hover:text-brand-gold transition-colors">
                   <Phone className="w-3 h-3 text-brand-gold shrink-0" />
-                  <span>+91-9821182700</span>
+                  <span>+91 9910966700</span>
                 </a>
                 <a href="tel:+919958855700" className="flex items-center gap-1 hover:text-brand-gold transition-colors text-brand-bg/80 text-[11px]">
                   <span>+91-9958855700</span>

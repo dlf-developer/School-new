@@ -112,7 +112,7 @@ function FeeStructure({ theme, currentSchool, onGoToEnquiry }) {
   ]
 
   const defaultDLWSNotes = [
-    'Nutrition Meal (Qtr): 2,600 (PreN-N),   4,000 (KG-XII)',
+    'Nutrition Meal (Qtr): 2,600 (PreKG to JKG), 4,000 (SKG to XII)',
     'Transport Fee: Contact Transport Department',
     'The external programme fee is tentative and depends on the final charges communicated by the external partner. Any change in the fee will be informed before the due date.',
   ]
@@ -165,7 +165,7 @@ function FeeStructure({ theme, currentSchool, onGoToEnquiry }) {
           <div className="bg-gray-50 rounded-2xl p-5 border border-gray-150/60 space-y-2">
             <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-muted">One-Time / Non-Refundable</span>
             <h4 className="font-serif text-lg font-bold text-brand-charcoal">Registration Fee</h4>
-            <p className={`text-2xl font-bold text-${theme.primary} font-serif`}>₹ {customFees?.registrationFee || '1,500'}/-</p>
+            <p className={`text-2xl font-bold text-${theme.primary} font-serif`}>₹ {customFees?.registrationFee || (isDLWS ? '500' : '1,500')}/-</p>
             <p className="text-[11px] text-brand-muted font-inter">Payable at the time of Registration.</p>
           </div>
 
@@ -416,7 +416,7 @@ function FeeStructure({ theme, currentSchool, onGoToEnquiry }) {
             <div className="space-y-3.5 text-xs sm:text-sm text-brand-charcoal font-inter leading-relaxed pl-1">
               <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-8 pb-3 border-b border-gray-100">
                 <span className="font-bold text-brand-charcoal w-48 shrink-0">Nutrition Meal (Qtr)</span>
-                <span className="font-semibold text-brand-charcoal">2,600 (PreN-N),&nbsp;&nbsp;&nbsp;4,000 (KG-XII)</span>
+                <span className="font-semibold text-brand-charcoal">2,600 (PreKG to JKG),&nbsp;&nbsp;&nbsp;4,000 (SKG to XII)</span>
               </div>
               <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-8 pb-3 border-b border-gray-100">
                 <span className="font-bold text-brand-charcoal w-48 shrink-0">Transport Fee</span>
@@ -448,6 +448,8 @@ function FeeStructure({ theme, currentSchool, onGoToEnquiry }) {
 
 // ─── Tab 3: Admissions Process & Guidelines (Infographic Flowchart + Documents) ─
 function AdmissionProcedure({ theme, currentSchool }) {
+  const isDLWS = currentSchool?.id === 'dlf-greater-noida'
+
   const flowchartSteps = [
     {
       num: '01',
@@ -472,7 +474,9 @@ function AdmissionProcedure({ theme, currentSchool }) {
     {
       num: '03',
       title: 'Digital Registration',
-      desc: 'Complete the online registration form, upload photographs & pay the ₹ 1,500 registration fee.',
+      desc: isDLWS
+        ? 'Complete the online registration form, upload photographs & pay the ₹ 500 registration fee.'
+        : 'Complete the online registration form, upload photographs & pay the ₹ 1,500 registration fee.',
       bg: 'bg-violet-50',
       border: 'border-violet-200',
       text: 'text-violet-800',
@@ -492,7 +496,9 @@ function AdmissionProcedure({ theme, currentSchool }) {
     {
       num: '05',
       title: 'Interaction / Test',
-      desc: 'Foundational child interaction (Pre-Primary) or competency evaluation (Classes I–XII).',
+      desc: isDLWS
+        ? 'Informal child interaction (Foundation to Jr. KG) or competency assessment (Sr. KG to Class XII).'
+        : 'Foundational child interaction (Pre-Primary) or competency evaluation (Classes SKG–XII).',
       bg: 'bg-rose-50',
       border: 'border-rose-200',
       text: 'text-rose-800',
@@ -511,7 +517,7 @@ function AdmissionProcedure({ theme, currentSchool }) {
     },
   ]
 
-  const importantDocuments = [
+  const dlpsDocuments = [
     {
       title: 'Admission Procedure and Guidelines',
       desc: 'Age eligibility matrix, learning continuum evaluation, CBSE transfer clauses for Classes X & XII, and fee payment guidelines.',
@@ -537,6 +543,35 @@ function AdmissionProcedure({ theme, currentSchool }) {
       downloadName: 'Student_Withdrawal_and_TC_Policy.pdf',
     },
   ]
+
+  const dlwsDocuments = [
+    {
+      title: 'Admission Procedure and Guidelines',
+      desc: 'Age eligibility matrix (Foundation 2.5+ to Grade I 6+), assessment guidelines, CBSE transfer criteria for Grades X & XII, and fee payment terms.',
+      type: 'Official PDF',
+      size: '176 KB',
+      file: '/documents/dlws-admission-procedure-and-guidelines.pdf',
+      downloadName: 'DLWS_Admission_Guidelines.pdf',
+    },
+    {
+      title: 'Registration Procedure and Guidelines',
+      desc: 'Step-by-step registration flow, class-wise admission process (Foundation to XII), and required document checklist.',
+      type: 'Official PDF',
+      size: '157 KB',
+      file: '/documents/dlws-registration-procedure-and-guidelines.pdf',
+      downloadName: 'DLWS_Registration_Procedure_and_Guidelines.pdf',
+    },
+    {
+      title: 'Student Withdrawal & TC Policy',
+      desc: 'Official 3-month written notice policy, clearance formalities, caution money refund guidelines, and TC issuance protocol.',
+      type: 'Official PDF',
+      size: '252 KB',
+      file: '/documents/dlws-student-withdrawal-and-tc-policy.pdf',
+      downloadName: 'DLWS_Student_Withdrawal_and_TC_Policy.pdf',
+    },
+  ]
+
+  const importantDocuments = isDLWS ? dlwsDocuments : dlpsDocuments
 
   return (
     <div className="space-y-10">
@@ -610,7 +645,7 @@ function AdmissionProcedure({ theme, currentSchool }) {
                   <FileText className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-serif text-base font-bold text-brand-charcoal group-hover:text-brand-greenDeep transition-colors">
+                  <h4 className={`font-serif text-base font-bold text-brand-charcoal group-hover:text-${theme.primary} transition-colors`}>
                     {doc.title}
                   </h4>
                   <p className="text-xs text-brand-muted font-inter mt-1.5 leading-relaxed">
@@ -731,7 +766,7 @@ function Scholarships({ theme, currentSchool }) {
               </h4>
               <div className="space-y-2 text-xs font-inter text-brand-charcoal">
                 <p>
-                  <strong>Eligibility:</strong> Students who have appeared in the Class X Board examination and secured <strong>93% or above</strong> are eligible for full fee scholarship.
+                  <strong>Eligibility:</strong> Students who have appeared in the Class X Board examination and secured <strong>93% or above</strong> are eligible for  fee scholarship.
                 </p>
               </div>
             </div>
@@ -826,7 +861,7 @@ function Scholarships({ theme, currentSchool }) {
             Concessions Framework
           </h3>
           <p className="text-xs text-brand-muted font-inter font-medium mt-1">
-            Special tuition fee concessions offered for Defense personnel, Alumni families, Siblings, and DLF Staff wards.
+            Concessions offered for Defense personnel, Alumni families, Siblings, and DLF Staff wards.
           </p>
         </div>
 

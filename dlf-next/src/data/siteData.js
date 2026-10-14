@@ -18,7 +18,7 @@ export const schoolsData = {
     id: "dlf-sahibabad",
     name: "DLF Public School",
     shortLocation: "Sahibabad",
-    cbseInfo: "CBSE Affiliation No. 2130384",
+    cbseInfo: "",
     phone: "+91-9871034444",
     active: true,
     coverImage: null, // optional hero cover; falls back to hero.image
@@ -138,7 +138,7 @@ export const schoolsData = {
     academicResults: {
       headline: "Excellence in CBSE Board Examinations",
       subtitle: "Upholding a 30-year legacy of stellar scholastic achievements, state records, and 100% board success.",
-      affiliation: "CBSE Affiliation No. 2130384 (School Code: 60172)",
+      affiliation: "",
       stats: [
         { value: "100%", label: "Pass Percentage", sub: "Class X & XII Board Exams" },
         { value: "98.8%", label: "Highest Percentage", sub: "Class XII Board (AIR 14)" },
@@ -347,7 +347,7 @@ export const schoolsData = {
     id: "dlf-greater-noida",
     name: "DLF World School",
     shortLocation: "G. Noida",
-    cbseInfo: "CBSE Affiliation No. 2131920",
+    cbseInfo: "",
     phone: "+91-9871034444",
     active: true,
     coverImage: "/dlws.jpeg",
@@ -531,10 +531,10 @@ export const schoolsData = {
           qtrTotal: "27,399",
         },
       ],
-      nutritionMeal: "2,600 (PreN-N), 4,000 (KG-XII)",
+      nutritionMeal: "2,600 (PreKG to JKG), 4,000 (SKG to XII)",
       transportFee: "Contact Transport Department",
       notes: [
-        "Nutrition Meal (Qtr): 2,600 (PreN-N), 4,000 (KG-XII)",
+        "Nutrition Meal (Qtr): 2,600 (PreKG to JKG), 4,000 (SKG to XII)",
         "Transport Fee: Contact Transport Department",
         "The external programme fee is tentative and depends on the final charges communicated by the external partner. Any change in the fee will be informed before the due date.",
       ],
@@ -590,7 +590,7 @@ export const schoolsData = {
     academicResults: {
       headline: "Scholastic Excellence & Innovation Benchmarks",
       subtitle: "Empowering futuristic thinkers with robust conceptual foundations, 100% board pass rates, and global mathematical distinctions.",
-      affiliation: "CBSE Affiliation No. 2131920 (School Code: 60921)",
+      affiliation: "",
       stats: [
         { value: "100%", label: "Pass Percentage", sub: "Class X Board Examinations" },
         { value: "97.4%", label: "Highest Percentage", sub: "Class X Board Result" },
@@ -1230,9 +1230,9 @@ export const globalData = {
       },
       {
         id: "vid-2",
-        title: "Father in My Life (FIM)",
+        title: "First in Math (FIM)",
         filename: "/FIM.mp4",
-        desc: "Celebrating paternal bonds and active fatherly involvement in school development programs.",
+        desc: "Self-paced, progression-based learning modules enabling students to strengthen Mathematical concepts through personalised, technology-enabled learning pathways.",
       },
       {
         id: "vid-3",

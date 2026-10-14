@@ -331,24 +331,6 @@ export default function CbseResults() {
                     <span>View Full Academic Results</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
-
-                  <button
-                    type="button"
-                    onClick={() => setSelectedPoster(currentResult)}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-gray-300 text-brand-charcoal text-xs font-bold uppercase tracking-wider hover:bg-gray-50 transition-all cursor-pointer shadow-sm"
-                  >
-                    <ZoomIn className="w-4 h-4 text-brand-gold" />
-                    Enlarge Official Poster
-                  </button>
-
-                  <a
-                    href={currentResult.image}
-                    download={currentResult.downloadName}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-brand-charcoal text-xs font-bold uppercase tracking-wider hover:bg-gray-100 transition-all shadow-sm"
-                  >
-                    <Download className="w-4 h-4 text-brand-muted" />
-                    Download Gazette
-                  </a>
                 </div>
 
               </div>

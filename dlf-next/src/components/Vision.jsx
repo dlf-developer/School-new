@@ -80,7 +80,7 @@ export default function Vision() {
               "We teach children how to think, not what to think."
             </p>
             <p className={`text-${theme.accent} text-[9px] uppercase font-bold tracking-widest mt-2`}>
-              &mdash; {isDLWS ? 'Ruchi Jain, School Head (DLWS)' : 'Dr. Seema Jerath, Principal (DLPS)'}
+              &mdash; {isDLWS ? 'Ruchi Jain, School Head (DLWS)' : 'Seema Jerath, Principal (DLPS)'}
             </p>
           </div>
         </div>
@@ -139,7 +139,7 @@ export default function Vision() {
               </div>
               <div>
                 <h4 className={`font-serif font-bold text-${theme.primary} text-xs sm:text-sm`}>
-                  {isDLWS ? 'Ruchi Jain | School Head' : 'Dr. Seema Jerath | Principal'}
+                  {isDLWS ? 'Ruchi Jain | School Head' : 'Seema Jerath | Principal'}
                 </h4>
                 <p className="text-[8.5px] sm:text-[9px] text-brand-muted uppercase font-bold tracking-widest">
                   {schoolName} Leadership

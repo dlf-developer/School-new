@@ -194,9 +194,11 @@ export default function Hero() {
                     className="h-full w-auto object-contain max-h-6 sm:max-h-7.5 brightness-0 invert drop-shadow-md"
                   />
                 </div>
-                <p className={`text-[9px] text-${theme.accent} font-inter uppercase tracking-widest font-semibold drop-shadow-md`}>
-                  {currentSchool?.cbseInfo || 'CBSE Affiliated'}
-                </p>
+                {currentSchool?.cbseInfo ? (
+                  <p className={`text-[9px] text-${theme.accent} font-inter uppercase tracking-widest font-semibold drop-shadow-md`}>
+                    {currentSchool.cbseInfo}
+                  </p>
+                ) : null}
               </div>
             </div>
 

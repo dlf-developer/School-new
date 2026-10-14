@@ -53,7 +53,7 @@ export default function SchoolNews() {
       excerpt: 'DLF Public School, Sahibabad has secured the top rank in Ghaziabad in the annual Times School Survey, evaluated across academic rigour, individual attention, co-curricular infrastructure, and futuristic pedagogy.',
       fullText: `In the comprehensive Times School Survey 2026, DLF Public School (DLPS), Sahibabad emerged as the undisputed Number 1 School in Ghaziabad. The institutional audit comprehensively assessed over 150 schools across Delhi-NCR based on rigorous benchmarks including CBSE academic outcomes, experiential learning practices, faculty qualifications, sports infrastructure, mental wellness systems, and global citizenship curricula.
 
-Principal Dr. Seema Jerath remarked: "This recognition reflects our 30-year steadfast commitment to sculpting thinkers rather than rote memorizers. We dedicate this achievement to our passionate educators, resilient learners, and deeply supportive parent partners."`,
+Principal Seema Jerath remarked: "This recognition reflects our 30-year steadfast commitment to sculpting thinkers rather than rote memorizers. We dedicate this achievement to our passionate educators, resilient learners, and deeply supportive parent partners."`,
       tags: ['Times Ranking', '#1 In Ghaziabad', 'Academic Excellence'],
       externalLink: 'https://timesofindia.indiatimes.com'
     },

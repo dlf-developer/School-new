@@ -5,7 +5,7 @@ export const schoolsData = {
     id: "dlf-sahibabad",
     name: "DLF School",
     shortLocation: "Sahibabad",
-    cbseInfo: "CBSE Affiliation No. 2130384",
+    cbseInfo: "",
     phone: "+91-9871034444",
     theme: {
       primary: "brand-greenDeep",
@@ -89,7 +89,7 @@ export const schoolsData = {
     academicResults: {
       headline: "Excellence in CBSE Board Examinations",
       subtitle: "Upholding a 30-year legacy of stellar scholastic achievements, state records, and 100% board success.",
-      affiliation: "CBSE Affiliation No. 2130384 (School Code: 60172)",
+      affiliation: "",
       stats: [
         { value: "100%", label: "Pass Percentage", sub: "Class X & XII Board Exams" },
         { value: "98.8%", label: "Highest Percentage", sub: "Class XII Board (AIR 14)" },
@@ -102,7 +102,7 @@ export const schoolsData = {
     id: "dlf-greater-noida",
     name: "DLF World School",
     shortLocation: "G. Noida",
-    cbseInfo: "CBSE Affiliation No. 2131920",
+    cbseInfo: "",
     phone: "+91-9871034444",
     theme: {
       primary: "brand-purpleDeep",
@@ -185,7 +185,7 @@ export const schoolsData = {
     academicResults: {
       headline: "Scholastic Excellence & Innovation Benchmarks",
       subtitle: "Empowering futuristic thinkers with robust conceptual foundations, 100% board pass rates, and global mathematical distinctions.",
-      affiliation: "CBSE Affiliation No. 2131920 (School Code: 60921)",
+      affiliation: "",
       stats: [
         { value: "100%", label: "Pass Percentage", sub: "Class X Board Examinations" },
         { value: "97.4%", label: "Highest Percentage", sub: "Class X Board Result" },

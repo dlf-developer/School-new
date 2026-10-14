@@ -19,6 +19,176 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+function SubtleExcellenceMotif() {
+  return (
+    <div className="relative w-48 h-48 sm:w-56 sm:h-56 flex items-center justify-center select-none pointer-events-none opacity-75 hover:opacity-100 transition-opacity duration-700">
+      {/* Soft ambient aura */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-brand-gold/10 via-brand-greenDeep/5 to-transparent rounded-full blur-2xl" />
+
+      <svg
+        viewBox="0 0 240 240"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-full relative z-10"
+        aria-hidden="true"
+      >
+        <defs>
+          <linearGradient id="fineGold" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#F5D061" />
+            <stop offset="50%" stopColor="#C59B27" />
+            <stop offset="100%" stopColor="#9A7416" />
+          </linearGradient>
+
+          <linearGradient id="fineEmerald" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#00C45B" />
+            <stop offset="50%" stopColor="#009E49" />
+            <stop offset="100%" stopColor="#2B5126" />
+          </linearGradient>
+
+          <radialGradient id="subtleAuraGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#C59B27" stopOpacity="0.16" />
+            <stop offset="50%" stopColor="#009E49" stopOpacity="0.05" />
+            <stop offset="100%" stopColor="#FAF8F5" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+
+        {/* Ambient Center Glow */}
+        <circle cx="120" cy="120" r="70" fill="url(#subtleAuraGlow)" />
+
+        {/* Outer Fine Dotted Ring */}
+        <circle
+          cx="120"
+          cy="120"
+          r="98"
+          stroke="url(#fineGold)"
+          strokeWidth="0.75"
+          strokeDasharray="3 6"
+          opacity="0.35"
+        />
+
+        {/* Hairline Guide Ring */}
+        <circle
+          cx="120"
+          cy="120"
+          r="84"
+          stroke="#2B5126"
+          strokeWidth="0.5"
+          opacity="0.2"
+        />
+
+        {/* Intersecting Tilted Orbital Ellipses */}
+        <ellipse
+          cx="120"
+          cy="120"
+          rx="94"
+          ry="32"
+          stroke="url(#fineGold)"
+          strokeWidth="0.75"
+          transform="rotate(-24 120 120)"
+          opacity="0.35"
+        />
+        <ellipse
+          cx="120"
+          cy="120"
+          rx="94"
+          ry="32"
+          stroke="url(#fineEmerald)"
+          strokeWidth="0.75"
+          strokeDasharray="4 4"
+          transform="rotate(32 120 120)"
+          opacity="0.3"
+        />
+
+        {/* Fine Cardinal Axis Lines */}
+        <line
+          x1="120"
+          y1="34"
+          x2="120"
+          y2="206"
+          stroke="url(#fineGold)"
+          strokeWidth="0.5"
+          strokeDasharray="2 4"
+          opacity="0.3"
+        />
+        <line
+          x1="34"
+          y1="120"
+          x2="206"
+          y2="120"
+          stroke="url(#fineGold)"
+          strokeWidth="0.5"
+          strokeDasharray="2 4"
+          opacity="0.3"
+        />
+
+        {/* Inner Concentric Circles */}
+        <circle
+          cx="120"
+          cy="120"
+          r="54"
+          stroke="url(#fineGold)"
+          strokeWidth="0.8"
+          opacity="0.45"
+        />
+        <circle
+          cx="120"
+          cy="120"
+          r="42"
+          stroke="#2B5126"
+          strokeWidth="0.5"
+          strokeDasharray="2 3"
+          opacity="0.25"
+        />
+
+        {/* Cardinal Diamond Markers at Orbit */}
+        <path d="M 120 62 L 122 66 L 120 70 L 118 66 Z" fill="#C59B27" opacity="0.6" />
+        <path d="M 120 170 L 122 174 L 120 178 L 118 174 Z" fill="#C59B27" opacity="0.6" />
+        <path d="M 62 120 L 66 122 L 70 120 L 66 118 Z" fill="#009E49" opacity="0.6" />
+        <path d="M 170 120 L 174 122 L 178 120 L 174 118 Z" fill="#009E49" opacity="0.6" />
+
+        {/* 8-Point Compass Star of Aspiration */}
+        <path
+          d="M 120 92 Q 120 120 92 120 Q 120 120 120 148 Q 120 120 148 120 Q 120 120 120 92 Z"
+          fill="url(#fineGold)"
+          fillOpacity="0.2"
+          stroke="url(#fineGold)"
+          strokeWidth="0.85"
+        />
+        <path
+          d="M 120 102 Q 120 120 102 120 Q 120 120 120 138 Q 120 120 138 120 Q 120 120 120 102 Z"
+          fill="url(#fineEmerald)"
+          fillOpacity="0.15"
+          stroke="url(#fineEmerald)"
+          strokeWidth="0.65"
+          transform="rotate(45 120 120)"
+        />
+
+        {/* Center Pearl */}
+        <circle cx="120" cy="120" r="2.5" fill="#FFFFFF" />
+        <circle cx="120" cy="120" r="1.5" fill="#C59B27" />
+
+        {/* Floating Delicate Micro Sparkles */}
+        <path
+          d="M 184 64 L 185 67 L 188 68 L 185 69 L 184 72 L 183 69 L 180 68 L 183 67 Z"
+          fill="#C59B27"
+          opacity="0.55"
+        />
+        <path
+          d="M 58 168 L 59 170.5 L 61.5 171.5 L 59 172.5 L 58 175 L 57 172.5 L 54.5 171.5 L 57 170.5 Z"
+          fill="#009E49"
+          opacity="0.45"
+        />
+        <path
+          d="M 68 76 L 68.8 78 L 70.8 78.8 L 68.8 79.6 L 68 81.6 L 67.2 79.6 L 65.2 78.8 L 67.2 78 Z"
+          fill="#C59B27"
+          opacity="0.5"
+        />
+        <circle cx="176" cy="164" r="1.5" fill="#009E49" opacity="0.4" />
+      </svg>
+    </div>
+  );
+}
+
 export default function WhatSetsUsApart({
   isPreview = false,
 }) {
@@ -72,7 +242,13 @@ export default function WhatSetsUsApart({
                   What Sets Us Apart
                 </h1>
                 <p className="text-sm sm:text-base text-brand-muted font-medium leading-relaxed">
-                  Character building at DLF is intentionally woven into everyday learning. Whether it is through collaborative projects, community outreach, leadership opportunities, or classroom discussions, students are encouraged to make ethical choices and stand by them.
+                  Character building at DLF is intentionally
+                  woven into everyday learning. Whether it
+                  is through collaborative projects,
+                  community outreach, leadership
+                  opportunities, or classroom discussions,
+                  students are encouraged to make ethical
+                  choices and stand by them.
                 </p>
               </div>
               <div className="lg:col-span-5">
@@ -87,8 +263,8 @@ export default function WhatSetsUsApart({
               </div>
             </div>
           ) : (
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-              <div className="space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+              <div className="md:col-span-8 space-y-3">
                 <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-brand-gold animate-pulse" />{" "}
                   Distinctive Pillars of Excellence
@@ -97,8 +273,15 @@ export default function WhatSetsUsApart({
                   What Sets Us Apart
                 </h1>
                 <p className="text-sm sm:text-base text-brand-muted max-w-2xl font-medium leading-relaxed">
-                  Character building at DLF is intentionally woven into everyday learning. Whether it is through collaborative projects, community outreach, leadership opportunities, or classroom discussions, students are encouraged to make ethical choices and stand by them.
+                  Character building at DLF is intentionally woven into everyday learning. Whether it
+                  is through collaborative projects, community outreach, leadership opportunities, or
+                  classroom discussions, students are encouraged to make ethical choices and stand by them.
                 </p>
+              </div>
+
+              {/* Right Column: Subtle Theme Motif */}
+              <div className="md:col-span-4 flex items-center justify-center md:justify-end">
+                <SubtleExcellenceMotif />
               </div>
             </div>
           )}
@@ -282,9 +465,8 @@ export default function WhatSetsUsApart({
                           Fortis Hospital
                         </span>
                         <p className="text-[10px] text-gray-300 mt-0.5 leading-snug">
-                          Class XI Psychology students
-                          intern annually, exploring patient
-                          care.
+                          Delfites Travelled to Brazil under
+                          Global Exchange program.
                         </p>
                       </div>
                     </div>
@@ -301,8 +483,9 @@ export default function WhatSetsUsApart({
                           IIT Delhi
                         </span>
                         <p className="text-[10px] text-gray-300 mt-0.5 leading-snug">
-                          Class IX students studying active
-                          research and tech ecosystems.
+                          Class IX Students explored
+                          innovation system, research, and
+                          technology ecosystems.
                         </p>
                       </div>
                     </div>
@@ -698,22 +881,22 @@ export default function WhatSetsUsApart({
                   </div>
 
                   {/* Certificates / Recognition Column */}
-                  <div className="lg:col-span-5 space-y-6">
+                  <div className="lg:col-span-5 space-y-5">
                     <span className="text-xs font-bold text-brand-muted uppercase tracking-widest block border-b border-brand-masterDeep/5 pb-2">
                       Institutional Recognitions
                     </span>
 
                     {/* WMARS Certificate */}
                     <div className="group rounded-3xl border border-brand-masterDeep/5 bg-brand-bg/30 overflow-hidden shadow-sm hover:shadow-md relative transition-all duration-300">
-                      <div className="aspect-[4/3] overflow-hidden bg-brand-bg flex items-center justify-center">
+                      <div className="h-44 sm:h-52 w-full overflow-hidden bg-brand-bg flex items-center justify-center">
                         <img
                           src="/WMARS.jpeg"
                           alt="WMARS Award Certificate"
-                          className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500"
+                          className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
                           loading="lazy"
                         />
                       </div>
-                      <div className="p-5 border-t border-brand-masterDeep/5 bg-white">
+                      <div className="p-4 sm:p-5 border-t border-brand-masterDeep/5 bg-white">
                         <h4 className="text-xs font-bold text-brand-masterDeep uppercase tracking-wider">
                           WMARS Recognition
                         </h4>
@@ -728,15 +911,15 @@ export default function WhatSetsUsApart({
 
                     {/* Superstar Award */}
                     <div className="group rounded-3xl border border-brand-masterDeep/5 bg-brand-bg/30 overflow-hidden shadow-sm hover:shadow-md relative transition-all duration-300">
-                      <div className="aspect-[4/3] overflow-hidden bg-brand-bg flex items-center justify-center">
+                      <div className="h-44 sm:h-52 w-full overflow-hidden bg-brand-bg flex items-center justify-center">
                         <img
                           src="/Sustainability Superstar Award.jpg"
                           alt="Sustainability Superstar Award Certificate"
-                          className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500"
+                          className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
                           loading="lazy"
                         />
                       </div>
-                      <div className="p-5 border-t border-brand-masterDeep/5 bg-white">
+                      <div className="p-4 sm:p-5 border-t border-brand-masterDeep/5 bg-white">
                         <h4 className="text-xs font-bold text-brand-masterDeep uppercase tracking-wider">
                           Sustainability Superstar Award
                         </h4>
@@ -779,25 +962,18 @@ export default function WhatSetsUsApart({
               <div className="bg-gradient-to-br from-brand-gold/5 via-brand-bg to-brand-bg border border-brand-gold/20 rounded-3xl p-8 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/5 rounded-full blur-3xl pointer-events-none" />
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-                  {/* Stats Badge */}
-                  <div className="lg:col-span-4 flex flex-col items-center justify-center p-6 bg-white border border-brand-gold/25 rounded-2xl text-center space-y-3 shadow-sm">
-                    <Award className="w-12 h-12 text-brand-gold" />
-                    <div className="space-y-1">
-                      <span className="font-serif text-3xl sm:text-4xl font-extrabold text-brand-masterDeep">
-                        1,500+
-                      </span>
-                      <h5 className="text-[10px] font-bold text-brand-gold uppercase tracking-wider">
-                        Student Entrepreneurs
-                      </h5>
-                    </div>
-                    <p className="text-[10px] text-brand-muted font-medium">
-                      Active ventures across Grades VI to XI
-                      developing financial literacy.
-                    </p>
+                  {/* Money Plant Photo */}
+                  <div className="lg:col-span-5 rounded-2xl overflow-hidden border border-brand-gold/20 bg-white shadow-sm aspect-[4/3] group relative">
+                    <img
+                      src="/money-plant-stall.jpg"
+                      alt=""
+                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                      loading="lazy"
+                    />
                   </div>
 
                   {/* Narrative */}
-                  <div className="lg:col-span-8 space-y-6 text-brand-charcoal text-sm leading-relaxed font-medium">
+                  <div className="lg:col-span-7 space-y-6 text-brand-charcoal text-sm leading-relaxed font-medium">
                     <p>
                       Through our robust flagship student
                       start-up programme{" "}
@@ -846,44 +1022,48 @@ export default function WhatSetsUsApart({
                 id="social-responsibility"
                 className="scroll-mt-32 bg-white rounded-3xl border border-brand-masterDeep/5 p-8 sm:p-10 shadow-sm hover:shadow-md transition-all duration-300 space-y-10"
               >
-                {/* Inner Header */}
-                <div className="border-l-4 border-brand-greenDeep pl-6 space-y-3">
-                  <span className="text-xs font-bold text-brand-greenDeep uppercase tracking-widest flex items-center gap-1.5">
-                    <Heart className="w-4 h-4" /> Social
-                    Compassion
-                  </span>
-                  <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-masterDeep">
-                    Student Social Responsibility
-                  </h2>
-                  <p className="text-sm text-brand-muted max-w-3xl">
-                    We believe that giving back to society
-                    is as important as taking from it. SSR
-                    is intentionally woven into our daily
-                    learning ecosystem, emphasizing the
-                    dignity of the receiver.
-                  </p>
-                </div>
+                {/* Top Section: Header & Narrative + Image in Whitespace */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  <div className="lg:col-span-7 space-y-6">
+                    {/* Inner Header */}
+                    <div className="border-l-4 border-brand-greenDeep pl-6 space-y-3">
+                      <span className="text-xs font-bold text-brand-greenDeep uppercase tracking-widest flex items-center gap-1.5">
+                        <Heart className="w-4 h-4" /> Social Compassion
+                      </span>
+                      <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-masterDeep">
+                        Student Social Responsibility
+                      </h2>
+                      <p className="text-sm text-brand-muted max-w-2xl">
+                        We believe that giving back to society is as important as taking from it. SSR
+                        is intentionally woven into our daily learning ecosystem, emphasizing the
+                        dignity of the receiver.
+                      </p>
+                    </div>
 
-                {/* Inner Content Block */}
-                <div className="space-y-8 text-brand-charcoal text-sm leading-relaxed font-medium">
-                  <p className="max-w-4xl text-brand-muted text-base font-medium">
-                    Student Social Responsibility is not an
-                    occasional activity at DLF—it is
-                    embedded into the very fabric of our
-                    learning ecosystem. Delfites actively
-                    engage with real-world
-                    concerns—environmental sustainability,
-                    community welfare, inclusivity, and
-                    social equity—through structured
-                    programmes and hands-on initiatives.
-                    Whether it is leading cleanliness
-                    drives, contributing to waste management
-                    projects, working with under-resourced
-                    communities, or advocating for
-                    meaningful causes, Delfites learn that
-                    impact begins with intent and grows
-                    through action.
-                  </p>
+                    <p className="text-brand-muted text-sm sm:text-base font-medium leading-relaxed">
+                      Student Social Responsibility is not an occasional activity at DLF—it is
+                      embedded into the very fabric of our learning ecosystem. Delfites actively
+                      engage with real-world concerns—environmental sustainability, community
+                      welfare, inclusivity, and social equity—through structured programmes and
+                      hands-on initiatives. Whether it is leading cleanliness drives, contributing to
+                      waste management projects, working with under-resourced communities, or
+                      advocating for meaningful causes, Delfites learn that impact begins with intent
+                      and grows through action.
+                    </p>
+                  </div>
+
+                  {/* Social Responsibility Photo */}
+                  <div className="lg:col-span-5">
+                    <div className="rounded-2xl overflow-hidden border border-brand-masterDeep/5 bg-brand-bg shadow-sm aspect-[4/3] group relative">
+                      <img
+                        src="/social-responsibility.jpg"
+                        alt=""
+                        className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                </div>
 
                   {/* SSR Sub-modules Grid (Styled with POP bg-brand-bg background against parent card) */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
@@ -963,7 +1143,6 @@ export default function WhatSetsUsApart({
                     </div>
                   </div>
                 </div>
-              </div>
 
               {/* Section 6: Character Building (Unified solid card container) */}
               <div

@@ -7,6 +7,7 @@ import ImageWithLoader from './ImageWithLoader'
 export default function OurCampus() {
   const { schoolId } = useParams()
   const activeBranch = schoolId && schoolsData[schoolId] ? schoolId : 'dlf-sahibabad'
+  const isDLWS = activeBranch === 'dlf-greater-noida'
   const currentSchool = schoolsData[activeBranch]
   const theme = currentSchool.theme
   const campusData = currentSchool.campus
@@ -68,10 +69,10 @@ export default function OurCampus() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          {/* Main Hero Photo */}
+          {/* Main Hero Photo (Image 1: 5-Acre Campus) */}
           <div className={`md:col-span-8 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-md aspect-[16/10] relative`}>
             <ImageWithLoader 
-              src={campusData.images?.[0] || '/campus/campus1.jpg'} 
+              src={!isDLWS ? '/dlps-campus/7C1A1527.jpg' : (campusData.images?.[0] || '/campus/campus1.jpg')} 
               alt={`${currentSchool.name} campus exterior`} 
               imgClassName="transition-transform duration-1000 group-hover:scale-105"
               loading="lazy"
@@ -83,11 +84,12 @@ export default function OurCampus() {
             </div>
           </div>
 
-          {/* Side Photo 1 */}
-          <div className={`md:col-span-4 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-sm relative`} style={{minHeight:'260px'}}>
+          {/* Side Photo 1 (Image 2: Learning Spaces) */}
+          <div className={`md:col-span-4 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-sm relative min-h-[260px] md:min-h-0`}>
             <ImageWithLoader 
-              src={campusData.images?.[1] || '/campus/campus2.jpg'} 
+              src={!isDLWS ? '/dlps-campus/7C1A1634.jpg' : (campusData.images?.[1] || '/campus/campus2.jpg')} 
               alt={`${currentSchool.name} corridors and classrooms`} 
+              className="md:absolute md:inset-0 w-full h-full"
               imgClassName="transition-transform duration-1000 group-hover:scale-105"
               loading="lazy"
             />
@@ -98,11 +100,12 @@ export default function OurCampus() {
             </div>
           </div>
 
-          {/* Lower Photo 2 */}
-          <div className={`md:col-span-4 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-sm relative`} style={{minHeight:'260px'}}>
+          {/* Lower Photo 2 (Image 3: Innovation) */}
+          <div className={`md:col-span-4 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-sm relative min-h-[260px] md:min-h-0`}>
             <ImageWithLoader 
-              src={campusData.images?.[2] || '/campus/campus3.jpg'} 
+              src={!isDLWS ? '/dlps-campus/7C1A1782.jpg' : (campusData.images?.[2] || '/campus/campus3.jpg')} 
               alt={`${currentSchool.name} labs and innovation spaces`} 
+              className="md:absolute md:inset-0 w-full h-full"
               imgClassName="transition-transform duration-1000 group-hover:scale-105"
               loading="lazy"
             />
@@ -113,7 +116,7 @@ export default function OurCampus() {
             </div>
           </div>
 
-          {/* Lower Hero Photo 3 */}
+          {/* Lower Hero Photo 3 (Image 4: Sports Infrastructure - untouched) */}
           <div className={`md:col-span-8 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-md aspect-[16/10] relative`}>
             <ImageWithLoader 
               src={campusData.images?.[3] || '/campus/campus5.jpg'} 
@@ -128,10 +131,10 @@ export default function OurCampus() {
             </div>
           </div>
 
-          {/* Extra Photo 4 */}
+          {/* Extra Photo 4 (Image 5: Shared Spaces) */}
           <div className={`md:col-span-6 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-sm relative`} style={{minHeight:'240px'}}>
             <ImageWithLoader 
-              src="/campus/campus6.jpg" 
+              src={!isDLWS ? '/dlps-campus/7C1A1486.jpg' : '/campus/campus6.jpg'} 
               alt="School common areas and hallways" 
               imgClassName="transition-transform duration-1000 group-hover:scale-105"
               loading="lazy"
@@ -143,18 +146,22 @@ export default function OurCampus() {
             </div>
           </div>
 
-          {/* Extra Photo 5 */}
+          {/* Extra Photo 5 (Image 6: Competitive Ready Swimming Pool) */}
           <div className={`md:col-span-6 overflow-hidden rounded-3xl border border-${theme.primary}/10 group shadow-sm relative`} style={{minHeight:'240px'}}>
             <ImageWithLoader 
               src="/campus/campus7.jpg" 
-              alt="Campus buildings and green spaces" 
+              alt="Campus swimming pool" 
               imgClassName="transition-transform duration-1000 group-hover:scale-105"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/70 via-transparent to-transparent opacity-90 z-10"></div>
             <div className="absolute bottom-6 left-6 text-white z-20">
-              <p className={`text-[10px] uppercase tracking-widest font-semibold text-${theme.accent}`}>Green Campus</p>
-              <h3 className="font-serif text-lg font-bold">Lush Green Sunlit Architecture</h3>
+              <p className={`text-[10px] uppercase tracking-widest font-semibold text-${theme.accent}`}>
+                {!isDLWS ? 'Competitive Ready Swimming Pool' : 'Green Campus'}
+              </p>
+              <h3 className="font-serif text-lg font-bold">
+                {!isDLWS ? 'Twin Swimming Pools & Aquatic Arena' : 'Lush Green Sunlit Architecture'}
+              </h3>
             </div>
           </div>
         </div>

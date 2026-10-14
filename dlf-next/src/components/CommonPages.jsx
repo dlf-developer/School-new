@@ -102,7 +102,7 @@ export default function CommonPages() {
                     <span className="w-2.5 h-2.5 rounded-full bg-brand-greenVibrant shrink-0" />
                     <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-greenDeep">DLF Public School</span>
                   </div>
-                  <h3 className="font-serif text-xl font-bold text-brand-charcoal">CBSE Affiliation No. 2130384</h3>
+                  <h3 className="font-serif text-xl font-bold text-brand-charcoal">DLF Public School, Sahibabad</h3>
                   <p className="text-xs text-brand-muted font-inter leading-relaxed">
                     We recruit passionate PGTs, TGTs, PRTs, and administrative support staff. Click to view current openings and submit your application directly via the recruitment portal.
                   </p>
@@ -144,7 +144,7 @@ export default function CommonPages() {
                     <span className="w-2.5 h-2.5 rounded-full bg-brand-purpleVibrant shrink-0" />
                     <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-purpleDeep">DLF World School</span>
                   </div>
-                  <h3 className="font-serif text-xl font-bold text-brand-charcoal">CBSE Affiliation No. 2131920</h3>
+                  <h3 className="font-serif text-xl font-bold text-brand-charcoal">DLF World School, Greater Noida</h3>
                   <p className="text-xs text-brand-muted font-inter leading-relaxed">
                     We recruit dedicated educators, counsellors, and administrative professionals. Click to explore available roles and submit your application via the DLWS recruitment portal.
                   </p>
@@ -262,7 +262,7 @@ export default function CommonPages() {
     {
       id: 'reception', label: 'Reception',
       icon: <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>,
-      phones: ['+91-9821182700'], emails: ['contact@dlws.edu.in']
+      phones: ['+91 9910966700'], emails: ['contact@dlws.edu.in']
     },
     {
       id: 'admissions', label: 'Admissions',
@@ -368,7 +368,7 @@ export default function CommonPages() {
                 <div>
                   <span className="bg-brand-gold/10 text-brand-gold text-[9px] font-extrabold uppercase tracking-widest px-3 py-1.5 rounded-full w-max inline-block mb-2.5 font-inter">Flagship Campus</span>
                   <h3 className="font-serif text-xl sm:text-2xl font-bold text-brand-greenDeep">DLF Public School</h3>
-                  <p className="text-[10px] text-brand-muted font-inter uppercase tracking-wider mt-0.5">Sahibabad, Ghaziabad — CBSE Aff. No. 2130384</p>
+                  <p className="text-[10px] text-brand-muted font-inter uppercase tracking-wider mt-0.5">Sahibabad, Ghaziabad</p>
                 </div>
                 <div className="space-y-2.5 text-xs font-inter text-brand-muted">
                   <p className="flex items-start gap-2.5 leading-relaxed">
@@ -441,7 +441,7 @@ export default function CommonPages() {
                 <div>
                   <span className="bg-brand-gold/10 text-brand-gold text-[9px] font-extrabold uppercase tracking-widest px-3 py-1.5 rounded-full w-max inline-block mb-2.5 font-inter">World School Campus</span>
                   <h3 className="font-serif text-xl sm:text-2xl font-bold text-brand-purpleDeep">DLF World School</h3>
-                  <p className="text-[10px] text-brand-muted font-inter uppercase tracking-wider mt-0.5">Greater Noida, UP — CBSE Aff. No. 2131920</p>
+                  <p className="text-[10px] text-brand-muted font-inter uppercase tracking-wider mt-0.5">Greater Noida, UP</p>
                 </div>
 
                 {/* Address */}

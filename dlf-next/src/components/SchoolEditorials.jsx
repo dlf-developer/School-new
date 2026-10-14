@@ -50,7 +50,7 @@ export default function SchoolEditorials() {
     {
       id: 'art-3',
       title: 'The Sibling Bond and Community: Bridging Generation Gaps',
-      author: 'Ms. Seema Jerath (Principal)',
+      author: 'Seema Jerath (Principal)',
       date: 'April 05, 2026',
       readTime: '6 min read',
       summary: 'Education must build connection. Our unique peer mentoring and community tutoring initiatives encourage older students to guide younger peers, shaping a collaborative, compassionate legacy.',

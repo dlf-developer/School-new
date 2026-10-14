@@ -190,10 +190,10 @@ export default function SchoolsEditor() {
                 description="City label used in mega menus"
               />
               <FieldEditor
-                label="CBSE Affiliation Info"
+                label="Accreditation / Tagline"
                 value={schoolData.cbseInfo}
                 onChange={(val) => handleFieldChange('cbseInfo', val)}
-                placeholder="e.g. CBSE Affiliation No. 2130384"
+                placeholder="e.g. Flagship Campus"
               />
             </div>
 
