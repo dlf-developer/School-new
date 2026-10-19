@@ -75,6 +75,9 @@ function MasterHome() {
       <Hero />
       <Ticker />
 
+      {/* Stats Counters – First section after Hero */}
+      <Stats isMaster={true} />
+
       <SectionSeparator />
 
       {/* 2nd Section – School Awards */}

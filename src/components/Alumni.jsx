@@ -230,7 +230,7 @@ export default function Alumni() {
 
             <div className="p-4 rounded-2xl bg-gray-50 border border-gray-150 text-xs text-brand-muted font-inter space-y-1">
               <p className="font-semibold text-brand-charcoal">Are you an alumnus wishing to connect?</p>
-              <p>Reach out directly to our Alumni Secretariat at <a href="mailto:alumni@dlfps.com" className="text-brand-greenDeep font-bold underline">alumni@dlfps.com</a>.</p>
+              <p>Reach out directly to our Alumni Secretariat at <a href="mailto:alumni@dlps.co.in" className="text-brand-greenDeep font-bold underline">alumni@dlps.co.in</a>.</p>
             </div>
 
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -241,7 +241,7 @@ export default function Alumni() {
                 <span>Back to Home</span>
               </Link>
               <a
-                href="mailto:alumni@dlfps.com"
+                href="mailto:alumni@dlps.co.in"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-brand-charcoal text-xs font-bold uppercase tracking-wider transition-colors w-full sm:w-auto"
               >
                 <Mail className="w-3.5 h-3.5" />
@@ -538,11 +538,11 @@ export default function Alumni() {
 
           <div className="flex flex-wrap items-center gap-3 shrink-0">
             <a 
-              href="mailto:alumni@dlfps.com" 
+              href="mailto:alumni@dlps.co.in" 
               className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-brand-greenDeep hover:bg-brand-greenVibrant text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
             >
               <Mail className="w-3.5 h-3.5" />
-              <span>alumni@dlfps.com</span>
+              <span>alumni@dlps.co.in</span>
             </a>
             <a 
               href="tel:+919871034444" 

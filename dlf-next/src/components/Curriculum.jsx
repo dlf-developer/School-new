@@ -14,12 +14,13 @@ export default function Curriculum({ isHomePage = false }) {
   const { schoolId, pathway } = useParams()
   const { schools } = useSiteData()
   const activeBranch = schoolId && schools[schoolId] ? schoolId : 'dlf-sahibabad'
+  const isDLWS = activeBranch === 'dlf-greater-noida'
   const currentSchool = schools[activeBranch]
   const schoolName = currentSchool?.name || 'DLF Public School'
   
   // Manage in-place pathway selection for homepage or URL param for dedicated page
   const [homePathway, setHomePathway] = useState(pathway ? pathway.toLowerCase() : 'cbse')
-  const activePathway = isHomePage ? homePathway : (pathway ? pathway.toLowerCase() : 'cbse')
+  const activePathway = isDLWS ? 'cbse' : (isHomePage ? homePathway : (pathway ? pathway.toLowerCase() : 'cbse'))
   
   const theme = currentSchool?.theme || {
     primary: 'brand-greenDeep',
@@ -161,8 +162,6 @@ export default function Curriculum({ isHomePage = false }) {
     ]
   }
 
-  const isDLWS = activeBranch === 'dlf-greater-noida'
-
   // Single dedicated image per pathway
   const cbsePathwayImage = {
     src: isDLWS ? '/dlws.jpeg' : '/campus/campus2.jpg',
@@ -186,7 +185,7 @@ export default function Curriculum({ isHomePage = false }) {
   ]
 
   const dlwsCurriculumStats = [
-    { val: "Nursery - X", label: "Classes Offered", desc: "Foundational early years to secondary board." },
+    { val: "Foundation - XII", label: "Classes Offered", desc: "Foundational early years to senior secondary." },
     { val: "1:15", label: "Teacher Student Ratio", desc: "Individual attention and dedicated mentor focus." },
     { val: "CBSE Board", label: "Affiliated", desc: "Aligned with CBSE & NEP 2020 framework." },
     { val: "STEM & Design", label: "Innovation Hubs", desc: "Robotics, coding, and maker design labs." }
@@ -210,16 +209,17 @@ export default function Curriculum({ isHomePage = false }) {
       <div className="absolute bottom-1/4 right-0 w-96 h-96 rounded-full ambient-glow-2 opacity-30"></div>
 
       <div className="w-[96%] max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
+        
         {/* ── HOMEPAGE COMPACT TABBED VIEW ── */}
         {isHomePage ? (
           <div className="space-y-6">
             {/* Top Header for Homepage */}
             <div className="text-center max-w-4xl mx-auto space-y-2">
               <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>
-                {!isDLWS ? 'Curriculum Excellence' : (activePathway === 'cbse' ? 'CBSE Pathway' : 'Cambridge International School')}
+                {!isDLWS ? 'Curriculum Excellence' : 'CBSE Pathway'}
               </span>
               <h3 className={`font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-${theme.primary}`}>
-                {!isDLWS ? 'Academic Pathways' : (activePathway === 'cbse' ? 'Academic Progression & Skill Core' : 'The Cambridge Pathway')}
+                {!isDLWS ? 'Academic Pathways' : 'Academic Progression & Skill Core'}
               </h3>
               <div className={`w-12 h-[2.5px] bg-${theme.accent} mx-auto mt-2`}></div>
               {isDLWS && (
@@ -236,9 +236,9 @@ export default function Curriculum({ isHomePage = false }) {
               <div className="flex flex-wrap justify-center items-center gap-4 pt-1">
                 <Link
                   to={`/school/${activeBranch}/curriculum/cbse`}
-                  className="flex items-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all duration-300 border-2 bg-white text-brand-charcoal border-gray-200 hover:border-brand-greenDeep hover:bg-gray-50 shadow-sm hover:shadow-md cursor-pointer group"
+                  className="flex items-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all duration-300 border-2 bg-brand-greenDeep text-white border-brand-greenDeep hover:bg-brand-greenVibrant hover:border-brand-greenVibrant shadow-md hover:shadow-lg cursor-pointer group"
                 >
-                  <BookOpen className="w-5 h-5 text-brand-charcoal group-hover:scale-110 transition-transform" />
+                  <BookOpen className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
                   <span>CBSE Pathway</span>
                 </Link>
 
@@ -251,7 +251,6 @@ export default function Curriculum({ isHomePage = false }) {
                 </Link>
               </div>
             )}
-
             {/* Stats Ribbon - 4 Stat Cards (DLWS only) */}
             {isDLWS && (
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
@@ -422,15 +421,15 @@ export default function Curriculum({ isHomePage = false }) {
             {/* Top Header for Dedicated Page */}
             <div className="text-center max-w-4xl mx-auto space-y-2">
               <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>
-                {activePathway === 'cbse' ? 'CBSE Pathway' : 'Cambridge International School'}
+                {isDLWS ? 'Curriculum Overview' : (activePathway === 'cbse' ? 'CBSE Pathway' : 'Cambridge International School')}
               </span>
               <h3 className={`font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-${theme.primary}`}>
-                {activePathway === 'cbse' ? 'Academic Progression & Skill Core' : 'The Cambridge Pathway'}
+                {isDLWS ? 'Academic Progression & Skill Core' : (activePathway === 'cbse' ? 'Academic Progression & Skill Core' : 'The Cambridge Pathway')}
               </h3>
               <div className={`w-12 h-[2.5px] bg-${theme.accent} mx-auto mt-2`}></div>
               <div className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter font-medium text-center max-w-3xl mx-auto pt-1">
                 <p>
-                  {activePathway === 'cbse' 
+                  {isDLWS || activePathway === 'cbse' 
                     ? 'Affiliated to the Central Board of Secondary Education (CBSE) and aligned with NEP 2020. Our progressive curriculum combines academic excellence with competency-based learning, critical thinking, and future-ready skill education across all stages.'
                     : 'Empowering future-ready global leaders through an internationally recognized Cambridge curriculum. Developing intellectual inquiry, independent thought, cultural fluency, and academic rigour from early years to secondary education.'}
                 </p>
@@ -439,18 +438,13 @@ export default function Curriculum({ isHomePage = false }) {
 
             {activePathway === 'cbse' ? (
           // ========================================================
-          // ── CBSE LAYOUT (DLPS Sahibabad) ──
+          // ── CBSE LAYOUT (DLPS Sahibabad & DLWS Greater Noida) ──
           // ========================================================
           <div className="space-y-6">
             
             {/* Stats Ribbon */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-              {[
-                { val: "2200+", label: "Students", desc: "Enrolled across progressive learning programs." },
-                { val: "1:17", label: "Teacher Student Ratio", desc: "Ensuring personal attention & mentor focus." },
-                { val: "CBSE Board", label: "Foundation- XII", desc: "Fully aligned to CBSE & NEP 2020 guidelines." },
-                { val: "Cambridge Board", label: "I- VIII", desc: "Authorized Cambridge learning pathway." }
-              ].map((stat, idx) => (
+              {curriculumStats.map((stat, idx) => (
                 <div key={idx} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                   <span className={`font-serif text-2xl font-extrabold text-${theme.primary}`}>{stat.val}</span>
                   <h4 className="text-[11px] font-bold text-brand-charcoal mt-1">{stat.label}</h4>
@@ -626,7 +620,11 @@ export default function Curriculum({ isHomePage = false }) {
                   </div>
                   <h4 className={`font-serif text-2xl sm:text-3xl font-bold text-${theme.primary}`}>Specialized Streams Offered (Grades XI-XII)</h4>
                   <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter font-medium max-w-3xl">
-                    We offer a wide range of academic choices in sync with the National Education Policy 2020. Students choose from 2 robust specialized pathways with flexible subject combinations:
+                    {isDLWS ? (
+                      "We offer a wide range of academic choices in sync with the National Education Policy 2020. Students choose from 2 robust specialized pathways with flexible subject combinations:"
+                    ) : (
+                      "We offer a wide range of academic choices in sync with the National Education Policy 2020. Students choose from 3 robust specialized pathways with flexible subject combinations:"
+                    )}
                   </p>
                 </div>
 
@@ -642,61 +640,170 @@ export default function Curriculum({ isHomePage = false }) {
                       </tr>
                     </thead>
                     <tbody className="text-brand-charcoal font-semibold divide-y divide-gray-100">
-                      <tr>
-                        <td className={`p-4 sm:p-5 font-serif text-xs font-bold text-${theme.primary} bg-gray-50/50`}>STREAM 1 <span className="block text-[10px] text-brand-muted font-sans font-medium uppercase mt-0.5">Commerce</span></td>
-                        <td className="p-4 sm:p-5 leading-relaxed text-xs">
-                          <ol className="list-decimal pl-4 space-y-0.5">
-                            <li>English</li>
-                            <li>Business Studies/ Hindustani (Vocal) Music</li>
-                            <li>Economics/ Home Science/ Indian Dance (Kathak)</li>
-                          </ol>
-                        </td>
-                        <td className="p-4 sm:p-5 text-xs text-brand-muted font-medium">Accountancy / Painting/ Banking*</td>
-                        <td className="p-4 sm:p-5 text-xs text-brand-muted font-medium">Psychology/ Applied Mathematics/ Physical Education</td>
-                        <td className="p-4 sm:p-5 text-xs text-brand-muted font-medium">Painting/Music/Yoga</td>
-                      </tr>
-                      <tr>
-                        <td className={`p-4 sm:p-5 font-serif text-xs font-bold text-${theme.primary} bg-gray-50/50`}>STREAM 2* <span className="block text-[10px] text-brand-muted font-sans font-medium uppercase mt-0.5">Science</span></td>
-                        <td className="p-4 sm:p-5 leading-relaxed text-xs">
-                          <ol className="list-decimal pl-4 space-y-0.5">
-                            <li>English</li>
-                            <li>Physics</li>
-                            <li>Chemistry</li>
-                          </ol>
-                        </td>
-                        <td className="p-4 sm:p-5 text-xs text-brand-charcoal">
-                          <div className="space-y-2">
-                            <div>
-                              <span className="font-extrabold text-brand-charcoal block">Option A:</span>
-                              <span className="text-brand-muted font-medium">Biology</span>
-                            </div>
-                            <div className="border-t border-gray-200 pt-1">
-                              <span className="font-extrabold text-brand-charcoal block">Option B:</span>
-                              <span className="text-brand-muted font-medium">Mathematics</span>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="p-4 sm:p-5 text-xs text-brand-charcoal">
-                          <div className="space-y-2">
-                            <div>
-                              <span className="text-[9.5px] uppercase tracking-wider font-extrabold text-brand-muted block">For Option A (Biology):</span>
-                              <span className="text-brand-muted font-medium leading-normal">Computer Science / Psychology / Economics / Physical Education / Mathematics</span>
-                            </div>
-                            <div className="border-t border-gray-200 pt-2">
-                              <span className="text-[9.5px] uppercase tracking-wider font-extrabold text-brand-muted block">For Option B (Mathematics):</span>
-                              <span className="text-brand-muted font-medium leading-normal">Computer Science / Psychology / Economics / Physical Education / Biology</span>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="p-4 sm:p-5 text-xs text-brand-muted font-medium">Painting/Music/Yoga</td>
-                      </tr>
+                      {!isDLWS ? (
+                        <>
+                          {/* ── DLPS STREAM 1: HUMANITIES ── */}
+                          <tr>
+                            <td className={`p-4 sm:p-5 font-serif text-xs font-bold text-${theme.primary} bg-gray-50/50`}>
+                              STREAM 1
+                              <span className="block text-[10px] text-brand-muted font-sans font-medium uppercase mt-0.5">Humanities</span>
+                            </td>
+                            <td className="p-4 sm:p-5 leading-relaxed text-xs">
+                              <ol className="list-decimal pl-4 space-y-0.5">
+                                <li>English</li>
+                                <li>Pol.Science/ Hindustani (Vocal) Music</li>
+                                <li>Economics/Home Science/Indian Dance (Kathak)</li>
+                              </ol>
+                            </td>
+                            <td className="p-4 sm:p-5 text-xs text-brand-muted font-medium">
+                              Painting / Mathematics / History / Banking*
+                            </td>
+                            <td className="p-4 sm:p-5 text-xs text-brand-muted font-medium">
+                              Psychology/ Applied Mathematics/ Physical Education / /Mass Media/Artificial Intelligence
+                            </td>
+                            <td className="p-4 sm:p-5 text-xs text-brand-muted font-medium">
+                              Food production/Painting/Music/Yoga/AI/Mass Media
+                            </td>
+                          </tr>
+
+                          {/* ── DLPS STREAM 2: COMMERCE ── */}
+                          <tr>
+                            <td className={`p-4 sm:p-5 font-serif text-xs font-bold text-${theme.primary} bg-gray-50/50`}>
+                              STREAM 2
+                              <span className="block text-[10px] text-brand-muted font-sans font-medium uppercase mt-0.5">Commerce</span>
+                            </td>
+                            <td className="p-4 sm:p-5 leading-relaxed text-xs">
+                              <ol className="list-decimal pl-4 space-y-0.5">
+                                <li>English</li>
+                                <li>Business Studies/ Hindustani (Vocal) Music</li>
+                                <li>Economics/ Home Science/ Indian Dance (Kathak)</li>
+                              </ol>
+                            </td>
+                            <td className="p-4 sm:p-5 text-xs text-brand-muted font-medium">
+                              Accountancy / Painting/ Banking*
+                            </td>
+                            <td className="p-4 sm:p-5 text-xs text-brand-muted font-medium">
+                              Psychology/ Applied Mathematics/ Physical Education / Artificial Intelligence /Mass Media
+                            </td>
+                            <td className="p-4 sm:p-5 text-xs text-brand-muted font-medium">
+                              Food production/Painting/Music/Yoga/AI/Mass Media
+                            </td>
+                          </tr>
+
+                          {/* ── DLPS STREAM 3*: SCIENCE ── */}
+                          <tr>
+                            <td className={`p-4 sm:p-5 font-serif text-xs font-bold text-${theme.primary} bg-gray-50/50`}>
+                              STREAM 3*
+                              <span className="block text-[10px] text-brand-muted font-sans font-medium uppercase mt-0.5">Science</span>
+                            </td>
+                            <td className="p-4 sm:p-5 leading-relaxed text-xs">
+                              <ol className="list-decimal pl-4 space-y-0.5">
+                                <li>English</li>
+                                <li>Physics</li>
+                                <li>Chemistry</li>
+                              </ol>
+                            </td>
+                            <td className="p-4 sm:p-5 text-xs text-brand-charcoal">
+                              <div className="space-y-2">
+                                <div>
+                                  <span className="font-extrabold text-brand-charcoal block">Option A:</span>
+                                  <span className="text-brand-muted font-medium">Biology</span>
+                                </div>
+                                <div className="border-t border-gray-200 pt-1">
+                                  <span className="font-extrabold text-brand-charcoal block">Option B:</span>
+                                  <span className="text-brand-muted font-medium">Mathematics</span>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="p-4 sm:p-5 text-xs text-brand-charcoal">
+                              <div className="space-y-2">
+                                <div>
+                                  <span className="text-[9.5px] uppercase tracking-wider font-extrabold text-brand-muted block">FOR OPTION A (BIOLOGY):</span>
+                                  <span className="text-brand-muted font-medium leading-normal">
+                                    Computer Science / Psychology / Economics / Physical Education / Mathematics / Mass Media/ Artificial Intelligence
+                                  </span>
+                                </div>
+                                <div className="border-t border-gray-200 pt-2">
+                                  <span className="text-[9.5px] uppercase tracking-wider font-extrabold text-brand-muted block">FOR OPTION B (MATHEMATICS):</span>
+                                  <span className="text-brand-muted font-medium leading-normal">
+                                    Computer Science / Psychology / Economics / Physical Education / Biology / Mass Media/Artificial Intelligence
+                                  </span>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="p-4 sm:p-5 text-xs text-brand-muted font-medium">
+                              Food production/Painting/Music/Yoga/AI/Mass Media
+                            </td>
+                          </tr>
+                        </>
+                      ) : (
+                        <>
+                          {/* ── DLWS STREAM 1: COMMERCE ── */}
+                          <tr>
+                            <td className={`p-4 sm:p-5 font-serif text-xs font-bold text-${theme.primary} bg-gray-50/50`}>STREAM 1 <span className="block text-[10px] text-brand-muted font-sans font-medium uppercase mt-0.5">Commerce</span></td>
+                            <td className="p-4 sm:p-5 leading-relaxed text-xs">
+                              <ol className="list-decimal pl-4 space-y-0.5">
+                                <li>English</li>
+                                <li>Business Studies/ Hindustani (Vocal) Music</li>
+                                <li>Economics/ Home Science/ Indian Dance (Kathak)</li>
+                              </ol>
+                            </td>
+                            <td className="p-4 sm:p-5 text-xs text-brand-muted font-medium">Accountancy / Painting/ Banking*</td>
+                            <td className="p-4 sm:p-5 text-xs text-brand-muted font-medium">Psychology/ Applied Mathematics/ Physical Education</td>
+                            <td className="p-4 sm:p-5 text-xs text-brand-muted font-medium">Painting/Music/Yoga</td>
+                          </tr>
+
+                          {/* ── DLWS STREAM 2*: SCIENCE ── */}
+                          <tr>
+                            <td className={`p-4 sm:p-5 font-serif text-xs font-bold text-${theme.primary} bg-gray-50/50`}>STREAM 2* <span className="block text-[10px] text-brand-muted font-sans font-medium uppercase mt-0.5">Science</span></td>
+                            <td className="p-4 sm:p-5 leading-relaxed text-xs">
+                              <ol className="list-decimal pl-4 space-y-0.5">
+                                <li>English</li>
+                                <li>Physics</li>
+                                <li>Chemistry</li>
+                              </ol>
+                            </td>
+                            <td className="p-4 sm:p-5 text-xs text-brand-charcoal">
+                              <div className="space-y-2">
+                                <div>
+                                  <span className="font-extrabold text-brand-charcoal block">Option A:</span>
+                                  <span className="text-brand-muted font-medium">Biology</span>
+                                </div>
+                                <div className="border-t border-gray-200 pt-1">
+                                  <span className="font-extrabold text-brand-charcoal block">Option B:</span>
+                                  <span className="text-brand-muted font-medium">Mathematics</span>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="p-4 sm:p-5 text-xs text-brand-charcoal">
+                              <div className="space-y-2">
+                                <div>
+                                  <span className="text-[9.5px] uppercase tracking-wider font-extrabold text-brand-muted block">For Option A (Biology):</span>
+                                  <span className="text-brand-muted font-medium leading-normal">Computer Science / Psychology / Economics / Physical Education / Mathematics</span>
+                                </div>
+                                <div className="border-t border-gray-200 pt-2">
+                                  <span className="text-[9.5px] uppercase tracking-wider font-extrabold text-brand-muted block">For Option B (Mathematics):</span>
+                                  <span className="text-brand-muted font-medium leading-normal">Computer Science / Psychology / Economics / Physical Education / Biology</span>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="p-4 sm:p-5 text-xs text-brand-muted font-medium">Painting/Music/Yoga</td>
+                          </tr>
+                        </>
+                      )}
                     </tbody>
                   </table>
                 </div>
                 <div className="bg-gray-50 p-4 rounded-xl border border-gray-150 text-[10px] text-brand-muted font-inter leading-relaxed space-y-1">
                   <p className="font-bold text-brand-charcoal">* Important Guidelines:</p>
                   <p>1. Banking* subject selection requires students to clear the pre-requisite assessment guidelines.</p>
-                  <p>2. Sixth subject options are vocational courses designed to build hands-on skills in painting, music, or yoga.</p>
+                  <p>
+                    {isDLWS ? (
+                      "2. Sixth subject options are vocational courses designed to build hands-on skills in painting, music, or yoga."
+                    ) : (
+                      "2. Sixth subject options are vocational courses designed to build hands-on skills in food production, painting, music, yoga, AI, or mass media."
+                    )}
+                  </p>
                 </div>
               </div>
 

@@ -3,12 +3,43 @@ import { useParams } from 'react-router-dom'
 import gsap from 'gsap'
 import { useSiteData } from '../hooks/useSiteData'
 
-export default function Stats() {
+export default function Stats({ isMaster = false }) {
   const statsStripRef = useRef(null)
   const { schoolId } = useParams()
   const { global, schools } = useSiteData()
   const activeBranch = schoolId && schools[schoolId] ? schoolId : 'dlf-sahibabad'
   const isDLWS = activeBranch === 'dlf-greater-noida'
+
+  const masterCounters = [
+    {
+      id: "master-stat-1",
+      target: 30,
+      suffix: "+",
+      label: "Years of History",
+      color: "brand-greenDeep",
+    },
+    {
+      id: "master-stat-2",
+      target: 2500,
+      suffix: "+",
+      label: "Active Learners",
+      color: "brand-gold",
+    },
+    {
+      id: "master-stat-3",
+      target: 200,
+      suffix: "+",
+      label: "Educators",
+      color: "brand-greenDeep",
+    },
+    {
+      id: "master-stat-4",
+      target: 5000,
+      suffix: "+",
+      label: "Delfites Worldwide",
+      color: "brand-gold",
+    }
+  ]
 
   const dlpsCounters = global.stats?.counters || [
     {
@@ -65,7 +96,7 @@ export default function Stats() {
     }
   ]
 
-  const counters = isDLWS ? dlwsCounters : dlpsCounters
+  const counters = (isMaster || !schoolId) ? masterCounters : (isDLWS ? dlwsCounters : dlpsCounters)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -88,7 +119,7 @@ export default function Stats() {
       }
     })
     return () => ctx.revert()
-  }, [activeBranch])
+  }, [activeBranch, isMaster, schoolId])
 
   return (
     <section ref={statsStripRef} className="py-10 bg-transparent border-y border-gray-100 relative">
@@ -96,7 +127,7 @@ export default function Stats() {
         <div className={`grid ${counters.length === 3 ? 'grid-cols-1 sm:grid-cols-3 max-w-4xl mx-auto' : 'grid-cols-2 lg:grid-cols-4'} gap-6 sm:gap-12`}>
           {counters.map((counter) => (
             <div key={counter.id} className="text-center space-y-1">
-              <h3 className={`font-serif text-3xl sm:text-5xl md:text-6xl font-extrabold text-${counter.color} flex justify-center items-baseline`}>
+              <h3 className={`font-serif text-3xl sm:text-5xl md:text-6xl font-extrabold ${counter.color === 'brand-gold' ? 'text-brand-gold' : counter.color === 'brand-purpleDeep' ? 'text-brand-purpleDeep' : 'text-brand-greenDeep'} flex justify-center items-baseline`}>
                 <span className="counter" data-target={counter.target}>0</span>
                 <span className="text-brand-gold font-normal text-xl sm:text-3xl">{counter.suffix}</span>
               </h3>

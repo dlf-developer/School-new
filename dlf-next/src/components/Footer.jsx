@@ -62,37 +62,27 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/thinking-school" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; A Thinking School with a Soul
-                </Link>
-              </li>
-              <li>
-                <Link to="/vision-mission" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; Vision &amp; Mission
-                </Link>
-              </li>
-              <li>
-                <Link to="/pedagogy" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; Our Pedagogy &amp; Philosophy
-                </Link>
-              </li>
-              <li>
-                <Link to="/management" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; Executive Management
-                </Link>
-              </li>
-              <li>
-                <Link to="/awards" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; Institutional Awards &amp; Honors
-                </Link>
-              </li>
-              <li>
-                <Link to="/what-sets-us-apart" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; What Sets Us Apart
+                  &bull; Thinking School
                 </Link>
               </li>
               <li>
                 <Link to="/parent-partners" className="hover:text-brand-gold transition-colors block py-0.5">
                   &bull; Parents as Partners
+                </Link>
+              </li>
+              <li>
+                <Link to="/awards" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; School Awards
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-sahibabad" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; DLF Public School
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-greater-noida" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; DLF World School
                 </Link>
               </li>
             </ul>
@@ -123,48 +113,38 @@ export default function Footer() {
             </h5>
             <ul className="space-y-1.5 text-xs text-brand-bg/85 font-semibold font-inter">
               <li>
-                <Link to="/school/dlf-sahibabad/admissions" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; Admissions Open 2026–27 &amp; Fees
+                <Link to="/school/dlf-sahibabad/campus" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Our Campus
                 </Link>
               </li>
               <li>
-                <Link to="/school/dlf-sahibabad/virtual-tour" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; 360° Virtual Campus Tour
+                <Link to="/school/dlf-sahibabad/admissions?tab=enquiry" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Enquiry Form
                 </Link>
               </li>
               <li>
-                <Link to="/school/dlf-sahibabad/leadership" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; School Leadership &amp; Principal Desk
+                <Link to="/school/dlf-sahibabad/admissions?tab=fee-structure" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Fee Structure
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-sahibabad/admissions?tab=procedure" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Admissions Process
                 </Link>
               </li>
               <li>
                 <Link to="/school/dlf-sahibabad/curriculum" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; CBSE &amp; Cambridge Pathways
-                </Link>
-              </li>
-              <li>
-                <Link to="/school/dlf-sahibabad/curriculum/academic-results" className="hover:text-brand-gold transition-colors block py-0.5 font-bold text-brand-gold">
-                  &bull; Academic Results &amp; Board Toppers
+                  &bull; Curriculum
                 </Link>
               </li>
               <li>
                 <Link to="/school/dlf-sahibabad/holistic-learning" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; Holistic Learning &amp; Sports
-                </Link>
-              </li>
-              <li>
-                <Link to="/school/dlf-sahibabad/campus" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; Zero-Waste Campus Infrastructure
-                </Link>
-              </li>
-              <li>
-                <Link to="/school/dlf-sahibabad/winning-school" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; Winning School &amp; Accolades
+                  &bull; Student Life
                 </Link>
               </li>
               <li>
                 <Link to="/school/dlf-sahibabad/contact" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; Contact DLPS Sahibabad
+                  &bull; Contact Us
                 </Link>
               </li>
             </ul>
@@ -195,48 +175,38 @@ export default function Footer() {
             </h5>
             <ul className="space-y-1.5 text-xs text-brand-bg/85 font-semibold font-inter">
               <li>
-                <Link to="/school/dlf-greater-noida/admissions" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; Admissions Open 2026–27 &amp; Fees
+                <Link to="/school/dlf-greater-noida/campus" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Our Campus
                 </Link>
               </li>
               <li>
-                <Link to="/school/dlf-greater-noida/virtual-tour" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; 360° Virtual Campus Tour
+                <Link to="/school/dlf-greater-noida/admissions?tab=enquiry" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Enquiry Form
                 </Link>
               </li>
               <li>
-                <Link to="/school/dlf-greater-noida/principal-desk" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; From the School Head's Desk
+                <Link to="/school/dlf-greater-noida/admissions?tab=fee-structure" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Fee Structure
+                </Link>
+              </li>
+              <li>
+                <Link to="/school/dlf-greater-noida/admissions?tab=procedure" className="hover:text-brand-gold transition-colors block py-0.5">
+                  &bull; Admissions Process
                 </Link>
               </li>
               <li>
                 <Link to="/school/dlf-greater-noida/curriculum" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; Progressive CBSE Curriculum
-                </Link>
-              </li>
-              <li>
-                <Link to="/school/dlf-greater-noida/curriculum/academic-results" className="hover:text-brand-gold transition-colors block py-0.5 font-bold text-brand-gold">
-                  &bull; Academic Results &amp; Honors
+                  &bull; Curriculum
                 </Link>
               </li>
               <li>
                 <Link to="/school/dlf-greater-noida/holistic-learning" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; STEAM, Skating Rink &amp; Sports
-                </Link>
-              </li>
-              <li>
-                <Link to="/school/dlf-greater-noida/campus" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; 5-Acre Futuristic Campus
-                </Link>
-              </li>
-              <li>
-                <Link to="/school/dlf-greater-noida/winning-school" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; Kalamanjusha &amp; Drone X Champions
+                  &bull; Student Life
                 </Link>
               </li>
               <li>
                 <Link to="/school/dlf-greater-noida/contact" className="hover:text-brand-gold transition-colors block py-0.5">
-                  &bull; Contact DLWS Greater Noida
+                  &bull; Contact Us
                 </Link>
               </li>
             </ul>

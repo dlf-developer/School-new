@@ -6,100 +6,112 @@ import { ExternalLink, ArrowLeft } from 'lucide-react'
 
 const dlpsLinks = [
   {
-    label: 'Edunext Parent & Student ERP',
-    desc: 'Access attendance, fee payment, report cards, assignment submissions, and student circulars.',
+    label: 'Edunext Parent & Student Portal',
+    desc: 'Access attendance, report cards, fee receipts, circulars, and student-teacher communication.',
     url: 'https://dlps.edunexttechnologies.com/',
+    image: '/images/usefullinks/erp-parent-portal-login.jpg',
     favicon: 'https://dlps.edunexttechnologies.com/favicon.ico',
     fallbackInitial: 'E',
     fallbackBg: '#e65100',
   },
   {
-    label: 'Online Admission Registration',
-    desc: 'Digital registration form for new student enrolments at DLF Public School, Sahibabad.',
-    url: 'https://forms.edunexttechnologies.com/forms/dlps/registration/',
-    favicon: 'https://forms.edunexttechnologies.com/favicon.ico',
-    fallbackInitial: 'R',
-    fallbackBg: '#d32f2f',
+    label: 'Office 365 Email Login',
+    desc: 'School email, Outlook inbox, OneDrive cloud storage, and Microsoft 365 productivity suite.',
+    url: 'https://portal.office.com',
+    image: '/images/usefullinks/office.jpg',
+    favicon: 'https://res.cdn.office.net/officehub/images/content/images/favicon_msa-64_2x.ico',
+    fallbackInitial: 'O',
+    fallbackBg: '#0078d4',
+  },
+  {
+    label: 'Detailed Assessment (DA) Login',
+    desc: 'Personalised assessment platform tracking student learning progress and diagnostic gaps.',
+    url: 'https://student.detailedassessment.com/',
+    image: '/images/usefullinks/DAL.jpg',
+    favicon: 'https://student.detailedassessment.com/favicon.ico',
+    fallbackInitial: 'D',
+    fallbackBg: '#00796b',
+  },
+  {
+    label: 'Microsoft Teams Login',
+    desc: 'Virtual classrooms, live lectures, assignments, and school collaboration channels.',
+    url: 'https://Teams.microsoft.com',
+    image: '/images/usefullinks/team.jpg',
+    favicon: 'https://statics.teams.cdn.office.net/hashedassets-launcher/icons/favicon-32x32.png',
+    fallbackInitial: 'T',
+    fallbackBg: '#464eb8',
+  },
+  {
+    label: 'Mindspark Learning Portal',
+    desc: 'Adaptive AI-driven Maths and English learning program for skill practice and concept mastery.',
+    url: 'https://learn.mindspark.in/Student/onboard/login/en',
+    image: '/images/usefullinks/mindspark.jpg',
+    favicon: 'https://learn.mindspark.in/favicon.ico',
+    fallbackInitial: 'M',
+    fallbackBg: '#f57f17',
+  },
+  {
+    label: 'First in Math Portal',
+    desc: 'Game-based mathematics skill building, speed practice, and numerical fluency.',
+    url: 'https://www.firstinmath.in/',
+    image: '/images/usefullinks/FIM.jpg',
+    favicon: 'https://www.firstinmath.in/favicon.ico',
+    fallbackInitial: 'F',
+    fallbackBg: '#c62828',
+  },
+  {
+    label: 'KidsLoop Early Learning Hub',
+    desc: 'Interactive digital curriculum, multimedia lessons, and foundational childhood activities.',
+    url: 'https://auth.kidsloop.live/?continue=https%3A%2F%2Fhub.kidsloop.live%2F%23%2F',
+    image: '/images/usefullinks/kidsloop.jpg',
+    favicon: 'https://hub.kidsloop.live/favicon.ico',
+    fallbackInitial: 'K',
+    fallbackBg: '#8e24aa',
   },
   {
     label: 'Direct Online Fee Payment',
-    desc: 'Hassle-free direct online portal for quarterly school fee payments.',
+    desc: 'Hassle-free direct online portal for quarterly DLPS school fee payments without login.',
     url: 'https://dlps.edunexttechnologies.com/DirectStudentOnlineFeeInstallmentwise',
+    image: '/images/usefullinks/direct-fee-payment.jpg',
     favicon: 'https://dlps.edunexttechnologies.com/favicon.ico',
     fallbackInitial: 'F',
     fallbackBg: '#2e7d32',
   },
   {
-    label: 'TC (Transfer Certificate)',
-    desc: 'Online application and status verification for student Transfer Certificates.',
-    url: 'https://forms.edunexttechnologies.com/website-service/dlps/transfer-certificate/',
-    favicon: 'https://forms.edunexttechnologies.com/favicon.ico',
-    fallbackInitial: 'T',
-    fallbackBg: '#7b1fa2',
-  },
-  {
     label: 'School Circulars & Notifications',
     desc: 'Official notices, exam date sheets, and activity circulars from the school leadership.',
     url: 'https://forms.edunexttechnologies.com/website-service/dlps/circular/',
+    image: '/images/usefullinks/circular.jpg',
     favicon: 'https://forms.edunexttechnologies.com/favicon.ico',
     fallbackInitial: 'C',
     fallbackBg: '#0288d1',
   },
   {
-    label: 'CBSE Academic Website',
-    desc: 'Official CBSE curriculum portal — syllabus guidelines, sample papers, and textbook resources.',
-    url: 'https://cbseacademic.nic.in/',
-    favicon: 'https://cbseacademic.nic.in/favicon.ico',
+    label: 'TC (Transfer Certificate)',
+    desc: 'Online application and status verification for student Transfer Certificates.',
+    url: 'https://forms.edunexttechnologies.com/website-service/dlps/transfer-certificate/',
+    image: '/images/usefullinks/tc.jpg',
+    favicon: 'https://forms.edunexttechnologies.com/favicon.ico',
+    fallbackInitial: 'T',
+    fallbackBg: '#7b1fa2',
+  },
+  {
+    label: 'Edunext User Manual & Help',
+    desc: 'Step-by-step documentation, portal guidelines, and user manuals for parents.',
+    url: 'https://edunexttechnologies.com/portal-help.php',
+    image: '/images/usefullinks/user-manual.jpg',
+    favicon: 'https://edunexttechnologies.com/favicon.ico',
+    fallbackInitial: 'U',
+    fallbackBg: '#455a64',
+  },
+  {
+    label: 'School Calendar',
+    desc: 'Official academic calendar with key term dates, examination weeks, and school holidays.',
+    url: 'https://forms.edunexttechnologies.com/website-service/dlps/calendar/',
+    image: '/images/usefullinks/School-Calendar.png',
+    favicon: 'https://forms.edunexttechnologies.com/favicon.ico',
     fallbackInitial: 'C',
-    fallbackBg: '#1a237e',
-  },
-  {
-    label: 'CBSE Main Portal',
-    desc: 'Central Board of Secondary Education — board results, affiliations, and national circulars.',
-    url: 'https://www.cbse.gov.in/',
-    favicon: 'https://www.cbse.gov.in/favicon.ico',
-    fallbackInitial: 'C',
-    fallbackBg: '#b71c1c',
-  },
-  {
-    label: 'Diksha Portal',
-    desc: 'National platform for digital education content, interactive e-books, and teacher resources.',
-    url: 'https://diksha.gov.in/',
-    favicon: 'https://diksha.gov.in/favicon.ico',
-    fallbackInitial: 'D',
-    fallbackBg: '#01579b',
-  },
-  {
-    label: 'National Digital Library',
-    desc: 'IIT Kharagpur digital library offering millions of academic textbooks and journals.',
-    url: 'https://ndl.iitkgp.ac.in/',
-    favicon: 'https://ndl.iitkgp.ac.in/favicon.ico',
-    fallbackInitial: 'N',
-    fallbackBg: '#2e7d32',
-  },
-  {
-    label: 'NCERT Textbooks & Portal',
-    desc: 'Free downloadable NCERT textbooks and curriculum guidelines for Classes I–XII.',
-    url: 'https://ncert.nic.in/',
-    favicon: 'https://ncert.nic.in/favicon.ico',
-    fallbackInitial: 'N',
-    fallbackBg: '#4a148c',
-  },
-  {
-    label: 'e-Pathshala',
-    desc: 'Ministry of Education digital repo for audio, video, e-books, and learning apps.',
-    url: 'https://epathshala.nic.in/',
-    favicon: 'https://epathshala.nic.in/favicon.ico',
-    fallbackInitial: 'e',
-    fallbackBg: '#00695c',
-  },
-  {
-    label: 'Vidyarthi Vigyan Manthan',
-    desc: 'National talent search examination for scientific temperament and STEM excellence.',
-    url: 'https://vvm.org.in/',
-    favicon: 'https://vvm.org.in/favicon.ico',
-    fallbackInitial: 'V',
-    fallbackBg: '#37474f',
+    fallbackBg: '#00897b',
   },
 ]
 
@@ -109,6 +121,7 @@ const dlwsLinks = [
     label: 'Edunext Parent & Student Login',
     desc: 'Student and parent login portal for attendance, fee payment, report cards, and circulars.',
     url: 'https://dlws.edunexttechnologies.com/Index',
+    image: '/images/usefullinks/erp-parent-portal-login.jpg',
     favicon: 'https://dlws.edunexttechnologies.com/favicon.ico',
     fallbackInitial: 'E',
     fallbackBg: '#e65100',
@@ -117,6 +130,7 @@ const dlwsLinks = [
     label: 'Office 365 Email Login',
     desc: 'School email, OneDrive, Outlook, and Microsoft 365 productivity suite.',
     url: 'https://portal.office.com',
+    image: '/images/usefullinks/office.jpg',
     favicon: 'https://res.cdn.office.net/officehub/images/content/images/favicon_msa-64_2x.ico',
     fallbackInitial: 'O',
     fallbackBg: '#0078d4',
@@ -125,6 +139,7 @@ const dlwsLinks = [
     label: 'Microsoft Teams Login',
     desc: 'Virtual classrooms, live lectures, assignments, and school team collaboration.',
     url: 'https://Teams.microsoft.com',
+    image: '/images/usefullinks/team.jpg',
     favicon: 'https://statics.teams.cdn.office.net/hashedassets-launcher/icons/favicon-32x32.png',
     fallbackInitial: 'T',
     fallbackBg: '#464eb8',
@@ -133,6 +148,7 @@ const dlwsLinks = [
     label: 'Detailed Assessment (DA) Login',
     desc: 'Personalised assessment platform tracking student learning progress and diagnostic gaps.',
     url: 'https://student.detailedassessment.com/',
+    image: '/images/usefullinks/DAL.jpg',
     favicon: 'https://student.detailedassessment.com/favicon.ico',
     fallbackInitial: 'D',
     fallbackBg: '#00796b',
@@ -141,6 +157,7 @@ const dlwsLinks = [
     label: 'Mindspark Learning Portal',
     desc: 'Adaptive AI-driven Maths and English learning program for skill practice and mastery.',
     url: 'https://learn.mindspark.in/Student/onboard/login/en',
+    image: '/images/usefullinks/mindspark.jpg',
     favicon: 'https://learn.mindspark.in/favicon.ico',
     fallbackInitial: 'M',
     fallbackBg: '#f57f17',
@@ -149,6 +166,7 @@ const dlwsLinks = [
     label: 'First in Math Portal',
     desc: 'Game-based mathematics skill building, speed practice, and numerical fluency.',
     url: 'https://www.firstinmath.in/',
+    image: '/images/usefullinks/FIM.jpg',
     favicon: 'https://www.firstinmath.in/favicon.ico',
     fallbackInitial: 'F',
     fallbackBg: '#c62828',
@@ -157,6 +175,7 @@ const dlwsLinks = [
     label: 'Direct Fee Payment',
     desc: 'Hassle-free direct online portal for quarterly DLWS school fee payments.',
     url: 'https://dlws.edunexttechnologies.com/DirectStudentOnlineFeeInstallmentwise',
+    image: '/images/usefullinks/direct-fee-payment.jpg',
     favicon: 'https://dlws.edunexttechnologies.com/favicon.ico',
     fallbackInitial: 'F',
     fallbackBg: '#2e7d32',
@@ -173,6 +192,7 @@ const dlwsLinks = [
     label: 'TC (Transfer Certificate)',
     desc: 'Online application and verification status for student Transfer Certificates.',
     url: 'https://forms.edunexttechnologies.com/website-service/dlws/transfer-certificate/',
+    image: '/images/usefullinks/tc.jpg',
     favicon: 'https://forms.edunexttechnologies.com/favicon.ico',
     fallbackInitial: 'T',
     fallbackBg: '#7b1fa2',
@@ -181,6 +201,7 @@ const dlwsLinks = [
     label: 'School Circulars & Notices',
     desc: 'Official announcements, academic schedules, and coordinator circulars.',
     url: 'https://forms.edunexttechnologies.com/website-service/dlws/circular/',
+    image: '/images/usefullinks/circular.jpg',
     favicon: 'https://forms.edunexttechnologies.com/favicon.ico',
     fallbackInitial: 'C',
     fallbackBg: '#0288d1',
@@ -197,6 +218,7 @@ const dlwsLinks = [
     label: 'Edunext User Manual & Help',
     desc: 'Step-by-step documentation and user guides for navigating the parent and student portal.',
     url: 'https://edunexttechnologies.com/portal-help.php',
+    image: '/images/usefullinks/user-manual.jpg',
     favicon: 'https://edunexttechnologies.com/favicon.ico',
     fallbackInitial: 'U',
     fallbackBg: '#455a64',
@@ -334,9 +356,22 @@ export default function UsefulLinks() {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col justify-between bg-white rounded-2xl border border-gray-100 p-5 shadow-sm hover:shadow-xl hover:border-gray-200 transition-all duration-300 hover:-translate-y-1"
+              className="group relative flex flex-col justify-between bg-white rounded-2xl border border-gray-150 p-5 shadow-sm hover:shadow-xl hover:border-gray-300 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
             >
-              <div className="space-y-4">
+              {/* Actual Website Background Image Effect */}
+              {link.image && (
+                <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl z-0">
+                  <img
+                    src={link.image}
+                    alt=""
+                    aria-hidden="true"
+                    className="w-full h-full object-cover object-top opacity-[0.08] group-hover:opacity-[0.20] group-hover:scale-105 transition-all duration-500 blur-[0.3px]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-white/85 to-white/60" />
+                </div>
+              )}
+
+              <div className="space-y-4 relative z-10">
                 {/* Favicon + External Icon */}
                 <div className="flex items-start justify-between gap-3">
                   <FaviconIcon src={link.favicon} initial={link.fallbackInitial} bg={link.fallbackBg} />
@@ -356,7 +391,7 @@ export default function UsefulLinks() {
 
               {/* Action link */}
               <div
-                className="text-[10px] font-extrabold uppercase tracking-widest flex items-center gap-1.5 pt-4 mt-4 border-t border-gray-50 transition-all group-hover:gap-2.5"
+                className="relative z-10 text-[10px] font-extrabold uppercase tracking-widest flex items-center gap-1.5 pt-4 mt-4 border-t border-gray-100 transition-all group-hover:gap-2.5"
                 style={{ color: tabTheme.primary }}
               >
                 <span>Open Link</span>
