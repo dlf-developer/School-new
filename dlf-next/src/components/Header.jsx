@@ -288,20 +288,15 @@ export default function Header() {
                 <div className="flex items-center justify-between mb-1 pb-1 border-b border-gray-200/50">
                   <Link
                     to="/"
-                    className="inline-flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-brand-greenDeep hover:text-brand-gold transition-all group/home-link cursor-pointer"
+                    className="inline-flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-widest text-brand-greenDeep hover:text-brand-gold transition-all group/home-link cursor-pointer"
                     title="Redirect to DLF Master Website"
                   >
-                    <Home className="w-3.5 h-3.5 text-brand-gold group-hover/home-link:scale-110 transition-transform" />
+                    <Home className="w-[17px] h-[17px] text-brand-gold group-hover/home-link:scale-110 transition-transform" />
                     <span className="underline decoration-brand-gold underline-offset-2">
                       HOME
                     </span>
-                    <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-brand-gold/20 text-brand-gold group-hover/home-link:bg-brand-gold group-hover/home-link:text-white transition-colors">
-                      <Info className="w-2.5 h-2.5" />
-                    </span>
+                    <ArrowRight className="w-4 h-4 text-brand-gold group-hover/home-link:translate-x-1 transition-transform" />
                   </Link>
-                  <span className="text-[8.5px] font-extrabold uppercase tracking-widest text-gray-400">
-                    Master Website
-                  </span>
                 </div>
                 {/* DLF Public School card */}
                 <Link
@@ -437,11 +432,26 @@ export default function Header() {
                       </span>
                       <ul className="space-y-1 text-[11px] text-white/85">
                         {[
-                          { label: "Thinking School", to: "/thinking-school" },
-                          { label: "Vision & Mission", to: "/vision-mission" },
-                          { label: "Our Management", to: "/management" },
-                          { label: "Parents as Partners", to: "/parent-partners" },
-                          { label: "School Awards", to: "/awards" }
+                          {
+                            label: "Thinking School",
+                            to: "/thinking-school",
+                          },
+                          {
+                            label: "Vision & Mission",
+                            to: "/vision-mission",
+                          },
+                          {
+                            label: "Our Management",
+                            to: "/management",
+                          },
+                          {
+                            label: "Parents as Partners",
+                            to: "/parent-partners",
+                          },
+                          {
+                            label: "School Awards",
+                            to: "/awards",
+                          },
                         ].map((link, idx) => (
                           <li key={idx}>
                             <Link
@@ -465,10 +475,22 @@ export default function Header() {
                       </Link>
                       <ul className="space-y-1 text-[11px] text-white/85">
                         {[
-                          { label: "Early Years", to: "/pedagogy/early-years" },
-                          { label: "Primary Years", to: "/pedagogy/primary-years" },
-                          { label: "Middle Years", to: "/pedagogy/middle-years" },
-                          { label: "Senior Years", to: "/pedagogy/senior-years" }
+                          {
+                            label: "Early Years",
+                            to: "/pedagogy/early-years",
+                          },
+                          {
+                            label: "Primary Years",
+                            to: "/pedagogy/primary-years",
+                          },
+                          {
+                            label: "Middle Years",
+                            to: "/pedagogy/middle-years",
+                          },
+                          {
+                            label: "Senior Years",
+                            to: "/pedagogy/senior-years",
+                          },
                         ].map((link, idx) => (
                           <li key={idx}>
                             <Link
@@ -489,8 +511,14 @@ export default function Header() {
                       </span>
                       <ul className="space-y-1 text-[11px] text-white/85">
                         {[
-                          { label: "What Sets Us Apart", to: "/what-sets-us-apart" },
-                          { label: "Contact Us", to: "/contact" }
+                          {
+                            label: "What Sets Us Apart",
+                            to: "/what-sets-us-apart",
+                          },
+                          {
+                            label: "Contact Us",
+                            to: "/contact",
+                          },
                         ].map((link, idx) => (
                           <li key={idx}>
                             <Link
@@ -584,7 +612,11 @@ export default function Header() {
             )}
             <span className="text-white/20">|</span>
             <Link
-              to={schoolId ? `/school/${schoolId}/useful-links` : "/useful-links"}
+              to={
+                schoolId
+                  ? `/school/${schoolId}/useful-links`
+                  : "/useful-links"
+              }
               className="hover:text-brand-gold transition-colors duration-300"
             >
               Useful Links
@@ -814,20 +846,15 @@ export default function Header() {
                           <div className="flex items-center justify-between mb-1 pb-1 border-b border-gray-200/50">
                             <Link
                               to="/"
-                              className="inline-flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-brand-greenDeep hover:text-brand-gold transition-all group/home-link cursor-pointer"
+                              className="inline-flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-widest text-brand-greenDeep hover:text-brand-gold transition-all group/home-link cursor-pointer"
                               title="Redirect to DLF Master Website"
                             >
-                              <Home className="w-3.5 h-3.5 text-brand-gold group-hover/home-link:scale-110 transition-transform" />
+                              <Home className="w-[17px] h-[17px] text-brand-gold group-hover/home-link:scale-110 transition-transform" />
                               <span className="underline decoration-brand-gold underline-offset-2">
                                 HOME
                               </span>
-                              <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-brand-gold/20 text-brand-gold group-hover/home-link:bg-brand-gold group-hover/home-link:text-white transition-colors">
-                                <Info className="w-2.5 h-2.5" />
-                              </span>
+                              <ArrowRight className="w-4 h-4 text-brand-gold group-hover/home-link:translate-x-1 transition-transform" />
                             </Link>
-                            <span className="text-[8.5px] font-extrabold uppercase tracking-widest text-gray-400">
-                              Master Website
-                            </span>
                           </div>
                           {/* DLF Public School card */}
                           <Link
@@ -930,11 +957,31 @@ export default function Header() {
                                 </span>
                                 <ul className="space-y-1 text-[11px] text-white/85">
                                   {[
-                                    { label: "Thinking School", to: "/thinking-school" },
-                                    { label: "Vision & Mission", to: "/vision-mission" },
-                                    { label: "Our Management", to: "/management" },
-                                    { label: "Parents as Partners", to: "/parent-partners" },
-                                    { label: "School Awards", to: "/awards" }
+                                    {
+                                      label:
+                                        "Thinking School",
+                                      to: "/thinking-school",
+                                    },
+                                    {
+                                      label:
+                                        "Vision & Mission",
+                                      to: "/vision-mission",
+                                    },
+                                    {
+                                      label:
+                                        "Our Management",
+                                      to: "/management",
+                                    },
+                                    {
+                                      label:
+                                        "Parents as Partners",
+                                      to: "/parent-partners",
+                                    },
+                                    {
+                                      label:
+                                        "School Awards",
+                                      to: "/awards",
+                                    },
                                   ].map((link, idx) => (
                                     <li key={idx}>
                                       <Link
@@ -958,10 +1005,23 @@ export default function Header() {
                                 </Link>
                                 <ul className="space-y-1 text-[11px] text-white/85">
                                   {[
-                                    { label: "Early Years", to: "/pedagogy/early-years" },
-                                    { label: "Primary Years", to: "/pedagogy/primary-years" },
-                                    { label: "Middle Years", to: "/pedagogy/middle-years" },
-                                    { label: "Senior Years", to: "/pedagogy/senior-years" }
+                                    {
+                                      label: "Early Years",
+                                      to: "/pedagogy/early-years",
+                                    },
+                                    {
+                                      label:
+                                        "Primary Years",
+                                      to: "/pedagogy/primary-years",
+                                    },
+                                    {
+                                      label: "Middle Years",
+                                      to: "/pedagogy/middle-years",
+                                    },
+                                    {
+                                      label: "Senior Years",
+                                      to: "/pedagogy/senior-years",
+                                    },
                                   ].map((link, idx) => (
                                     <li key={idx}>
                                       <Link
@@ -982,8 +1042,17 @@ export default function Header() {
                                 </span>
                                 <ul className="space-y-1 text-[11px] text-white/85">
                                   {[
-                                    { label: "What Sets Us Apart", to: "/what-sets-us-apart" },
-                                    { label: "Contact Us", to: schoolId ? `/school/${schoolId}/contact` : "/contact" }
+                                    {
+                                      label:
+                                        "What Sets Us Apart",
+                                      to: "/what-sets-us-apart",
+                                    },
+                                    {
+                                      label: "Contact Us",
+                                      to: schoolId
+                                        ? `/school/${schoolId}/contact`
+                                        : "/contact",
+                                    },
                                   ].map((link, idx) => (
                                     <li key={idx}>
                                       <Link
@@ -1023,8 +1092,6 @@ export default function Header() {
                     ></span>
                   )}
                 </div>
-
-
 
                 {/* 2. Leadership (No dropdown) */}
                 <div className="relative py-2 flex flex-col items-center justify-center">
@@ -1168,12 +1235,12 @@ export default function Header() {
                   </div>
                 )}
 
-                {/* 5. Holistic Learning Dropdown */}
+                {/* 5. Student Life Dropdown */}
                 <div className="relative group py-2 flex flex-col items-center justify-center">
                   <button
                     className={`flex items-center gap-1 hover:text-${theme.vibrant} transition-colors duration-300 cursor-pointer font-semibold ${isHolisticActive ? `text-${theme.vibrant} font-bold` : ""}`}
                   >
-                    Holistic Learning{" "}
+                    Student Life{" "}
                     <ChevronDown
                       className={`w-3.5 h-3.5 text-${theme.accent}`}
                     />
@@ -1350,7 +1417,9 @@ export default function Header() {
                 <>
                   <div className="flex flex-col">
                     <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] leading-none text-brand-gold">
-                      {schoolId ? "DLF SCHOOL" : "DLF SCHOOLS"}
+                      {schoolId
+                        ? "DLF SCHOOL"
+                        : "DLF SCHOOLS"}
                     </span>
                     <p
                       className={`font-serif ${!schoolId ? "text-white" : `text-${theme.primary}`} text-xl sm:text-2xl font-black uppercase tracking-tight leading-tight mt-1.5`}
@@ -1364,7 +1433,9 @@ export default function Header() {
                     className={`text-[9.5px] ${!schoolId ? "text-white/70" : "text-brand-muted"} uppercase tracking-widest font-semibold mt-1`}
                   >
                     {currentSchool
-                      ? (currentSchool.cbseInfo ? `${currentSchool.shortLocation} · ${currentSchool.cbseInfo}` : currentSchool.shortLocation)
+                      ? currentSchool.cbseInfo
+                        ? `${currentSchool.shortLocation} · ${currentSchool.cbseInfo}`
+                        : currentSchool.shortLocation
                       : "DARBARI LAL FOUNDATION"}
                   </p>
                 </>
@@ -1675,12 +1746,12 @@ export default function Header() {
                       </>
                     )}
                   </div>
-                  {/* Holistic Learning sub-links */}
+                  {/* Student Life sub-links */}
                   <div
                     className={`border-t border-${theme.primary}/10 my-1 pt-2`}
                   >
                     <p className="text-[10px] uppercase font-bold tracking-wider text-brand-muted mb-1.5">
-                      Holistic Learning
+                      Student Life
                     </p>
                     <Link
                       to={`/school/${schoolId}/holistic-learning/performing-arts`}
