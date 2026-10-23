@@ -216,7 +216,180 @@ Any component importing from `react-router-dom` is transparently routed to `src/
 
 ---
 
-## 4. Backend Architecture, Database & REST APIs
+## 4. Website Flow & User Journey Architecture (Next.js App Router)
+
+The `dlf-next` application leverages Next.js 15 App Router to deliver an optimized server-rendered and client-hydrated user experience. The website flow smoothly guides users across the **Master Group Portal**, the dynamic **Branch Portals (`/school/[schoolId]`)**, interactive modal overlays, and the **Protected CMS Admin Dashboard**.
+
+### 4.1 Master Information Architecture & User Journey Diagram
+
+```mermaid
+flowchart TD
+    %% Visitor Entry
+    Visitor([🌐 Web Visitor]) --> RouteEntry{URL Request}
+    
+    %% Next.js App Router Root
+    RouteEntry -->|Path: /| NextLayout["Root Layout (layout.jsx)"]
+    NextLayout --> AppShell["AppShell.jsx (Header, Footer, Lenis, TopLoader)"]
+    
+    %% Routing Paths
+    AppShell -->|Path: /| MasterPage["Master Group Page (page.jsx)"]
+    AppShell -->|Path: /school/[schoolId]| DynamicSchoolPage["Dynamic School Page (/school/[schoolId]/page.jsx)"]
+    AppShell -->|Path: /admin| MiddlewareCheck{"Edge Middleware (middleware.js)"}
+    
+    %% Master Portal Flow
+    subgraph MasterExperience ["Master Group Experience (SSR + Hydration)"]
+        MasterPage --> M_Hero["1. Video Hero (Full-bleed)"]
+        M_Hero --> M_Ticker["2. Live Announcement Ticker"]
+        M_Ticker --> M_Stats["3. Group Performance Metrics"]
+        M_Stats --> M_Awards["4. National Awards & Trophies"]
+        M_Awards --> M_Testimonials["5. Video Testimonials Carousel"]
+        M_Testimonials --> M_Pedagogy["6. 5-Stage Pedagogy Overview"]
+        M_Pedagogy --> M_Portal["7. Dual-Campus Gateway (PortalHome)"]
+        M_Portal --> M_Apart["8. What Sets Us Apart"]
+        M_Apart --> M_Admissions["9. Admissions Overview"]
+        M_Admissions --> M_Contact["10. Group Contact & Map"]
+    end
+    
+    %% Master Academic & Institutional Sub-Routes
+    MasterExperience -.-> GroupSubPages["Master Institutional Sub-Routes"]
+    GroupSubPages --> TS["/thinking-school (Thinking Habits)"]
+    GroupSubPages --> VM["/vision-mission (Founding Values)"]
+    GroupSubPages --> MGMT["/management (Leadership Board)"]
+    GroupSubPages --> PED["/pedagogy & /pedagogy/[stageId]"]
+    GroupSubPages --> AWRD["/awards (Group Honors)"]
+    GroupSubPages --> ALUM["/alumni (Directory & Registration)"]
+    GroupSubPages --> PRNT["/parent-partners (Parent Engagement)"]
+    GroupSubPages --> NEWS["/news (Press Releases)"]
+    GroupSubPages --> MDIS["/mandatory-disclosures (CBSE Compliance)"]
+    
+    %% Campus Gateway Resolution
+    M_Portal -->|Choose Sahibabad| DLPS["/school/dlf-sahibabad"]
+    M_Portal -->|Choose Greater Noida| DLWS["/school/dlf-greater-noida"]
+    
+    %% Dynamic School Branch Subsystems
+    subgraph BranchExperience ["Dynamic School Branch Flow (/school/[schoolId])"]
+        DynamicSchoolPage --> B_Hero["Branch Hero Banner"]
+        B_Hero --> B_Vision["Principal Vision & Ethos"]
+        B_Vision --> B_Stats["Campus Stats & Key Results"]
+        B_Stats --> B_Toppers["CBSE Results & Topper Spotlight"]
+        B_Toppers --> B_CurriculumPreview["Curriculum Pathways Preview"]
+        B_CurriculumPreview --> B_HolisticPreview["Holistic Activities & Sports Arena"]
+        B_HolisticPreview --> B_TourPreview["Virtual Tour Preview"]
+        B_TourPreview --> B_CTA["Admissions & Enquiry CTA"]
+        
+        %% Deep Branch Sub-Pages
+        DynamicSchoolPage --> S_Campus["/school/[schoolId]/campus (Labs & Arena)"]
+        DynamicSchoolPage --> S_Leadership["/school/[schoolId]/leadership & principal-desk"]
+        DynamicSchoolPage --> S_Curriculum["/school/[schoolId]/curriculum (CBSE / Cambridge)"]
+        S_Curriculum --> S_Results["/school/[schoolId]/academic-results (Gazettes & Posters)"]
+        DynamicSchoolPage --> S_Holistic["/school/[schoolId]/holistic-learning (Pillars & Lightboxes)"]
+        DynamicSchoolPage --> S_Winning["/school/[schoolId]/winning-school (Awards & Trophies)"]
+        DynamicSchoolPage --> S_Editorials["/school/[schoolId]/editorials (Student Publications)"]
+        DynamicSchoolPage --> S_Disclosures["/school/[schoolId]/disclosures (Branch CBSE Tables)"]
+        DynamicSchoolPage --> S_Links["/school/[schoolId]/useful-links (Fee Books & Circulars)"]
+        DynamicSchoolPage --> S_Tour["/school/[schoolId]/virtual-tour (360° Tour)"]
+        DynamicSchoolPage --> S_Admissions["/school/[schoolId]/admissions (Fees, Criteria & Process)"]
+    end
+    
+    %% Admissions Conversion Funnel
+    S_Admissions --> EnquiryForm["📝 Digital Admission Enquiry (/admission-enquiry)"]
+    M_Admissions --> EnquiryForm
+    EnquiryForm --> Confirmation["✅ Registration Submission & Confirmation"]
+    
+    %% Middleware & CMS Admin Flow
+    MiddlewareCheck -->|Valid JWT Cookie| AdminDashboard["/admin (Admin CMS Dashboard)"]
+    MiddlewareCheck -->|Missing/Invalid JWT| AdminLoginPage["/admin/login (Password: dlf-master)"]
+    AdminLoginPage -->|POST /api/auth/login| IssueJWT["Verify bcrypt & Set HTTP-only Cookie"]
+    IssueJWT --> AdminDashboard
+    
+    %% CMS API Persistence
+    AdminDashboard -->|PUT /api/sections| MongoSections[(MongoDB: globalsections)]
+    AdminDashboard -->|PUT /api/schools| MongoSchools[(MongoDB: schools)]
+```
+
+---
+
+### 4.2 Step-by-Step Persona User Journeys
+
+#### Journey 1: Prospective Parent (Admissions & Discovery Funnel)
+1. **Landing & Brand Validation**:
+   - Arrives at Master Home (`/`). The App Router streams the root layout and initializes `<AppShell />` (fonts, smooth scrolling, ambient gradient background).
+   - Engages with the Hero video and verifies accolades via **School Awards** (`SchoolWinning`) and **Video Testimonials**.
+2. **Campus Selection**:
+   - Reaches the **Campus Gateway** (`PortalHome`) and selects **DLPS Sahibabad** or **DLWS Greater Noida**.
+   - Next.js pre-fetches and navigates to `/school/[schoolId]` seamlessly.
+3. **Branch Investigation**:
+   - **Curriculum & Results**: Visits `/school/[schoolId]/curriculum`, selects between CBSE and Cambridge International pathways, and inspects toppers at `/school/[schoolId]/academic-results` with high-resolution scorecards in `AcademicGazetteModal`.
+   - **Infrastructure**: Explores campus labs and green athletics grounds at `/school/[schoolId]/campus`, then interacts with the 360° virtual tour at `/school/[schoolId]/virtual-tour`.
+   - **School Leadership**: Reads the Principal's welcome note at `/school/[schoolId]/principal-desk`.
+4. **Application Submission**:
+   - Navigates to `/school/[schoolId]/admissions` to inspect fee structure tables and scholarship guidelines.
+   - Clicks "Apply Online" to open `/admission-enquiry`, fills out the student registration form, and receives instant confirmation.
+
+#### Journey 2: Enrolled Parent & Current Student (Daily Academic Portal)
+1. **Notice Board & Circulars**:
+   - Accesses `/school/[schoolId]/useful-links` to download monthly calendars, examination dates, and circular PDFs.
+2. **Student Achievements & Publications**:
+   - Visits `/school/[schoolId]/editorials` to read student magazine articles, poems, and editorial columns.
+   - Visits `/school/[schoolId]/holistic-learning` to view tournament photos and club activities with interactive lightboxes.
+3. **Child Wellness & Pastoral Care**:
+   - Navigates to `/counselling` (or `/school/[schoolId]/counselling`).
+   - Reads child safety policies and submits an appointment request via `CounsellingConsultationForm`.
+4. **Mandatory Compliance**:
+   - Validates CBSE compliance documents, fee structures, and safety certificates at `/school/[schoolId]/disclosures`.
+
+#### Journey 3: Alumni Network & Reconnection
+1. **Alumni Hub**:
+   - Navigates to `/alumni`.
+   - Explores spotlight profiles of distinguished alumni in aerospace, civil services, technology, and entrepreneurship.
+2. **Registration**:
+   - Fills out the Alumni Registration Form to reconnect and participate in guest lectures and mentoring sessions.
+
+#### Journey 4: Administrator CMS Publishing & Database Sync
+1. **Authentication Gate**:
+   - Admin accesses `/admin`. Edge middleware (`src/middleware.js`) detects missing JWT cookie and redirects to `/admin/login`.
+   - Admin submits credentials (`admin@dlfschools.com` / `dlf-master`).
+   - Route `/api/auth/login` checks bcrypt hash in MongoDB, creates a signed JWT, and sets an HTTP-only secure cookie.
+2. **Content Editing**:
+   - In `/admin`, admin switches between:
+     - **Global Content Editor**: Modifies announcement tickers, awards, board of governors, and news notices.
+     - **School-Specific Editor**: Modifies campus galleries, fees, scholarship matrices, and principal desk notes.
+3. **Database Persistence**:
+   - Clicking "Save Changes" makes an authenticated `PUT` request to `/api/sections` or `/api/schools`.
+   - The data is committed to MongoDB collections (`globalsections` or `schools`).
+   - All visitor requests automatically reflect the updated content via `useSiteData()`.
+
+---
+
+### 4.3 Modal & Overlay Interaction Loops
+
+The application utilizes responsive modal components that maintain smooth URL and scroll state:
+
+| Modal Component | Trigger | Purpose & Experience |
+|---|---|---|
+| `AcademicGazetteModal` | "View Result Gazette" in Academic Results | Full-screen interactive viewer for official CBSE board gazettes and topper sheets. |
+| `AcademicPosterModal` | Clicking topper cards in Academic Results | Modal showcasing high-resolution student achievement posters and marks. |
+| `VideoTestimonials` | Clicking video play buttons | Video modal embedding YouTube/Vimeo players with fluid backdrop-blur. |
+| `NewsArticleModal` | "Read Full Notice" in `/news` | Modal displaying complete press releases and event schedules. |
+| `HolisticLightbox` | Gallery images in `/holistic-learning` | High-definition image viewer with swipe/keyboard navigation. |
+| `CounsellingConsultationForm` | "Book Consultation" in Counselling | Multi-step appointment request form for students and parents. |
+
+---
+
+### 4.4 Global Navigation & Campus Switcher Mechanics
+
+1. **Header Context Awareness**:
+   - `<Header />` uses `useLocation()` (powered by `src/lib/router-compat.jsx`) to inspect the current route pathname.
+   - For `/school/[schoolId]/*`, the header dynamically displays the branch crest, branch title (DLPS Sahibabad or DLWS Greater Noida), and contextual navigation links (Curriculum, Campus, Leadership, Admissions).
+   - For Master routes, it renders Group navigation (Thinking School, Pedagogy, Management, Campus Gateway).
+2. **Dynamic Campus Switcher**:
+   - An interactive switcher in `<Header />` enables seamless one-click switching between **DLPS Sahibabad**, **DLWS Greater Noida**, and **Master Group**.
+3. **Mobile Drawer Navigation**:
+   - Smooth animated overlay drawer with accordions providing access to all branch and master group pages on mobile screens.
+
+---
+
+## 5. Backend Architecture, Database & REST APIs
 
 ### 1. Database Connection (`src/lib/mongodb.js`)
 Maintains a global connection cache (`global.mongoose`) to reuse connections across serverless API invocations and edge requests:
@@ -264,7 +437,7 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/dlf_sc
 
 ---
 
-## 5. Client Data Bridge & Synchronization (`src/hooks/useSiteData.js`)
+## 6. Client Data Bridge & Synchronization (`src/hooks/useSiteData.js`)
 
 In `dlf-next`, `useSiteData()` acts as a real-time reactive bridge:
 1. **Initial Load**: Runs `fetchData()` on mount to query `/api/sections` and `/api/schools` simultaneously.
@@ -273,7 +446,7 @@ In `dlf-next`, `useSiteData()` acts as a real-time reactive bridge:
 
 ---
 
-## 6. Edge Middleware & Security Architecture (`src/middleware.js`)
+## 7. Edge Middleware & Security Architecture (`src/middleware.js`)
 
 - Inspects incoming requests to `/admin/*` and protected `/api/admin/*` routes.
 - Checks for the presence of the signed HTTP-only JWT token (`req.cookies.get('token')`).
@@ -282,7 +455,7 @@ In `dlf-next`, `useSiteData()` acts as a real-time reactive bridge:
 
 ---
 
-## 7. Strict Site Isolation & Master Site Security Lock
+## 8. Strict Site Isolation & Master Site Security Lock
 
 1. **Three-Way Strict Isolation Policy**:
    - Master Group Website, DLPS Sahibabad, and DLWS Greater Noida are completely isolated.
@@ -294,7 +467,7 @@ In `dlf-next`, `useSiteData()` acts as a real-time reactive bridge:
 
 ---
 
-## 8. Developer Commands & Workflows
+## 9. Developer Commands & Workflows
 
 ### Setup Environment
 Create a `.env.local` file based on `.env.example`:

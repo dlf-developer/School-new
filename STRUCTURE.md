@@ -224,7 +224,174 @@ DLF-school/ (Root Directory)
 
 ---
 
-## 4. State Management & CMS Data Architecture
+## 4. Website Flow & User Journey Architecture
+
+The DLF Schools portal is architected with a multi-tiered funnel: users arrive at either the unified **Master Group Portal** or directly at a **Branch Portal** via deep links. The architecture guides visitors from discovery and validation through to admission conversions or administrative management.
+
+### 4.1 Master Information Architecture & User Journey Diagram
+
+```mermaid
+flowchart TD
+    %% Entrances
+    Visitor([🌐 Website Visitor]) --> LandingChoice{Entry Point}
+    
+    %% Master Flow
+    LandingChoice -->|Group URL /| MasterHome["🏠 Master Group Home (/)"]
+    LandingChoice -->|Branch URL /school/:schoolId| BranchHome["🏫 Dynamic Branch Home (/school/:schoolId)"]
+    
+    %% Master Portal Sections
+    subgraph MasterPortal ["Master Group Portal Flow"]
+        MasterHome --> M_Hero["1. Video Hero Banner"]
+        M_Hero --> M_Ticker["2. Ticker Announcements"]
+        M_Ticker --> M_Stats["3. Group Statistics & Milestones"]
+        M_Stats --> M_Awards["4. School Awards & Accolades"]
+        M_Awards --> M_Testimonials["5. Video Testimonials Carousel"]
+        M_Testimonials --> M_Pedagogy["6. 5-Stage Thinking Pedagogy Preview"]
+        M_Pedagogy --> M_Portal["7. Dual-Campus Gateway (PortalHome)"]
+        M_Portal --> M_Differentiators["8. What Sets Us Apart"]
+        M_Differentiators --> M_Admissions["9. Admissions Overview"]
+        M_Admissions --> M_Contact["10. Group Contact & Location"]
+    end
+    
+    %% Master Deep Links
+    MasterPortal -.-> GroupPages["Master Academic & Group Sub-Pages"]
+    GroupPages --> ThinkingSchool["/thinking-school (Thinking Habits)"]
+    GroupPages --> VisionMission["/vision-mission (Ethos & Core Values)"]
+    GroupPages --> Management["/management (Board of Governors)"]
+    GroupPages --> PedagogyFull["/pedagogy & /pedagogy/:stageId"]
+    GroupPages --> AwardsFull["/awards (National/Global Accolades)"]
+    GroupPages --> AlumniNet["/alumni (Directory & Registration)"]
+    GroupPages --> ParentPartners["/parent-partners (Parent Engagement)"]
+    GroupPages --> NewsPress["/news (Press Releases & Media)"]
+    GroupPages --> MandatoryDisclosures["/mandatory-disclosures (CBSE Compliance)"]
+    
+    %% Gateway to Branches
+    M_Portal -->|Select DLPS Sahibabad| DLPS["DLF Public School, Sahibabad (/school/dlf-sahibabad)"]
+    M_Portal -->|Select DLWS Greater Noida| DLWS["DLF World School, Gr. Noida (/school/dlf-greater-noida)"]
+    
+    %% Dynamic Branch Subsystems
+    subgraph BranchPortal ["Dynamic Branch Portal Experience (/school/:schoolId)"]
+        BranchHome --> B_Hero["Branch Hero & Heritage Badge"]
+        B_Hero --> B_Vision["Branch Vision & Principal Desk Preview"]
+        B_Vision --> B_Stats["Campus Stats & Achievements"]
+        B_Stats --> B_Toppers["CBSE Board Results & Toppers"]
+        B_Toppers --> B_CurriculumPreview["Curriculum Pathways Preview"]
+        B_CurriculumPreview --> B_HolisticPreview["Holistic Education & Sports Arena"]
+        B_HolisticPreview --> B_TourPreview["360° Virtual Tour Preview"]
+        B_TourPreview --> B_CTA["Admissions & Enquiry CTA"]
+        
+        %% Deep Branch Sub-Routes
+        BranchHome --> B_Campus["/campus (Facilities & Labs)"]
+        BranchHome --> B_Leadership["/leadership & /principal-desk"]
+        BranchHome --> B_Curriculum["/curriculum (CBSE / Cambridge)"]
+        B_Curriculum --> B_Results["/curriculum/academic-results (Gazettes & Posters)"]
+        BranchHome --> B_Holistic["/holistic-learning (Arts, Sports, Clubs)"]
+        BranchHome --> B_Winning["/winning-school (Sports & Accolades)"]
+        BranchHome --> B_Editorials["/editorials (Student Publications)"]
+        BranchHome --> B_Disclosures["/disclosures (CBSE Mandatory Tables)"]
+        BranchHome --> B_Links["/useful-links (Portals & Circulars)"]
+        BranchHome --> B_Tour["/virtual-tour (Interactive Campus 360°)"]
+        BranchHome --> B_Admissions["/admissions (Eligibility, Fees, Process)"]
+    end
+    
+    %% Conversion Funnel
+    B_Admissions --> EnquiryForm["📝 Digital Admission Enquiry (/admission-enquiry)"]
+    M_Admissions --> EnquiryForm
+    EnquiryForm --> Confirmation["✅ Registration Confirmation & Followup"]
+    
+    %% Administrative Flow
+    Visitor -.->|Access /admin| AdminGate{"Admin Login Gate"}
+    AdminGate -->|Unauthenticated| AdminLogin["/admin/login (Password: dlf-master)"]
+    AdminGate -->|Authorized| AdminApp["/admin CMS Dashboard"]
+    AdminApp --> CMS_Global["Edit Global Sections (Ticker, Stats, Awards, etc.)"]
+    AdminApp --> CMS_Schools["Edit School Data (Sahibabad vs Gr. Noida)"]
+    AdminApp --> CMS_Media["Upload Media & Photos to /public/uploads/"]
+```
+
+---
+
+### 4.2 Step-by-Step Persona User Journeys
+
+#### Journey 1: Prospective Parent (Admissions & Discovery Funnel)
+1. **Discovery**:
+   - Parent arrives on the Master Homepage (`/`).
+   - Watches the full-bleed video Hero and scans key statistics (30+ Years Legacy, #1 in Ghaziabad).
+   - Validates institutional excellence via **School Awards** (`SchoolWinning`) and **Video Testimonials**.
+2. **Campus Selection**:
+   - Reaches the **Campus Gateway** (`PortalHome`) and selects either **DLPS Sahibabad** or **DLWS Greater Noida**.
+   - URL transitions seamlessly to `/school/:schoolId` with glowing route-loader feedback.
+3. **Branch Deep-Dive**:
+   - **Academic Rigor**: Navigates to `/school/:schoolId/curriculum` to inspect the CBSE or Cambridge International pathways. Clicks into `/academic-results` to view Class X/XII toppers and open the board gazette in `AcademicGazetteModal`.
+   - **Campus Life**: Visually inspects physics/robotics labs and athletic facilities at `/school/:schoolId/campus`, followed by an interactive 360° tour at `/school/:schoolId/virtual-tour`.
+   - **Leadership Trust**: Reads the Principal's editorial note at `/school/:schoolId/principal-desk` and faculty leadership profiles at `/school/:schoolId/leadership`.
+4. **Conversion (Application)**:
+   - Clicks "Admissions" to visit `/school/:schoolId/admissions` to check age criteria, fee schedule tables, and scholarship programs.
+   - Clicks "Apply Now" to load the interactive digital form at `/admission-enquiry`, submits student details, and receives instant on-screen confirmation.
+
+#### Journey 2: Enrolled Parent & Current Student (Daily Academic Portal)
+1. **Notice Board & Circulars**:
+   - Parent visits `/school/:schoolId/useful-links` to download monthly circulars, fee books, and examination schedules.
+2. **Student Achievements & Publications**:
+   - Student visits `/school/:schoolId/editorials` to read student council essays, literary publications, and school newsletters.
+   - Visits `/school/:schoolId/holistic-learning` to view clubs, social service projects, and sports tournaments with full-screen image lightboxes.
+3. **Pastoral Care & Child Wellness**:
+   - Parent/Student visits `/counselling` (or `/school/:schoolId/counselling`).
+   - Reads child protection policies, pastoral care guidelines, and books a confidential consultation via `CounsellingConsultationForm`.
+4. **Statutory Verifications**:
+   - Parent verifies CBSE compliance, teacher ratios, and safety certificates via `/school/:schoolId/disclosures`.
+
+#### Journey 3: Alumni Network & Engagement
+1. **Alumni Hub**:
+   - Former student visits `/alumni`.
+   - Reads featured alumni success stories across entrepreneurship, research, and public service.
+2. **Registration**:
+   - Fills out the Alumni Network Registration form to receive homecoming invitations and mentor current students.
+
+#### Journey 4: Administrative CMS Content Lifecycle
+1. **Access Control**:
+   - Content manager navigates to `/admin`.
+   - If not authenticated, the route redirects to `/admin/login`, requiring password verification (`dlf-master`).
+2. **Content Editing**:
+   - Admin opens the desired section tab:
+     - **Global Content**: Ticker announcements, national awards, group vision, management board bios.
+     - **School-Specific Content**: Campus gallery images, admission fees, scholarship matrices, and principal notes for either Sahibabad or Greater Noida.
+3. **Media Uploading**:
+   - Uses `ImageUrlPicker` to upload photos directly through the local Vite development endpoint (`/api/upload`) saving to `public/uploads/`.
+4. **Saving & Live Preview**:
+   - Floating `SaveBar` detects unsaved edits and saves changes to `localStorage` via `useSiteData()`, updating live previews instantly without page reloads.
+
+---
+
+### 4.3 Modal & Overlay Interaction Loops
+
+The application utilizes high-engagement modal experiences to provide deep content without breaking user navigation state:
+
+| Modal Component | Trigger | Purpose & Experience |
+|---|---|---|
+| `AcademicGazetteModal` | "View Full Result Gazette" in Academic Results | Full-screen high-resolution PDF/image viewer with page controls for official CBSE board gazettes. |
+| `AcademicPosterModal` | Clicking any topper card in Academic Results | Spotlight modal displaying student score cards, percentages, subject distinctions, and photos. |
+| `VideoTestimonials` | Clicking video cards on Master or Branch Home | Responsive video overlay embedding YouTube/Vimeo players with autoplay and backdrop blur. |
+| `NewsArticleModal` | "Read Full Notice" in `/news` grid | Slide-in modal displaying full press releases, event schedules, and downloadable attachments. |
+| `HolisticLightbox` | Photo galleries in `/holistic-learning` | Clean lightbox with gesture-friendly image zoom and caption details. |
+| `CounsellingConsultationForm` | "Schedule Consultation" in Counselling | Multi-step appointment request form for parents and students. |
+
+---
+
+### 4.4 Global Navigation & Campus Switcher Mechanics
+
+1. **Header Context Awareness**:
+   - `<Header />` detects current URL (`useLocation()`).
+   - If path begins with `/school/:schoolId`, the header adapts its branding badge, accent colors (Green for Sahibabad, Purple for Greater Noida), and contextual navigation links (Campus, Leadership, Admissions, Curriculum).
+   - If path is on root `/` or group pages, it renders the Master Group navigation (Pedagogy, Thinking School, Management, Portal Gateway).
+2. **Dynamic Campus Switcher**:
+   - Dropdown control in `<Header />` allows one-click switching between **DLF Public School (Sahibabad)**, **DLF World School (Gr. Noida)**, and **DLF Group Master**.
+   - Context is preserved: switching branches while exploring curriculum stays within the curriculum view for the chosen branch.
+3. **Mobile Navigation Drawer**:
+   - Hamburger button triggers a fluid GSAP-animated full-screen drawer with nested accordions for sub-page links and quick contact CTAs.
+
+---
+
+## 5. State Management & CMS Data Architecture
 
 ### Single Source of Truth (`src/data/siteData.js`)
 All dynamic texts, hero titles, statistics, accolades, and member bios are centralized in `src/data/siteData.js` exporting:
@@ -251,7 +418,7 @@ export default function MyComponent() {
 
 ---
 
-## 5. Design System & Styling Tokens
+## 6. Design System & Styling Tokens
 
 Styling is handled via **TailwindCSS v4** using the `@theme` directive in `src/index.css`:
 
@@ -283,7 +450,7 @@ Styling is handled via **TailwindCSS v4** using the `@theme` directive in `src/i
 
 ---
 
-## 6. Strict Site Isolation & Master Site Security Lock
+## 7. Strict Site Isolation & Master Site Security Lock
 
 1. **Three-Way Strict Isolation Policy**:
    - Master Group Website, DLPS Sahibabad, and DLWS Greater Noida must remain strictly isolated.
@@ -294,7 +461,7 @@ Styling is handled via **TailwindCSS v4** using the `@theme` directive in `src/i
 
 ---
 
-## 7. Developer Commands & Workflows
+## 8. Developer Commands & Workflows
 
 ```bash
 # Install dependencies
@@ -312,3 +479,4 @@ npm run preview
 # Run ESLint across all files
 npm run lint
 ```
+
