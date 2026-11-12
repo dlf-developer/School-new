@@ -21,7 +21,6 @@ import {
   Home,
   BookMarked,
   GraduationCap,
-  Sparkles,
   Trophy,
   Newspaper,
   Handshake,

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { Play, Quote, Star, Sparkles, X, Video as VideoIcon } from 'lucide-react'
+import { Play, Quote, Star, X, Video as VideoIcon } from 'lucide-react'
 import { useSiteData } from '../hooks/useSiteData'
 import {
   parseYouTubeId,

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Sparkles, Mail } from 'lucide-react'
+import { Heart, Mail } from 'lucide-react'
 
 export default function CounsellingUnderProgress({ schoolId }) {
   return (
@@ -11,7 +11,7 @@ export default function CounsellingUnderProgress({ schoolId }) {
           <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-gold via-brand-greenDeep to-brand-gold" />
 
           <div className="w-16 h-16 rounded-3xl bg-amber-50 border border-amber-200/80 flex items-center justify-center text-brand-gold mx-auto shadow-sm">
-            <Sparkles className="w-8 h-8 text-brand-gold animate-pulse" />
+            <Heart className="w-8 h-8 text-brand-gold" />
           </div>
 
           <div className="space-y-2">

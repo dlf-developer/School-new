@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Sparkles, CheckCircle2, ArrowRight, Puzzle, Cpu, Award } from 'lucide-react'
+import { Sun, CheckCircle2, ArrowRight, Puzzle, Cpu, Award } from 'lucide-react'
 
 export default function MasterPedagogy() {
   const [activeTab, setActiveTab] = useState('early-years')
@@ -10,7 +10,7 @@ export default function MasterPedagogy() {
       id: 'early-years',
       title: 'Early Years',
       label: 'Foundational Stage',
-      Icon: Sparkles,
+      Icon: Sun,
       image: '/pedagogy/early-years/7C1A1724.jpg',
       imageCaption: 'Discovery Den, Toy-Based & Experiential Play',
       summary: 'Aligned with NEP 2020 & NCF-FS, our Foundation Stage pedagogy is child-centric, play-based, inclusive, and experiential. Learning is designed around exploration, imagination, and joyful discovery, nurturing language, socio-emotional wellbeing, and foundational literacy in a safe, caring space.',
@@ -116,7 +116,6 @@ export default function MasterPedagogy() {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-6">
             <div className="space-y-1">
               <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-brand-gold animate-pulse" />
                 Nurturing Learning Pathways
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-brand-masterDeep">

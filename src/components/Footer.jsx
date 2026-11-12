@@ -199,6 +199,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  to="/school/dlf-sahibabad/blogs"
+                  className="hover:text-brand-gold transition-colors block py-0.5 text-brand-gold font-bold"
+                >
+                  &bull; Campus Blogs &amp; Insights
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/school/dlf-sahibabad/contact"
                   className="hover:text-brand-gold transition-colors block py-0.5"
                 >
@@ -280,6 +288,14 @@ export default function Footer() {
                   className="hover:text-brand-gold transition-colors block py-0.5"
                 >
                   &bull; Student Life
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/school/dlf-greater-noida/blogs"
+                  className="hover:text-brand-gold transition-colors block py-0.5 text-brand-gold font-bold"
+                >
+                  &bull; Campus Blogs &amp; Insights
                 </Link>
               </li>
               <li>

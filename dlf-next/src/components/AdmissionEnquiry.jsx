@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { ExternalLink, MapPin, Sparkles } from 'lucide-react'
+import { ExternalLink, MapPin } from 'lucide-react'
 import ImageWithLoader from './ImageWithLoader'
 
 // External Links - Official Edunext Admission Enquiry Forms

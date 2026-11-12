@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  Trophy, Star, CheckCircle2, TrendingUp, Sparkles,
+  Trophy, Star, CheckCircle2, TrendingUp,
   BookOpen, Download, GraduationCap, Award, Medal
 } from 'lucide-react'
 
@@ -72,7 +72,7 @@ export default function AcademicLegacySections({
                 {idx === 0 && <CheckCircle2 className="w-4 h-4" />}
                 {idx === 1 && <Star className="w-4 h-4 fill-brand-gold text-brand-gold" />}
                 {idx === 2 && <TrendingUp className="w-4 h-4" />}
-                {idx === 3 && <Sparkles className="w-4 h-4 text-brand-gold" />}
+                {idx === 3 && <Award className="w-4 h-4 text-brand-gold" />}
               </span>
             </div>
             <div className="space-y-1">

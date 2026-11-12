@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { Quote, ArrowRight, Award, ShieldCheck, Sparkles } from 'lucide-react'
+import { Quote, ArrowRight, Award, ShieldCheck, Heart } from 'lucide-react'
 import gsap from 'gsap'
 import { useSiteData } from '../hooks/useSiteData'
 import ImageWithLoader from './ImageWithLoader'
@@ -118,7 +118,7 @@ export default function Vision() {
 
             <div className="bg-white p-3.5 rounded-2xl border border-gray-100 shadow-sm flex items-start gap-3">
               <div className={`w-8 h-8 rounded-xl bg-${theme.accent}/15 text-${theme.accent} flex items-center justify-center shrink-0`}>
-                <Sparkles className="w-4 h-4" />
+                <Heart className="w-4 h-4" />
               </div>
               <div>
                 <h4 className={`text-xs font-bold text-${theme.primary}`}>No Learner Left Behind</h4>

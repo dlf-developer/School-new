@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { 
-  Sparkles, BookOpen, Puzzle, Palette, Award, Cpu, Gamepad2, 
+  Sun, BookOpen, Puzzle, Palette, Award, Cpu, Gamepad2, 
   Eye, Users, Languages, Heart, Compass, CheckCircle, 
   Code, Lightbulb, Video, Wrench, FlaskConical, 
   FileText, Play, X, ZoomIn, GraduationCap, ArrowRight, Briefcase 
@@ -95,7 +95,7 @@ export default function Pedagogy({ isPreview = false }) {
         exemplars: [],
         videos: []
       },
-      Icon: Sparkles
+      Icon: Sun
     },
     {
       id: 'primary-years',
@@ -418,7 +418,7 @@ export default function Pedagogy({ isPreview = false }) {
     if (t.includes('inclusive')) return Heart
     if (t.includes('inquiry') || t.includes('investigate')) return Compass
     if (t.includes('competency')) return CheckCircle
-    if (t.includes('experiential') || t.includes('active')) return Sparkles
+    if (t.includes('experiential') || t.includes('active')) return Lightbulb
     if (t.includes('skill')) return Wrench
     if (t.includes('computational') || t.includes('coding')) return Code
     if (t.includes('project') || t.includes('pbl')) return Briefcase

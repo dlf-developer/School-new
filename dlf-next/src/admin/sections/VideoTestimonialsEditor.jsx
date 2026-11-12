@@ -8,7 +8,6 @@ import {
   Video,
   Play,
   Upload,
-  Sparkles,
   ExternalLink,
   X,
   Clock,
@@ -133,7 +132,7 @@ export default function VideoTestimonialsEditor() {
       {/* Section Header Controls */}
       <div className="bg-[#0c0c14]/80 backdrop-blur-md border border-gray-800 rounded-xl p-6 space-y-4">
         <h3 className="text-xs font-bold text-brand-gold uppercase tracking-wider mb-2 flex items-center gap-2">
-          <Sparkles className="h-3.5 w-3.5" /> Section Header & Badges
+          <Video className="h-3.5 w-3.5" /> Section Header & Badges
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FieldEditor

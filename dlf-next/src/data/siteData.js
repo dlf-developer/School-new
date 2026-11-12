@@ -1109,7 +1109,7 @@ export const globalData = {
         id: "ts-2",
         title: "Innovating School",
         desc: "Innovation is a deliberate outcome of a carefully nurtured environment. Each year our Innovation Hub churns out multiple Innovators who receive grants of ₹10,000 each, under the Inspire Manak award, to work on their scientific innovations. Whether it is building AI-powered innovations, launching student enterprises, excelling in sports and arts, or leading social impact initiatives, every Delfite is encouraged to discover not just what they want to become, but who they want to be.",
-        icon: "Sparkles",
+        icon: "Lightbulb",
         color: "from-amber-500/10 to-orange-500/10",
         iconColor: "text-amber-600",
         image: "/7C1A1782.jpg",

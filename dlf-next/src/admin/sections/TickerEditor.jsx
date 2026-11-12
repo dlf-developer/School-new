@@ -59,7 +59,7 @@ export default function TickerEditor() {
           <AlertCircle className="h-4.5 w-4.5 shrink-0 mt-0.5" />
           <div>
             <p className="font-semibold mb-1">How it Displays</p>
-            <p>The items scroll continuously in a loop. You can use standard Lucide icon names like <code className="text-white bg-black/40 px-1 py-0.5 rounded">Award</code>, <code className="text-white bg-black/40 px-1 py-0.5 rounded">Sparkles</code>, <code className="text-white bg-black/40 px-1 py-0.5 rounded">Brain</code>, or <code className="text-white bg-black/40 px-1 py-0.5 rounded">Globe</code>.</p>
+            <p>The items scroll continuously in a loop. You can use standard Lucide icon names like <code className="text-white bg-black/40 px-1 py-0.5 rounded">Award</code>, <code className="text-white bg-black/40 px-1 py-0.5 rounded">Brain</code>, or <code className="text-white bg-black/40 px-1 py-0.5 rounded">Globe</code>.</p>
           </div>
         </div>
 

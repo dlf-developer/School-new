@@ -48,6 +48,8 @@ import SchoolNews from './components/SchoolNews'
 import MandatoryDisclosures from './components/MandatoryDisclosures'
 import VideoTestimonials from './components/VideoTestimonials'
 import SchoolVirtualTour from './components/SchoolVirtualTour'
+import SchoolBlogListing from './components/school/blogs/SchoolBlogListing'
+import SchoolBlogDetail from './components/school/blogs/SchoolBlogDetail'
 
 // Premium Section Separator Component
 function SectionSeparator() {
@@ -264,6 +266,8 @@ export default function App() {
           <Route path="/school/:schoolId/virtual-tour" element={<SchoolVirtualTour />} />
           <Route path="/school/:schoolId/winning-school" element={<SchoolWinning />} />
           <Route path="/school/:schoolId/editorials" element={<SchoolEditorials />} />
+          <Route path="/school/:schoolId/blogs" element={<SchoolBlogListing />} />
+          <Route path="/school/:schoolId/blogs/:slug" element={<SchoolBlogDetail />} />
           <Route path="/school/:schoolId/disclosures" element={<Disclosures />} />
           <Route path="/school/:schoolId/useful-links" element={<UsefulLinks />} />
           <Route path="/school/:schoolId/contact" element={<CommonPages />} />

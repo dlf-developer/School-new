@@ -9,7 +9,6 @@ import {
   Compass,
   Award,
   ArrowLeft,
-  Sparkles,
 } from "lucide-react";
 
 import {
@@ -152,7 +151,7 @@ export default function SchoolHolistic() {
                   <h4
                     className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant} font-inter flex items-center gap-1.5`}
                   >
-                    <Sparkles className="w-3.5 h-3.5" /> Key Highlights &amp; Offerings
+                    Key Highlights &amp; Offerings
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {features[activeSub]?.map((feat, idx) => (

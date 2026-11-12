@@ -14,7 +14,6 @@ import {
   Download, 
   Search, 
   CheckCircle2, 
-  Sparkles, 
   ArrowRight, 
   Briefcase, 
   HeartHandshake, 
@@ -213,7 +212,7 @@ export default function Alumni() {
             <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-gold via-brand-greenDeep to-brand-gold"></div>
 
             <div className="w-16 h-16 rounded-3xl bg-amber-50 border border-amber-200/80 flex items-center justify-center text-brand-gold mx-auto shadow-sm">
-              <Sparkles className="w-8 h-8 text-brand-gold animate-pulse" />
+              <GraduationCap className="w-8 h-8 text-brand-gold" />
             </div>
 
             <div className="space-y-2">
@@ -494,7 +493,6 @@ export default function Alumni() {
           <div className="bg-gradient-to-br from-[#1a3c27] to-[#0f2418] text-white rounded-3xl border border-brand-gold/40 p-8 shadow-xl space-y-6 flex flex-col justify-between relative overflow-hidden">
             <div className="relative z-10 space-y-4">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-brand-gold font-bold text-[10px] uppercase tracking-wider border border-white/20">
-                <Sparkles className="w-3.5 h-3.5 text-brand-gold" />
                 <span>Legacy Privilege</span>
               </div>
               <h3 className="font-serif text-2xl font-bold text-white">20% Tuition Concession for Alumni Wards</h3>

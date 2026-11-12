@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Brain, Sparkles, Award, GraduationCap, Heart, Quote, CheckCircle2, ArrowRight } from 'lucide-react'
+import { Brain, Lightbulb, Award, GraduationCap, Heart, Quote, CheckCircle2, ArrowRight } from 'lucide-react'
 import ImageWithLoader from './ImageWithLoader'
 import { useSiteData } from '../hooks/useSiteData'
 
-const ICON_MAP = { Brain, Sparkles, Award, GraduationCap, Heart }
+const ICON_MAP = { Brain, Lightbulb, Award, GraduationCap, Heart }
 
 // Default 3 feature cards for each pillar matching design specification
 const DEFAULT_PILLAR_FEATURES = {

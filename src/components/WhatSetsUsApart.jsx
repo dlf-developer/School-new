@@ -6,7 +6,6 @@ import {
   Leaf,
   Users,
   ChevronRight,
-  Sparkles,
   Heart,
   Award,
   ShieldCheck,
@@ -235,7 +234,6 @@ export default function WhatSetsUsApart({
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-7 space-y-3">
                 <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-brand-gold animate-pulse" />{" "}
                   Distinctive Pillars of Excellence
                 </span>
                 <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-masterDeep">
@@ -266,7 +264,6 @@ export default function WhatSetsUsApart({
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
               <div className="md:col-span-8 space-y-3">
                 <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-brand-gold animate-pulse" />{" "}
                   Distinctive Pillars of Excellence
                 </span>
                 <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-masterDeep">

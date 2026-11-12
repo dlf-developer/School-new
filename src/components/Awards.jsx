@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react'
-import { Award, ShieldAlert, Sparkles, Trophy, Calendar, Search, SlidersHorizontal, BookOpen, ExternalLink, Image as ImageIcon } from 'lucide-react'
+import { Award, ShieldAlert, Trophy, Calendar, Search, SlidersHorizontal, BookOpen, ExternalLink, Image as ImageIcon } from 'lucide-react'
 import ImageWithLoader from './ImageWithLoader'
 import { useSiteData } from '../hooks/useSiteData'
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Eye, Target, Sparkles, Download, ChevronDown, ChevronUp } from 'lucide-react'
+import { Eye, Target, Download, ChevronDown, ChevronUp } from 'lucide-react'
 import ImageWithLoader from './ImageWithLoader'
 import { useSiteData } from '../hooks/useSiteData'
 

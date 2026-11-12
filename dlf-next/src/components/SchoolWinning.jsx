@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useSiteData } from '../hooks/useSiteData'
-import { ArrowLeft, Award, Zap, Smile, X, ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowLeft, Award, Zap, Smile, X, ArrowRight } from 'lucide-react'
 
 export default function SchoolWinning({ isHomePage = false }) {
   const { schoolId } = useParams()
@@ -140,7 +140,6 @@ export default function SchoolWinning({ isHomePage = false }) {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-7 space-y-3">
                 <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-brand-gold animate-pulse" />
                   School Accolades & Recognition
                 </span>
                 <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-masterDeep">

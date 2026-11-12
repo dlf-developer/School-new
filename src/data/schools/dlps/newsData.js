@@ -1,8 +1,8 @@
-import { Award, Sparkles, Newspaper } from 'lucide-react'
+import { Award, Trophy, Newspaper } from 'lucide-react'
 
 export const newsStats = [
   { value: '#1 Ranked', label: 'School in Ghaziabad (Times Survey)', icon: Award },
-  { value: 'Top 100', label: 'Co-Ed Day Schools in India', icon: Sparkles },
+  { value: 'Top 100', label: 'Co-Ed Day Schools in India', icon: Trophy },
   { value: '5+ National', label: 'Innovation & Eco Awards', icon: Award },
   { value: '50+ Features', label: 'National & Regional Press Coverage', icon: Newspaper },
 ]

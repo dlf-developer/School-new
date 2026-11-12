@@ -1,9 +1,9 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { Award, Leaf, Globe, Sparkles, Zap, Trophy, ShieldCheck } from 'lucide-react'
+import { Award, Leaf, Globe, Zap, Trophy, ShieldCheck } from 'lucide-react'
 import { useSiteData } from '../hooks/useSiteData'
 
-const ICON_MAP = { Award, Leaf, Globe, Sparkles, Zap, Trophy, ShieldCheck }
+const ICON_MAP = { Award, Leaf, Globe, Zap, Trophy, ShieldCheck }
 
 const DEFAULT_ITEMS = [
   { id: 'tick-1', icon: 'Globe', text: 'Recognition of International Dimension in Schools' },
