@@ -14,12 +14,19 @@ if (fs.existsSync(envLocalPath) && typeof process.loadEnvFile === 'function') {
   process.loadEnvFile(envLocalPath)
 }
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://sodakshkhullar_db_user:CyZl3LFvukxHJCiI@cluster0.ect9bds.mongodb.net/dlf-next?retryWrites=true&w=majority'
+const MONGODB_URI = process.env.MONGODB_URI
 const ADMIN_EMAIL = process.env.ADMIN_DEFAULT_EMAIL || 'admin@dlfschools.com'
 const ADMIN_PASSWORD = process.env.ADMIN_DEFAULT_PASSWORD || 'dlf-master'
 
 async function seed() {
-  console.log('[INFO] Connecting to MongoDB at:', MONGODB_URI)
+  if (!MONGODB_URI) {
+    console.error('[ERROR] MONGODB_URI is not set.')
+    console.error('[INFO] Please define MONGODB_URI in your .env.local file or pass it as an environment variable.')
+    process.exit(1)
+  }
+
+  const maskedUri = MONGODB_URI.replace(/:([^:@]+)@/, ':****@')
+  console.log('[INFO] Connecting to MongoDB at:', maskedUri)
   try {
     await mongoose.connect(MONGODB_URI)
     console.log('[SUCCESS] Connected to MongoDB successfully!')
