@@ -32,7 +32,7 @@ export default function AcademicBoardCards({
                 <img
                   src={card.image}
                   alt={`${currentSchool?.name || 'DLF School'} - ${card.tag}`}
-                  className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                  className="w-full h-auto object-cover "
                 />
 
                 {/* Subtle hover overlay */}
@@ -202,6 +202,109 @@ export default function AcademicBoardCards({
           </div>
         </div>
       ))}
+
+      {/* ── HISTORIC BOARD DISTINCTIONS: 2024 & 2025 CLASS X TOPPERS (Item 3) ── */}
+      {!isDLWS && (
+        <div className="bg-white rounded-3xl border-2 border-brand-gold/40 shadow-xl p-6 sm:p-8 lg:p-10 space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gray-150 pb-5">
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-brand-gold/20 text-brand-charcoal text-[11px] font-extrabold uppercase tracking-widest border border-brand-gold/40">
+                <Trophy className="w-3.5 h-3.5 text-brand-gold" />
+                <span>State &amp; District Benchmarks</span>
+              </div>
+              <h3 className="font-serif text-2xl sm:text-3xl font-black text-brand-greenDeep">
+                Historic Class X Board Toppers — 2025 &amp; 2024
+              </h3>
+              <p className="text-xs sm:text-sm text-brand-muted font-inter font-medium">
+                Sustained academic dominance across Uttar Pradesh with consecutive state and district ranks.
+              </p>
+            </div>
+            <div className="text-right hidden sm:block">
+              <span className="text-xs font-bold text-brand-charcoal uppercase tracking-wider block">
+                Official CBSE Board Declarations
+              </span>
+              <span className="text-[11px] text-brand-muted">Conferred by State Directorate</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* 2025 Class X */}
+            <div className="bg-gradient-to-br from-amber-50/50 via-white to-green-50/30 p-6 sm:p-7 rounded-2xl border border-brand-gold/40 shadow-sm space-y-4 relative overflow-hidden">
+              <div className="flex items-start justify-between gap-3">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-brand-greenDeep bg-brand-greenDeep/10 px-2.5 py-1 rounded-full inline-block">
+                    Class X &bull; 2025 Declaration
+                  </span>
+                  <div className="flex items-baseline gap-2 pt-1">
+                    <span className="font-serif text-4xl sm:text-5xl font-black text-brand-greenDeep">
+                      99.8%
+                    </span>
+                    <span className="text-xs font-bold text-brand-charcoal uppercase tracking-wider">
+                      Aggregate
+                    </span>
+                  </div>
+                </div>
+                <div className="w-12 h-12 rounded-xl bg-brand-gold/15 flex items-center justify-center shrink-0">
+                  <Medal className="w-7 h-7 text-brand-gold" />
+                </div>
+              </div>
+
+              <div className="space-y-2 pt-1 border-t border-gray-150">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="px-3 py-1 rounded-lg bg-brand-gold/20 text-brand-charcoal font-black text-xs">
+                    District Rank 1
+                  </span>
+                  <span className="px-3 py-1 rounded-lg bg-brand-greenDeep/10 text-brand-greenDeep font-black text-xs">
+                    State Rank 2
+                  </span>
+                </div>
+                <p className="text-xs font-bold text-brand-charcoal pt-1">
+                  Honoured by the Chief Minister of Uttar Pradesh
+                </p>
+                <p className="text-[11px] text-brand-muted font-inter leading-relaxed">
+                  Celebrated at the state felicitations for unmatched academic distinction and near-perfect score across all five board disciplines.
+                </p>
+              </div>
+            </div>
+
+            {/* 2024 Class X */}
+            <div className="bg-gradient-to-br from-amber-50/50 via-white to-green-50/30 p-6 sm:p-7 rounded-2xl border border-brand-gold/40 shadow-sm space-y-4 relative overflow-hidden">
+              <div className="flex items-start justify-between gap-3">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-brand-greenDeep bg-brand-greenDeep/10 px-2.5 py-1 rounded-full inline-block">
+                    Class X &bull; 2024 Declaration
+                  </span>
+                  <div className="flex items-baseline gap-2 pt-1">
+                    <span className="font-serif text-4xl sm:text-5xl font-black text-brand-greenDeep">
+                      99.6%
+                    </span>
+                    <span className="text-xs font-bold text-brand-charcoal uppercase tracking-wider">
+                      Aggregate
+                    </span>
+                  </div>
+                </div>
+                <div className="w-12 h-12 rounded-xl bg-brand-gold/15 flex items-center justify-center shrink-0">
+                  <Medal className="w-7 h-7 text-brand-gold" />
+                </div>
+              </div>
+
+              <div className="space-y-2 pt-1 border-t border-gray-150">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="px-3 py-1 rounded-lg bg-brand-greenDeep/10 text-brand-greenDeep font-black text-xs">
+                    State Rank 2
+                  </span>
+                </div>
+                <p className="text-xs font-bold text-brand-charcoal pt-1">
+                  Honoured by the Chief Minister of Uttar Pradesh
+                </p>
+                <p className="text-[11px] text-brand-muted font-inter leading-relaxed">
+                  Conferred high state honors for setting consecutive benchmarks in the CBSE Secondary School Board Examinations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

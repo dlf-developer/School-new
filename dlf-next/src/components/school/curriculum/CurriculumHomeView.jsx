@@ -154,7 +154,7 @@ export default function CurriculumHomeView({
                     src={cbsePathwayImage.src}
                     alt={cbsePathwayImage.alt}
                     loading="lazy"
-                    imgClassName="group-hover:scale-105 transition-transform duration-700 object-cover w-full h-full"
+                    imgClassName=" object-cover w-full h-full"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
                   <div className="absolute bottom-3 left-3 right-3 z-20 flex items-center justify-between">

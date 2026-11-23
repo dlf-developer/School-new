@@ -106,7 +106,7 @@ export default function ParentPartners() {
                   <video
                     src={playlist[currentVideoIdx].filename}
                     preload="metadata"
-                    className="w-full h-full object-cover pointer-events-none transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover pointer-events-none "
                   />
 
                   <div className="absolute inset-0 bg-brand-charcoal/40 flex items-center justify-center transition-all duration-300 group-hover:bg-brand-charcoal/50">
@@ -232,7 +232,7 @@ export default function ParentPartners() {
                       <ImageWithLoader
                         src={item.img}
                         alt={item.title}
-                        imgClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
+                        imgClassName="w-full h-full object-cover "
                         loading="lazy"
                       />
                     </div>

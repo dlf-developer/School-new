@@ -74,7 +74,7 @@ export default function OurCampus() {
             <ImageWithLoader 
               src={!isDLWS ? '/dlps-campus/7C1A1527.jpg' : (campusData.images?.[0] || '/campus/campus1.jpg')} 
               alt={`${currentSchool.name} campus exterior`} 
-              imgClassName="transition-transform duration-1000 group-hover:scale-105"
+              imgClassName=""
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/80 via-transparent to-transparent opacity-90 z-10"></div>
@@ -90,7 +90,7 @@ export default function OurCampus() {
               src={!isDLWS ? '/dlps-campus/7C1A1634.jpg' : (campusData.images?.[1] || '/campus/campus2.jpg')} 
               alt={`${currentSchool.name} corridors and classrooms`} 
               className="md:absolute md:inset-0 w-full h-full"
-              imgClassName="transition-transform duration-1000 group-hover:scale-105"
+              imgClassName=""
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/70 via-transparent to-transparent opacity-90 z-10"></div>
@@ -106,7 +106,7 @@ export default function OurCampus() {
               src={!isDLWS ? '/dlps-campus/7C1A1782.jpg' : (campusData.images?.[2] || '/campus/campus3.jpg')} 
               alt={`${currentSchool.name} labs and innovation spaces`} 
               className="md:absolute md:inset-0 w-full h-full"
-              imgClassName="transition-transform duration-1000 group-hover:scale-105"
+              imgClassName=""
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/70 via-transparent to-transparent opacity-90 z-10"></div>
@@ -121,7 +121,7 @@ export default function OurCampus() {
             <ImageWithLoader 
               src={campusData.images?.[3] || '/campus/campus5.jpg'} 
               alt={`${currentSchool.name} sports and outdoor spaces`} 
-              imgClassName="transition-transform duration-1000 group-hover:scale-105"
+              imgClassName=""
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/80 via-transparent to-transparent opacity-90 z-10"></div>
@@ -136,7 +136,7 @@ export default function OurCampus() {
             <ImageWithLoader 
               src={!isDLWS ? '/dlps-campus/7C1A1486.jpg' : '/campus/campus6.jpg'} 
               alt="School common areas and hallways" 
-              imgClassName="transition-transform duration-1000 group-hover:scale-105"
+              imgClassName=""
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/70 via-transparent to-transparent opacity-90 z-10"></div>
@@ -151,7 +151,7 @@ export default function OurCampus() {
             <ImageWithLoader 
               src="/campus/campus7.jpg" 
               alt="Campus swimming pool" 
-              imgClassName="transition-transform duration-1000 group-hover:scale-105"
+              imgClassName=""
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/70 via-transparent to-transparent opacity-90 z-10"></div>

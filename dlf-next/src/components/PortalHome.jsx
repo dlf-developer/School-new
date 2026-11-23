@@ -38,7 +38,7 @@ export default function PortalHome() {
               <img 
                 src="/DJI_0044.JPG" 
                 alt="DLF Public School Sahibabad Campus" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover "
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent"></div>
               <div className="absolute top-4 left-4 bg-brand-greenDeep text-white rounded-xl px-3.5 py-1.5 text-[9px] font-extrabold uppercase tracking-widest border border-white/10 shadow-md">
@@ -78,7 +78,7 @@ export default function PortalHome() {
               <img 
                 src="/dlws.jpeg" 
                 alt="DLF World School Greater Noida Campus" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover "
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent"></div>
               <div className="absolute top-4 left-4 bg-brand-purpleDeep text-white rounded-xl px-3.5 py-1.5 text-[9px] font-extrabold uppercase tracking-widest border border-white/10 shadow-md">

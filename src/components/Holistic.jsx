@@ -198,7 +198,7 @@ export default function Holistic() {
                   ? "DLF World School Greater Noida Campus"
                   : "STEM & Robotics Innovation Lab"
               }
-              imgClassName="group-hover:scale-105 transition-transform duration-[5s] object-cover w-full h-full"
+              imgClassName=" object-cover w-full h-full"
               loading="lazy"
             />
             <div

@@ -37,7 +37,7 @@ export default function AcademicShowcaseCard({
             <img
               src={currentResult.image}
               alt={`${currentSchool?.name || 'DLF School'} - ${currentResult.tag}`}
-              className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-500"
+              className="w-full h-auto object-cover "
             />
 
             {/* Subtle hover overlay */}

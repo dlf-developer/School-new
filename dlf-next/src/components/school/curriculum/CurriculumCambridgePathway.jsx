@@ -1,37 +1,146 @@
 import React from 'react'
-import { Globe, ArrowRight, ChevronDown } from 'lucide-react'
+import { Globe, ArrowRight, ChevronDown, TrendingUp, GraduationCap } from 'lucide-react'
 
 export default function CurriculumCambridgePathway({ theme, currentSchool }) {
+  const activeSchoolId = currentSchool?.id || 'dlf-sahibabad'
+
   return (
-    <div className="space-y-8 sm:space-y-10">
-      {/* Hero Ethos Block with Cambridge Logo */}
-      <div className="bg-white rounded-3xl border border-gray-100 shadow-md p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
+    <div className="space-y-10 sm:space-y-12">
+      {/* ── 1. HERO ETHOS BLOCK WITH CAMBRIDGE BADGE & 'RATTA NAHI, REASONING' ── */}
+      <div className="bg-white rounded-3xl border border-gray-150 shadow-lg p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+        <div className={`absolute top-0 left-0 w-full h-1.5 bg-${theme.primary}`} />
+
         <div className="space-y-4 flex-1">
-          <div
-            className={`inline-flex items-center gap-1.5 bg-${theme.primary}/5 text-${theme.primary} px-3 py-1 rounded-full text-xs font-bold`}
-          >
-            <Globe className="w-3.5 h-3.5" /> Authorised Cambridge International School
+          <div className="flex flex-wrap items-center gap-2">
+            <span
+              className={`inline-flex items-center gap-1.5 bg-${theme.primary}/10 text-${theme.primary} px-3 py-1 rounded-full text-xs font-bold`}
+            >
+              <Globe className="w-3.5 h-3.5" /> Authorised Cambridge International School
+            </span>
+            <span className="inline-flex items-center gap-1 bg-brand-gold/20 text-brand-charcoal px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider border border-brand-gold/30">
+              Cambridge International &bull; S-KG to Class IX
+            </span>
           </div>
-          <h4 className="font-serif text-2xl sm:text-3xl font-bold text-brand-charcoal">
+
+          <h4 className="font-serif text-2xl sm:text-4xl font-black text-brand-charcoal tracking-tight">
             The World's Gold Standard for Education
           </h4>
+
+          {/* Ethos Callout Quote (Item 5) */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-amber-50/70 border-l-4 border-brand-gold text-brand-charcoal space-y-1">
+            <p className="font-serif text-base sm:text-lg font-bold italic text-brand-charcoal">
+              &ldquo;Cambridge, at the school with a soul. Children learn by doing: they question, investigate and explain their ideas. Ratta nahi, reasoning.&rdquo;
+            </p>
+          </div>
+
           <p className="text-xs sm:text-sm text-brand-muted leading-relaxed font-inter font-medium">
-            We offer the globally recognised Cambridge Assessment International Education curriculum from Classes
-            I–VIII, with higher grades being added progressively each year. Through enquiry-based learning and
+            We offer the globally recognised Cambridge Assessment International Education curriculum from S-KG through
+            Class IX, with higher grades being added progressively each year. Through enquiry-based learning and
             international benchmarks, students develop confidence, creativity, critical thinking, and a global outlook.
             Here, learners are not just prepared for examinations — they are prepared for the world beyond classrooms.
           </p>
         </div>
-        <div className="bg-white p-5 rounded-2xl border border-gray-150 shadow-sm shrink-0 flex items-center justify-center">
+
+        <div className="bg-white p-6 rounded-2xl border border-gray-150 shadow-sm shrink-0 flex items-center justify-center">
           <img
             src="/cambridge/image1.png"
             alt="Cambridge Assessment International Education - Cambridge International School"
-            className="h-16 sm:h-20 object-contain"
+            className="h-16 sm:h-22 object-contain"
           />
         </div>
       </div>
 
-      {/* Why Parents Across the World Choose Cambridge? */}
+      {/* ── 2. WHY NOW? & 3 PROVEN CAMBRIDGE BENEFITS (Item 5) ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        {/* Left Column: Why Now? 2030 Future of Jobs */}
+        <div className="lg:col-span-5 bg-gradient-to-br from-brand-charcoal to-slate-900 text-white rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl flex flex-col justify-between">
+          <div className="space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/20 text-brand-gold text-[10px] font-black uppercase tracking-widest border border-brand-gold/30">
+              <TrendingUp className="w-3.5 h-3.5" />
+              <span>Future of Work &bull; WEF Report</span>
+            </div>
+            <h3 className="font-serif text-2xl sm:text-3xl font-black text-white">
+              Why Now? Preparing for the 2030 Paradigm
+            </h3>
+            <p className="text-xs text-slate-300 leading-relaxed font-inter">
+              The World Economic Forum's Future of Jobs research highlights an urgent transformation in career readiness:
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <div className="bg-white/10 p-4 rounded-2xl border border-white/10 space-y-1">
+              <span className="font-serif text-3xl font-black text-brand-gold block">7 in 10</span>
+              <p className="text-xs font-bold text-white">Employers See Analytical Thinking as Essential</p>
+              <p className="text-[11px] text-slate-300">
+                Cognitive agility, hypothesis testing, and original problem solving outrank pure memory recall in every global industry.
+              </p>
+            </div>
+
+            <div className="bg-white/10 p-4 rounded-2xl border border-white/10 space-y-1">
+              <span className="font-serif text-3xl font-black text-brand-gold block">39%</span>
+              <p className="text-xs font-bold text-white">Core Job Skills Changing by 2030</p>
+              <p className="text-[11px] text-slate-300">
+                Traditional board syllabi struggle to keep pace; Cambridge is built around adaptive, durable inquiry frameworks.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column: 3 Key Proven Benefits */}
+        <div className="lg:col-span-7 bg-white rounded-3xl border border-gray-150 shadow-md p-6 sm:p-8 space-y-6 flex flex-col justify-between">
+          <div className="space-y-2">
+            <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>
+              Measurable Advantages
+            </span>
+            <h3 className={`font-serif text-2xl sm:text-3xl font-black text-${theme.primary}`}>
+              The 3 Proven Cambridge Advantages
+            </h3>
+            <p className="text-xs sm:text-sm text-brand-muted font-inter font-medium">
+              Documented global outcomes for children enrolled in Cambridge International pathways.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="bg-gray-50 p-5 rounded-2xl border border-gray-150 space-y-2 text-center flex flex-col justify-between">
+              <span className={`font-serif text-3xl sm:text-4xl font-black text-${theme.primary} block`}>
+                +25%
+              </span>
+              <h5 className="font-bold text-xs uppercase tracking-wider text-brand-charcoal">
+                Higher Acceptance
+              </h5>
+              <p className="text-[11px] text-brand-muted font-inter leading-relaxed">
+                Higher admissions acceptance rate at top-tier UK, US, and Canadian universities.
+              </p>
+            </div>
+
+            <div className="bg-gray-50 p-5 rounded-2xl border border-gray-150 space-y-2 text-center flex flex-col justify-between">
+              <span className="font-serif text-3xl sm:text-4xl font-black text-brand-gold block">
+                50%
+              </span>
+              <h5 className="font-bold text-xs uppercase tracking-wider text-brand-charcoal">
+                Practical Assessment
+              </h5>
+              <p className="text-[11px] text-brand-muted font-inter leading-relaxed">
+                Balanced between coursework, scientific inquiry, and presentations, rather than high-stakes rote exams.
+              </p>
+            </div>
+
+            <div className="bg-gray-50 p-5 rounded-2xl border border-gray-150 space-y-2 text-center flex flex-col justify-between">
+              <span className={`font-serif text-3xl sm:text-4xl font-black text-${theme.vibrant} block`}>
+                -25%
+              </span>
+              <h5 className="font-bold text-xs uppercase tracking-wider text-brand-charcoal">
+                Exam Anxiety
+              </h5>
+              <p className="text-[11px] text-brand-muted font-inter leading-relaxed">
+                Reported by students accustomed to continuous formative mastery and inquiry routines.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── 3. WHY PARENTS ACROSS THE WORLD CHOOSE CAMBRIDGE? ── */}
       <div className="space-y-6">
         <div className="text-center space-y-2">
           <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>
@@ -92,7 +201,7 @@ export default function CurriculumCambridgePathway({ theme, currentSchool }) {
         </div>
       </div>
 
-      {/* The Cambridge Pathway at School */}
+      {/* ── 4. THE CAMBRIDGE PATHWAY AT SCHOOL ── */}
       <div className="space-y-4 sm:space-y-5">
         <div className="text-center space-y-2">
           <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>
@@ -102,22 +211,22 @@ export default function CurriculumCambridgePathway({ theme, currentSchool }) {
             The Cambridge Pathway at {currentSchool?.name || 'DLF Public School'}
           </h4>
           <p className="text-xs sm:text-sm text-brand-muted font-medium">
-            A seamless, progressive academic journey — Class I through A Levels
+            A seamless, progressive academic journey — Class S-KG through A Levels
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             {
               stage: 'Cambridge Primary',
-              grades: 'Classes I – V',
-              focus: 'Foundations in literacy, numeracy, and inquiry',
-              desc: 'Focuses on developing literacy, numeracy, and active inquiry in young learners.',
+              grades: 'Classes S-KG – V',
+              focus: 'Foundations in literacy, numeracy, and active inquiry',
+              desc: 'Focuses on developing foundational literacy, numeracy, and scientific curiosity in young learners.',
             },
             {
               stage: 'Cambridge Lower Secondary',
               grades: 'Classes VI – VIII',
-              focus: 'Deepening skills across core disciplines',
-              desc: 'Prepares students for the first global benchmark: the Checkpoint.',
+              focus: 'Deepening analytical skills across core disciplines',
+              desc: 'Prepares students for the first international benchmark: the Cambridge Checkpoint.',
             },
             {
               stage: 'Cambridge IGCSE*',
@@ -129,7 +238,7 @@ export default function CurriculumCambridgePathway({ theme, currentSchool }) {
               stage: 'Cambridge AS & A Levels*',
               grades: 'Classes XI – XII',
               focus: 'Specialised pathways for university and career readiness',
-              desc: 'Deep study and flexibility, highly recognized by universities worldwide.',
+              desc: 'Deep study and university credit options, highly recognized by universities worldwide.',
             },
           ].map((p, idx) => (
             <div
@@ -155,54 +264,72 @@ export default function CurriculumCambridgePathway({ theme, currentSchool }) {
         </p>
       </div>
 
-      {/* Worldwide Cambridge Network & Recognition */}
+      {/* ── 5. WORLDWIDE CAMBRIDGE NETWORK & UNIVERSITY CREDITS (Item 5) ── */}
       <div
-        className={`bg-gradient-to-br from-${theme.primary}/5 via-white to-brand-gold/5 rounded-3xl border border-gray-150 p-5 sm:p-6 space-y-4`}
+        className={`bg-gradient-to-br from-${theme.primary}/5 via-white to-brand-gold/5 rounded-3xl border border-gray-150 p-6 sm:p-8 space-y-6`}
       >
         <div className="text-center max-w-2xl mx-auto space-y-1">
           <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>
             Global Footprint
           </span>
-          <h4 className={`font-serif text-2xl font-bold text-${theme.primary}`}>Worldwide Cambridge Network</h4>
+          <h4 className={`font-serif text-2xl sm:text-3xl font-bold text-${theme.primary}`}>Worldwide Cambridge Network</h4>
         </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs font-inter font-medium text-brand-charcoal">
-          <div className="bg-white p-3.5 rounded-2xl border border-gray-100 space-y-1 shadow-sm">
+          <div className="bg-white p-4 rounded-2xl border border-gray-100 space-y-1 shadow-sm">
             <strong className={`block text-base font-serif font-bold text-${theme.primary}`}>2,500+ Schools</strong>
             <p className="text-brand-muted text-[11px]">
               Cambridge Primary is taught in over 120 countries with over 130,000 Checkpoint entries annually.
             </p>
           </div>
-          <div className="bg-white p-3.5 rounded-2xl border border-gray-100 space-y-1 shadow-sm">
+          <div className="bg-white p-4 rounded-2xl border border-gray-100 space-y-1 shadow-sm">
             <strong className={`block text-base font-serif font-bold text-${theme.primary}`}>4,000+ Schools</strong>
             <p className="text-brand-muted text-[11px]">
               Cambridge Lower Secondary is taught across nearly 140 countries globally.
             </p>
           </div>
-          <div className="bg-white p-3.5 rounded-2xl border border-gray-100 space-y-1 shadow-sm">
+          <div className="bg-white p-4 rounded-2xl border border-gray-100 space-y-1 shadow-sm">
             <strong className={`block text-base font-serif font-bold text-${theme.primary}`}>6,000+ Schools</strong>
             <p className="text-brand-muted text-[11px]">
               Cambridge IGCSE is the world's most popular qualification for 14 to 16-year-olds in 150+ countries.
             </p>
           </div>
-          <div className="bg-white p-3.5 rounded-2xl border border-gray-100 space-y-1 shadow-sm">
-            <strong className={`block text-base font-serif font-bold text-${theme.primary}`}>50+ Countries</strong>
-            <p className="text-brand-muted text-[11px]">
-              Cambridge O Level qualifications are taught worldwide in over 50 countries.
-            </p>
-          </div>
-          <div className="bg-white p-3.5 rounded-2xl border border-gray-100 space-y-1 shadow-sm">
+          <div className="bg-white p-4 rounded-2xl border border-gray-100 space-y-1 shadow-sm">
             <strong className={`block text-base font-serif font-bold text-${theme.primary}`}>130+ Countries</strong>
             <p className="text-brand-muted text-[11px]">
               Cambridge AS &amp; A Levels are taken by hundreds of thousands of students each year.
             </p>
           </div>
-          <div className="bg-white p-3.5 rounded-2xl border border-gray-100 space-y-1 shadow-sm">
-            <strong className={`block text-base font-serif font-bold text-${theme.primary}`}>2,350+ Universities</strong>
+          <div className="bg-white p-4 rounded-2xl border border-gray-100 space-y-1 shadow-sm">
+            <strong className={`block text-base font-serif font-bold text-${theme.primary}`}>2,220+ Universities</strong>
             <p className="text-brand-muted text-[11px]">
-              Recognised by higher education institutions in 90 countries worldwide.
+              Officially recognised by higher education institutions across 90+ countries worldwide.
+            </p>
+          </div>
+          <div className="bg-white p-4 rounded-2xl border border-gray-100 space-y-1 shadow-sm">
+            <strong className="block text-base font-serif font-bold text-brand-gold">90+ Countries</strong>
+            <p className="text-brand-muted text-[11px]">
+              Global university transferability and seamless recognition for undergraduate admissions.
             </p>
           </div>
         </div>
+
+        {/* Start College One Year Ahead Banner (Item 5) */}
+        <div className="bg-white p-5 sm:p-6 rounded-2xl border-2 border-brand-gold/40 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="space-y-1">
+            <span className="text-[10px] font-black uppercase tracking-widest text-brand-gold px-2.5 py-0.5 rounded-full bg-brand-gold/15 inline-block">
+              University Credit Transfer
+            </span>
+            <h5 className="font-serif text-lg sm:text-xl font-black text-brand-charcoal">
+              Start College One Year Ahead — Earn University Credits in US &amp; Canada
+            </h5>
+            <p className="text-xs text-brand-muted font-inter leading-relaxed">
+              Top universities in the United States and Canada grant up to a full year of university academic credits for Cambridge AS &amp; A Level grades, allowing students to fast-track degree completion and save significant tuition fees.
+            </p>
+          </div>
+          <GraduationCap className="w-12 h-12 text-brand-gold shrink-0 hidden md:block" />
+        </div>
+
         <div className="text-center pt-1">
           <a
             href="https://www.cambridgeinternational.org/"
@@ -215,7 +342,7 @@ export default function CurriculumCambridgePathway({ theme, currentSchool }) {
         </div>
       </div>
 
-      {/* Checkpoint Results Table */}
+      {/* ── 6. CHECKPOINT RESULTS TABLE ── */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch pt-1">
         <div className="lg:col-span-5 bg-white p-5 sm:p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-between space-y-3">
           <div className="space-y-2">
@@ -282,7 +409,7 @@ export default function CurriculumCambridgePathway({ theme, currentSchool }) {
         </div>
       </div>
 
-      {/* ASSET Exam Performance */}
+      {/* ── 7. ASSET EXAM PERFORMANCE ── */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 sm:p-6 space-y-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           <div className="lg:col-span-5 space-y-3">
@@ -312,7 +439,7 @@ export default function CurriculumCambridgePathway({ theme, currentSchool }) {
         </div>
       </div>
 
-      {/* Subjects Offered Board */}
+      {/* ── 8. SUBJECTS OFFERED BOARD ── */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 sm:p-6 space-y-4">
         <div className="space-y-1">
           <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>IGCSE Options</span>
@@ -372,7 +499,30 @@ export default function CurriculumCambridgePathway({ theme, currentSchool }) {
         </div>
       </div>
 
-      {/* FAQs Accordion */}
+      {/* ── 9. CALL TO ACTION: SEE A CAMBRIDGE THINK ROOM IN ACTION (Item 5) ── */}
+      <div className={`bg-gradient-to-br from-${theme.primary} to-brand-charcoal text-white rounded-3xl p-6 sm:p-10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6`}>
+        <div className="space-y-2 max-w-2xl">
+          <span className="text-[10px] font-black uppercase tracking-widest text-brand-gold bg-white/10 px-3 py-1 rounded-full border border-white/15 inline-block">
+            Campus Experience
+          </span>
+          <h3 className="font-serif text-2xl sm:text-3xl font-black text-white">
+            Ask to see a Cambridge Think room in action.
+          </h3>
+          <p className="text-xs sm:text-sm text-white/80 font-inter leading-relaxed">
+            Witness how our students formulate inquiry questions, conduct experiential lab demonstrations, and articulate reasoning without fear of judgment. Book your guided campus walk-through today.
+          </p>
+        </div>
+
+        <a
+          href={`/school/${activeSchoolId}/admissions?tab=enquiry`}
+          className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-gold hover:bg-brand-gold/90 text-brand-charcoal font-black text-xs uppercase tracking-wider shadow-lg transition-all shrink-0 cursor-pointer"
+        >
+          <span>Schedule Think Room Visit</span>
+          <ArrowRight className="w-4 h-4" />
+        </a>
+      </div>
+
+      {/* ── 10. FAQS ACCORDION ── */}
       <div className="space-y-3 pt-2 max-w-4xl mx-auto">
         <div className="text-center space-y-2">
           <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>Got Questions?</span>

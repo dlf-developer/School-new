@@ -28,39 +28,37 @@ export default function HomePage() {
       <Hero />
       <Ticker />
 
-      <SectionSeparator />
-
-      {/* 2nd Section – School Awards */}
-      <SchoolWinning isHomePage={true} />
-
-      <SectionSeparator />
-
-      {/* 3rd Section – Video Testimonials */}
-      <VideoTestimonials schoolName="DLF Schools" />
-
-      <SectionSeparator />
-
-      {/* 4th Section – Our Pedagogy */}
-      <MasterPedagogy />
-
-      <SectionSeparator />
-
-      {/* 5th Section – Our Schools */}
+      {/* 2nd Section – Our Schools (Right below Video) */}
       <PortalHome />
 
       <SectionSeparator />
 
-      {/* 6th Section – What sets us apart */}
+      {/* School Awards */}
+      <SchoolWinning isHomePage={true} />
+
+      <SectionSeparator />
+
+      {/* Video Testimonials */}
+      <VideoTestimonials schoolName="DLF Schools" />
+
+      <SectionSeparator />
+
+      {/* Our Pedagogy */}
+      <MasterPedagogy />
+
+      <SectionSeparator />
+
+      {/* What sets us apart */}
       <WhatSetsUsApart isPreview={true} />
 
       <SectionSeparator />
 
-      {/* 7th Section – Admissions */}
+      {/* Admissions */}
       <Admissions />
 
       <SectionSeparator />
 
-      {/* 8th Section – Contact Us */}
+      {/* Contact Us */}
       <ContactHome />
     </>
   )

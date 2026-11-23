@@ -86,7 +86,7 @@ export default function CommonPages() {
                 <img
                   src="/images/home-hero.jpg"
                   alt="DLF Public School Sahibabad Campus"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80"
+                  className="w-full h-full object-cover  opacity-80"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-brand-greenDeep/20 to-brand-greenDeep/60" />
                 <div className="absolute bottom-4 left-5">
@@ -128,7 +128,7 @@ export default function CommonPages() {
                 <img
                   src="/dlws.jpeg"
                   alt="DLF World School Greater Noida Campus"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80"
+                  className="w-full h-full object-cover  opacity-80"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-brand-purpleDeep/20 to-brand-purpleDeep/60" />
                 <div className="absolute bottom-4 left-5">

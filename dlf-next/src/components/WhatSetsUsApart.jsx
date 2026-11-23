@@ -254,7 +254,7 @@ export default function WhatSetsUsApart({
                   <img
                     src="/WMARS.jpeg"
                     alt="WMARS Sustainability Award"
-                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+                    className="w-full h-full object-cover "
                     loading="lazy"
                   />
                 </div>
@@ -432,7 +432,7 @@ export default function WhatSetsUsApart({
                     <img
                       src="/images/what-sets-us-apart/gt-bharat-internship.jpg"
                       alt="GT Bharat Boardroom"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-750 ease-out"
+                      className="w-full h-full object-cover "
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5">
@@ -454,7 +454,7 @@ export default function WhatSetsUsApart({
                       <img
                         src="/images/what-sets-us-apart/student-portrait.jpg"
                         alt="Fortis Psychology Internship"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-cover "
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-3">
@@ -472,7 +472,7 @@ export default function WhatSetsUsApart({
                       <img
                         src="/images/what-sets-us-apart/iit-delhi-visit.jpg"
                         alt="IIT Delhi visit"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-cover "
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-3">
@@ -491,7 +491,7 @@ export default function WhatSetsUsApart({
                       <img
                         src="/images/what-sets-us-apart/kruu-summit-certificate.jpg"
                         alt="KRUU Summit"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-cover "
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-3">
@@ -510,7 +510,7 @@ export default function WhatSetsUsApart({
                       <img
                         src="/images/what-sets-us-apart/consumer-india-internship.jpg"
                         alt="Consumer India"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-cover "
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-3">
@@ -560,7 +560,7 @@ export default function WhatSetsUsApart({
                     <img
                       src="/images/what-sets-us-apart/global-exchange-group.jpg"
                       alt="Global Exchange Gathering"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-full object-cover "
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent flex flex-col justify-end p-5">
@@ -657,7 +657,7 @@ export default function WhatSetsUsApart({
                         <img
                           src="/images/what-sets-us-apart/brazil-presentation.png"
                           alt="Anwesha Presentation"
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="w-full h-full object-cover "
                           loading="lazy"
                         />
                       </div>
@@ -692,7 +692,7 @@ export default function WhatSetsUsApart({
                         <img
                           src="/images/what-sets-us-apart/germany-group.jpg"
                           alt="Germany Group"
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="w-full h-full object-cover "
                           loading="lazy"
                         />
                       </div>
@@ -889,7 +889,7 @@ export default function WhatSetsUsApart({
                         <img
                           src="/WMARS.jpeg"
                           alt="WMARS Award Certificate"
-                          className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                          className="w-full h-full object-cover "
                           loading="lazy"
                         />
                       </div>
@@ -912,7 +912,7 @@ export default function WhatSetsUsApart({
                         <img
                           src="/Sustainability Superstar Award.jpg"
                           alt="Sustainability Superstar Award Certificate"
-                          className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                          className="w-full h-full object-cover "
                           loading="lazy"
                         />
                       </div>
@@ -964,7 +964,7 @@ export default function WhatSetsUsApart({
                     <img
                       src="/money-plant-stall.jpg"
                       alt=""
-                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                      className="w-full h-full object-cover "
                       loading="lazy"
                     />
                   </div>
@@ -1055,7 +1055,7 @@ export default function WhatSetsUsApart({
                       <img
                         src="/social-responsibility.jpg"
                         alt=""
-                        className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                        className="w-full h-full object-cover "
                         loading="lazy"
                       />
                     </div>

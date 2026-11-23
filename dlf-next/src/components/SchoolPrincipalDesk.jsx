@@ -50,12 +50,21 @@ export default function SchoolPrincipalDesk() {
               Warm Namaste and a message of learning, character, and vision from the {leaderDesignation}.
             </p>
           </div>
-          <Link 
-            to={`/school/${activeBranch}`}
-            className={`flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-${theme.primary} hover:opacity-80 transition-opacity shrink-0`}
-          >
-            <ArrowLeft className="w-4 h-4" /> Back to School Home
-          </Link>
+          <div className="flex items-center gap-3 shrink-0">
+            <Link 
+              to={`/school/${activeBranch}/leadership`}
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl border border-${theme.primary}/20 text-xs font-bold uppercase tracking-wider text-${theme.primary} hover:bg-${theme.primary}/5 transition-colors shadow-sm`}
+            >
+              <span>Faculty &amp; Leadership</span>
+              <ArrowLeft className="w-3.5 h-3.5 rotate-180" />
+            </Link>
+            <Link 
+              to={`/school/${activeBranch}`}
+              className={`flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-brand-muted hover:text-${theme.primary} transition-colors`}
+            >
+              <ArrowLeft className="w-4 h-4" /> Home
+            </Link>
+          </div>
         </div>
 
         {/* Quote Banner */}

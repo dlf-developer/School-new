@@ -410,7 +410,7 @@ export default function SchoolBlogDetail() {
                     <img
                       src={item.image || (isDLWS ? '/dlws.jpeg' : '/DJI_0044.JPG')}
                       alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-cover "
                       loading="lazy"
                     />
                   </div>

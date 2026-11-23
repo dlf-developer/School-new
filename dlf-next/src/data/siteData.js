@@ -1064,6 +1064,7 @@ export const globalData = {
         name: "Dr. Mrignaini",
         role: "Executive Director, DLF Public School | Founder Principal | Researcher",
         badge: "Executive Director",
+        image: "/images/dr-mrignaini.jpg",
         bio: "Dr. Mrignaini's journey is a testament to vision, perseverance, and an unwavering belief in the transformative power of education. As the Founder Principal of DLF Public School and now its dynamic Executive Director, she has been instrumental in shaping the institution into one of India's most respected schools.",
         highlights: [
           "Established DLPS as a benchmark of excellence, leading to its consistent ranking among the Top 2 Schools in Ghaziabad for decades.",

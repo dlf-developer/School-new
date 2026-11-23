@@ -154,7 +154,7 @@ export default function SchoolWinning({ isHomePage = false }) {
                   <img
                     src="/achievements/TOI Winners.jpeg"
                     alt="School Accolades & Awards"
-                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+                    className="w-full h-full object-cover "
                     loading="lazy"
                   />
                 </div>
@@ -311,7 +311,7 @@ export default function SchoolWinning({ isHomePage = false }) {
                       <img
                         src={item.img}
                         alt={item.caption}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-full object-cover "
                       />
                     </div>
                     <p className="text-[10px] text-brand-muted font-inter font-medium leading-relaxed p-3 line-clamp-3">{item.caption}</p>

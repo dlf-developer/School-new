@@ -224,7 +224,7 @@ export default function Header() {
                 <img
                   src="/DJI_0044.JPG"
                   alt="DLF Public School Sahibabad Campus"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover/school-card:scale-105"
+                  className="w-full h-full object-cover "
                 />
                 <div className="absolute inset-0 bg-brand-greenDeep/10"></div>
               </div>
@@ -252,7 +252,7 @@ export default function Header() {
                 <img
                   src="/dlws.jpeg"
                   alt="DLF World School Greater Noida Campus"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover/school-card:scale-105"
+                  className="w-full h-full object-cover "
                 />
                 <div className="absolute inset-0 bg-brand-purpleDeep/10"></div>
               </div>
@@ -310,7 +310,7 @@ export default function Header() {
                     <img
                       src="/DJI_0044.JPG"
                       alt="DLF Public School Sahibabad Campus"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
+                      className="w-full h-full object-cover "
                     />
                     <div className="absolute inset-0 bg-brand-greenDeep/10"></div>
                     {schoolId === "dlf-sahibabad" && (
@@ -362,7 +362,7 @@ export default function Header() {
                     <img
                       src="/dlws.jpeg"
                       alt="DLF World School Greater Noida Campus"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
+                      className="w-full h-full object-cover "
                     />
                     <div className="absolute inset-0 bg-brand-purpleDeep/10"></div>
                     {schoolId === "dlf-greater-noida" && (
@@ -648,73 +648,349 @@ export default function Header() {
                 : "bg-brand-bg/90 backdrop-blur-md border-white/20 shadow-sm text-brand-charcoal"
           }`}
         >
-          {/* Brand Crest Logo & Text */}
-          <Link
-            to={schoolId ? `/school/${schoolId}` : "/"}
-            className="flex items-center gap-2.5 sm:gap-3 group"
-          >
-            {!schoolId ? (
-              <div className="flex items-center gap-2.5 sm:gap-3">
-                {/* DLF Crest logo */}
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-500 overflow-hidden shrink-0 border border-gray-100 p-0.5">
-                  <img
-                    src="/images/dlf-crest.png"
-                    alt="DLF Crest"
-                    className="w-full h-full object-contain p-0.5"
-                  />
+          {/* Brand Crest Logo & Text + Sub-site Endorser Lockup */}
+          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+            <Link
+              to={schoolId ? `/school/${schoolId}` : "/"}
+              className="flex items-center gap-2.5 sm:gap-3 group"
+            >
+              {!schoolId ? (
+                <div className="flex items-center gap-2.5 sm:gap-3">
+                  {/* DLF Crest logo */}
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-xl flex items-center justify-center shadow-md overflow-hidden shrink-0 border border-gray-100 p-0.5">
+                    <img
+                      src="/images/dlf-crest.png"
+                      alt="DLF Crest"
+                      className="w-full h-full object-contain p-0.5"
+                    />
+                  </div>
+                  {/* Master Logo Text */}
+                  <div className="h-6.5 sm:h-8 flex items-center justify-center">
+                    <img
+                      src="/name_in _the_picture.png"
+                      alt="Darbari Lal Foundation"
+                      className="h-full w-auto object-contain max-h-6.5 sm:max-h-8 rounded-lg"
+                    />
+                  </div>
                 </div>
-                {/* Master Logo Text */}
-                <div className="h-6.5 sm:h-8 flex items-center justify-center">
-                  <img
-                    src="/name_in _the_picture.png"
-                    alt="Darbari Lal Foundation"
-                    className="h-full w-auto object-contain max-h-6.5 sm:max-h-8 rounded-lg"
+              ) : (
+                <>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-xl flex items-center justify-center shadow-md overflow-hidden shrink-0 border border-gray-100">
+                    <img
+                      src="/images/dlf-crest.png"
+                      alt="DLF Crest"
+                      className="w-full h-full object-contain p-0.5"
+                    />
+                  </div>
+                  {schoolId === "dlf-sahibabad" ? (
+                    <div className="h-6 sm:h-[29px] flex items-center justify-center">
+                      <img
+                        src="/images/dlps-logo.png"
+                        alt="DLF Public School"
+                        className="h-full w-auto object-contain max-h-6 sm:max-h-[29px]"
+                      />
+                    </div>
+                  ) : schoolId === "dlf-greater-noida" ? (
+                    <div className="h-6.5 sm:h-8 flex items-center justify-center">
+                      <img
+                        src="/dlws-logo.png"
+                        alt="DLF World School"
+                        className="h-full w-auto object-contain max-h-6.5 sm:max-h-8"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex flex-col justify-center">
+                      <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.2em] leading-none text-brand-gold">
+                        DLF SCHOOLS
+                      </span>
+                      <h1
+                        className={`font-serif text-${theme.primary} text-sm sm:text-base md:text-lg font-black uppercase tracking-tight leading-tight mt-1`}
+                      >
+                        DARBARI LAL FOUNDATION
+                      </h1>
+                      <p className="text-[8px] sm:text-[8.5px] text-brand-muted font-inter uppercase tracking-widest font-semibold mt-0.5">
+                        Sahibabad &amp; Greater Noida
+                      </p>
+                    </div>
+                  )}
+                </>
+              )}
+            </Link>
+
+            {/* School Campus Switcher Button (DLPS / DLWS Theme Styled) with Centered Mega Menu on Hover */}
+            {schoolId && (
+              <div className="group/lockup py-1 hidden sm:block">
+                <Link
+                  to="/"
+                  title="Darbari Lal Foundation - Explore All Campuses & Master Site"
+                  className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all duration-200 cursor-pointer text-left shadow-xs hover:shadow-sm ${
+                    schoolId === "dlf-sahibabad"
+                      ? "bg-gradient-to-r from-emerald-50/90 via-white to-white border-brand-greenDeep/25 hover:border-brand-greenDeep/60"
+                      : "bg-gradient-to-r from-purple-50/90 via-white to-white border-brand-purpleDeep/25 hover:border-brand-purpleDeep/60"
+                  }`}
+                >
+                  <div
+                    className={`w-6 h-6 sm:w-6.5 sm:h-6.5 rounded-lg flex items-center justify-center overflow-hidden shrink-0 p-0.5 border ${
+                      schoolId === "dlf-sahibabad"
+                        ? "bg-emerald-50 border-brand-greenDeep/20"
+                        : "bg-purple-50 border-brand-purpleDeep/20"
+                    }`}
+                  >
+                    <img
+                      src="/images/dlf-crest.png"
+                      alt={schoolId === "dlf-sahibabad" ? "DLPS" : "DLWS"}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <span
+                    className={`text-[12.5px] sm:text-[13.5px] font-black tracking-wide ${
+                      schoolId === "dlf-sahibabad"
+                        ? "text-brand-greenDeep"
+                        : "text-brand-purpleDeep"
+                    }`}
+                  >
+                    {schoolId === "dlf-sahibabad" ? "DLPS" : "DLWS"}
+                  </span>
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 ${
+                      schoolId === "dlf-sahibabad"
+                        ? "text-brand-greenDeep/60"
+                        : "text-brand-purpleDeep/60"
+                    } group-hover/lockup:text-brand-gold group-hover/lockup:rotate-180 transition-transform duration-300 ml-0.5 shrink-0`}
                   />
+                </Link>
+
+                {/* ── SCHOOL SITE: centered full mega menu on hover on the lockup button ── */}
+                <div
+                  className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover/lockup:opacity-100 group-hover/lockup:visible transition-all duration-300 text-left pointer-events-none group-hover/lockup:pointer-events-auto before:content-[''] before:absolute before:-top-4 before:left-0 before:w-full before:h-6 before:bg-transparent"
+                  style={{ width: "min(1008px, calc(100vw - 48px))", zIndex: 1000 }}
+                >
+                  <div className="translate-y-2 group-hover/lockup:translate-y-0 transition-transform duration-300 relative">
+                    <div className="bg-white rounded-2xl shadow-2xl border border-gray-150 overflow-hidden flex">
+                      {/* ── PART 1: Switch Campus (Left Panel) ── */}
+                      <div className="w-[33.33%] p-5 bg-gray-50 border-r border-gray-100 flex flex-col gap-3">
+                        <div className="flex items-center justify-between mb-1 pb-1 border-b border-gray-200/50">
+                          <Link
+                            to="/"
+                            className="inline-flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-widest text-brand-greenDeep hover:text-brand-gold transition-all group/home-link cursor-pointer"
+                            title="Redirect to DLF Master Website"
+                          >
+                            <Home className="w-[17px] h-[17px] text-brand-gold group-hover/home-link:scale-110 transition-transform" />
+                            <span className="underline decoration-brand-gold underline-offset-2">
+                              HOME
+                            </span>
+                            <ArrowRight className="w-4 h-4 text-brand-gold group-hover/home-link:translate-x-1 transition-transform" />
+                          </Link>
+                        </div>
+                        {/* DLF Public School card */}
+                        <Link
+                          to="/school/dlf-sahibabad"
+                          className={`group/card flex flex-col rounded-xl border bg-white hover:shadow-md transition-all duration-300 overflow-hidden relative ${
+                            schoolId === "dlf-sahibabad"
+                              ? "border-brand-greenDeep/50 ring-1 ring-brand-greenDeep/10"
+                              : "border-gray-100 hover:border-brand-greenDeep/30"
+                          }`}
+                        >
+                          <div className="h-20 w-full overflow-hidden relative bg-brand-greenDeep">
+                            <img
+                              src="/images/home-hero.jpg"
+                              alt="DLF Public School Sahibabad Campus"
+                              className="w-full h-full object-cover "
+                            />
+                            <div className="absolute inset-0 bg-brand-greenDeep/10"></div>
+                            {schoolId === "dlf-sahibabad" && (
+                              <div className="absolute top-2 right-2 bg-brand-greenDeep text-white text-[7px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full shadow-sm">
+                                Currently Browsing
+                              </div>
+                            )}
+                          </div>
+                          <div className="p-3.5 space-y-1">
+                            <div className="flex items-center gap-2">
+                              <span className="w-2 h-2 rounded-full bg-brand-greenVibrant shrink-0" />
+                              <span className="text-[11px] font-extrabold text-brand-greenDeep uppercase tracking-wide leading-tight">
+                                DLF Public School
+                              </span>
+                            </div>
+                            <p className="text-[9.5px] text-gray-500 pl-4">
+                              Sahibabad, Ghaziabad
+                            </p>
+                          </div>
+                        </Link>
+                        {/* DLF World School card */}
+                        <Link
+                          to="/school/dlf-greater-noida"
+                          className={`group/card flex flex-col rounded-xl border bg-white hover:shadow-md transition-all duration-300 overflow-hidden relative ${
+                            schoolId === "dlf-greater-noida"
+                              ? "border-brand-purpleDeep/50 ring-1 ring-brand-purpleDeep/10"
+                              : "border-gray-100 hover:border-brand-purpleDeep/30"
+                          }`}
+                        >
+                          <div className="h-20 w-full overflow-hidden relative bg-brand-purpleDeep">
+                            <img
+                              src="/dlws.jpeg"
+                              alt="DLF World School Greater Noida Campus"
+                              className="w-full h-full object-cover "
+                            />
+                            <div className="absolute inset-0 bg-brand-purpleDeep/10"></div>
+                            {schoolId === "dlf-greater-noida" && (
+                              <div className="absolute top-2 right-2 bg-brand-purpleDeep text-white text-[7px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full shadow-sm">
+                                Currently Browsing
+                              </div>
+                            )}
+                          </div>
+                          <div className="p-3.5 space-y-1">
+                            <div className="flex items-center gap-2">
+                              <span className="w-2 h-2 rounded-full bg-brand-purpleVibrant shrink-0" />
+                              <span className="text-[11px] font-extrabold text-brand-purpleDeep uppercase tracking-wide leading-tight">
+                                DLF World School
+                              </span>
+                            </div>
+                            <p className="text-[9.5px] text-gray-500 pl-4">
+                              Greater Noida
+                            </p>
+                          </div>
+                        </Link>
+                      </div>
+                      {/* ── PART 2: Combined Master Links (Right Panel) ── */}
+                      <div
+                        className={`w-[66.67%] p-6 ${!schoolId ? "bg-brand-greenDeep" : `bg-${theme.primary}`} text-white flex flex-col justify-between`}
+                      >
+                        <div>
+                          <div className="border-b border-white/15 pb-2.5 mb-4 flex items-center justify-between">
+                            <Link
+                              to="/"
+                              className="text-xs sm:text-sm font-black uppercase tracking-widest text-brand-gold font-sans hover:text-white transition-colors cursor-pointer"
+                            >
+                              DARBARI LAL FOUNDATION
+                            </Link>
+                            <Link
+                              to="/"
+                              className="text-[10px] font-bold uppercase tracking-wider text-white/80 hover:text-brand-gold flex items-center gap-1 transition-colors"
+                            >
+                              <span>Home</span>
+                              <ArrowRight className="w-3 h-3" />
+                            </Link>
+                          </div>
+
+                          <div className="grid grid-cols-3 gap-5">
+                            {/* Column 1: About Us (Non-clickable Header) */}
+                            <div className="space-y-2">
+                              <span className="text-[10px] font-extrabold uppercase tracking-wider text-brand-gold/90 block border-b border-white/10 pb-1 cursor-default select-none">
+                                About Us
+                              </span>
+                              <ul className="space-y-1 text-[11px] text-white/85">
+                                {[
+                                  {
+                                    label: "Thinking School",
+                                    to: "/thinking-school",
+                                  },
+                                  {
+                                    label: "Vision & Mission",
+                                    to: "/vision-mission",
+                                  },
+                                  {
+                                    label: "Our Management",
+                                    to: "/management",
+                                  },
+                                  {
+                                    label: "Parents as Partners",
+                                    to: "/parent-partners",
+                                  },
+                                  {
+                                    label: "School Awards",
+                                    to: "/awards",
+                                  },
+                                ].map((link, idx) => (
+                                  <li key={idx}>
+                                    <Link
+                                      to={link.to}
+                                      className="hover:text-brand-gold transition-colors block py-0.5"
+                                    >
+                                      {link.label}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            {/* Column 2: Our Pedagogy (Header + 4 Stage Children) */}
+                            <div className="space-y-2">
+                              <Link
+                                to="/pedagogy"
+                                className="text-[10px] font-extrabold uppercase tracking-wider text-brand-gold/90 hover:text-white transition-colors block border-b border-white/10 pb-1"
+                              >
+                                Our Pedagogy &rarr;
+                              </Link>
+                              <ul className="space-y-1 text-[11px] text-white/85">
+                                {[
+                                  {
+                                    label: "Early Years",
+                                    to: "/pedagogy/early-years",
+                                  },
+                                  {
+                                    label: "Primary Years",
+                                    to: "/pedagogy/primary-years",
+                                  },
+                                  {
+                                    label: "Middle Years",
+                                    to: "/pedagogy/middle-years",
+                                  },
+                                  {
+                                    label: "Senior Years",
+                                    to: "/pedagogy/senior-years",
+                                  },
+                                ].map((link, idx) => (
+                                  <li key={idx}>
+                                    <Link
+                                      to={link.to}
+                                      className="hover:text-brand-gold transition-colors block py-0.5"
+                                    >
+                                      {link.label}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            {/* Column 3: Explore */}
+                            <div className="space-y-2">
+                              <span className="text-[10px] font-extrabold uppercase tracking-wider text-brand-gold/90 block border-b border-white/10 pb-1 cursor-default select-none">
+                                Explore
+                              </span>
+                              <ul className="space-y-1 text-[11px] text-white/85">
+                                {[
+                                  {
+                                    label: "What Sets Us Apart",
+                                    to: "/what-sets-us-apart",
+                                  },
+                                  {
+                                    label: "Contact Us",
+                                    to: schoolId
+                                      ? `/school/${schoolId}/contact`
+                                      : "/contact",
+                                  },
+                                ].map((link, idx) => (
+                                  <li key={idx}>
+                                    <Link
+                                      to={link.to}
+                                      className="hover:text-brand-gold transition-colors block py-0.5"
+                                    >
+                                      {link.label}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {/* end right panel */}
+                    </div>
+                  </div>
                 </div>
               </div>
-            ) : (
-              <>
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-500 overflow-hidden shrink-0 border border-gray-100">
-                  <img
-                    src="/images/dlf-crest.png"
-                    alt="DLF Crest"
-                    className="w-full h-full object-contain p-0.5"
-                  />
-                </div>
-                {schoolId === "dlf-sahibabad" ? (
-                  <div className="h-6.5 sm:h-8 flex items-center justify-center">
-                    <img
-                      src="/images/dlps-logo.png"
-                      alt="DLF Public School"
-                      className="h-full w-auto object-contain max-h-6.5 sm:max-h-8"
-                    />
-                  </div>
-                ) : schoolId === "dlf-greater-noida" ? (
-                  <div className="h-6.5 sm:h-8 flex items-center justify-center">
-                    <img
-                      src="/dlws-logo.png"
-                      alt="DLF World School"
-                      className="h-full w-auto object-contain max-h-6.5 sm:max-h-8"
-                    />
-                  </div>
-                ) : (
-                  <div className="flex flex-col justify-center">
-                    <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.2em] leading-none text-brand-gold">
-                      DLF SCHOOLS
-                    </span>
-                    <h1
-                      className={`font-serif text-${theme.primary} text-sm sm:text-base md:text-lg font-black uppercase tracking-tight leading-tight mt-1`}
-                    >
-                      DARBARI LAL FOUNDATION
-                    </h1>
-                    <p className="text-[8px] sm:text-[8.5px] text-brand-muted font-inter uppercase tracking-widest font-semibold mt-0.5">
-                      Sahibabad &amp; Greater Noida
-                    </p>
-                  </div>
-                )}
-              </>
             )}
-          </Link>
+          </div>
 
           {/* Desktop Nav Menu */}
           <nav
@@ -821,262 +1097,6 @@ export default function Header() {
 
             {schoolId ? (
               <>
-                {/* 0. School Mega Menu Trigger */}
-                <div className="group py-1 flex items-center justify-center">
-                  <Link
-                    to={`/school/${schoolId}`}
-                    className={`flex items-center gap-1 text-${theme.primary} font-serif font-black text-sm sm:text-base hover:opacity-85 transition-opacity cursor-pointer`}
-                  >
-                    <span>DLF</span>
-                    <ChevronDown
-                      className={`w-4 h-4 text-${theme.primary} transition-transform duration-300 group-hover:rotate-180`}
-                    />
-                  </Link>
-
-                  {/* ── SCHOOL SITE: full mega menu on hover ── */}
-                  <div
-                    className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 text-left pointer-events-none group-hover:pointer-events-auto before:content-[''] before:absolute before:-top-4 before:left-0 before:w-full before:h-6 before:bg-transparent"
-                    style={{ width: "1008px", zIndex: 200 }}
-                  >
-                    <div className="translate-y-2 group-hover:translate-y-0 transition-transform duration-300 relative">
-                      <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex">
-                        {/* ── PART 1: Switch Campus (Left Panel) ── */}
-                        <div className="w-[33.33%] p-5 bg-gray-50 border-r border-gray-100 flex flex-col gap-3">
-                          <div className="flex items-center justify-between mb-1 pb-1 border-b border-gray-200/50">
-                            <Link
-                              to="/"
-                              className="inline-flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-widest text-brand-greenDeep hover:text-brand-gold transition-all group/home-link cursor-pointer"
-                              title="Redirect to DLF Master Website"
-                            >
-                              <Home className="w-[17px] h-[17px] text-brand-gold group-hover/home-link:scale-110 transition-transform" />
-                              <span className="underline decoration-brand-gold underline-offset-2">
-                                HOME
-                              </span>
-                              <ArrowRight className="w-4 h-4 text-brand-gold group-hover/home-link:translate-x-1 transition-transform" />
-                            </Link>
-                          </div>
-                          {/* DLF Public School card */}
-                          <Link
-                            to="/school/dlf-sahibabad"
-                            className={`group/card flex flex-col rounded-xl border bg-white hover:shadow-md transition-all duration-300 overflow-hidden relative ${
-                              schoolId === "dlf-sahibabad"
-                                ? "border-brand-greenDeep/50 ring-1 ring-brand-greenDeep/10"
-                                : "border-gray-100 hover:border-brand-greenDeep/30"
-                            }`}
-                          >
-                            <div className="h-20 w-full overflow-hidden relative bg-brand-greenDeep">
-                              <img
-                                src="/images/home-hero.jpg"
-                                alt="DLF Public School Sahibabad Campus"
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
-                              />
-                              <div className="absolute inset-0 bg-brand-greenDeep/10"></div>
-                              {schoolId ===
-                                "dlf-sahibabad" && (
-                                <div className="absolute top-2 right-2 bg-brand-greenDeep text-white text-[7px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full shadow-sm">
-                                  Currently Browsing
-                                </div>
-                              )}
-                            </div>
-                            <div className="p-3.5 space-y-1">
-                              <div className="flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-brand-greenVibrant shrink-0" />
-                                <span className="text-[11px] font-extrabold text-brand-greenDeep uppercase tracking-wide leading-tight">
-                                  DLF Public School
-                                </span>
-                              </div>
-                              <p className="text-[9.5px] text-gray-500 pl-4">
-                                Sahibabad, Ghaziabad
-                              </p>
-                            </div>
-                          </Link>
-                          {/* DLF World School card */}
-                          <Link
-                            to="/school/dlf-greater-noida"
-                            className={`group/card flex flex-col rounded-xl border bg-white hover:shadow-md transition-all duration-300 overflow-hidden relative ${
-                              schoolId ===
-                              "dlf-greater-noida"
-                                ? "border-brand-purpleDeep/50 ring-1 ring-brand-purpleDeep/10"
-                                : "border-gray-100 hover:border-brand-purpleDeep/30"
-                            }`}
-                          >
-                            <div className="h-20 w-full overflow-hidden relative bg-brand-purpleDeep">
-                              <img
-                                src="/dlws.jpeg"
-                                alt="DLF World School Greater Noida Campus"
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-105"
-                              />
-                              <div className="absolute inset-0 bg-brand-purpleDeep/10"></div>
-                              {schoolId ===
-                                "dlf-greater-noida" && (
-                                <div className="absolute top-2 right-2 bg-brand-purpleDeep text-white text-[7px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full shadow-sm">
-                                  Currently Browsing
-                                </div>
-                              )}
-                            </div>
-                            <div className="p-3.5 space-y-1">
-                              <div className="flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-brand-purpleVibrant shrink-0" />
-                                <span className="text-[11px] font-extrabold text-brand-purpleDeep uppercase tracking-wide leading-tight">
-                                  DLF World School
-                                </span>
-                              </div>
-                              <p className="text-[9.5px] text-gray-500 pl-4">
-                                Greater Noida
-                              </p>
-                            </div>
-                          </Link>
-                        </div>
-                        {/* ── PART 2: Combined Master Links (Right Panel) ── */}
-                        <div
-                          className={`w-[66.67%] p-6 ${!schoolId ? "bg-brand-greenDeep" : `bg-${theme.primary}`} text-white flex flex-col justify-between`}
-                        >
-                          <div>
-                            <div className="border-b border-white/15 pb-2.5 mb-4 flex items-center justify-between">
-                              <Link
-                                to="/"
-                                className="text-xs sm:text-sm font-black uppercase tracking-widest text-brand-gold font-sans hover:text-white transition-colors cursor-pointer"
-                              >
-                                DARBARI LAL FOUNDATION
-                              </Link>
-                              <Link
-                                to="/"
-                                className="text-[10px] font-bold uppercase tracking-wider text-white/80 hover:text-brand-gold flex items-center gap-1 transition-colors"
-                              >
-                                <span>Home</span>
-                                <ArrowRight className="w-3 h-3" />
-                              </Link>
-                            </div>
-
-                            <div className="grid grid-cols-3 gap-5">
-                              {/* Column 1: About Us (Non-clickable Header) */}
-                              <div className="space-y-2">
-                                <span className="text-[10px] font-extrabold uppercase tracking-wider text-brand-gold/90 block border-b border-white/10 pb-1 cursor-default select-none">
-                                  About Us
-                                </span>
-                                <ul className="space-y-1 text-[11px] text-white/85">
-                                  {[
-                                    {
-                                      label:
-                                        "Thinking School",
-                                      to: "/thinking-school",
-                                    },
-                                    {
-                                      label:
-                                        "Vision & Mission",
-                                      to: "/vision-mission",
-                                    },
-                                    {
-                                      label:
-                                        "Our Management",
-                                      to: "/management",
-                                    },
-                                    {
-                                      label:
-                                        "Parents as Partners",
-                                      to: "/parent-partners",
-                                    },
-                                    {
-                                      label:
-                                        "School Awards",
-                                      to: "/awards",
-                                    },
-                                  ].map((link, idx) => (
-                                    <li key={idx}>
-                                      <Link
-                                        to={link.to}
-                                        className="hover:text-brand-gold transition-colors block py-0.5"
-                                      >
-                                        {link.label}
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-
-                              {/* Column 2: Our Pedagogy (Header + 4 Stage Children) */}
-                              <div className="space-y-2">
-                                <Link
-                                  to="/pedagogy"
-                                  className="text-[10px] font-extrabold uppercase tracking-wider text-brand-gold/90 hover:text-white transition-colors block border-b border-white/10 pb-1"
-                                >
-                                  Our Pedagogy &rarr;
-                                </Link>
-                                <ul className="space-y-1 text-[11px] text-white/85">
-                                  {[
-                                    {
-                                      label: "Early Years",
-                                      to: "/pedagogy/early-years",
-                                    },
-                                    {
-                                      label:
-                                        "Primary Years",
-                                      to: "/pedagogy/primary-years",
-                                    },
-                                    {
-                                      label: "Middle Years",
-                                      to: "/pedagogy/middle-years",
-                                    },
-                                    {
-                                      label: "Senior Years",
-                                      to: "/pedagogy/senior-years",
-                                    },
-                                  ].map((link, idx) => (
-                                    <li key={idx}>
-                                      <Link
-                                        to={link.to}
-                                        className="hover:text-brand-gold transition-colors block py-0.5"
-                                      >
-                                        {link.label}
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-
-                              {/* Column 3: Explore */}
-                              <div className="space-y-2">
-                                <span className="text-[10px] font-extrabold uppercase tracking-wider text-brand-gold/90 block border-b border-white/10 pb-1 cursor-default select-none">
-                                  Explore
-                                </span>
-                                <ul className="space-y-1 text-[11px] text-white/85">
-                                  {[
-                                    {
-                                      label:
-                                        "What Sets Us Apart",
-                                      to: "/what-sets-us-apart",
-                                    },
-                                    {
-                                      label: "Contact Us",
-                                      to: schoolId
-                                        ? `/school/${schoolId}/contact`
-                                        : "/contact",
-                                    },
-                                  ].map((link, idx) => (
-                                    <li key={idx}>
-                                      <Link
-                                        to={link.to}
-                                        className="hover:text-brand-gold transition-colors block py-0.5"
-                                      >
-                                        {link.label}
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        {/* end right panel */}
-                      </div>
-                      {/* end bg-white flex */}
-                    </div>
-                    {/* end animation wrapper */}
-                  </div>
-                  {/* end fixed outer */}
-                </div>
-                {/* end breadcrumb trigger */}
-
                 {/* 1. Our Campus */}
                 <div className="relative py-2 flex flex-col items-center justify-center">
                   <Link
@@ -1095,7 +1115,7 @@ export default function Header() {
                 {/* 2. Leadership (No dropdown) */}
                 <div className="relative py-2 flex flex-col items-center justify-center">
                   <Link
-                    to={`/school/${schoolId}/principal-desk`}
+                    to={`/school/${schoolId}/leadership`}
                     className={`hover:text-${theme.vibrant} transition-colors duration-300 font-semibold ${isLeadershipActive ? `text-${theme.vibrant} font-bold` : ""}`}
                   >
                     Leadership
@@ -1642,7 +1662,7 @@ export default function Header() {
                     Our Campus
                   </Link>
                   <Link
-                    to={`/school/${schoolId}/principal-desk`}
+                    to={`/school/${schoolId}/leadership`}
                     onClick={() =>
                       setIsMobileMenuOpen(false)
                     }

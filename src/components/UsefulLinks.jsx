@@ -365,7 +365,7 @@ export default function UsefulLinks() {
                     src={link.image}
                     alt=""
                     aria-hidden="true"
-                    className="w-full h-full object-cover object-top opacity-[0.08] group-hover:opacity-[0.20] group-hover:scale-105 transition-all duration-500 blur-[0.3px]"
+                    className="w-full h-full object-cover object-top opacity-[0.08] group-hover:opacity-[0.20]  transition-all duration-500 blur-[0.3px]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-white via-white/85 to-white/60" />
                 </div>

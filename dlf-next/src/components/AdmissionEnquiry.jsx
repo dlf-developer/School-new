@@ -71,7 +71,7 @@ export default function AdmissionEnquiry() {
                     src={school.image}
                     alt={school.name}
                     loading="lazy"
-                    imgClassName="object-cover group-hover:scale-105 transition-transform duration-700"
+                    imgClassName="object-cover "
                     style={{ objectPosition: 'center 25%' }}
                   />
                 </div>

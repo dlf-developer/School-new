@@ -128,3 +128,9 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
   border-radius: 28px;
 }
+
+/* ── Disable zoom-in on hover from every image across the entire web-app ── */
+img,
+picture img {
+  transform: none !important;
+}

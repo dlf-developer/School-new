@@ -105,7 +105,7 @@ export default function ThinkingSchool() {
                       src={pillar.image} 
                       alt={pillar.imageAlt || pillar.title} 
                       className="absolute inset-0"
-                      imgClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                      imgClassName="w-full h-full object-cover " 
                       style={{ objectPosition: pillar.objectPosition || 'center 25%' }}
                       loading="lazy" 
                     />

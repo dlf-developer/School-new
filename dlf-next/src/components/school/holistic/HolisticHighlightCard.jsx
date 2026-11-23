@@ -37,7 +37,7 @@ export default function HolisticHighlightCard({
         <img
           src={cardPhoto.src}
           alt={title}
-          className={`w-full h-full object-cover ${getObjectPosition(cardPhoto.src)} group-hover/img:scale-105 transition-transform duration-500`}
+          className={`w-full h-full object-cover ${getObjectPosition(cardPhoto.src)} `}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-80 group-hover/img:opacity-95 transition-opacity" />
         <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-white">

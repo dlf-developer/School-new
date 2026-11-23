@@ -77,12 +77,17 @@ function MasterHome() {
       <Hero />
       <Ticker />
 
-      {/* Stats Counters – First section after Hero */}
+      {/* 2nd Section – Our Schools (Right below Video) */}
+      <PortalHome />
+
+      <SectionSeparator />
+
+      {/* Stats Counters */}
       <Stats isMaster={true} />
 
       <SectionSeparator />
 
-      {/* 2nd Section – School Awards */}
+      {/* School Awards */}
       <SchoolWinning isHomePage={true} />
 
       <SectionSeparator />
@@ -92,27 +97,22 @@ function MasterHome() {
 
       <SectionSeparator />
 
-      {/* 4th Section – Our Pedagogy */}
+      {/* Our Pedagogy */}
       <MasterPedagogy />
 
       <SectionSeparator />
 
-      {/* 5th Section – Our Schools */}
-      <PortalHome />
-
-      <SectionSeparator />
-
-      {/* 6th Section – What sets us apart (Preview mode) */}
+      {/* What sets us apart (Preview mode) */}
       <WhatSetsUsApart isPreview={true} />
 
       <SectionSeparator />
 
-      {/* 7th Section – Admissions */}
+      {/* Admissions */}
       <Admissions />
 
       <SectionSeparator />
 
-      {/* 8th Section – Contact Us */}
+      {/* Contact Us */}
       <ContactHome />
     </>
   )

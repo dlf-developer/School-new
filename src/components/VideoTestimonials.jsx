@@ -187,7 +187,7 @@ export default function VideoTestimonials({ theme: propTheme, schoolName: propSc
                   <img
                     src={thumbnailSrc}
                     alt={item.title}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 opacity-85"
+                    className="w-full h-full object-cover object-center  opacity-85"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none'
                     }}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ExternalLink } from 'lucide-react'
+import { ExternalLink, ShieldCheck, ArrowRight } from 'lucide-react'
 
 export default function AdmissionsEnquiryForm({ theme, currentSchool }) {
   const isDLWS = currentSchool?.id === 'dlf-greater-noida'
@@ -27,12 +27,32 @@ export default function AdmissionsEnquiryForm({ theme, currentSchool }) {
               href={enquiryUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-brand-charcoal text-xs font-bold transition-all shrink-0 border border-gray-200"
+              className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-${theme.primary} hover:opacity-90 text-white text-xs font-bold transition-all shrink-0 shadow-sm cursor-pointer`}
             >
-              <ExternalLink className="w-3.5 h-3.5 text-brand-gold" />
+              <ExternalLink className="w-3.5 h-3.5" />
               <span>Open in Full Screen</span>
             </a>
           </div>
+        </div>
+
+        {/* Mobile Optimised Notice (for iOS and Touch devices) */}
+        <div className="sm:hidden bg-amber-50/80 border border-amber-200/80 rounded-2xl p-4 flex flex-col gap-3">
+          <div className="flex items-start gap-2.5">
+            <ExternalLink className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+            <p className="text-xs text-amber-900 leading-relaxed font-medium">
+              Using a mobile device? For the smoothest iOS experience, you can open the official portal directly:
+            </p>
+          </div>
+          <a
+            href={enquiryUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`w-full py-3 px-4 rounded-xl bg-${theme.primary} text-white font-bold text-xs uppercase tracking-wider text-center flex items-center justify-center gap-2 shadow-md active:scale-[0.98] transition-transform`}
+            style={{ touchAction: 'manipulation', minHeight: '48px' }}
+          >
+            <span>Launch Mobile Form Fullscreen</span>
+            <ArrowRight className="w-4 h-4" />
+          </a>
         </div>
 
         {/* 4-Step Online Registration Steps */}
@@ -58,13 +78,18 @@ export default function AdmissionsEnquiryForm({ theme, currentSchool }) {
           </div>
         </div>
 
-        {/* Embedded iFrame Container */}
-        <div className="relative w-full rounded-2xl overflow-hidden border border-gray-200 bg-white min-h-[850px] sm:min-h-[1050px] shadow-inner">
+        {/* Embedded iFrame Container with iOS Touch scrolling enhancements */}
+        <div 
+          className="relative w-full rounded-2xl overflow-hidden border border-gray-200 bg-white min-h-[750px] sm:min-h-[1050px] shadow-inner"
+          style={{ WebkitOverflowScrolling: 'touch', overflowY: 'auto', touchAction: 'pan-y' }}
+        >
           <iframe
             src={enquiryUrl}
             title={`${currentSchool?.name || 'DLF School'} Dynamic Admission Enquiry Form`}
-            className="w-full min-h-[850px] sm:min-h-[1050px] border-0"
+            className="w-full min-h-[750px] sm:min-h-[1050px] border-0"
             loading="lazy"
+            scrolling="yes"
+            tabIndex={0}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           />
         </div>
@@ -72,15 +97,17 @@ export default function AdmissionsEnquiryForm({ theme, currentSchool }) {
         {/* Footer Info */}
         <div className="flex flex-wrap items-center justify-between gap-3 text-[11px] text-brand-muted font-inter pt-2 border-t border-gray-100">
           <span className="flex items-center gap-1.5 text-emerald-700 font-semibold">
-            🔒 256-bit SSL Encrypted &bull; Direct submission to {currentSchool?.name || 'DLF School'} Admissions Office
+            <ShieldCheck className="w-4 h-4 text-emerald-600 inline shrink-0" />
+            256-bit SSL Encrypted &bull; Direct submission to {currentSchool?.name || 'DLF School'} Admissions Office
           </span>
           <a 
             href={enquiryUrl}
             target="_blank" 
             rel="noopener noreferrer"
-            className={`text-${theme.primary} hover:underline font-bold`}
+            className={`text-${theme.primary} hover:underline font-bold inline-flex items-center gap-1`}
           >
-            Form not loading? Click here to open directly &rarr;
+            <span>Form not loading on your browser? Click here to open directly</span>
+            <ArrowRight className="w-3 h-3" />
           </a>
         </div>
       </div>

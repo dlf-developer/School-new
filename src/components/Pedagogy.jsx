@@ -543,7 +543,7 @@ export default function Pedagogy({ isPreview = false }) {
                   <video
                     src={activeStage.media.videos[0].src}
                     preload="metadata"
-                    className="w-full h-full object-cover pointer-events-none transition-transform duration-700 group-hover/hero:scale-[1.04]"
+                    className="w-full h-full object-cover pointer-events-none transition-transform duration-700 "
                   />
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-all duration-300 group-hover/hero:bg-black/55">
                     <div className="w-14 h-14 rounded-full bg-white/90 text-brand-greenDeep flex items-center justify-center shadow-xl transform transition-transform duration-300 group-hover/hero:scale-110">
@@ -612,7 +612,7 @@ export default function Pedagogy({ isPreview = false }) {
                             <ImageWithLoader 
                               src={displayImg} 
                               alt={approach.title} 
-                              imgClassName="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105" 
+                              imgClassName="w-full h-full object-cover " 
                               loading="lazy" 
                             />
                             <div className="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">

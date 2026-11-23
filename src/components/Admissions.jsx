@@ -73,7 +73,7 @@ export default function Admissions() {
             <img
               src="/baby_girl.jpeg"
               alt="DLF Student"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              className="w-full h-full object-cover "
               style={{ objectPosition: 'center 20%' }}
             />
             

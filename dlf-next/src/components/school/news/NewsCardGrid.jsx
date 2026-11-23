@@ -61,7 +61,7 @@ export default function NewsCardGrid({
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover "
                 />
                 <div className="absolute top-3 left-3">
                   <span className="px-2.5 py-1 rounded-full bg-brand-gold text-brand-charcoal text-[9px] font-extrabold uppercase tracking-widest shadow-md">

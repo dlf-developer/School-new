@@ -26,7 +26,7 @@ export default function HolisticHeroBanner({
       <img
         src={currentThumbnail}
         alt={currentTitle}
-        className={`w-full h-full object-cover ${getObjectPosition(currentThumbnail)} group-hover:scale-105 transition-transform duration-700 ease-out`}
+        className={`w-full h-full object-cover ${getObjectPosition(currentThumbnail)} `}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"></div>
       <div className="absolute bottom-5 left-6 right-6 text-white flex items-center justify-between gap-4">

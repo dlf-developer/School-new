@@ -64,7 +64,7 @@ export default function ImageLibraryModal({ isOpen, onClose, onSelect }) {
                   className="group relative bg-[#07070c] rounded-xl border border-gray-800 overflow-hidden hover:border-brand-gold hover:shadow-[0_0_15px_rgba(197,155,39,0.15)] transition-all text-left flex flex-col"
                 >
                   <div className="aspect-square bg-gray-900/50 p-2 flex items-center justify-center">
-                    <img src={img.url} alt={img.name} className="max-w-full max-h-full object-contain rounded-lg transition-transform group-hover:scale-105" />
+                    <img src={img.url} alt={img.name} className="max-w-full max-h-full object-contain rounded-lg " />
                   </div>
                   <div className="p-3 border-t border-gray-800">
                     <p className="text-[11px] text-gray-300 font-medium truncate" title={img.name}>{img.name}</p>

@@ -11,7 +11,7 @@ const TimelineImage = ({ imageSrc, year }) => {
         <ImageWithLoader 
           src={imageSrc} 
           alt={`DLF Accolades ${year}`} 
-          imgClassName="w-full h-full object-cover transition-transform duration-750 group-hover:scale-105" 
+          imgClassName="w-full h-full object-cover " 
           loading="lazy" 
         />
       </div>

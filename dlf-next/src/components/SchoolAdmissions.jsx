@@ -62,10 +62,11 @@ export default function SchoolAdmissions() {
               <button
                 key={tab.id}
                 onClick={() => setTab(tab.id)}
-                className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shrink-0 border ${
+                style={{ touchAction: 'manipulation' }}
+                className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shrink-0 border min-h-[44px] ${
                   isActive
                     ? `bg-${theme.primary} text-white border-${theme.primary} shadow-md`
-                    : 'bg-white text-brand-charcoal border-gray-200 hover:bg-gray-50'
+                    : 'bg-white text-brand-charcoal border-gray-200 hover:bg-gray-50 active:bg-gray-100'
                 }`}
               >
                 <TabIcon className="w-4 h-4 shrink-0" />
