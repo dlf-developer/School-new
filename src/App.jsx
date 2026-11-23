@@ -63,9 +63,17 @@ function SectionSeparator() {
 }
 
 // Master Home page sections aggregator matching exact section order from design spec:
+// 1st Section – Video (Hero)
+// 2nd Section – School Awards
+// 3rd Section – Our Pedagogy
+// 4th Section – Our Schools
+// 5th Section – What Sets Us Apart
+// 6th Section – Admissions 
+// 7th Section – Contact Us
 function MasterHome() {
   return (
     <>
+      {/* 1st Section – Video Hero (no glass, full-bleed) */}
       <Hero />
       <Ticker />
 
@@ -122,7 +130,6 @@ function Home() {
       <VideoTestimonials />
       <Curriculum isHomePage={true} />
       <Holistic />
-      <Testimonials />
       <VirtualTour />
       <Admissions />
     </>
