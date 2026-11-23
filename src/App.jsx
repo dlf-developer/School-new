@@ -19,8 +19,10 @@ import OurCampus from './components/OurCampus'
 import ParentPartners from './components/ParentPartners'
 import ScrollToTop from './components/ScrollToTop'
 import InteractiveBackground from './components/InteractiveBackground'
+import SubtleGradientBackground from './components/SubtleGradientBackground'
 import PortalHome from './components/PortalHome'
 import Pedagogy from './components/Pedagogy'
+import MasterPedagogy from './components/MasterPedagogy'
 import WhatSetsUsApart from './components/WhatSetsUsApart'
 import Management from './components/Management'
 import Awards from './components/Awards'
@@ -38,7 +40,16 @@ import SchoolAdmissions from './components/SchoolAdmissions'
 import UsefulLinks from './components/UsefulLinks'
 import ContactHome from './components/ContactHome'
 import AdmissionEnquiry from './components/AdmissionEnquiry'
+
 import CbseResults from './components/CbseResults'
+import SchoolAcademicResults from './components/SchoolAcademicResults'
+import Alumni from './components/Alumni'
+import SchoolNews from './components/SchoolNews'
+import MandatoryDisclosures from './components/MandatoryDisclosures'
+import VideoTestimonials from './components/VideoTestimonials'
+import SchoolVirtualTour from './components/SchoolVirtualTour'
+import SchoolBlogListing from './components/school/blogs/SchoolBlogListing'
+import SchoolBlogDetail from './components/school/blogs/SchoolBlogDetail'
 
 // Premium Section Separator Component
 function SectionSeparator() {
@@ -58,28 +69,42 @@ function MasterHome() {
       <Hero />
       <Ticker />
 
-      <SectionSeparator />
-
-      <SchoolWinning isHomePage={true} />
-
-      <SectionSeparator />
-
-      <Curriculum />
-
-      <SectionSeparator />
-
+      {/* 2nd Section – Our Schools (Right below Video) */}
       <PortalHome />
 
       <SectionSeparator />
 
+      {/* Stats Counters */}
+      <Stats isMaster={true} />
+
+      <SectionSeparator />
+
+      {/* School Awards */}
+      <SchoolWinning isHomePage={true} />
+
+      <SectionSeparator />
+
+      {/* School Video Testimonials */}
+      <VideoTestimonials schoolName="DLF Schools" />
+
+      <SectionSeparator />
+
+      {/* Our Pedagogy */}
+      <MasterPedagogy />
+
+      <SectionSeparator />
+
+      {/* What sets us apart (Preview mode) */}
       <WhatSetsUsApart isPreview={true} />
 
       <SectionSeparator />
 
+      {/* Admissions */}
       <Admissions />
 
       <SectionSeparator />
 
+      {/* Contact Us */}
       <ContactHome />
     </>
   )
@@ -94,8 +119,8 @@ function Home() {
       <Vision />
       <Stats />
       <CbseResults />
-      <Curriculum />
-      <Pillars />
+      <VideoTestimonials />
+      <Curriculum isHomePage={true} />
       <Holistic />
       <Testimonials />
       <VirtualTour />
@@ -160,7 +185,8 @@ export default function App() {
   return (
     <>
       {/* Interactive Canvas Background Layer */}
-      <InteractiveBackground />
+      {/* <InteractiveBackground /> */}
+      <SubtleGradientBackground fixed={true} />
 
       {/* Glowing Top Progress Loader */}
       {progress > 0 && (
@@ -176,7 +202,7 @@ export default function App() {
         ></div>
       )}
       
-      <div className="isolate">
+      <div className="isolate relative z-10">
         <ScrollToTop displayLocation={displayLocation} />
         {!isAdminRoute && <Header />}
         <Routes location={displayLocation}>
@@ -205,8 +231,8 @@ export default function App() {
           <Route path="/what-sets-us-apart" element={<WhatSetsUsApart />} />
           <Route path="/management" element={<Management />} />
           <Route path="/awards" element={<Awards />} />
-          <Route path="/news" element={<CommonPages />} />
-          <Route path="/alumni" element={<CommonPages />} />
+          <Route path="/news" element={<SchoolNews />} />
+          <Route path="/alumni" element={<Alumni />} />
           <Route path="/careers" element={<CommonPages />} />
           <Route path="/sports-arena" element={<CommonPages />} />
           <Route path="/counselling" element={<SchoolCounselling />} />
@@ -215,6 +241,7 @@ export default function App() {
           <Route path="/useful-links" element={<UsefulLinks />} />
           <Route path="/admission-enquiry" element={<AdmissionEnquiry />} />
           <Route path="/admissions" element={<Navigate to="/admission-enquiry" replace />} />
+          <Route path="/mandatory-disclosures" element={<MandatoryDisclosures />} />
           
           {/* Dynamic Branch Routes */}
           <Route path="/school/:schoolId" element={<Home />} />
@@ -224,15 +251,26 @@ export default function App() {
           <Route path="/school/:schoolId/admissions" element={<SchoolAdmissions />} />
           <Route path="/school/:schoolId/curriculum" element={<Curriculum />} />
           <Route path="/school/:schoolId/curriculum/:pathway" element={<Curriculum />} />
+          <Route path="/school/:schoolId/curriculum/academic-results" element={<SchoolAcademicResults />} />
+          <Route path="/school/:schoolId/academic-results" element={<Navigate to="/school/:schoolId/curriculum/academic-results" replace />} />
           <Route path="/school/:schoolId/holistic-learning" element={<SchoolHolistic />} />
           <Route path="/school/:schoolId/holistic-learning/:sectionId" element={<SchoolHolistic />} />
-          <Route path="/school/:schoolId/counselling" element={<Navigate to="/counselling" replace />} />
+          <Route path="/virtual-tour" element={<SchoolVirtualTour />} />
+          <Route path="/school/:schoolId/virtual-tour" element={<SchoolVirtualTour />} />
           <Route path="/school/:schoolId/winning-school" element={<SchoolWinning />} />
           <Route path="/school/:schoolId/editorials" element={<SchoolEditorials />} />
+          <Route path="/school/:schoolId/blogs" element={<SchoolBlogListing />} />
+          <Route path="/school/:schoolId/blogs/:slug" element={<SchoolBlogDetail />} />
           <Route path="/school/:schoolId/disclosures" element={<Disclosures />} />
+          <Route path="/school/:schoolId/useful-links" element={<UsefulLinks />} />
           <Route path="/school/:schoolId/contact" element={<CommonPages />} />
 
           {/* Redirects for legacy/direct paths to Sahibabad default */}
+          <Route path="/curriculum" element={<Navigate to="/school/dlf-sahibabad/curriculum" replace />} />
+          <Route path="/curriculum/cbse" element={<Navigate to="/school/dlf-sahibabad/curriculum/cbse" replace />} />
+          <Route path="/curriculum/cambridge" element={<Navigate to="/school/dlf-sahibabad/curriculum/cambridge" replace />} />
+          <Route path="/curriculum/academic-results" element={<Navigate to="/school/dlf-sahibabad/curriculum/academic-results" replace />} />
+          <Route path="/academic-results" element={<Navigate to="/school/dlf-sahibabad/curriculum/academic-results" replace />} />
           <Route path="/about-us/our-campus" element={<Navigate to="/school/dlf-sahibabad/campus" replace />} />
           <Route path="/about-us/parent-as-partners" element={<Navigate to="/parent-partners" replace />} />
         </Routes>

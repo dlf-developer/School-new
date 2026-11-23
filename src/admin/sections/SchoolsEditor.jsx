@@ -4,7 +4,7 @@ import FieldEditor from '../components/FieldEditor'
 import CardRepeater from '../components/CardRepeater'
 import ImageUrlPicker from '../components/ImageUrlPicker'
 import SaveBar from '../components/SaveBar'
-import { School, Settings, Sparkles, HelpCircle, BookOpen, Layers, CheckCircle, Palette } from 'lucide-react'
+import { School, Settings, Image as ImageIcon, HelpCircle, BookOpen, Layers, CheckCircle, Palette } from 'lucide-react'
 
 export default function SchoolsEditor() {
   const { schools, saveSchool, resetSchool } = useSiteData()
@@ -108,7 +108,7 @@ export default function SchoolsEditor() {
   const subTabs = [
     { id: 'general', label: 'General Info', icon: Settings },
     { id: 'theme', label: 'Theme Colors', icon: Palette },
-    { id: 'hero', label: 'Hero Banner', icon: Sparkles },
+    { id: 'hero', label: 'Hero Banner', icon: ImageIcon },
     { id: 'admissions', label: 'Admissions Steps', icon: HelpCircle },
     { id: 'curriculum', label: 'Curriculum & Campus', icon: BookOpen },
     { id: 'holistic', label: 'Holistic & Sports', icon: Layers }
@@ -190,10 +190,10 @@ export default function SchoolsEditor() {
                 description="City label used in mega menus"
               />
               <FieldEditor
-                label="CBSE Affiliation Info"
+                label="Accreditation / Tagline"
                 value={schoolData.cbseInfo}
                 onChange={(val) => handleFieldChange('cbseInfo', val)}
-                placeholder="e.g. CBSE Affiliation No. 2130384"
+                placeholder="e.g. Flagship Campus"
               />
             </div>
 

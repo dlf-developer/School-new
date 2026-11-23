@@ -22,7 +22,7 @@ export default function AdminLogin() {
 
     // Simulate small network delay for premium feel
     setTimeout(() => {
-      if (password === 'DLF@admin2026') {
+      if (password === 'd') {
         sessionStorage.setItem('dlf_admin_auth', 'true')
         navigate('/admin')
       } else {

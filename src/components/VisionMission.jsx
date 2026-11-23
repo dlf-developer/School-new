@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Eye, Target, Sparkles, Download, ChevronDown, ChevronUp } from 'lucide-react'
+import { Eye, Target, Download, ChevronDown, ChevronUp } from 'lucide-react'
 import ImageWithLoader from './ImageWithLoader'
 import { useSiteData } from '../hooks/useSiteData'
 
@@ -25,7 +25,7 @@ export default function VisionMission() {
             <ImageWithLoader 
               src={vm.galleryImage} 
               alt={vm.heroTitle || "Vision & Mission"} 
-              imgClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103" 
+              imgClassName="w-full h-full object-cover " 
               style={{ objectPosition: 'center 80%' }}
               loading="eager" 
             />
@@ -58,7 +58,7 @@ export default function VisionMission() {
                 src="/7C1A1603.jpg" 
                 alt="Our Vision Illustration" 
                 className="absolute inset-0"
-                imgClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                imgClassName="w-full h-full object-cover " 
                 loading="lazy" 
               />
             </div>
@@ -89,7 +89,7 @@ export default function VisionMission() {
                 src="/7C1A1764.jpg" 
                 alt="Our Mission Illustration" 
                 className="absolute inset-0"
-                imgClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                imgClassName="w-full h-full object-cover " 
                 loading="lazy" 
               />
             </div>

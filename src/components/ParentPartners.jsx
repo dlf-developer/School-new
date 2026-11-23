@@ -84,11 +84,11 @@ export default function ParentPartners() {
 
       {/* 2. Custom Multi-Video Playlist Showcase with Pop-up Lightbox */}
       <section className="max-w-7xl mx-auto px-4 md:px-12 pb-20 relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
+        <div className="text-center max-w-4xl mx-auto mb-10 space-y-3">
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-greenDeep leading-tight">
             Parent Partnership in Action
           </h2>
-          <p className="text-brand-muted text-sm font-sans">
+          <p className="text-brand-muted text-sm font-sans md:whitespace-nowrap">
             Browse through recordings of our parent sessions, celebrations, and events. Click any video to open full screen.
           </p>
         </div>
@@ -106,7 +106,7 @@ export default function ParentPartners() {
                   <video
                     src={playlist[currentVideoIdx].filename}
                     preload="metadata"
-                    className="w-full h-full object-cover pointer-events-none transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover pointer-events-none "
                   />
 
                   <div className="absolute inset-0 bg-brand-charcoal/40 flex items-center justify-center transition-all duration-300 group-hover:bg-brand-charcoal/50">
@@ -232,7 +232,7 @@ export default function ParentPartners() {
                       <ImageWithLoader
                         src={item.img}
                         alt={item.title}
-                        imgClassName="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
+                        imgClassName="w-full h-full object-cover "
                         loading="lazy"
                       />
                     </div>

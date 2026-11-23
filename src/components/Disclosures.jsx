@@ -10,7 +10,7 @@ export default function Disclosures() {
   const theme = currentSchool.theme
 
   const documents = [
-    { title: 'Affiliation Certificate', code: 'CBSE-AFF-2026' },
+    { title: 'School Certificate', code: 'DOC-REG-2026' },
     { title: 'Trust / Registration Certificate', code: 'TRUST-REG-98' },
     { title: 'No Objection Certificate (NOC)', code: 'NOC-UP-GOVT' },
     { title: 'Recognition Certificate', code: 'RECOG-CERT-112' },
@@ -24,7 +24,7 @@ export default function Disclosures() {
       <div className="max-w-7xl mx-auto px-4 md:px-12 space-y-12">
         <div className="text-center max-w-2xl mx-auto space-y-4">
           <span className={`text-xs uppercase tracking-widest font-extrabold text-${theme.vibrant}`}>Compliance & Transparency</span>
-          <h2 className={`font-serif text-4xl sm:text-5xl font-bold text-${theme.primary}`}>CBSE Mandated Disclosures</h2>
+          <h2 className={`font-serif text-4xl sm:text-5xl font-bold text-${theme.primary}`}>Mandated Public Disclosures</h2>
           <div className={`w-12 h-[2px] bg-${theme.accent} mx-auto`}></div>
           <p className="text-sm text-brand-muted leading-relaxed font-inter">
             Required statutory information and certificates corresponding to {currentSchool.name}.

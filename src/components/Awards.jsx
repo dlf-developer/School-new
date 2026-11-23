@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react'
-import { Award, ShieldAlert, Sparkles, Trophy, Calendar, Search, SlidersHorizontal, BookOpen, ExternalLink, Image as ImageIcon } from 'lucide-react'
+import { Award, ShieldAlert, Trophy, Calendar, Search, SlidersHorizontal, BookOpen, ExternalLink, Image as ImageIcon } from 'lucide-react'
 import ImageWithLoader from './ImageWithLoader'
 import { useSiteData } from '../hooks/useSiteData'
 
@@ -11,7 +11,7 @@ const TimelineImage = ({ imageSrc, year }) => {
         <ImageWithLoader 
           src={imageSrc} 
           alt={`DLF Accolades ${year}`} 
-          imgClassName="w-full h-full object-cover transition-transform duration-750 group-hover:scale-105" 
+          imgClassName="w-full h-full object-cover " 
           loading="lazy" 
         />
       </div>

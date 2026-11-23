@@ -16,7 +16,8 @@ import {
   Lock,
   ChevronRight,
   Newspaper,
-  Image as ImageIcon
+  Image as ImageIcon,
+  Video
 } from 'lucide-react'
 
 // Import all editors
@@ -25,6 +26,7 @@ import TickerEditor from './sections/TickerEditor'
 import StatsEditor from './sections/StatsEditor'
 import PillarsEditor from './sections/PillarsEditor'
 import TestimonialsEditor from './sections/TestimonialsEditor'
+import VideoTestimonialsEditor from './sections/VideoTestimonialsEditor'
 import ManagementEditor from './sections/ManagementEditor'
 import ThinkingSchoolEditor from './sections/ThinkingSchoolEditor'
 import VisionMissionEditor from './sections/VisionMissionEditor'
@@ -61,6 +63,7 @@ export default function AdminApp() {
     { id: 'stats', label: 'Key Statistics', icon: BarChart3, component: StatsEditor, category: 'Shared Sections' },
     { id: 'ticker', label: 'Marquee Ticker', icon: Megaphone, component: TickerEditor, category: 'Shared Sections' },
     { id: 'testimonials', label: 'Testimonials', icon: MessageSquareQuote, component: TestimonialsEditor, category: 'Shared Sections' },
+    { id: 'videoTestimonials', label: 'Video Testimonials', icon: Video, component: VideoTestimonialsEditor, category: 'Shared Sections' },
     { id: 'mediaLibrary', label: 'Media Library', icon: ImageIcon, component: MediaLibraryEditor, category: 'Assets' }
   ]
 

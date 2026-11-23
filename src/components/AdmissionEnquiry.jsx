@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { ExternalLink, MapPin, Sparkles } from 'lucide-react'
+import { ExternalLink, MapPin } from 'lucide-react'
 import ImageWithLoader from './ImageWithLoader'
 
 // External Links - Official Edunext Admission Enquiry Forms
@@ -71,7 +71,7 @@ export default function AdmissionEnquiry() {
                     src={school.image}
                     alt={school.name}
                     loading="lazy"
-                    imgClassName="object-cover group-hover:scale-105 transition-transform duration-700"
+                    imgClassName="object-cover "
                     style={{ objectPosition: 'center 25%' }}
                   />
                 </div>

@@ -1,8 +1,9 @@
 import React from 'react'
-import { Award, Leaf, Globe, Sparkles, Zap, Trophy, ShieldCheck } from 'lucide-react'
+import { useParams } from 'react-router-dom'
+import { Award, Leaf, Globe, Zap, Trophy, ShieldCheck } from 'lucide-react'
 import { useSiteData } from '../hooks/useSiteData'
 
-const ICON_MAP = { Award, Leaf, Globe, Sparkles, Zap, Trophy, ShieldCheck }
+const ICON_MAP = { Award, Leaf, Globe, Zap, Trophy, ShieldCheck }
 
 const DEFAULT_ITEMS = [
   { id: 'tick-1', icon: 'Globe', text: 'Recognition of International Dimension in Schools' },
@@ -15,11 +16,14 @@ const DEFAULT_ITEMS = [
 ]
 
 export default function Ticker() {
+  const { schoolId } = useParams()
   const { global } = useSiteData()
+  const isDLWS = schoolId === 'dlf-greater-noida'
+  const bgClass = isDLWS ? 'bg-brand-purpleDeep' : 'bg-brand-greenDeep'
   const items = (global?.ticker?.items && global.ticker.items.length > 0) ? global.ticker.items : DEFAULT_ITEMS
 
   return (
-    <section className="bg-brand-greenDeep text-brand-bg py-5 sm:py-6 overflow-hidden relative border-y border-brand-gold/15">
+    <section className={`${bgClass} text-brand-bg py-5 sm:py-6 overflow-hidden relative border-y border-brand-gold/15 transition-colors duration-300`}>
       <div className="flex items-center whitespace-nowrap overflow-hidden">
         {/* Continuous double track for smooth infinite loop */}
         {[0, 1].map((track) => (

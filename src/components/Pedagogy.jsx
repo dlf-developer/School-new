@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { 
-  Sparkles, BookOpen, Puzzle, Palette, Award, Cpu, Gamepad2, 
+  Sun, BookOpen, Puzzle, Palette, Award, Cpu, Gamepad2, 
   Eye, Users, Languages, Heart, Compass, CheckCircle, 
   Code, Lightbulb, Video, Wrench, FlaskConical, 
   FileText, Play, X, ZoomIn, GraduationCap, ArrowRight, Briefcase 
 } from 'lucide-react'
 import ImageWithLoader from './ImageWithLoader'
 
-export default function Pedagogy() {
+export default function Pedagogy({ isPreview = false }) {
   const { stageId } = useParams()
   
   // Set default active tab to 'early-years'
@@ -95,7 +95,7 @@ export default function Pedagogy() {
         exemplars: [],
         videos: []
       },
-      Icon: Sparkles
+      Icon: Sun
     },
     {
       id: 'primary-years',
@@ -418,7 +418,7 @@ export default function Pedagogy() {
     if (t.includes('inclusive')) return Heart
     if (t.includes('inquiry') || t.includes('investigate')) return Compass
     if (t.includes('competency')) return CheckCircle
-    if (t.includes('experiential') || t.includes('active')) return Sparkles
+    if (t.includes('experiential') || t.includes('active')) return Lightbulb
     if (t.includes('skill')) return Wrench
     if (t.includes('computational') || t.includes('coding')) return Code
     if (t.includes('project') || t.includes('pbl')) return Briefcase
@@ -432,7 +432,7 @@ export default function Pedagogy() {
   }
 
   return (
-    <div className="pt-28 pb-16 min-h-screen text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden">
+    <div className={`${isPreview ? 'py-10' : 'pt-28 pb-16 min-h-screen'} text-brand-charcoal selection:bg-brand-gold/30 relative overflow-hidden font-sans`}>
       
       {/* Premium custom animations injector */}
       <style>{`
@@ -456,7 +456,7 @@ export default function Pedagogy() {
       <div className="absolute top-20 right-1/4 w-[400px] h-[400px] ambient-glow-2 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-20 left-1/4 w-[450px] h-[450px] ambient-glow-1 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div className="w-[96%] max-w-[1600px] mx-auto px-4 md:px-12 space-y-16 relative z-10">
+      <div className="w-[96%] max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12 relative z-10">
         
         {/* Header Block */}
         <div className="text-center max-w-2xl mx-auto space-y-4">
@@ -543,7 +543,7 @@ export default function Pedagogy() {
                   <video
                     src={activeStage.media.videos[0].src}
                     preload="metadata"
-                    className="w-full h-full object-cover pointer-events-none transition-transform duration-700 group-hover/hero:scale-[1.04]"
+                    className="w-full h-full object-cover pointer-events-none transition-transform duration-700 "
                   />
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-all duration-300 group-hover/hero:bg-black/55">
                     <div className="w-14 h-14 rounded-full bg-white/90 text-brand-greenDeep flex items-center justify-center shadow-xl transform transition-transform duration-300 group-hover/hero:scale-110">
@@ -612,7 +612,7 @@ export default function Pedagogy() {
                             <ImageWithLoader 
                               src={displayImg} 
                               alt={approach.title} 
-                              imgClassName="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105" 
+                              imgClassName="w-full h-full object-cover " 
                               loading="lazy" 
                             />
                             <div className="absolute inset-0 bg-black/20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">

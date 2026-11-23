@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useSiteData } from '../hooks/useSiteData'
-import { ArrowLeft, Award, Zap, Smile, X, ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowLeft, Award, Zap, Smile, X, ArrowRight } from 'lucide-react'
 
 export default function SchoolWinning({ isHomePage = false }) {
   const { schoolId } = useParams()
@@ -140,7 +140,6 @@ export default function SchoolWinning({ isHomePage = false }) {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-7 space-y-3">
                 <span className="text-xs uppercase tracking-widest font-extrabold text-brand-gold flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-brand-gold animate-pulse" />
                   School Accolades & Recognition
                 </span>
                 <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-masterDeep">
@@ -155,7 +154,7 @@ export default function SchoolWinning({ isHomePage = false }) {
                   <img
                     src="/achievements/TOI Winners.jpeg"
                     alt="School Accolades & Awards"
-                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+                    className="w-full h-full object-cover "
                     loading="lazy"
                   />
                 </div>
@@ -312,7 +311,7 @@ export default function SchoolWinning({ isHomePage = false }) {
                       <img
                         src={item.img}
                         alt={item.caption}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-full object-cover "
                       />
                     </div>
                     <p className="text-[10px] text-brand-muted font-inter font-medium leading-relaxed p-3 line-clamp-3">{item.caption}</p>
