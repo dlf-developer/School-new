@@ -1325,7 +1325,7 @@ export default function Header() {
                 </div>
 
                 {/* 6. Virtual Tour */}
-                <div className="relative py-2 flex flex-col items-center justify-center">
+                {/* <div className="relative py-2 flex flex-col items-center justify-center">
                   <a
                     href="#virtual-tour"
                     onClick={(e) => handleHashClick(e, "#virtual-tour")}
@@ -1333,7 +1333,7 @@ export default function Header() {
                   >
                     <span>Virtual Tour</span>
                   </a>
-                </div>
+                </div> */}
               </>
             ) : (
               <>
